@@ -179,15 +179,50 @@
       "title": "Join Us on the Mat",
       "description": "Weekly classes in small groups for in-depth practice and personalized guidance."
     },
+    "classes": {
+      "hatha": {
+        "title": "Traditional Hatha Yoga",
+        "description": "Classical yoga practice with focus on asanas (postures), pranayama (breathing) and meditation. All levels welcome.",
+        "schedule": "Tuesdays & Thursdays 6:30pm",
+        "duration": "90 min",
+        "price": "€20/class or €70/month"
+      },
+      "restorative": {
+        "title": "Restorative Yoga",
+        "description": "Gentle and deeply relaxing practice with long-held postures. Ideal for recovery and stress management.",
+        "schedule": "Saturdays 10:00am",
+        "duration": "75 min",
+        "price": "€25/class"
+      },
+      "meditation": {
+        "title": "Meditation & Pranayama",
+        "description": "Sessions dedicated to yogic breathing techniques and guided meditation. All levels, beginners welcome.",
+        "schedule": "Sundays 9:00am",
+        "duration": "60 min",
+        "price": "€15/class or €50/month"
+      }
+    },
     "buttons": {
       "book": "Book",
       "bookSpot": "Book My Spot",
       "moreInfo": "More Information"
     },
-    "retreats": {
-      "subtitle": "Retreats & Immersions",
+    "trialClass": {
+      "title": "Free Trial Class",
+      "description": "New to yoga? Come try your first class for free, no commitment.",
+      "button": "Book My Trial Class"
+    },
+    "experiences": {
+      "subtitle": "Retreats & Programs",
       "title": "Transformational Experiences",
-      "description": "Retreats and immersions that combine traditional yogic practices and personal transformation in inspiring Moroccan locations.",
+      "description": "Retreats, workshops and training that combine traditional yogic practices and personal transformation in inspiring Moroccan locations."
+    },
+    "type": {
+      "retreat": "retreat",
+      "workshop": "workshop",
+      "training": "training"
+    },
+    "retreats": {
       "atlas": {
         "title": "Yoga & Meditation Retreat in the Atlas",
         "location": "Ourika Valley, Morocco",
@@ -220,9 +255,6 @@
       }
     },
     "workshops": {
-      "subtitle": "Workshops",
-      "title": "Intensive Weekend Programs",
-      "description": "Short immersive programs to deepen specific aspects of practice.",
       "leadership": {
         "title": "Conscious Leadership Workshop",
         "location": "Casablanca, Morocco",
@@ -255,9 +287,6 @@
       }
     },
     "training": {
-      "subtitle": "Training Programs",
-      "title": "In-Depth Programs",
-      "description": "Extended training for those who wish to deepen their practice and understanding of yoga.",
       "philosophy": {
         "title": "Yoga & Philosophy Training",
         "location": "Marrakech, Morocco",
@@ -274,45 +303,12 @@
         }
       }
     },
-    "type": {
-      "retreat": "retreat",
-      "workshop": "workshop",
-      "training": "training"
-    },
     "perPerson": "per person",
     "programHighlights": "Program highlights:",
-    "classes": {
-      "hatha": {
-        "title": "Traditional Hatha Yoga",
-        "description": "Classical yoga practice with focus on asanas (postures), pranayama (breathing) and meditation. All levels welcome.",
-        "schedule": "Tuesdays & Thursdays 6:30pm",
-        "duration": "90 min",
-        "price": "€20/class or €70/month"
-      },
-      "restorative": {
-        "title": "Restorative Yoga",
-        "description": "Gentle and deeply relaxing practice with long-held postures. Ideal for recovery and stress management.",
-        "schedule": "Saturdays 10:00am",
-        "duration": "75 min",
-        "price": "€25/class"
-      },
-      "meditation": {
-        "title": "Meditation & Pranayama",
-        "description": "Sessions dedicated to yogic breathing techniques and guided meditation. All levels, beginners welcome.",
-        "schedule": "Sundays 9:00am",
-        "duration": "60 min",
-        "price": "€15/class or €50/month"
-      },
-      "freeTrial": {
-        "title": "Free Trial Class",
-        "description": "New to yoga? Come try your first class for free, no commitment.",
-        "cta": "Book My Trial Class"
-      }
-    },
     "philosophy": {
       "subtitle": "My Philosophy",
       "title": "Yoga as a Path of Transformation",
-      "description": "For me, yoga is much more than a physical practice. It's a path of deep transformation that touches all aspects of our being - body, mind, heart and spirit.",
+      "intro": "For me, yoga is much more than a physical practice. It's a path of deep transformation that touches all aspects of our being - body, mind, heart and spirit.",
       "tradition": {
         "title": "Authentic Tradition",
         "description": "Trained in the traditional lineage of Hatha Yoga, I teach practices in their authentic form, respectful of ancestral wisdom."
@@ -321,31 +317,34 @@
         "title": "Inclusive Approach",
         "description": "Yoga is for all bodies and all ages. I adapt the practice to each person with kindness and respect."
       },
-      "integration": {
-        "title": "Life Integration",
-        "description": "My approach helps integrate yogic teachings into daily life, for sustainable balance."
-      },
-      "depth": {
+      "beyond": {
         "title": "Beyond the Physical",
         "description": "The yoga I teach goes beyond postures. We explore breathing, meditation and yogic philosophy."
+      },
+      "smallGroups": {
+        "title": "Small Groups",
+        "description": "I teach in small groups (max 12 people) to maintain quality of teaching and individual attention."
       }
     },
     "custom": {
       "subtitle": "Personalized Program",
       "title": "Let's Create Your Experience Together",
       "description": "Would you like a custom program for your group, your team or a special occasion? We design unique experiences adapted to your needs.",
-      "privateGroups": {
-        "title": "Private groups",
-        "description": "From 6 people"
+      "features": {
+        "groups": {
+          "title": "Private groups",
+          "description": "From 6 people"
+        },
+        "locations": {
+          "title": "Unique locations",
+          "description": "Riads, desert, mountains, ocean"
+        },
+        "personalized": {
+          "title": "100% personalized",
+          "description": "Content adapted to your needs"
+        }
       },
-      "uniqueLocations": {
-        "title": "Unique locations",
-        "description": "Riads, desert, mountains, ocean"
-      },
-      "personalized": {
-        "title": "100% personalized",
-        "description": "Content adapted to your needs"
-      }
+      "button": "Request a Custom Program"
     },
     "cta": {
       "title": "Ready to Begin?",
