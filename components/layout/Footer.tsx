@@ -1,27 +1,31 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import Container from '../ui/Container';
-
-const navigation = {
-  services: [
-    { name: 'Pour les Organisations', href: '/organisations' },
-    { name: 'Programmes & Yoga', href: '/programmes' },
-    { name: 'Coaching Individuel', href: '/coaching' },
-    { name: 'Mon Expertise', href: '/expertise' },
-  ],
-  resources: [
-    { name: 'Articles', href: '/ressources#articles' },
-    { name: 'Guides Gratuits', href: '/ressources#guides' },
-    { name: 'Témoignages', href: '/ressources#temoignages' },
-  ],
-  legal: [
-    { name: 'Mentions Légales', href: '/mentions-legales' },
-    { name: 'Politique de Confidentialité', href: '/confidentialite' },
-    { name: 'CGV', href: '/cgv' },
-  ],
-};
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function Footer() {
+  const { t } = useTranslation();
+
+  const navigation = {
+    services: [
+      { name: t('common.footer.organisations'), href: '/organisations' },
+      { name: t('common.nav.programmes'), href: '/programmes' },
+      { name: t('common.footer.individualCoaching'), href: '/coaching' },
+      { name: t('common.footer.expertise'), href: '/expertise' },
+    ],
+    resources: [
+      { name: 'Articles', href: '/ressources#articles' },
+      { name: t('ressources.guides.title'), href: '/ressources#guides' },
+      { name: t('common.footer.certifications'), href: '/ressources#temoignages' },
+    ],
+    legal: [
+      { name: t('common.footer.terms'), href: '/mentions-legales' },
+      { name: t('common.footer.privacy'), href: '/confidentialite' },
+      { name: 'CGV', href: '/cgv' },
+    ],
+  };
   return (
     <footer className="bg-deep-blue text-warm-white">
       <Container className="py-12 md:py-16">
@@ -30,14 +34,13 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <h3 className="font-heading text-2xl font-bold mb-4">HABI</h3>
             <p className="text-sage-light text-sm leading-relaxed">
-              Coaching organisationnel et pratiques yogiques traditionnelles pour
-              une transformation authentique et durable.
+              {t('common.footer.tagline')} - {t('common.footer.description')}
             </p>
           </div>
 
           {/* Services */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">Services</h4>
+            <h4 className="font-semibold text-lg mb-4">{t('common.footer.services')}</h4>
             <ul className="space-y-2">
               {navigation.services.map((item) => (
                 <li key={item.name}>
@@ -54,7 +57,7 @@ export default function Footer() {
 
           {/* Resources */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">Ressources</h4>
+            <h4 className="font-semibold text-lg mb-4">{t('common.nav.ressources')}</h4>
             <ul className="space-y-2">
               {navigation.resources.map((item) => (
                 <li key={item.name}>
@@ -71,33 +74,27 @@ export default function Footer() {
 
           {/* Certifications */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">Certifications</h4>
+            <h4 className="font-semibold text-lg mb-4">{t('common.footer.certifications')}</h4>
             <ul className="space-y-2 text-sm text-sage-light">
               <li>
-                Coach certifiée
+                <strong className="text-warm-white">{t('common.footer.coachTeamEMCC')}</strong>
                 <br />
-                <strong className="text-warm-white">Coach & Team</strong>
-                <br />
-                (Accréditation EMCC)
+                (EMCC)
               </li>
               <li className="pt-3">
-                Professeure certifiée
-                <br />
-                <strong className="text-warm-white">Isha Foundation</strong>
+                <strong className="text-warm-white">{t('common.footer.ishaFoundation')}</strong>
                 <br />
                 (Classical Hatha Yoga)
               </li>
               <li className="pt-3">
-                <strong className="text-warm-white">20 ans</strong> d'expérience
-                <br />
-                Transformation organisationnelle
+                <strong className="text-warm-white">{t('common.footer.corporateExperience')}</strong>
               </li>
             </ul>
           </div>
 
           {/* Contact & Social */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">Contact</h4>
+            <h4 className="font-semibold text-lg mb-4">{t('common.nav.contact')}</h4>
             <ul className="space-y-3 text-sm text-sage-light">
               <li>
                 <a
@@ -144,7 +141,7 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-morocco-blue">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-sage-light text-sm">
-              © {new Date().getFullYear()} HABI - Hajar Habi. Tous droits réservés.
+              © {new Date().getFullYear()} HABI - Hajar Habi. {t('common.footer.copyright')}
             </p>
             <div className="flex space-x-6">
               {navigation.legal.map((item) => (
