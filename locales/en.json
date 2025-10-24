@@ -368,31 +368,28 @@
       "transformation": {
         "title": "Organizational Transformation",
         "description": "Comprehensive support for your organization towards a culture of presence, collaboration and sustainable performance.",
-        "items": {
+        "features": {
           "0": "Diagnosis and co-creation",
           "1": "Strategic facilitation",
-          "2": "Change management",
-          "3": "Culture transformation"
+          "2": "Change management"
         }
       },
       "leadership": {
         "title": "Conscious Leadership",
         "description": "Leadership development at all levels, grounded in self-awareness, collective intelligence and healthy boundaries for sustainable performance.",
-        "items": {
+        "features": {
           "0": "Executive coaching",
           "1": "Leadership seminars",
-          "2": "Team development",
-          "3": "360° feedback"
+          "2": "Team development"
         }
       },
       "retreats": {
         "title": "Corporate Retreats",
         "description": "Custom retreats in Morocco combining strategic facilitation, presence practices and rejuvenation in unique locations.",
-        "items": {
+        "features": {
           "0": "Strategic seminars",
           "1": "Authentic team building",
-          "2": "Well-being & performance",
-          "3": "Leadership retreats"
+          "2": "Reconnection & rejuvenation"
         }
       }
     },
