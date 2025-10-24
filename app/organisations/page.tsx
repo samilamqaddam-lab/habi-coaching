@@ -235,16 +235,18 @@ export default function OrganisationsPage() {
 
       {/* CTA */}
       <Section background="sage" padding="md" centered>
-        <h3 className="font-heading text-2xl md:text-3xl font-bold text-deep-blue mb-4">
-          Vous préférez en discuter directement ?
-        </h3>
-        <p className="text-text-secondary mb-6">
-          Réservez un appel découverte de 30 minutes pour explorer comment nous
-          pouvons collaborer.
-        </p>
-        <Button variant="primary" size="lg" href="/contact">
-          Réserver un appel
-        </Button>
+        <div className="max-w-3xl mx-auto">
+          <h3 className="font-heading text-2xl md:text-3xl font-bold text-deep-blue mb-4">
+            Vous préférez en discuter directement ?
+          </h3>
+          <p className="text-text-secondary mb-6">
+            Réservez un appel découverte de 30 minutes pour explorer comment nous
+            pouvons collaborer.
+          </p>
+          <Button variant="primary" size="lg" href="/contact">
+            Réserver un appel
+          </Button>
+        </div>
       </Section>
     </>
   );

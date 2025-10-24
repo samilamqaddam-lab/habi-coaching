@@ -197,17 +197,19 @@ export default function CoachingPage() {
 
       {/* CTA */}
       <Section background="sage" padding="lg" centered>
-        <h2 className="font-heading text-3xl md:text-4xl font-bold text-deep-blue mb-6">
-          Commençons Votre Voyage
-        </h2>
-        <p className="text-lg text-text-secondary mb-8 max-w-2xl mx-auto">
-          La première session est une session découverte gratuite de 30 minutes
-          pour explorer vos besoins et voir si nous sommes alignés pour travailler
-          ensemble.
-        </p>
-        <Button variant="primary" size="lg" href="/contact">
-          Réserver ma session découverte gratuite
-        </Button>
+        <div className="max-w-3xl mx-auto">
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-deep-blue mb-6">
+            Commençons Votre Voyage
+          </h2>
+          <p className="text-lg text-text-secondary mb-8">
+            La première session est une session découverte gratuite de 30 minutes
+            pour explorer vos besoins et voir si nous sommes alignés pour travailler
+            ensemble.
+          </p>
+          <Button variant="primary" size="lg" href="/contact">
+            Réserver ma session découverte gratuite
+          </Button>
+        </div>
       </Section>
     </>
   );

@@ -255,7 +255,7 @@ export default function RessourcesPage() {
 
       {/* Newsletter */}
       <Section centered padding="lg">
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-3xl mx-auto">
           <h2 className="font-heading text-3xl font-bold text-deep-blue mb-4">
             Restez Inspiré·e
           </h2>

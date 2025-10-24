@@ -209,7 +209,7 @@ export default function ProgrammesPage() {
         </div>
 
         <div className="mt-12 text-center">
-          <Card padding="lg" className="max-w-2xl mx-auto bg-sage-light/10">
+          <Card padding="lg" className="max-w-3xl mx-auto bg-sage-light/10">
             <h4 className="font-semibold text-deep-blue mb-3">
               Cours d'essai gratuit
             </h4>
@@ -521,20 +521,22 @@ export default function ProgrammesPage() {
 
       {/* CTA */}
       <Section background="sage" padding="lg" centered>
-        <h2 className="font-heading text-3xl md:text-4xl font-bold text-deep-blue mb-6">
-          Prêt·e à Commencer ?
-        </h2>
-        <p className="text-lg text-text-secondary mb-8 max-w-2xl mx-auto">
-          Réservez votre cours d'essai gratuit ou contactez-nous pour toute
-          question sur nos cours et programmes.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button variant="primary" size="lg" href="/contact">
-            Cours d'essai gratuit
-          </Button>
-          <Button variant="outline" size="lg" href="/contact">
-            Demander des informations
-          </Button>
+        <div className="max-w-3xl mx-auto">
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-deep-blue mb-6">
+            Prêt·e à Commencer ?
+          </h2>
+          <p className="text-lg text-text-secondary mb-8">
+            Réservez votre cours d'essai gratuit ou contactez-nous pour toute
+            question sur nos cours et programmes.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button variant="primary" size="lg" href="/contact">
+              Cours d'essai gratuit
+            </Button>
+            <Button variant="outline" size="lg" href="/contact">
+              Demander des informations
+            </Button>
+          </div>
         </div>
       </Section>
     </>
