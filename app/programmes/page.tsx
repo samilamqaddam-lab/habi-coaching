@@ -134,7 +134,7 @@ export default function ProgrammesPage() {
       <Hero
         subtitle="Pratiques Yogiques & Programmes"
         title="Transformez Votre Vie par le Yoga"
-        description="Découvrez le Classical Hatha Yoga enseigné par une professeure certifiée Isha Foundation (1750h de formation avec Sadhguru en Inde). Cours réguliers, retraites immersives et programmes de transformation pour une pratique authentique qui touche tous les aspects de l'être."
+        description="Le Classical Hatha Yoga enseigné par une professeure certifiée Isha Foundation, avec une compréhension approfondie des enjeux du monde contemporain. Cours, retraites et programmes pour une pratique qui s'intègre à votre vie."
         primaryCTA={{
           text: 'Réserver un cours',
           href: '#cours',

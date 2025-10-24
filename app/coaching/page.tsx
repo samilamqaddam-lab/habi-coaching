@@ -39,7 +39,7 @@ export default function CoachingPage() {
       <Hero
         subtitle="Coaching Individuel"
         title="Définissez le Succès Selon Vos Termes"
-        description="Un accompagnement certifié EMCC qui allie techniques de coaching professionnel et pratiques contemplatives pour une transformation authentique et durable. Coach certifiée Coach & Team, je vous accompagne dans le respect de vos limites et valeurs."
+        description="Un accompagnement certifié Coach & Team (accréditation EMCC) qui allie rigueur du coaching professionnel et profondeur des pratiques contemplatives. Pour une transformation qui respecte votre rythme et vos limites."
         primaryCTA={{
           text: 'Réserver une session découverte',
           href: '/contact',

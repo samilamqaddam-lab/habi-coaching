@@ -10,7 +10,7 @@ export default function OrganisationsPage() {
       <Hero
         subtitle="Pour les Organisations"
         title="Transformer Durablement Votre Organisation"
-        description="Un accompagnement qui allie excellence opérationnelle et bien-être des équipes. 20 ans d'expérience internationale."
+        description="Un accompagnement qui allie excellence opérationnelle et dimension humaine profonde. Une approche éprouvée qui réconcilie performance et bien-être."
         primaryCTA={{
           text: 'Demander un devis',
           href: '#devis',

@@ -31,7 +31,7 @@ export default function Hero({
 }: HeroProps) {
   return (
     <section
-      className={`relative min-h-screen flex items-center ${
+      className={`relative min-h-[75vh] flex items-center ${
         backgroundImage ? 'bg-cover bg-center' : 'bg-gradient-to-br from-dune-beige via-warm-white to-sage-light'
       }`}
       style={backgroundImage ? { backgroundImage: `url(${backgroundImage})` } : undefined}
@@ -41,7 +41,7 @@ export default function Hero({
         <div className="absolute inset-0 bg-deep-blue/40" />
       )}
 
-      <Container className={`relative z-10 py-20 -translate-y-12 ${centered ? 'text-center' : ''}`}>
+      <Container className={`relative z-10 py-20 -translate-y-6 ${centered ? 'text-center' : ''}`}>
         <div className={`max-w-4xl ${centered ? 'mx-auto' : ''}`}>
           {subtitle && (
             <p className="text-terracotta text-sm md:text-base font-medium uppercase tracking-wider mb-4">
