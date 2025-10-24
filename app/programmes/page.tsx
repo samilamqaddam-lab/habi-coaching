@@ -513,9 +513,11 @@ export default function ProgrammesPage() {
             </div>
           </div>
 
-          <Button variant="primary" size="lg" href="/contact">
-            Demander un programme sur-mesure
-          </Button>
+          <div className="text-center">
+            <Button variant="primary" size="lg" href="/contact">
+              Demander un programme sur-mesure
+            </Button>
+          </div>
         </div>
       </Section>
 
