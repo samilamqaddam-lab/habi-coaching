@@ -545,13 +545,10 @@
         "excerpt": "Les bienfaits du yoga sur le stress et l'anxiété, expliqués par la recherche scientifique."
       }
     },
-    "downloads": {
+    "guides": {
       "subtitle": "Téléchargements Gratuits",
       "title": "Guides & E-books",
       "description": "Des ressources pratiques à télécharger pour approfondir votre pratique.",
-      "download": "Télécharger gratuitement"
-    },
-    "guides": {
       "0": {
         "title": "Guide : Méditation pour Débutants",
         "description": "Un guide complet de 20 pages pour commencer la méditation en douceur, avec des exercices pratiques.",

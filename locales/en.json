@@ -600,8 +600,8 @@
       "title": "Stay Inspired",
       "description": "Subscribe to my monthly newsletter to receive inspiration, guided practices and news about upcoming programs.",
       "placeholder": "Your email",
-      "button": "Subscribe",
-      "consent": "No spam. Unsubscribe anytime."
+      "submit": "Subscribe",
+      "disclaimer": "No spam. Unsubscribe anytime."
     }
   },
   "expertise": {
