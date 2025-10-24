@@ -489,21 +489,21 @@
     "faq": {
       "subtitle": "Questions Fréquentes",
       "title": "Vous Vous Demandez...",
-      "q1": {
+      "0": {
         "question": "Proposez-vous des sessions en ligne ?",
-        "answer": "Oui ! La plupart de mes services sont disponibles en ligne via Zoom ou en personne à Casablanca. Les retraites se déroulent au Maroc."
+        "answer": "Oui ! La plupart de mes services sont disponibles en ligne via Zoom ou en personne à Casablanca. Les retraites se déroulent au Maroc dans des lieux inspirants."
       },
-      "q2": {
+      "1": {
         "question": "Combien de temps dure un accompagnement ?",
-        "answer": "Cela dépend de vos besoins. Un coaching peut être ponctuel (1-2 sessions) ou s'étaler sur 3-6 mois. Nous en discutons ensemble lors de la session découverte."
+        "answer": "Cela dépend de vos besoins. Un coaching peut être ponctuel (1-2 sessions) ou s'étaler sur 3-6 mois. Nous en discutons ensemble lors de la session découverte pour trouver ce qui vous convient le mieux."
       },
-      "q3": {
+      "2": {
         "question": "Dois-je avoir de l'expérience en yoga pour participer aux cours ?",
-        "answer": "Pas du tout ! Mes cours sont ouverts à tous les niveaux. Je propose même un cours d'essai gratuit pour les débutants."
+        "answer": "Pas du tout ! Mes cours sont ouverts à tous les niveaux, des débutants complets aux pratiquants expérimentés. Je propose même un cours d'essai gratuit pour les nouveaux au yoga."
       },
-      "q4": {
+      "3": {
         "question": "Comment se passe la première session découverte ?",
-        "answer": "C'est un moment d'échange gratuit de 30 minutes (en ligne ou en personne) pour faire connaissance, comprendre vos besoins et voir si nous sommes alignés pour travailler ensemble."
+        "answer": "C'est une conversation gratuite de 30 minutes (en ligne ou en personne) pour faire connaissance, comprendre vos besoins et voir si nous sommes alignés pour travailler ensemble. Sans pression, juste une conversation honnête."
       }
     },
     "social": {
