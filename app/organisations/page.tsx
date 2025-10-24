@@ -138,10 +138,10 @@ export default function OrganisationsPage() {
         description="Remplissez ce formulaire pour que nous puissions comprendre vos besoins et vous proposer un accompagnement sur-mesure."
         centered
       >
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-3xl mx-auto">
           <Card padding="lg">
             <form className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid lg:grid-cols-2 gap-6">
                 <FormInput
                   label="Prénom"
                   name="firstName"

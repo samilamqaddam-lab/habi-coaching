@@ -118,7 +118,7 @@ export default function ContactPage() {
 
           <Card padding="lg">
             <form className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid lg:grid-cols-2 gap-6">
                 <FormInput
                   label="Prénom"
                   name="firstName"
