@@ -54,19 +54,40 @@
   --spacing-2xl: 8rem;
 }
 
+html {
+  scroll-behavior: smooth;
+  /* Optimisation du rendu de texte */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
 body {
   background: var(--warm-white);
   color: var(--text-primary);
   font-family: var(--font-inter), system-ui, sans-serif;
   line-height: 1.7;
+  /* Amélioration du word-wrapping */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
 }
 
-/* Transitions douces et naturelles */
-* {
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+/* Transitions sélectives (pas sur tous les éléments) */
+a, button, [role="button"] {
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* Scroll fluide */
-html {
-  scroll-behavior: smooth;
+/* Amélioration du text-wrapping pour tous les textes */
+p, h1, h2, h3, h4, h5, h6, span, div, label {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Optimisation des inputs et formulaires */
+input, textarea, select {
+  word-wrap: normal;
+  overflow-wrap: normal;
 }

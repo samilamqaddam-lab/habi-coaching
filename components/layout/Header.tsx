@@ -32,10 +32,10 @@ export default function Header() {
       }`}
     >
       <Container>
-        <nav className="flex items-center justify-between py-4 md:py-6">
+        <nav className="flex items-center justify-between py-5">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="font-heading text-2xl md:text-3xl font-bold text-morocco-blue">
+          <Link href="/" className="flex items-center">
+            <div className="font-heading text-2xl md:text-3xl font-bold text-morocco-blue leading-none">
               HABI
             </div>
           </Link>
@@ -46,7 +46,7 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-text-primary hover:text-terracotta transition-colors duration-200 font-medium"
+                className="text-text-primary hover:text-terracotta transition-colors duration-200 font-medium text-[15px] leading-none py-2"
               >
                 {item.name}
               </Link>
