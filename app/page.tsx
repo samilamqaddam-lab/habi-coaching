@@ -55,10 +55,10 @@ export default function Home() {
             <h3 className="font-heading text-xl font-bold text-deep-blue mb-3">
               {t('home.expertise.corporate.title')}
             </h3>
-            <div className="text-3xl font-bold text-terracotta mb-3">
+            <div className="text-2xl font-bold text-morocco-blue mb-3">
               {t('home.expertise.corporate.years')}
             </div>
-            <p className="text-text-secondary text-sm">
+            <p className="text-text-secondary text-sm leading-relaxed">
               {t('home.expertise.corporate.description')}
             </p>
           </Card>
@@ -83,10 +83,10 @@ export default function Home() {
             <h3 className="font-heading text-xl font-bold text-deep-blue mb-3">
               {t('home.expertise.coaching.title')}
             </h3>
-            <div className="text-lg font-bold text-terracotta mb-3">
+            <div className="text-2xl font-bold text-terracotta mb-3">
               {t('home.expertise.coaching.certification')}
             </div>
-            <p className="text-text-secondary text-sm">
+            <p className="text-text-secondary text-sm leading-relaxed">
               {t('home.expertise.coaching.description')}
             </p>
           </Card>
@@ -111,13 +111,13 @@ export default function Home() {
             <h3 className="font-heading text-xl font-bold text-deep-blue mb-3">
               {t('home.expertise.yoga.title')}
             </h3>
-            <div className="text-lg font-bold text-sage mb-1">
+            <div className="text-2xl font-bold text-sage mb-1">
               {t('home.expertise.yoga.certification')}
             </div>
-            <div className="text-sm text-terracotta mb-3">
+            <div className="text-sm text-sage/70 mb-3">
               {t('home.expertise.yoga.hours')}
             </div>
-            <p className="text-text-secondary text-sm">
+            <p className="text-text-secondary text-sm leading-relaxed">
               {t('home.expertise.yoga.description')}
             </p>
           </Card>
