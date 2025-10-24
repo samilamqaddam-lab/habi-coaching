@@ -1,16 +1,21 @@
+'use client';
+
 import Hero from '@/components/sections/Hero';
 import Section from '@/components/sections/Section';
 import Card from '@/components/ui/Card';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function ExpertisePage() {
+  const { t } = useTranslation();
+
   return (
     <>
       <Hero
-        subtitle="Parcours & Expertise"
-        title="Une Alliance Rare au Service de Votre Transformation"
-        description="Découvrez le parcours qui me permet d'accompagner les organisations et les individus avec une approche unique, alliant excellence professionnelle et profondeur spirituelle."
+        subtitle={t('expertise.hero.subtitle')}
+        title={t('expertise.hero.title')}
+        description={t('expertise.hero.description')}
         primaryCTA={{
-          text: 'Me contacter',
+          text: t('expertise.hero.primaryCTA'),
           href: '/contact',
         }}
         centered
@@ -18,35 +23,28 @@ export default function ExpertisePage() {
 
       {/* Histoire */}
       <Section
-        subtitle="Mon Histoire"
-        title="L'Alliance de Deux Mondes"
+        subtitle={t('expertise.story.subtitle')}
+        title={t('expertise.story.title')}
         background="beige"
         centered
       >
         <div className="max-w-4xl mx-auto">
           <p className="text-lg text-text-secondary leading-relaxed mb-6">
-            Mon parcours incarne une alliance rare : celle du monde
-            organisationnel pragmatique et du monde contemplatif profond.
+            {t('expertise.story.paragraph1')}
           </p>
           <p className="text-lg text-text-secondary leading-relaxed mb-6">
-            Pendant 20 ans, j'ai accompagné des organisations internationales dans
-            leur transformation stratégique et le développement de leurs équipes.
-            En parallèle, j'ai approfondi ma pratique et ma compréhension du yoga
-            traditionnel et des philosophies contemplatives.
+            {t('expertise.story.paragraph2')}
           </p>
           <p className="text-lg text-text-secondary leading-relaxed">
-            Cette double expertise n'est pas un positionnement marketing. C'est qui
-            je suis. Et c'est ce qui me permet d'accompagner les transformations
-            avec une vision à la fois pragmatique et profonde, ancrée dans l'action
-            et la présence.
+            {t('expertise.story.paragraph3')}
           </p>
         </div>
       </Section>
 
       {/* Certifications & Formations */}
       <Section
-        subtitle="Certifications & Formations"
-        title="Des Formations d'Excellence Internationale"
+        subtitle={t('expertise.certifications.subtitle')}
+        title={t('expertise.certifications.title')}
       >
         <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Coach & Team */}
@@ -69,34 +67,36 @@ export default function ExpertisePage() {
               </div>
               <div>
                 <h3 className="font-heading text-2xl font-bold text-deep-blue mb-2">
-                  Coach Professionnelle Certifiée
+                  {t('expertise.certifications.coaching.title')}
                 </h3>
                 <p className="text-terracotta font-semibold mb-4">
-                  Coach & Team - Accréditation EMCC
+                  {t('expertise.certifications.coaching.subtitle')}
                 </p>
               </div>
             </div>
 
             <div className="space-y-4 text-text-secondary">
               <div>
-                <h4 className="font-semibold text-deep-blue mb-2">Formation</h4>
+                <h4 className="font-semibold text-deep-blue mb-2">
+                  {t('expertise.certifications.coaching.training.title')}
+                </h4>
                 <ul className="space-y-2 text-sm">
-                  <li>• 2 ans de formation intensive (180 heures)</li>
-                  <li>
-                    • Méthodologie Coach & Team (école pionnière depuis 1988)
-                  </li>
-                  <li>• Accréditation EMCC (European Mentoring & Coaching Council)</li>
-                  <li>• Standard européen du coaching professionnel</li>
+                  <li>• {t('expertise.certifications.coaching.training.items.0')}</li>
+                  <li>• {t('expertise.certifications.coaching.training.items.1')}</li>
+                  <li>• {t('expertise.certifications.coaching.training.items.2')}</li>
+                  <li>• {t('expertise.certifications.coaching.training.items.3')}</li>
                 </ul>
               </div>
 
               <div>
-                <h4 className="font-semibold text-deep-blue mb-2">Expertise</h4>
+                <h4 className="font-semibold text-deep-blue mb-2">
+                  {t('expertise.certifications.coaching.expertise.title')}
+                </h4>
                 <ul className="space-y-2 text-sm">
-                  <li>• Coaching individuel et de carrière</li>
-                  <li>• Coaching d'équipe et facilitation</li>
-                  <li>• Accompagnement des dirigeants</li>
-                  <li>• Transformation organisationnelle</li>
+                  <li>• {t('expertise.certifications.coaching.expertise.items.0')}</li>
+                  <li>• {t('expertise.certifications.coaching.expertise.items.1')}</li>
+                  <li>• {t('expertise.certifications.coaching.expertise.items.2')}</li>
+                  <li>• {t('expertise.certifications.coaching.expertise.items.3')}</li>
                 </ul>
               </div>
             </div>
@@ -122,37 +122,37 @@ export default function ExpertisePage() {
               </div>
               <div>
                 <h3 className="font-heading text-2xl font-bold text-deep-blue mb-2">
-                  Professeure de Yoga Certifiée
+                  {t('expertise.certifications.yoga.title')}
                 </h3>
                 <p className="text-sage font-semibold mb-4">
-                  Isha Foundation - Classical Hatha Yoga
+                  {t('expertise.certifications.yoga.subtitle')}
                 </p>
               </div>
             </div>
 
             <div className="space-y-4 text-text-secondary">
               <div>
-                <h4 className="font-semibold text-deep-blue mb-2">Formation</h4>
+                <h4 className="font-semibold text-deep-blue mb-2">
+                  {t('expertise.certifications.yoga.training.title')}
+                </h4>
                 <ul className="space-y-2 text-sm">
-                  <li>• 21 semaines résidentielles en Inde (1750 heures)</li>
-                  <li>• Isha Yoga Center, Coimbatore, Tamil Nadu</li>
-                  <li>• Programme conçu par Sadhguru</li>
-                  <li>• Classical Hatha Yoga (tradition authentique)</li>
-                  <li>
-                    • Membre d'une communauté mondiale (1800 enseignants, 84 pays)
-                  </li>
+                  <li>• {t('expertise.certifications.yoga.training.items.0')}</li>
+                  <li>• {t('expertise.certifications.yoga.training.items.1')}</li>
+                  <li>• {t('expertise.certifications.yoga.training.items.2')}</li>
+                  <li>• {t('expertise.certifications.yoga.training.items.3')}</li>
+                  <li>• {t('expertise.certifications.yoga.training.items.4')}</li>
                 </ul>
               </div>
 
               <div>
                 <h4 className="font-semibold text-deep-blue mb-2">
-                  Enseignements
+                  {t('expertise.certifications.yoga.teachings.title')}
                 </h4>
                 <ul className="space-y-2 text-sm">
-                  <li>• Asanas, Pranayama, Kriyas, Bandhas</li>
-                  <li>• Méditation & philosophie yogique</li>
-                  <li>• Mantra Yoga & Nada Yoga</li>
-                  <li>• 48+ modules d'enseignement maîtrisés</li>
+                  <li>• {t('expertise.certifications.yoga.teachings.items.0')}</li>
+                  <li>• {t('expertise.certifications.yoga.teachings.items.1')}</li>
+                  <li>• {t('expertise.certifications.yoga.teachings.items.2')}</li>
+                  <li>• {t('expertise.certifications.yoga.teachings.items.3')}</li>
                 </ul>
               </div>
             </div>
@@ -162,16 +162,14 @@ export default function ExpertisePage() {
 
       {/* Expérience Professionnelle */}
       <Section
-        subtitle="Expérience"
-        title="20 Ans au Service des Organisations"
+        subtitle={t('expertise.experience.subtitle')}
+        title={t('expertise.experience.title')}
         background="beige"
         centered
       >
         <div className="max-w-4xl mx-auto">
           <p className="text-lg text-text-secondary leading-relaxed mb-12">
-            Deux décennies d'expérience auprès d'organisations internationales dans
-            les domaines de la transformation, de la stratégie et des ressources
-            humaines.
+            {t('expertise.experience.description')}
           </p>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -192,11 +190,10 @@ export default function ExpertisePage() {
                 </svg>
               </div>
               <h4 className="font-semibold text-deep-blue mb-2">
-                Transformation Organisationnelle
+                {t('expertise.experience.areas.transformation.title')}
               </h4>
               <p className="text-sm text-text-secondary">
-                Accompagnement de projets de transformation culturelle et
-                structurelle dans des contextes complexes
+                {t('expertise.experience.areas.transformation.description')}
               </p>
             </div>
 
@@ -217,11 +214,10 @@ export default function ExpertisePage() {
                 </svg>
               </div>
               <h4 className="font-semibold text-deep-blue mb-2">
-                Stratégie d'Entreprise
+                {t('expertise.experience.areas.strategy.title')}
               </h4>
               <p className="text-sm text-text-secondary">
-                Participation à l'élaboration et au déploiement de stratégies
-                organisationnelles alignées avec les enjeux business
+                {t('expertise.experience.areas.strategy.description')}
               </p>
             </div>
 
@@ -242,11 +238,10 @@ export default function ExpertisePage() {
                 </svg>
               </div>
               <h4 className="font-semibold text-deep-blue mb-2">
-                Ressources Humaines
+                {t('expertise.experience.areas.hr.title')}
               </h4>
               <p className="text-sm text-text-secondary">
-                Développement des talents, leadership, gestion du changement et
-                cohésion d'équipe
+                {t('expertise.experience.areas.hr.description')}
               </p>
             </div>
           </div>
@@ -255,37 +250,15 @@ export default function ExpertisePage() {
 
       {/* Philosophie */}
       <Section
-        subtitle="Ma Philosophie"
-        title="Pourquoi Cette Alliance Unique"
+        subtitle={t('expertise.philosophy.subtitle')}
+        title={t('expertise.philosophy.title')}
         centered
       >
         <div className="max-w-3xl mx-auto space-y-6 text-lg text-text-secondary leading-relaxed">
-          <p>
-            Le monde du travail et le monde intérieur ne sont pas séparés.
-            Transformer l'un sans l'autre crée déséquilibre. Les transformer
-            ensemble crée magie.
-          </p>
-          <p>
-            Mon approche repose sur la conviction que{' '}
-            <strong className="text-deep-blue">
-              l'excellence professionnelle et le bien-être ne sont pas opposés
-            </strong>
-            . Ils se nourrissent mutuellement quand on sait créer les conditions
-            justes.
-          </p>
-          <p>
-            Les pratiques contemplatives ne rendent pas moins performant. Elles
-            rendent{' '}
-            <strong className="text-deep-blue">
-              plus présent, plus lucide, plus créatif, plus résilient
-            </strong>
-            . Et donc, paradoxalement, plus efficace.
-          </p>
-          <p>
-            C'est cette alliance que j'ai incarnée dans ma propre vie. Et c'est
-            cette alliance que j'accompagne chez mes clients - qu'ils soient des
-            organisations ou des individus.
-          </p>
+          <p>{t('expertise.philosophy.paragraph1')}</p>
+          <p dangerouslySetInnerHTML={{ __html: t('expertise.philosophy.paragraph2') }} />
+          <p dangerouslySetInnerHTML={{ __html: t('expertise.philosophy.paragraph3') }} />
+          <p>{t('expertise.philosophy.paragraph4')}</p>
         </div>
       </Section>
 
@@ -293,24 +266,23 @@ export default function ExpertisePage() {
       <Section background="sage" padding="lg" centered>
         <div className="max-w-3xl mx-auto">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-deep-blue mb-6">
-            Travaillons Ensemble
+            {t('expertise.cta.title')}
           </h2>
           <p className="text-lg text-text-secondary mb-8">
-            Que vous soyez une organisation ou un individu, explorons comment mon
-            expertise peut servir votre transformation.
+            {t('expertise.cta.description')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/contact"
               className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-full bg-terracotta text-warm-white hover:bg-terracotta-dark shadow-md hover:shadow-lg transition-all duration-300"
             >
-              Réserver une session découverte
+              {t('expertise.cta.primaryCTA')}
             </a>
             <a
               href="/organisations"
               className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-full border-2 border-terracotta text-terracotta hover:bg-terracotta hover:text-warm-white transition-all duration-300"
             >
-              Services pour organisations
+              {t('expertise.cta.secondaryCTA')}
             </a>
           </div>
         </div>

@@ -1,146 +1,143 @@
+'use client';
+
 import Hero from '@/components/sections/Hero';
 import Section from '@/components/sections/Section';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
-
-const yogaClasses = [
-  {
-    title: 'Hatha Yoga Traditionnel',
-    description:
-      'Pratique classique du yoga avec un focus sur les asanas (postures), pranayama (respiration) et méditation. Pour tous niveaux.',
-    schedule: 'Mardis & Jeudis 18h30',
-    duration: '90 min',
-    price: '20€/cours ou 70€/mois',
-  },
-  {
-    title: 'Yoga Restauratif',
-    description:
-      'Pratique douce et profondément relaxante avec des postures tenues longuement. Idéal pour la récupération et la gestion du stress.',
-    schedule: 'Samedis 10h00',
-    duration: '75 min',
-    price: '25€/cours',
-  },
-  {
-    title: 'Méditation & Pranayama',
-    description:
-      'Sessions dédiées aux techniques de respiration yogique et à la méditation guidée. Tous niveaux, débutants bienvenus.',
-    schedule: 'Dimanches 9h00',
-    duration: '60 min',
-    price: '15€/cours ou 50€/mois',
-  },
-];
-
-const programmes = [
-  {
-    id: 1,
-    title: 'Retraite Yoga & Méditation dans l\'Atlas',
-    location: 'Vallée de l\'Ourika, Maroc',
-    duration: '5 jours / 4 nuits',
-    dates: '15-19 Mai 2025',
-    price: '890€',
-    spotsLeft: 8,
-    description:
-      'Immersion totale dans la pratique yogique traditionnelle au cœur des montagnes de l\'Atlas. Yoga, méditation, randonnées contemplatives et cuisine locale.',
-    highlights: [
-      'Pratiques de yoga quotidiennes',
-      'Méditation guidée',
-      'Randonnées dans l\'Atlas',
-      'Hébergement en éco-lodge',
-      'Cuisine marocaine bio',
-    ],
-    type: 'retraite',
-  },
-  {
-    id: 2,
-    title: 'Atelier Leadership Conscient',
-    location: 'Casablanca, Maroc',
-    duration: '2 jours',
-    dates: '10-11 Juin 2025',
-    price: '450€',
-    spotsLeft: 12,
-    description:
-      'Un atelier intensif pour développer votre leadership authentique, alliant pratiques contemplatives et outils de facilitation organisationnelle.',
-    highlights: [
-      'Connaissance de soi',
-      'Intelligence émotionnelle',
-      'Communication consciente',
-      'Pratiques de présence',
-      'Outils de facilitation',
-    ],
-    type: 'atelier',
-  },
-  {
-    id: 3,
-    title: 'Atelier Équilibre & Limites Saines',
-    location: 'Casablanca, Maroc',
-    duration: '2 jours',
-    dates: '15-16 Juillet 2025',
-    price: '350€',
-    spotsLeft: 14,
-    description:
-      'Un atelier pratique pour créer un équilibre durable entre vie professionnelle et personnelle. Apprenez à poser des limites saines sans culpabilité et à prévenir le burnout.',
-    highlights: [
-      'Clarification de vos valeurs',
-      'Techniques de boundaries',
-      'Yoga & méditation anti-stress',
-      'Prévention du burnout',
-      'Pratiques quotidiennes concrètes',
-    ],
-    type: 'atelier',
-  },
-  {
-    id: 5,
-    title: 'Retraite Silence & Contemplation',
-    location: 'Essaouira, Maroc',
-    duration: '7 jours / 6 nuits',
-    dates: '20-26 Septembre 2025',
-    price: '1.200€',
-    spotsLeft: 10,
-    description:
-      'Une retraite en silence au bord de l\'océan Atlantique. Méditation profonde, pratiques yogiques, et temps de contemplation face à la mer.',
-    highlights: [
-      'Noble silence',
-      'Méditation intensive',
-      'Yoga restauratif',
-      'Vue sur l\'océan',
-      'Accompagnement personnalisé',
-    ],
-    type: 'retraite',
-  },
-  {
-    id: 6,
-    title: 'Formation Yoga & Philosophie',
-    location: 'Marrakech, Maroc',
-    duration: '10 jours',
-    dates: '1-10 Novembre 2025',
-    price: '1.890€',
-    spotsLeft: 15,
-    description:
-      'Formation approfondie aux fondamentaux du yoga traditionnel : asanas, pranayama, méditation et philosophie yogique.',
-    highlights: [
-      'Enseignements traditionnels',
-      'Pratique quotidienne intensive',
-      'Philosophie du yoga',
-      'Manuel de formation',
-      'Certificat de participation',
-    ],
-    type: 'formation',
-  },
-];
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function ProgrammesPage() {
+  const { t } = useTranslation();
+
+  const yogaClasses = [
+    {
+      title: t('programmes.classes.hatha.title'),
+      description: t('programmes.classes.hatha.description'),
+      schedule: t('programmes.classes.hatha.schedule'),
+      duration: t('programmes.classes.hatha.duration'),
+      price: t('programmes.classes.hatha.price'),
+    },
+    {
+      title: t('programmes.classes.restorative.title'),
+      description: t('programmes.classes.restorative.description'),
+      schedule: t('programmes.classes.restorative.schedule'),
+      duration: t('programmes.classes.restorative.duration'),
+      price: t('programmes.classes.restorative.price'),
+    },
+    {
+      title: t('programmes.classes.meditation.title'),
+      description: t('programmes.classes.meditation.description'),
+      schedule: t('programmes.classes.meditation.schedule'),
+      duration: t('programmes.classes.meditation.duration'),
+      price: t('programmes.classes.meditation.price'),
+    },
+  ];
+
+  const programmes = [
+    {
+      id: 1,
+      title: t('programmes.retreats.atlas.title'),
+      location: t('programmes.retreats.atlas.location'),
+      duration: t('programmes.retreats.atlas.duration'),
+      dates: t('programmes.retreats.atlas.dates'),
+      price: t('programmes.retreats.atlas.price'),
+      spotsLeft: 8,
+      description: t('programmes.retreats.atlas.description'),
+      highlights: [
+        t('programmes.retreats.atlas.highlights.0'),
+        t('programmes.retreats.atlas.highlights.1'),
+        t('programmes.retreats.atlas.highlights.2'),
+        t('programmes.retreats.atlas.highlights.3'),
+        t('programmes.retreats.atlas.highlights.4'),
+      ],
+      type: t('programmes.type.retreat'),
+    },
+    {
+      id: 2,
+      title: t('programmes.workshops.leadership.title'),
+      location: t('programmes.workshops.leadership.location'),
+      duration: t('programmes.workshops.leadership.duration'),
+      dates: t('programmes.workshops.leadership.dates'),
+      price: t('programmes.workshops.leadership.price'),
+      spotsLeft: 12,
+      description: t('programmes.workshops.leadership.description'),
+      highlights: [
+        t('programmes.workshops.leadership.highlights.0'),
+        t('programmes.workshops.leadership.highlights.1'),
+        t('programmes.workshops.leadership.highlights.2'),
+        t('programmes.workshops.leadership.highlights.3'),
+        t('programmes.workshops.leadership.highlights.4'),
+      ],
+      type: t('programmes.type.workshop'),
+    },
+    {
+      id: 3,
+      title: t('programmes.workshops.balance.title'),
+      location: t('programmes.workshops.balance.location'),
+      duration: t('programmes.workshops.balance.duration'),
+      dates: t('programmes.workshops.balance.dates'),
+      price: t('programmes.workshops.balance.price'),
+      spotsLeft: 14,
+      description: t('programmes.workshops.balance.description'),
+      highlights: [
+        t('programmes.workshops.balance.highlights.0'),
+        t('programmes.workshops.balance.highlights.1'),
+        t('programmes.workshops.balance.highlights.2'),
+        t('programmes.workshops.balance.highlights.3'),
+        t('programmes.workshops.balance.highlights.4'),
+      ],
+      type: t('programmes.type.workshop'),
+    },
+    {
+      id: 5,
+      title: t('programmes.retreats.silence.title'),
+      location: t('programmes.retreats.silence.location'),
+      duration: t('programmes.retreats.silence.duration'),
+      dates: t('programmes.retreats.silence.dates'),
+      price: t('programmes.retreats.silence.price'),
+      spotsLeft: 10,
+      description: t('programmes.retreats.silence.description'),
+      highlights: [
+        t('programmes.retreats.silence.highlights.0'),
+        t('programmes.retreats.silence.highlights.1'),
+        t('programmes.retreats.silence.highlights.2'),
+        t('programmes.retreats.silence.highlights.3'),
+        t('programmes.retreats.silence.highlights.4'),
+      ],
+      type: t('programmes.type.retreat'),
+    },
+    {
+      id: 6,
+      title: t('programmes.training.philosophy.title'),
+      location: t('programmes.training.philosophy.location'),
+      duration: t('programmes.training.philosophy.duration'),
+      dates: t('programmes.training.philosophy.dates'),
+      price: t('programmes.training.philosophy.price'),
+      spotsLeft: 15,
+      description: t('programmes.training.philosophy.description'),
+      highlights: [
+        t('programmes.training.philosophy.highlights.0'),
+        t('programmes.training.philosophy.highlights.1'),
+        t('programmes.training.philosophy.highlights.2'),
+        t('programmes.training.philosophy.highlights.3'),
+        t('programmes.training.philosophy.highlights.4'),
+      ],
+      type: t('programmes.type.training'),
+    },
+  ];
+
   return (
     <>
       <Hero
-        subtitle="Pratiques Yogiques & Programmes"
-        title="Transformez Votre Vie par le Yoga"
-        description="Le Classical Hatha Yoga enseigné par une professeure certifiée Isha Foundation, avec une compréhension approfondie des enjeux du monde contemporain. Cours, retraites et programmes pour une pratique qui s'intègre à votre vie."
+        subtitle={t('programmes.hero.subtitle')}
+        title={t('programmes.hero.title')}
+        description={t('programmes.hero.description')}
         primaryCTA={{
-          text: 'Réserver un cours',
+          text: t('programmes.hero.primaryCTA'),
           href: '#cours',
         }}
         secondaryCTA={{
-          text: 'Voir les retraites',
+          text: t('programmes.hero.secondaryCTA'),
           href: '#retraites',
         }}
       />
@@ -148,9 +145,9 @@ export default function ProgrammesPage() {
       {/* Cours réguliers */}
       <Section
         id="cours"
-        subtitle="Cours Réguliers"
-        title="Rejoignez-Nous sur le Tapis"
-        description="Des cours hebdomadaires en petits groupes pour une pratique approfondie et un accompagnement personnalisé."
+        subtitle={t('programmes.regularClasses.subtitle')}
+        title={t('programmes.regularClasses.title')}
+        description={t('programmes.regularClasses.description')}
         background="beige"
       >
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -202,7 +199,7 @@ export default function ProgrammesPage() {
                 </div>
               </div>
               <Button variant="outline" href="/contact" fullWidth>
-                Réserver
+                {t('programmes.buttons.book')}
               </Button>
             </Card>
           ))}
@@ -211,14 +208,13 @@ export default function ProgrammesPage() {
         <div className="mt-12 text-center">
           <Card padding="lg" className="max-w-3xl mx-auto bg-sage-light/10">
             <h4 className="font-semibold text-deep-blue mb-3">
-              Cours d'essai gratuit
+              {t('programmes.trialClass.title')}
             </h4>
             <p className="text-text-secondary mb-4">
-              Nouveau·elle au yoga ? Venez essayer votre premier cours
-              gratuitement, sans engagement.
+              {t('programmes.trialClass.description')}
             </p>
             <Button variant="primary" size="md" href="/contact">
-              Réserver mon cours d'essai
+              {t('programmes.trialClass.button')}
             </Button>
           </Card>
         </div>
@@ -227,9 +223,9 @@ export default function ProgrammesPage() {
       {/* Retraites & Programmes */}
       <Section
         id="retraites"
-        subtitle="Retraites & Programmes"
-        title="Expériences Transformationnelles"
-        description="Des retraites, ateliers et formations qui allient pratiques yogiques traditionnelles et développement personnel dans des lieux inspirants au Maroc."
+        subtitle={t('programmes.experiences.subtitle')}
+        title={t('programmes.experiences.title')}
+        description={t('programmes.experiences.description')}
       >
         <div className="grid gap-8">
           {programmes.map((programme) => (
@@ -325,7 +321,9 @@ export default function ProgrammesPage() {
                       <p className="font-heading text-3xl font-bold text-terracotta mb-1">
                         {programme.price}
                       </p>
-                      <p className="text-xs text-text-secondary">par personne</p>
+                      <p className="text-xs text-text-secondary">
+                        {t('programmes.perPerson')}
+                      </p>
                       {programme.spotsLeft <= 5 && (
                         <p className="text-xs text-terracotta font-medium mt-2">
                           Plus que {programme.spotsLeft} places
@@ -340,7 +338,7 @@ export default function ProgrammesPage() {
 
                   <div className="mb-6">
                     <h4 className="font-semibold text-deep-blue mb-3 text-sm">
-                      Au programme :
+                      {t('programmes.programHighlights')}
                     </h4>
                     <ul className="grid grid-cols-2 gap-2">
                       {programme.highlights.map((highlight, index) => (
@@ -364,10 +362,10 @@ export default function ProgrammesPage() {
 
                   <div className="flex flex-col sm:flex-row gap-3">
                     <Button variant="primary" size="md" href="/contact">
-                      Réserver ma place
+                      {t('programmes.buttons.bookSpot')}
                     </Button>
                     <Button variant="outline" size="md" href="/contact">
-                      Plus d'informations
+                      {t('programmes.buttons.moreInfo')}
                     </Button>
                   </div>
                 </div>
@@ -379,57 +377,50 @@ export default function ProgrammesPage() {
 
       {/* Philosophie */}
       <Section
-        subtitle="Ma Philosophie"
-        title="Le Yoga Comme Chemin de Transformation"
+        subtitle={t('programmes.philosophy.subtitle')}
+        title={t('programmes.philosophy.title')}
         background="beige"
         centered
       >
         <div className="max-w-3xl mx-auto">
           <p className="text-lg text-text-secondary leading-relaxed mb-8">
-            Pour moi, le yoga est bien plus qu'une pratique physique. C'est un
-            chemin de transformation profonde qui touche tous les aspects de
-            notre être - corps, mental, cœur et esprit.
+            {t('programmes.philosophy.intro')}
           </p>
 
           <div className="grid lg:grid-cols-2 gap-8">
             <Card padding="md">
               <h4 className="font-semibold text-deep-blue mb-3">
-                Tradition Authentique
+                {t('programmes.philosophy.tradition.title')}
               </h4>
               <p className="text-sm text-text-secondary leading-relaxed">
-                Formée dans la lignée traditionnelle du Hatha Yoga, j'enseigne
-                les pratiques dans leur forme authentique, respectueuse de la
-                sagesse ancestrale.
+                {t('programmes.philosophy.tradition.description')}
               </p>
             </Card>
 
             <Card padding="md">
               <h4 className="font-semibold text-deep-blue mb-3">
-                Approche Inclusive
+                {t('programmes.philosophy.inclusive.title')}
               </h4>
               <p className="text-sm text-text-secondary leading-relaxed">
-                Le yoga est pour tous les corps et tous les âges. J'adapte la
-                pratique à chaque personne avec bienveillance et respect.
+                {t('programmes.philosophy.inclusive.description')}
               </p>
             </Card>
 
             <Card padding="md">
               <h4 className="font-semibold text-deep-blue mb-3">
-                Au-delà du Physique
+                {t('programmes.philosophy.beyond.title')}
               </h4>
               <p className="text-sm text-text-secondary leading-relaxed">
-                Nous explorons les dimensions subtiles du yoga : pranayama,
-                méditation, philosophie yogique et pratiques contemplatives.
+                {t('programmes.philosophy.beyond.description')}
               </p>
             </Card>
 
             <Card padding="md">
               <h4 className="font-semibold text-deep-blue mb-3">
-                Petits Groupes
+                {t('programmes.philosophy.smallGroups.title')}
               </h4>
               <p className="text-sm text-text-secondary leading-relaxed">
-                Maximum 12 personnes par cours pour garantir un accompagnement
-                personnalisé et créer une vraie communauté de pratique.
+                {t('programmes.philosophy.smallGroups.description')}
               </p>
             </Card>
           </div>
@@ -438,9 +429,9 @@ export default function ProgrammesPage() {
 
       {/* Programme sur-mesure */}
       <Section
-        subtitle="Programme Personnalisé"
-        title="Créons Ensemble Votre Expérience"
-        description="Vous souhaitez un programme sur-mesure pour votre groupe, votre équipe ou une occasion spéciale ? Nous concevons des expériences uniques adaptées à vos besoins."
+        subtitle={t('programmes.custom.subtitle')}
+        title={t('programmes.custom.title')}
+        description={t('programmes.custom.description')}
         centered
         padding="lg"
       >
@@ -462,9 +453,11 @@ export default function ProgrammesPage() {
                   />
                 </svg>
               </div>
-              <h4 className="font-semibold text-deep-blue mb-2">Groupes privés</h4>
+              <h4 className="font-semibold text-deep-blue mb-2">
+                {t('programmes.custom.features.groups.title')}
+              </h4>
               <p className="text-sm text-text-secondary">
-                À partir de 6 personnes
+                {t('programmes.custom.features.groups.description')}
               </p>
             </div>
 
@@ -484,9 +477,11 @@ export default function ProgrammesPage() {
                   />
                 </svg>
               </div>
-              <h4 className="font-semibold text-deep-blue mb-2">Lieux uniques</h4>
+              <h4 className="font-semibold text-deep-blue mb-2">
+                {t('programmes.custom.features.locations.title')}
+              </h4>
               <p className="text-sm text-text-secondary">
-                Riads, désert, montagnes, océan
+                {t('programmes.custom.features.locations.description')}
               </p>
             </div>
 
@@ -506,16 +501,18 @@ export default function ProgrammesPage() {
                   />
                 </svg>
               </div>
-              <h4 className="font-semibold text-deep-blue mb-2">100% personnalisé</h4>
+              <h4 className="font-semibold text-deep-blue mb-2">
+                {t('programmes.custom.features.personalized.title')}
+              </h4>
               <p className="text-sm text-text-secondary">
-                Contenu adapté à vos besoins
+                {t('programmes.custom.features.personalized.description')}
               </p>
             </div>
           </div>
 
           <div className="text-center">
             <Button variant="primary" size="lg" href="/contact">
-              Demander un programme sur-mesure
+              {t('programmes.custom.button')}
             </Button>
           </div>
         </div>
@@ -525,18 +522,17 @@ export default function ProgrammesPage() {
       <Section background="sage" padding="lg" centered>
         <div className="max-w-3xl mx-auto">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-deep-blue mb-6">
-            Prêt·e à Commencer ?
+            {t('programmes.cta.title')}
           </h2>
           <p className="text-lg text-text-secondary mb-8">
-            Réservez votre cours d'essai gratuit ou contactez-nous pour toute
-            question sur nos cours et programmes.
+            {t('programmes.cta.description')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="primary" size="lg" href="/contact">
-              Cours d'essai gratuit
+              {t('programmes.cta.primaryCTA')}
             </Button>
             <Button variant="outline" size="lg" href="/contact">
-              Demander des informations
+              {t('programmes.cta.secondaryCTA')}
             </Button>
           </div>
         </div>

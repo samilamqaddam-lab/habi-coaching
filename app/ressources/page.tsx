@@ -1,65 +1,64 @@
+'use client';
+
 import Hero from '@/components/sections/Hero';
 import Section from '@/components/sections/Section';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
-
-const articles = [
-  {
-    title: '5 Pratiques Quotidiennes pour Cultiver la Présence',
-    category: 'Pratiques',
-    readTime: '5 min',
-    excerpt:
-      'Découvrez comment intégrer la présence dans votre quotidien avec ces pratiques simples mais puissantes.',
-  },
-  {
-    title: 'Le Leadership Conscient en Entreprise',
-    category: 'Leadership',
-    readTime: '8 min',
-    excerpt:
-      'Comment transformer votre style de leadership pour créer des organisations plus humaines et performantes.',
-  },
-  {
-    title: 'Yoga & Gestion du Stress : Ce que Dit la Science',
-    category: 'Bien-être',
-    readTime: '6 min',
-    excerpt:
-      'Les bienfaits du yoga sur le stress et l\'anxiété, expliqués par la recherche scientifique.',
-  },
-];
-
-const guides = [
-  {
-    title: 'Guide : Méditation pour Débutants',
-    description:
-      'Un guide complet de 20 pages pour commencer la méditation en douceur, avec des exercices pratiques.',
-    type: 'PDF',
-    pages: '20 pages',
-  },
-  {
-    title: 'E-book : 7 Jours de Pratiques Contemplatives',
-    description:
-      'Un programme de 7 jours avec des pratiques guidées pour vous reconnecter à vous-même.',
-    type: 'PDF',
-    pages: '35 pages',
-  },
-  {
-    title: 'Check-list : Préparer Sa Retraite Yoga',
-    description:
-      'Tout ce dont vous avez besoin pour préparer sereinement votre première retraite de yoga.',
-    type: 'PDF',
-    pages: '5 pages',
-  },
-];
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function RessourcesPage() {
+  const { t } = useTranslation();
+
+  const articles = [
+    {
+      title: t('ressources.articles.0.title'),
+      category: t('ressources.articles.0.category'),
+      readTime: t('ressources.articles.0.readTime'),
+      excerpt: t('ressources.articles.0.excerpt'),
+    },
+    {
+      title: t('ressources.articles.1.title'),
+      category: t('ressources.articles.1.category'),
+      readTime: t('ressources.articles.1.readTime'),
+      excerpt: t('ressources.articles.1.excerpt'),
+    },
+    {
+      title: t('ressources.articles.2.title'),
+      category: t('ressources.articles.2.category'),
+      readTime: t('ressources.articles.2.readTime'),
+      excerpt: t('ressources.articles.2.excerpt'),
+    },
+  ];
+
+  const guides = [
+    {
+      title: t('ressources.guides.0.title'),
+      description: t('ressources.guides.0.description'),
+      type: 'PDF',
+      pages: t('ressources.guides.0.pages'),
+    },
+    {
+      title: t('ressources.guides.1.title'),
+      description: t('ressources.guides.1.description'),
+      type: 'PDF',
+      pages: t('ressources.guides.1.pages'),
+    },
+    {
+      title: t('ressources.guides.2.title'),
+      description: t('ressources.guides.2.description'),
+      type: 'PDF',
+      pages: t('ressources.guides.2.pages'),
+    },
+  ];
+
   return (
     <>
       <Hero
-        subtitle="Ressources"
-        title="Inspirations & Outils Gratuits"
-        description="Articles, guides pratiques et ressources pour approfondir votre chemin de transformation personnelle et professionnelle."
+        subtitle={t('ressources.hero.subtitle')}
+        title={t('ressources.hero.title')}
+        description={t('ressources.hero.description')}
         primaryCTA={{
-          text: 'Explorer les ressources',
+          text: t('ressources.hero.primaryCTA'),
           href: '#articles',
         }}
         centered
@@ -68,9 +67,9 @@ export default function RessourcesPage() {
       {/* Articles */}
       <Section
         id="articles"
-        subtitle="Blog"
-        title="Articles & Réflexions"
-        description="Inspirations, pratiques et réflexions sur le yoga, le coaching et la transformation."
+        subtitle={t('ressources.blog.subtitle')}
+        title={t('ressources.blog.title')}
+        description={t('ressources.blog.description')}
         background="beige"
       >
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -108,7 +107,7 @@ export default function RessourcesPage() {
                 </p>
               </div>
               <Button variant="text" href="#">
-                Lire l'article →
+                {t('ressources.blog.readArticle')}
               </Button>
             </Card>
           ))}
@@ -116,7 +115,7 @@ export default function RessourcesPage() {
 
         <div className="text-center mt-12">
           <Button variant="outline" size="md" href="#">
-            Voir tous les articles
+            {t('ressources.blog.viewAll')}
           </Button>
         </div>
       </Section>
@@ -124,9 +123,9 @@ export default function RessourcesPage() {
       {/* Guides Gratuits */}
       <Section
         id="guides"
-        subtitle="Téléchargements Gratuits"
-        title="Guides & E-books"
-        description="Des ressources pratiques à télécharger pour approfondir votre pratique."
+        subtitle={t('ressources.downloads.subtitle')}
+        title={t('ressources.downloads.title')}
+        description={t('ressources.downloads.description')}
         centered
       >
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
@@ -162,7 +161,7 @@ export default function RessourcesPage() {
                 </div>
               </div>
               <Button variant="outline" fullWidth href="/contact">
-                Télécharger gratuitement
+                {t('ressources.downloads.download')}
               </Button>
             </Card>
           ))}
@@ -172,8 +171,8 @@ export default function RessourcesPage() {
       {/* Témoignages */}
       <Section
         id="temoignages"
-        subtitle="Témoignages"
-        title="Ce Que Disent Mes Clients"
+        subtitle={t('ressources.testimonials.subtitle')}
+        title={t('ressources.testimonials.title')}
         background="sage"
         centered
         padding="lg"
@@ -182,72 +181,84 @@ export default function RessourcesPage() {
           <Card padding="lg">
             <div className="flex items-center mb-4">
               <div className="w-12 h-12 bg-terracotta/20 rounded-full flex items-center justify-center mr-4">
-                <span className="font-heading font-bold text-terracotta">M</span>
+                <span className="font-heading font-bold text-terracotta">
+                  {t('ressources.testimonials.0.initial')}
+                </span>
               </div>
               <div>
-                <h4 className="font-semibold text-deep-blue">Marie L.</h4>
-                <p className="text-sm text-text-secondary">DRH, Groupe Tech</p>
+                <h4 className="font-semibold text-deep-blue">
+                  {t('ressources.testimonials.0.name')}
+                </h4>
+                <p className="text-sm text-text-secondary">
+                  {t('ressources.testimonials.0.role')}
+                </p>
               </div>
             </div>
             <p className="text-text-secondary italic leading-relaxed">
-              "L'accompagnement de Hajar a transformé notre équipe de direction.
-              Son approche unique qui mêle facilitation professionnelle et
-              pratiques contemplatives a créé un espace de confiance et de
-              collaboration que je n'avais jamais vu auparavant."
+              {t('ressources.testimonials.0.quote')}
             </p>
           </Card>
 
           <Card padding="lg">
             <div className="flex items-center mb-4">
               <div className="w-12 h-12 bg-sage/30 rounded-full flex items-center justify-center mr-4">
-                <span className="font-heading font-bold text-sage">A</span>
+                <span className="font-heading font-bold text-sage">
+                  {t('ressources.testimonials.1.initial')}
+                </span>
               </div>
               <div>
-                <h4 className="font-semibold text-deep-blue">Ahmed K.</h4>
-                <p className="text-sm text-text-secondary">Entrepreneur</p>
+                <h4 className="font-semibold text-deep-blue">
+                  {t('ressources.testimonials.1.name')}
+                </h4>
+                <p className="text-sm text-text-secondary">
+                  {t('ressources.testimonials.1.role')}
+                </p>
               </div>
             </div>
             <p className="text-text-secondary italic leading-relaxed">
-              "La retraite dans l'Atlas a été un tournant dans ma vie. Hajar
-              crée un espace de présence et d'authenticité rare. J'ai pu me
-              reconnecter à mes valeurs profondes et clarifier ma vision
-              professionnelle."
+              {t('ressources.testimonials.1.quote')}
             </p>
           </Card>
 
           <Card padding="lg">
             <div className="flex items-center mb-4">
               <div className="w-12 h-12 bg-morocco-blue/10 rounded-full flex items-center justify-center mr-4">
-                <span className="font-heading font-bold text-morocco-blue">S</span>
+                <span className="font-heading font-bold text-morocco-blue">
+                  {t('ressources.testimonials.2.initial')}
+                </span>
               </div>
               <div>
-                <h4 className="font-semibold text-deep-blue">Sophie D.</h4>
-                <p className="text-sm text-text-secondary">Coach Indépendante</p>
+                <h4 className="font-semibold text-deep-blue">
+                  {t('ressources.testimonials.2.name')}
+                </h4>
+                <p className="text-sm text-text-secondary">
+                  {t('ressources.testimonials.2.role')}
+                </p>
               </div>
             </div>
             <p className="text-text-secondary italic leading-relaxed">
-              "Les cours de yoga de Hajar vont bien au-delà du physique. Elle
-              transmet le yoga dans sa dimension la plus profonde, avec une
-              authenticité et une bienveillance qui touchent le cœur. Chaque
-              cours est une invitation à se retrouver."
+              {t('ressources.testimonials.2.quote')}
             </p>
           </Card>
 
           <Card padding="lg">
             <div className="flex items-center mb-4">
               <div className="w-12 h-12 bg-terracotta/20 rounded-full flex items-center justify-center mr-4">
-                <span className="font-heading font-bold text-terracotta">Y</span>
+                <span className="font-heading font-bold text-terracotta">
+                  {t('ressources.testimonials.3.initial')}
+                </span>
               </div>
               <div>
-                <h4 className="font-semibold text-deep-blue">Youssef M.</h4>
-                <p className="text-sm text-text-secondary">Directeur Général</p>
+                <h4 className="font-semibold text-deep-blue">
+                  {t('ressources.testimonials.3.name')}
+                </h4>
+                <p className="text-sm text-text-secondary">
+                  {t('ressources.testimonials.3.role')}
+                </p>
               </div>
             </div>
             <p className="text-text-secondary italic leading-relaxed">
-              "Le coaching de Hajar m'a permis de transformer mon style de
-              leadership. Elle a su m'accompagner avec justesse entre exigence
-              professionnelle et développement personnel. Un vrai game-changer
-              pour ma carrière."
+              {t('ressources.testimonials.3.quote')}
             </p>
           </Card>
         </div>
@@ -257,26 +268,24 @@ export default function RessourcesPage() {
       <Section centered padding="lg">
         <div className="max-w-3xl mx-auto">
           <h2 className="font-heading text-3xl font-bold text-deep-blue mb-4">
-            Restez Inspiré·e
+            {t('ressources.newsletter.title')}
           </h2>
           <p className="text-text-secondary mb-8">
-            Inscrivez-vous à ma newsletter mensuelle pour recevoir des
-            inspirations, des pratiques guidées et les actualités des prochains
-            programmes.
+            {t('ressources.newsletter.description')}
           </p>
           <Card padding="lg">
             <form className="flex flex-col sm:flex-row gap-4">
               <input
                 type="email"
-                placeholder="Votre email"
+                placeholder={t('ressources.newsletter.placeholder')}
                 className="flex-grow px-4 py-3 rounded-lg border-2 border-soft-gray focus:border-terracotta focus:outline-none transition-colors"
               />
               <Button variant="primary" size="md">
-                S'inscrire
+                {t('ressources.newsletter.submit')}
               </Button>
             </form>
             <p className="text-xs text-text-secondary mt-4 text-center">
-              Pas de spam. Désabonnement possible à tout moment.
+              {t('ressources.newsletter.disclaimer')}
             </p>
           </Card>
         </div>

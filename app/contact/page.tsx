@@ -1,18 +1,23 @@
+'use client';
+
 import Hero from '@/components/sections/Hero';
 import Section from '@/components/sections/Section';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import FormInput from '@/components/ui/FormInput';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function ContactPage() {
+  const { t } = useTranslation();
+
   return (
     <>
       <Hero
-        subtitle="Contact"
-        title="Entrons en Connexion"
-        description="Que vous soyez une organisation, un professionnel ou un particulier, je suis là pour répondre à vos questions et explorer comment nous pouvons collaborer."
+        subtitle={t('contact.hero.subtitle')}
+        title={t('contact.hero.title')}
+        description={t('contact.hero.description')}
         primaryCTA={{
-          text: 'Me contacter',
+          text: t('contact.hero.primaryCTA'),
           href: '#contact-form',
         }}
         centered
@@ -62,7 +67,9 @@ export default function ContactPage() {
                 />
               </svg>
             </div>
-            <h3 className="font-semibold text-deep-blue mb-3">Téléphone</h3>
+            <h3 className="font-semibold text-deep-blue mb-3">
+              {t('contact.methods.phone')}
+            </h3>
             <a
               href="tel:+212600000000"
               className="text-text-secondary hover:text-terracotta transition-colors"
@@ -93,11 +100,13 @@ export default function ContactPage() {
                 />
               </svg>
             </div>
-            <h3 className="font-semibold text-deep-blue mb-3">Localisation</h3>
+            <h3 className="font-semibold text-deep-blue mb-3">
+              {t('contact.methods.location')}
+            </h3>
             <p className="text-text-secondary">
-              Casablanca, Maroc
+              {t('contact.methods.locationDetails.city')}
               <br />
-              (Sessions en ligne disponibles)
+              {t('contact.methods.locationDetails.online')}
             </p>
           </Card>
         </div>
@@ -106,13 +115,13 @@ export default function ContactPage() {
         <div id="contact-form" className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
             <p className="text-terracotta text-sm font-medium uppercase tracking-wider mb-3">
-              Formulaire de Contact
+              {t('contact.form.subtitle')}
             </p>
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-deep-blue mb-4">
-              Envoyez-Moi un Message
+              {t('contact.form.title')}
             </h2>
             <p className="text-text-secondary">
-              Remplissez ce formulaire et je vous répondrai sous 48h.
+              {t('contact.form.description')}
             </p>
           </div>
 
@@ -120,17 +129,17 @@ export default function ContactPage() {
             <form className="space-y-6">
               <div className="grid lg:grid-cols-2 gap-6">
                 <FormInput
-                  label="Prénom"
+                  label={t('contact.form.firstName')}
                   name="firstName"
                   type="text"
-                  placeholder="Votre prénom"
+                  placeholder={t('contact.form.firstNamePlaceholder')}
                   required
                 />
                 <FormInput
-                  label="Nom"
+                  label={t('contact.form.lastName')}
                   name="lastName"
                   type="text"
-                  placeholder="Votre nom"
+                  placeholder={t('contact.form.lastNamePlaceholder')}
                   required
                 />
               </div>
@@ -139,36 +148,36 @@ export default function ContactPage() {
                 label="Email"
                 name="email"
                 type="email"
-                placeholder="votre.email@exemple.com"
+                placeholder={t('contact.form.emailPlaceholder')}
                 required
               />
 
               <FormInput
-                label="Téléphone"
+                label={t('contact.form.phone')}
                 name="phone"
                 type="tel"
                 placeholder="+212 6 00 00 00 00"
               />
 
               <FormInput
-                label="Je m'intéresse à"
+                label={t('contact.form.interest')}
                 name="interest"
                 type="select"
                 required
                 options={[
-                  { value: 'coaching', label: 'Coaching individuel' },
-                  { value: 'yoga', label: 'Cours de yoga' },
-                  { value: 'retraite', label: 'Retraite / Programme' },
-                  { value: 'organisation', label: 'Accompagnement organisation' },
-                  { value: 'autre', label: 'Autre' },
+                  { value: 'coaching', label: t('contact.form.interestOptions.0') },
+                  { value: 'yoga', label: t('contact.form.interestOptions.1') },
+                  { value: 'retraite', label: t('contact.form.interestOptions.2') },
+                  { value: 'organisation', label: t('contact.form.interestOptions.3') },
+                  { value: 'autre', label: t('contact.form.interestOptions.4') },
                 ]}
               />
 
               <FormInput
-                label="Votre message"
+                label={t('contact.form.message')}
                 name="message"
                 type="textarea"
-                placeholder="Parlez-moi de votre projet, vos besoins, vos questions..."
+                placeholder={t('contact.form.messagePlaceholder')}
                 required
                 rows={6}
               />
@@ -182,18 +191,16 @@ export default function ContactPage() {
                   className="mt-1 mr-3 w-4 h-4 text-terracotta border-soft-gray rounded focus:ring-terracotta"
                 />
                 <label htmlFor="consent" className="text-sm text-text-secondary">
-                  J'accepte que mes données personnelles soient utilisées pour me
-                  recontacter concernant ma demande. Elles ne seront jamais
-                  partagées avec des tiers.
+                  {t('contact.form.consent')}
                 </label>
               </div>
 
               <Button variant="primary" size="lg" fullWidth>
-                Envoyer mon message
+                {t('contact.form.submit')}
               </Button>
 
               <p className="text-sm text-text-secondary text-center">
-                Vous recevrez une réponse sous 48h maximum.
+                {t('contact.form.responseTime')}
               </p>
             </form>
           </Card>
@@ -202,50 +209,44 @@ export default function ContactPage() {
 
       {/* FAQ rapide */}
       <Section
-        subtitle="Questions Fréquentes"
-        title="Vous Vous Demandez..."
+        subtitle={t('contact.faq.subtitle')}
+        title={t('contact.faq.title')}
         centered
       >
         <div className="max-w-3xl mx-auto space-y-6">
           <Card padding="md">
             <h4 className="font-semibold text-deep-blue mb-2">
-              Proposez-vous des sessions en ligne ?
+              {t('contact.faq.q1.question')}
             </h4>
             <p className="text-sm text-text-secondary">
-              Oui ! La plupart de mes services sont disponibles en ligne via Zoom
-              ou en personne à Casablanca. Les retraites se déroulent au Maroc.
+              {t('contact.faq.q1.answer')}
             </p>
           </Card>
 
           <Card padding="md">
             <h4 className="font-semibold text-deep-blue mb-2">
-              Combien de temps dure un accompagnement ?
+              {t('contact.faq.q2.question')}
             </h4>
             <p className="text-sm text-text-secondary">
-              Cela dépend de vos besoins. Un coaching peut être ponctuel (1-2
-              sessions) ou s'étaler sur 3-6 mois. Nous en discutons ensemble lors
-              de la session découverte.
+              {t('contact.faq.q2.answer')}
             </p>
           </Card>
 
           <Card padding="md">
             <h4 className="font-semibold text-deep-blue mb-2">
-              Dois-je avoir de l'expérience en yoga pour participer aux cours ?
+              {t('contact.faq.q3.question')}
             </h4>
             <p className="text-sm text-text-secondary">
-              Pas du tout ! Mes cours sont ouverts à tous les niveaux. Je propose
-              même un cours d'essai gratuit pour les débutants.
+              {t('contact.faq.q3.answer')}
             </p>
           </Card>
 
           <Card padding="md">
             <h4 className="font-semibold text-deep-blue mb-2">
-              Comment se passe la première session découverte ?
+              {t('contact.faq.q4.question')}
             </h4>
             <p className="text-sm text-text-secondary">
-              C'est un moment d'échange gratuit de 30 minutes (en ligne ou en
-              personne) pour faire connaissance, comprendre vos besoins et voir si
-              nous sommes alignés pour travailler ensemble.
+              {t('contact.faq.q4.answer')}
             </p>
           </Card>
         </div>
@@ -254,11 +255,10 @@ export default function ContactPage() {
       {/* Social Media */}
       <Section background="sage" padding="md" centered>
         <h3 className="font-heading text-2xl font-bold text-deep-blue mb-4">
-          Suivez-Moi sur les Réseaux
+          {t('contact.social.title')}
         </h3>
         <p className="text-text-secondary mb-6">
-          Inspirations quotidiennes, coulisses des retraites et pratiques
-          guidées.
+          {t('contact.social.description')}
         </p>
         <div className="flex justify-center space-x-6">
           <a

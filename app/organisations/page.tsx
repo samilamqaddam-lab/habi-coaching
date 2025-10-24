@@ -1,22 +1,27 @@
+'use client';
+
 import Hero from '@/components/sections/Hero';
 import Section from '@/components/sections/Section';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import FormInput from '@/components/ui/FormInput';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function OrganisationsPage() {
+  const { t } = useTranslation();
+
   return (
     <>
       <Hero
-        subtitle="Pour les Organisations"
-        title="Transformer Durablement Votre Organisation"
-        description="Un accompagnement qui allie excellence opérationnelle et dimension humaine profonde. Une approche éprouvée qui réconcilie performance et bien-être."
+        subtitle={t('organisations.hero.subtitle')}
+        title={t('organisations.hero.title')}
+        description={t('organisations.hero.description')}
         primaryCTA={{
-          text: 'Demander un devis',
+          text: t('organisations.hero.primaryCTA'),
           href: '#devis',
         }}
         secondaryCTA={{
-          text: 'Nos programmes',
+          text: t('organisations.hero.secondaryCTA'),
           href: '#programmes',
         }}
       />
@@ -24,9 +29,9 @@ export default function OrganisationsPage() {
       {/* Services pour Organisations */}
       <Section
         id="programmes"
-        subtitle="Nos Services"
-        title="Accompagnement Organisationnel"
-        description="Des interventions adaptées à vos besoins, de la facilitation ponctuelle au programme de transformation complet."
+        subtitle={t('organisations.services.subtitle')}
+        title={t('organisations.services.title')}
+        description={t('organisations.services.description')}
         background="beige"
         centered
       >
@@ -49,16 +54,15 @@ export default function OrganisationsPage() {
                 </svg>
               </div>
               <h3 className="font-heading text-xl font-bold text-deep-blue mb-4">
-                Transformation Organisationnelle
+                {t('organisations.services.transformation.title')}
               </h3>
               <p className="text-text-secondary leading-relaxed mb-6">
-                Accompagnement global de votre organisation vers une culture de
-                présence, collaboration et performance durable.
+                {t('organisations.services.transformation.description')}
               </p>
               <ul className="text-sm text-text-secondary space-y-2 text-left">
-                <li>• Diagnostic et co-création</li>
-                <li>• Facilitation stratégique</li>
-                <li>• Conduite du changement</li>
+                <li>• {t('organisations.services.transformation.features.0')}</li>
+                <li>• {t('organisations.services.transformation.features.1')}</li>
+                <li>• {t('organisations.services.transformation.features.2')}</li>
               </ul>
             </div>
           </Card>
@@ -81,17 +85,15 @@ export default function OrganisationsPage() {
                 </svg>
               </div>
               <h3 className="font-heading text-xl font-bold text-deep-blue mb-4">
-                Leadership Conscient
+                {t('organisations.services.leadership.title')}
               </h3>
               <p className="text-text-secondary leading-relaxed mb-6">
-                Développement du leadership à tous les niveaux, ancré dans la
-                conscience de soi, l'intelligence collective et des limites saines
-                pour une performance durable.
+                {t('organisations.services.leadership.description')}
               </p>
               <ul className="text-sm text-text-secondary space-y-2 text-left">
-                <li>• Coaching de dirigeants</li>
-                <li>• Séminaires leadership</li>
-                <li>• Développement d'équipes</li>
+                <li>• {t('organisations.services.leadership.features.0')}</li>
+                <li>• {t('organisations.services.leadership.features.1')}</li>
+                <li>• {t('organisations.services.leadership.features.2')}</li>
               </ul>
             </div>
           </Card>
@@ -114,16 +116,15 @@ export default function OrganisationsPage() {
                 </svg>
               </div>
               <h3 className="font-heading text-xl font-bold text-deep-blue mb-4">
-                Retraites Corporates
+                {t('organisations.services.retreats.title')}
               </h3>
               <p className="text-text-secondary leading-relaxed mb-6">
-                Retraites sur-mesure au Maroc pour ressourcer vos équipes et
-                renforcer la cohésion dans un cadre inspirant.
+                {t('organisations.services.retreats.description')}
               </p>
               <ul className="text-sm text-text-secondary space-y-2 text-left">
-                <li>• Séminaires stratégiques</li>
-                <li>• Team building authentique</li>
-                <li>• Reconnexion & ressourcement</li>
+                <li>• {t('organisations.services.retreats.features.0')}</li>
+                <li>• {t('organisations.services.retreats.features.1')}</li>
+                <li>• {t('organisations.services.retreats.features.2')}</li>
               </ul>
             </div>
           </Card>
@@ -133,9 +134,9 @@ export default function OrganisationsPage() {
       {/* Formulaire de Devis */}
       <Section
         id="devis"
-        subtitle="Demander un Devis"
-        title="Discutons de Votre Projet"
-        description="Remplissez ce formulaire pour que nous puissions comprendre vos besoins et vous proposer un accompagnement sur-mesure."
+        subtitle={t('organisations.quote.subtitle')}
+        title={t('organisations.quote.title')}
+        description={t('organisations.quote.description')}
         centered
       >
         <div className="max-w-3xl mx-auto">
@@ -143,90 +144,90 @@ export default function OrganisationsPage() {
             <form className="space-y-6">
               <div className="grid lg:grid-cols-2 gap-6">
                 <FormInput
-                  label="Prénom"
+                  label={t('organisations.form.firstName')}
                   name="firstName"
                   type="text"
-                  placeholder="Votre prénom"
+                  placeholder={t('organisations.form.firstNamePlaceholder')}
                   required
                 />
                 <FormInput
-                  label="Nom"
+                  label={t('organisations.form.lastName')}
                   name="lastName"
                   type="text"
-                  placeholder="Votre nom"
+                  placeholder={t('organisations.form.lastNamePlaceholder')}
                   required
                 />
               </div>
 
               <FormInput
-                label="Email professionnel"
+                label={t('organisations.form.email')}
                 name="email"
                 type="email"
-                placeholder="votre.email@entreprise.com"
+                placeholder={t('organisations.form.emailPlaceholder')}
                 required
               />
 
               <FormInput
-                label="Téléphone"
+                label={t('organisations.form.phone')}
                 name="phone"
                 type="tel"
                 placeholder="+212 6 00 00 00 00"
               />
 
               <FormInput
-                label="Nom de l'organisation"
+                label={t('organisations.form.organization')}
                 name="organization"
                 type="text"
-                placeholder="Nom de votre entreprise"
+                placeholder={t('organisations.form.organizationPlaceholder')}
                 required
               />
 
               <FormInput
-                label="Taille de l'organisation"
+                label={t('organisations.form.size')}
                 name="size"
                 type="select"
                 required
                 options={[
-                  { value: '1-10', label: '1-10 employés' },
-                  { value: '11-50', label: '11-50 employés' },
-                  { value: '51-200', label: '51-200 employés' },
-                  { value: '201-500', label: '201-500 employés' },
-                  { value: '500+', label: 'Plus de 500 employés' },
+                  { value: '1-10', label: t('organisations.form.sizeOptions.0') },
+                  { value: '11-50', label: t('organisations.form.sizeOptions.1') },
+                  { value: '51-200', label: t('organisations.form.sizeOptions.2') },
+                  { value: '201-500', label: t('organisations.form.sizeOptions.3') },
+                  { value: '500+', label: t('organisations.form.sizeOptions.4') },
                 ]}
               />
 
               <FormInput
-                label="Type d'accompagnement souhaité"
+                label={t('organisations.form.service')}
                 name="service"
                 type="select"
                 required
                 options={[
                   {
                     value: 'transformation',
-                    label: 'Transformation organisationnelle',
+                    label: t('organisations.form.serviceOptions.0'),
                   },
-                  { value: 'leadership', label: 'Leadership conscient' },
-                  { value: 'retraite', label: 'Retraite corporate' },
-                  { value: 'facilitation', label: 'Facilitation ponctuelle' },
-                  { value: 'autre', label: 'Autre / À définir ensemble' },
+                  { value: 'leadership', label: t('organisations.form.serviceOptions.1') },
+                  { value: 'retraite', label: t('organisations.form.serviceOptions.2') },
+                  { value: 'facilitation', label: t('organisations.form.serviceOptions.3') },
+                  { value: 'autre', label: t('organisations.form.serviceOptions.4') },
                 ]}
               />
 
               <FormInput
-                label="Décrivez votre projet"
+                label={t('organisations.form.message')}
                 name="message"
                 type="textarea"
-                placeholder="Parlez-nous de vos besoins, vos enjeux et vos attentes..."
+                placeholder={t('organisations.form.messagePlaceholder')}
                 required
                 rows={6}
               />
 
               <Button variant="primary" size="lg" fullWidth>
-                Envoyer ma demande
+                {t('organisations.form.submit')}
               </Button>
 
               <p className="text-sm text-text-secondary text-center">
-                Nous vous répondrons sous 48h pour planifier un premier échange.
+                {t('organisations.form.responseTime')}
               </p>
             </form>
           </Card>
@@ -237,14 +238,13 @@ export default function OrganisationsPage() {
       <Section background="sage" padding="md" centered>
         <div className="max-w-3xl mx-auto">
           <h3 className="font-heading text-2xl md:text-3xl font-bold text-deep-blue mb-4">
-            Vous préférez en discuter directement ?
+            {t('organisations.cta.title')}
           </h3>
           <p className="text-text-secondary mb-6">
-            Réservez un appel découverte de 30 minutes pour explorer comment nous
-            pouvons collaborer.
+            {t('organisations.cta.description')}
           </p>
           <Button variant="primary" size="lg" href="/contact">
-            Réserver un appel
+            {t('organisations.cta.button')}
           </Button>
         </div>
       </Section>

@@ -1,51 +1,53 @@
+'use client';
+
 import Hero from '@/components/sections/Hero';
 import Section from '@/components/sections/Section';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
-
-const coachingTypes = [
-  {
-    title: 'Coaching Individuel',
-    description:
-      'Un accompagnement personnalisé pour explorer vos défis, clarifier votre vision et naviguer votre parcours professionnel selon vos propres termes.',
-    duration: '60-90 min',
-    format: 'En personne ou en ligne',
-    price: 'À partir de 150€/session',
-    icon: 'user',
-  },
-  {
-    title: 'Coaching de Carrière',
-    description:
-      'Orientation professionnelle, transitions de carrière (ascendantes, latérales ou réflexives), et développement de leadership pour les cadres et entrepreneurs.',
-    duration: 'Programme 3-6 mois',
-    format: 'Sessions bi-mensuelles',
-    price: 'Programme personnalisé',
-    icon: 'briefcase',
-  },
-  {
-    title: 'Coaching de Vie',
-    description:
-      'Transformation personnelle profonde, intégration harmonieuse travail-vie, prévention du burnout et alignement avec vos valeurs.',
-    duration: 'Programme flexible',
-    format: 'En personne ou en ligne',
-    price: 'À partir de 600€/mois',
-    icon: 'heart',
-  },
-];
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function CoachingPage() {
+  const { t } = useTranslation();
+
+  const coachingTypes = [
+    {
+      title: t('coaching.services.individual.title'),
+      description: t('coaching.services.individual.description'),
+      duration: t('coaching.services.individual.duration'),
+      format: t('coaching.services.individual.format'),
+      price: t('coaching.services.individual.price'),
+      icon: 'user',
+    },
+    {
+      title: t('coaching.services.career.title'),
+      description: t('coaching.services.career.description'),
+      duration: t('coaching.services.career.duration'),
+      format: t('coaching.services.career.format'),
+      price: t('coaching.services.career.price'),
+      icon: 'briefcase',
+    },
+    {
+      title: t('coaching.services.life.title'),
+      description: t('coaching.services.life.description'),
+      duration: t('coaching.services.life.duration'),
+      format: t('coaching.services.life.format'),
+      price: t('coaching.services.life.price'),
+      icon: 'heart',
+    },
+  ];
+
   return (
     <>
       <Hero
-        subtitle="Coaching Individuel"
-        title="Définissez le Succès Selon Vos Termes"
-        description="Un accompagnement certifié Coach & Team (accréditation EMCC) qui allie rigueur du coaching professionnel et profondeur des pratiques contemplatives. Pour une transformation qui respecte votre rythme et vos limites."
+        subtitle={t('coaching.hero.subtitle')}
+        title={t('coaching.hero.title')}
+        description={t('coaching.hero.description')}
         primaryCTA={{
-          text: 'Réserver une session découverte',
+          text: t('coaching.hero.primaryCTA'),
           href: '/contact',
         }}
         secondaryCTA={{
-          text: 'En savoir plus',
+          text: t('coaching.hero.secondaryCTA'),
           href: '#approche',
         }}
       />
@@ -53,8 +55,8 @@ export default function CoachingPage() {
       {/* Types de coaching */}
       <Section
         id="services"
-        subtitle="Mes Services"
-        title="Un Accompagnement Adapté à Vos Besoins"
+        subtitle={t('coaching.services.subtitle')}
+        title={t('coaching.services.title')}
         background="beige"
         centered
       >
@@ -103,18 +105,22 @@ export default function CoachingPage() {
                 </p>
                 <div className="space-y-2 mb-6 text-sm text-text-secondary">
                   <p>
-                    <strong className="text-deep-blue">Durée:</strong>{' '}
+                    <strong className="text-deep-blue">
+                      {t('coaching.services.individual.duration').split(':')[0]}:
+                    </strong>{' '}
                     {type.duration}
                   </p>
                   <p>
-                    <strong className="text-deep-blue">Format:</strong>{' '}
+                    <strong className="text-deep-blue">
+                      {t('coaching.services.individual.format').split(':')[0]}:
+                    </strong>{' '}
                     {type.format}
                   </p>
                   <p className="font-semibold text-terracotta">{type.price}</p>
                 </div>
               </div>
               <Button variant="outline" href="/contact" fullWidth>
-                En savoir plus
+                {t('common.buttons.learnMore')}
               </Button>
             </Card>
           ))}
@@ -124,9 +130,9 @@ export default function CoachingPage() {
       {/* Approche */}
       <Section
         id="approche"
-        subtitle="Mon Approche"
-        title="Coaching Intégratif & Contemplatif"
-        description="Mon approche unique combine l'efficacité du coaching professionnel avec la profondeur des pratiques contemplatives."
+        subtitle={t('coaching.approach.subtitle')}
+        title={t('coaching.approach.title')}
+        description={t('coaching.approach.description')}
       >
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
@@ -137,11 +143,10 @@ export default function CoachingPage() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-deep-blue mb-2">
-                    Clarification & Exploration
+                    {t('coaching.approach.step1.title')}
                   </h4>
                   <p className="text-text-secondary text-sm">
-                    Nous explorons ensemble vos aspirations, vos défis et vos
-                    schémas pour créer une vision claire de votre chemin.
+                    {t('coaching.approach.step1.description')}
                   </p>
                 </div>
               </div>
@@ -152,11 +157,10 @@ export default function CoachingPage() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-deep-blue mb-2">
-                    Transformation Intérieure
+                    {t('coaching.approach.step2.title')}
                   </h4>
                   <p className="text-text-secondary text-sm">
-                    À travers des pratiques contemplatives et des outils de
-                    coaching, nous activons votre potentiel de transformation.
+                    {t('coaching.approach.step2.description')}
                   </p>
                 </div>
               </div>
@@ -167,11 +171,10 @@ export default function CoachingPage() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-deep-blue mb-2">
-                    Action & Ancrage
+                    {t('coaching.approach.step3.title')}
                   </h4>
                   <p className="text-text-secondary text-sm">
-                    Nous traduisons vos insights en actions concrètes et créons
-                    des pratiques pour ancrer durablement les changements.
+                    {t('coaching.approach.step3.description')}
                   </p>
                 </div>
               </div>
@@ -180,16 +183,13 @@ export default function CoachingPage() {
 
           <Card padding="lg" className="bg-gradient-to-br from-dune-beige to-sage-light/20">
             <h4 className="font-heading text-xl font-bold text-deep-blue mb-4">
-              Ce que mes clients disent
+              {t('home.testimonials.title')}
             </h4>
             <blockquote className="italic text-text-secondary mb-4 leading-relaxed">
-              "Hajar a cette capacité rare de créer un espace à la fois
-              professionnel et profondément humain. Son approche m'a permis non
-              seulement de clarifier ma vision professionnelle, mais aussi de me
-              reconnecter à ce qui compte vraiment pour moi."
+              {t('coaching.approach.testimonial.quote')}
             </blockquote>
             <p className="text-sm font-semibold text-deep-blue">
-              — Sophie, Directrice Marketing
+              — {t('coaching.approach.testimonial.author')}
             </p>
           </Card>
         </div>
@@ -199,15 +199,13 @@ export default function CoachingPage() {
       <Section background="sage" padding="lg" centered>
         <div className="max-w-3xl mx-auto">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-deep-blue mb-6">
-            Commençons Votre Voyage
+            {t('coaching.cta.title')}
           </h2>
           <p className="text-lg text-text-secondary mb-8">
-            La première session est une session découverte gratuite de 30 minutes
-            pour explorer vos besoins et voir si nous sommes alignés pour travailler
-            ensemble.
+            {t('coaching.cta.description')}
           </p>
           <Button variant="primary" size="lg" href="/contact">
-            Réserver ma session découverte gratuite
+            {t('coaching.cta.button')}
           </Button>
         </div>
       </Section>
