@@ -1,0 +1,487 @@
+{
+  "common": {
+    "nav": {
+      "organisations": "Organizations",
+      "programmes": "Programs",
+      "coaching": "Coaching",
+      "ressources": "Resources",
+      "contact": "Contact"
+    },
+    "buttons": {
+      "bookSession": "Book a Session",
+      "contact": "Contact Me",
+      "readMore": "Learn More",
+      "learnMore": "Learn More",
+      "bookNow": "Book Now",
+      "download": "Download for Free",
+      "sendMessage": "Send Message",
+      "sendRequest": "Send Request",
+      "subscribe": "Subscribe",
+      "readArticle": "Read Article",
+      "seeAll": "See All Articles",
+      "bookDiscoverySession": "Book a Discovery Session",
+      "bookCall": "Book a Call",
+      "requestQuote": "Request a Quote",
+      "requestCustomProgram": "Request a Custom Program",
+      "bookFreeTrial": "Free Trial Class",
+      "requestInfo": "Request Information",
+      "seePrograms": "See Programs",
+      "ourPrograms": "Our Programs"
+    },
+    "footer": {
+      "tagline": "Holistic Coaching & Traditional Yoga",
+      "description": "Professional guidance and personal transformation in Morocco",
+      "quickLinks": "Quick Links",
+      "services": "Services",
+      "legal": "Legal",
+      "certifications": "Certifications",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Use",
+      "copyright": "All rights reserved.",
+      "organisations": "Organizations",
+      "individualCoaching": "Individual Coaching",
+      "yogaClasses": "Yoga Classes",
+      "retreats": "Retreats",
+      "expertise": "Expertise",
+      "coachTeamEMCC": "Coach & Team (EMCC)",
+      "ishaFoundation": "Isha Foundation",
+      "corporateExperience": "20 years in business"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Transform Your Professional & Personal Life",
+      "description": "Holistic coaching and traditional yogic practices for sustainable balance. Certified support for individuals and organizations in Morocco.",
+      "primaryCTA": "Book a Discovery Session",
+      "secondaryCTA": "Discover My Services"
+    },
+    "expertise": {
+      "subtitle": "My Expertise",
+      "title": "The Unique Alliance of Three Worlds",
+      "description": "A rare approach that combines professional excellence, rigor of certified coaching, and depth of traditional yogic practices.",
+      "corporate": {
+        "title": "Corporate Experience",
+        "years": "20 years",
+        "description": "Two decades in organizational transformation with international companies."
+      },
+      "coaching": {
+        "title": "Professional Coaching",
+        "certification": "Coach & Team (EMCC)",
+        "description": "Internationally recognized professional certification for quality support."
+      },
+      "yoga": {
+        "title": "Traditional Yoga",
+        "certification": "Isha Foundation",
+        "hours": "1750h training",
+        "description": "In-depth training in the Classical Hatha Yoga lineage with Sadhguru."
+      }
+    },
+    "services": {
+      "subtitle": "My Services",
+      "title": "How I Can Support You",
+      "organisations": {
+        "title": "For Organizations",
+        "description": "Cultural transformation, conscious leadership and facilitation to create human and high-performing organizations.",
+        "cta": "Discover"
+      },
+      "coaching": {
+        "title": "Individual Coaching",
+        "description": "Personalized support to clarify your vision, navigate transitions and define success on your own terms.",
+        "cta": "Discover"
+      },
+      "yoga": {
+        "title": "Yoga & Programs",
+        "description": "Traditional yoga classes, transformational retreats and programs for a practice that integrates into your life.",
+        "cta": "Discover"
+      }
+    },
+    "testimonials": {
+      "subtitle": "Testimonials",
+      "title": "What My Clients Say"
+    },
+    "cta": {
+      "title": "Ready to Start Your Transformation?",
+      "description": "Whether to support your organization or for your personal journey, let's schedule a conversation to explore how we can work together.",
+      "primaryCTA": "Book a Discovery Session",
+      "secondaryCTA": "See Programs"
+    }
+  },
+  "coaching": {
+    "hero": {
+      "subtitle": "Individual Coaching",
+      "title": "Define Success on Your Own Terms",
+      "description": "Certified Coach & Team (EMCC accreditation) support that combines the rigor of professional coaching with the depth of contemplative practices. For transformation that respects your rhythm and boundaries.",
+      "primaryCTA": "Book a Discovery Session",
+      "secondaryCTA": "Learn More"
+    },
+    "services": {
+      "subtitle": "My Services",
+      "title": "Support Adapted to Your Needs",
+      "individual": {
+        "title": "Individual Coaching",
+        "description": "Personalized support to explore your challenges, clarify your vision and navigate your professional journey on your own terms.",
+        "duration": "60-90 min",
+        "format": "In-person or online",
+        "price": "From €150/session"
+      },
+      "career": {
+        "title": "Career Coaching",
+        "description": "Professional guidance, career transitions (upward, lateral or reflective), and leadership development for executives and entrepreneurs.",
+        "duration": "3-6 month program",
+        "format": "Bi-monthly sessions",
+        "price": "Personalized program"
+      },
+      "life": {
+        "title": "Life Coaching",
+        "description": "Deep personal transformation, harmonious work-life integration, burnout prevention and alignment with your values.",
+        "duration": "Flexible program",
+        "format": "In-person or online",
+        "price": "From €600/month"
+      }
+    },
+    "approach": {
+      "subtitle": "My Approach",
+      "title": "Integrative & Contemplative Coaching",
+      "description": "My unique approach combines the effectiveness of professional coaching with the depth of contemplative practices.",
+      "step1": {
+        "title": "Clarification & Exploration",
+        "description": "Together we explore your aspirations, challenges and patterns to create a clear vision of your path."
+      },
+      "step2": {
+        "title": "Inner Transformation",
+        "description": "Through contemplative practices and coaching tools, we activate your potential for transformation."
+      },
+      "step3": {
+        "title": "Action & Anchoring",
+        "description": "We translate your insights into concrete actions and create practices to sustainably anchor changes."
+      },
+      "testimonial": {
+        "quote": "Hajar has this rare ability to create a space that is both professional and deeply human. Her approach allowed me not only to clarify my professional vision, but also to reconnect with what really matters to me.",
+        "author": "Sophie, Marketing Director"
+      }
+    },
+    "cta": {
+      "title": "Let's Begin Your Journey",
+      "description": "The first session is a complimentary 30-minute discovery session to explore your needs and see if we're aligned to work together.",
+      "button": "Book My Free Discovery Session"
+    }
+  },
+  "programmes": {
+    "hero": {
+      "subtitle": "Yogic Practices & Programs",
+      "title": "Transform Your Life Through Yoga",
+      "description": "Classical Hatha Yoga taught by an Isha Foundation certified teacher, with deep understanding of contemporary world challenges. Classes, retreats and programs for a practice that integrates into your life.",
+      "primaryCTA": "Book a Class",
+      "secondaryCTA": "See Retreats"
+    },
+    "classes": {
+      "subtitle": "Regular Classes",
+      "title": "Join Us on the Mat",
+      "description": "Weekly classes in small groups for in-depth practice and personalized guidance.",
+      "hatha": {
+        "title": "Traditional Hatha Yoga",
+        "description": "Classical yoga practice with focus on asanas (postures), pranayama (breathing) and meditation. All levels welcome.",
+        "schedule": "Tuesdays & Thursdays 6:30pm",
+        "duration": "90 min",
+        "price": "€20/class or €70/month"
+      },
+      "restorative": {
+        "title": "Restorative Yoga",
+        "description": "Gentle and deeply relaxing practice with long-held postures. Ideal for recovery and stress management.",
+        "schedule": "Saturdays 10:00am",
+        "duration": "75 min",
+        "price": "€25/class"
+      },
+      "meditation": {
+        "title": "Meditation & Pranayama",
+        "description": "Sessions dedicated to yogic breathing techniques and guided meditation. All levels, beginners welcome.",
+        "schedule": "Sundays 9:00am",
+        "duration": "60 min",
+        "price": "€15/class or €50/month"
+      },
+      "freeTrial": {
+        "title": "Free Trial Class",
+        "description": "New to yoga? Come try your first class for free, no commitment.",
+        "cta": "Book My Trial Class"
+      }
+    },
+    "retreats": {
+      "subtitle": "Retreats & Programs",
+      "title": "Transformational Experiences",
+      "description": "Retreats, workshops and trainings that combine traditional yogic practices and personal development in inspiring locations across Morocco.",
+      "atlas": {
+        "title": "Yoga & Meditation Retreat in the Atlas",
+        "location": "Ourika Valley, Morocco",
+        "duration": "5 days / 4 nights",
+        "dates": "May 15-19, 2025",
+        "price": "€890",
+        "spotsLeft": "8 spots remaining",
+        "description": "Total immersion in traditional yogic practice in the heart of the Atlas Mountains. Yoga, meditation, contemplative hiking and local cuisine.",
+        "highlights": {
+          "yoga": "Daily yoga practices",
+          "meditation": "Guided meditation",
+          "hiking": "Atlas mountain hikes",
+          "accommodation": "Eco-lodge accommodation",
+          "food": "Organic Moroccan cuisine"
+        }
+      }
+    },
+    "philosophy": {
+      "subtitle": "My Philosophy",
+      "title": "Yoga as a Path of Transformation",
+      "description": "For me, yoga is much more than a physical practice. It's a path of deep transformation that touches all aspects of our being - body, mind, heart and spirit.",
+      "tradition": {
+        "title": "Authentic Tradition",
+        "description": "Trained in the traditional lineage of Hatha Yoga, I teach practices in their authentic form, respectful of ancestral wisdom."
+      },
+      "inclusive": {
+        "title": "Inclusive Approach",
+        "description": "Yoga is for all bodies and all ages. I adapt the practice to each person with kindness and respect."
+      },
+      "integration": {
+        "title": "Life Integration",
+        "description": "My approach helps integrate yogic teachings into daily life, for sustainable balance."
+      },
+      "depth": {
+        "title": "Beyond the Physical",
+        "description": "The yoga I teach goes beyond postures. We explore breathing, meditation and yogic philosophy."
+      }
+    },
+    "custom": {
+      "subtitle": "Personalized Program",
+      "title": "Let's Create Your Experience Together",
+      "description": "Would you like a custom program for your group, your team or a special occasion? We design unique experiences adapted to your needs.",
+      "privateGroups": {
+        "title": "Private groups",
+        "description": "From 6 people"
+      },
+      "uniqueLocations": {
+        "title": "Unique locations",
+        "description": "Riads, desert, mountains, ocean"
+      },
+      "personalized": {
+        "title": "100% personalized",
+        "description": "Content adapted to your needs"
+      }
+    },
+    "cta": {
+      "title": "Ready to Begin?",
+      "description": "Book your free trial class or contact us for any questions about our classes and programs.",
+      "primaryCTA": "Free Trial Class",
+      "secondaryCTA": "Request Information"
+    }
+  },
+  "organisations": {
+    "hero": {
+      "subtitle": "For Organizations",
+      "title": "Sustainably Transform Your Organization",
+      "description": "Support that combines operational excellence and deep human dimension. A proven approach that reconciles performance and well-being.",
+      "primaryCTA": "Request a Quote",
+      "secondaryCTA": "Our Programs"
+    },
+    "services": {
+      "subtitle": "Our Services",
+      "title": "Organizational Support",
+      "description": "Tailored interventions to meet your needs, from one-off facilitation to complete transformation programs.",
+      "transformation": {
+        "title": "Organizational Transformation",
+        "description": "Comprehensive support for your organization towards a culture of presence, collaboration and sustainable performance.",
+        "items": {
+          "diagnostic": "Diagnosis and co-creation",
+          "facilitation": "Strategic facilitation",
+          "change": "Change management"
+        }
+      },
+      "leadership": {
+        "title": "Conscious Leadership",
+        "description": "Leadership development at all levels, grounded in self-awareness, collective intelligence and healthy boundaries for sustainable performance.",
+        "items": {
+          "coaching": "Executive coaching",
+          "seminars": "Leadership seminars",
+          "teams": "Team development"
+        }
+      },
+      "retreats": {
+        "title": "Corporate Retreats",
+        "description": "Custom retreats in Morocco combining strategic facilitation, presence practices and rejuvenation in unique locations.",
+        "items": {
+          "strategic": "Strategic seminars",
+          "teamBuilding": "Authentic team building",
+          "wellbeing": "Well-being & performance"
+        }
+      }
+    },
+    "quote": {
+      "subtitle": "Request a Quote",
+      "title": "Let's Discuss Your Project",
+      "description": "Fill out this form so we can understand your needs and propose tailored support.",
+      "form": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Professional Email",
+        "phone": "Phone",
+        "organization": "Organization Name",
+        "size": "Organization Size",
+        "service": "Type of Support Desired",
+        "message": "Describe Your Project",
+        "placeholders": {
+          "firstName": "Your first name",
+          "lastName": "Your last name",
+          "email": "your.email@company.com",
+          "phone": "+212 6 00 00 00 00",
+          "organization": "Your company name",
+          "message": "Tell us about your needs, challenges and expectations..."
+        },
+        "sizes": {
+          "1-10": "1-10 employees",
+          "11-50": "11-50 employees",
+          "51-200": "51-200 employees",
+          "201-500": "201-500 employees",
+          "500+": "More than 500 employees"
+        },
+        "services": {
+          "transformation": "Organizational transformation",
+          "leadership": "Conscious leadership",
+          "retreat": "Corporate retreat",
+          "facilitation": "One-off facilitation",
+          "other": "Other / To be defined together"
+        },
+        "response": "We will respond within 48 hours to schedule an initial conversation."
+      }
+    },
+    "cta": {
+      "title": "Prefer to Discuss Directly?",
+      "description": "Book a 30-minute discovery call to explore how we can collaborate.",
+      "button": "Book a Call"
+    }
+  },
+  "contact": {
+    "hero": {
+      "subtitle": "Contact",
+      "title": "Let's Connect",
+      "description": "Whether you're an organization, a professional or an individual, I'm here to answer your questions and explore how we can collaborate.",
+      "primaryCTA": "Contact Me"
+    },
+    "methods": {
+      "email": {
+        "title": "Email",
+        "address": "contact@habi-coaching.com"
+      },
+      "phone": {
+        "title": "Phone",
+        "number": "+212 6 00 00 00 00"
+      },
+      "location": {
+        "title": "Location",
+        "city": "Casablanca, Morocco",
+        "online": "(Online sessions available)"
+      }
+    },
+    "form": {
+      "subtitle": "Contact Form",
+      "title": "Send Me a Message",
+      "description": "Fill out this form and I will respond within 48 hours.",
+      "fields": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "phone": "Phone",
+        "interest": "I'm interested in",
+        "message": "Your Message"
+      },
+      "placeholders": {
+        "firstName": "Your first name",
+        "lastName": "Your last name",
+        "email": "your.email@example.com",
+        "phone": "+212 6 00 00 00 00",
+        "message": "Tell me about your project, your needs, your questions..."
+      },
+      "interests": {
+        "coaching": "Individual coaching",
+        "yoga": "Yoga classes",
+        "retreat": "Retreat / Program",
+        "organisation": "Organizational support",
+        "other": "Other"
+      },
+      "consent": "I agree that my personal data may be used to contact me regarding my request. It will never be shared with third parties.",
+      "response": "You will receive a response within 48 hours maximum."
+    },
+    "faq": {
+      "subtitle": "Frequently Asked Questions",
+      "title": "You're Wondering...",
+      "q1": {
+        "question": "Do you offer online sessions?",
+        "answer": "Yes! Most of my services are available online via Zoom or in-person in Casablanca. Retreats take place in Morocco."
+      },
+      "q2": {
+        "question": "How long does support last?",
+        "answer": "It depends on your needs. Coaching can be one-off (1-2 sessions) or spread over 3-6 months. We discuss this together during the discovery session."
+      },
+      "q3": {
+        "question": "Do I need yoga experience to join classes?",
+        "answer": "Not at all! My classes are open to all levels. I even offer a free trial class for beginners."
+      },
+      "q4": {
+        "question": "How does the first discovery session work?",
+        "answer": "It's a complimentary 30-minute conversation (online or in-person) to get to know each other, understand your needs and see if we're aligned to work together."
+      }
+    },
+    "social": {
+      "title": "Follow Me on Social Media",
+      "description": "Daily inspiration, retreat behind-the-scenes and guided practices."
+    }
+  },
+  "ressources": {
+    "hero": {
+      "subtitle": "Resources",
+      "title": "Inspiration & Free Tools",
+      "description": "Articles, practical guides and resources to deepen your personal and professional transformation journey.",
+      "primaryCTA": "Explore Resources"
+    },
+    "blog": {
+      "subtitle": "Blog",
+      "title": "Articles & Reflections",
+      "description": "Inspiration, practices and reflections on yoga, coaching and transformation.",
+      "readTime": "min",
+      "seeAll": "See All Articles"
+    },
+    "guides": {
+      "subtitle": "Free Downloads",
+      "title": "Guides & E-books",
+      "description": "Practical resources to download to deepen your practice."
+    },
+    "testimonials": {
+      "subtitle": "Testimonials",
+      "title": "What My Clients Say"
+    },
+    "newsletter": {
+      "title": "Stay Inspired",
+      "description": "Subscribe to my monthly newsletter to receive inspiration, guided practices and news about upcoming programs.",
+      "placeholder": "Your email",
+      "button": "Subscribe",
+      "consent": "No spam. Unsubscribe anytime."
+    }
+  },
+  "expertise": {
+    "hero": {
+      "subtitle": "My Journey",
+      "title": "The Alliance of Three Expertises",
+      "description": "A unique journey that combines organizational transformation, certified professional coaching and traditional yogic practices.",
+      "primaryCTA": "Let's Work Together"
+    },
+    "journey": {
+      "subtitle": "My Journey",
+      "title": "From Business to Yoga: A Coherent Path"
+    },
+    "certifications": {
+      "subtitle": "Certifications & Training",
+      "title": "Triple Excellence"
+    },
+    "cta": {
+      "title": "Let's Work Together",
+      "description": "Whether you're an organization or an individual, let's explore how my expertise can serve your transformation.",
+      "primaryCTA": "Book a Discovery Session",
+      "secondaryCTA": "Services for Organizations"
+    }
+  }
+}

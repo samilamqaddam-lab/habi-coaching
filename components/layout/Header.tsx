@@ -4,18 +4,21 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Container from '../ui/Container';
 import Button from '../ui/Button';
-
-const navigation = [
-  { name: 'Organisations', href: '/organisations' },
-  { name: 'Programmes', href: '/programmes' },
-  { name: 'Coaching', href: '/coaching' },
-  { name: 'Ressources', href: '/ressources' },
-  { name: 'Contact', href: '/contact' },
-];
+import LanguageToggle from './LanguageToggle';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function Header() {
+  const { t } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const navigation = [
+    { name: t('common.nav.organisations'), href: '/organisations' },
+    { name: t('common.nav.programmes'), href: '/programmes' },
+    { name: t('common.nav.coaching'), href: '/coaching' },
+    { name: t('common.nav.ressources'), href: '/ressources' },
+    { name: t('common.nav.contact'), href: '/contact' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,10 +56,11 @@ export default function Header() {
             ))}
           </div>
 
-          {/* CTA Button Desktop */}
-          <div className="hidden lg:block">
+          {/* Language Toggle & CTA Button Desktop */}
+          <div className="hidden lg:flex items-center gap-4">
+            <LanguageToggle />
             <Button variant="primary" size="md" href="/contact">
-              Réserver une session
+              {t('common.buttons.bookSession')}
             </Button>
           </div>
 
@@ -104,8 +108,11 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
+            <div className="flex justify-center pt-2 pb-4">
+              <LanguageToggle />
+            </div>
             <Button variant="primary" size="md" href="/contact" fullWidth>
-              Réserver une session
+              {t('common.buttons.bookSession')}
             </Button>
           </div>
         )}

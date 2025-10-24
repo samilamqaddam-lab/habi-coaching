@@ -21,6 +21,7 @@ export const metadata: Metadata = {
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
 export default function RootLayout({
   children,
@@ -32,9 +33,11 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${inter.variable} antialiased`}
       >
-        <Header />
-        <main className="pt-20">{children}</main>
-        <Footer />
+        <LanguageProvider>
+          <Header />
+          <main className="pt-20">{children}</main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );
