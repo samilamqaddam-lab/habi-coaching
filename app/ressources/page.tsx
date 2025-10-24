@@ -73,7 +73,7 @@ export default function RessourcesPage() {
         description="Inspirations, pratiques et réflexions sur le yoga, le coaching et la transformation."
         background="beige"
       >
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {articles.map((article, index) => (
             <Card key={index} hover padding="lg" className="flex flex-col">
               <div className="aspect-[16/9] bg-gradient-to-br from-terracotta/10 to-sage/10 rounded-xl mb-6 flex items-center justify-center">
@@ -129,7 +129,7 @@ export default function RessourcesPage() {
         description="Des ressources pratiques à télécharger pour approfondir votre pratique."
         centered
       >
-        <div className="grid md:grid-cols-3 gap-8 mt-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
           {guides.map((guide, index) => (
             <Card key={index} padding="lg" className="flex flex-col">
               <div className="flex-grow">
@@ -178,7 +178,7 @@ export default function RessourcesPage() {
         centered
         padding="lg"
       >
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
           <Card padding="lg">
             <div className="flex items-center mb-4">
               <div className="w-12 h-12 bg-terracotta/20 rounded-full flex items-center justify-center mr-4">

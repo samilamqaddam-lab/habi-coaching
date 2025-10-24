@@ -153,7 +153,7 @@ export default function ProgrammesPage() {
         description="Des cours hebdomadaires en petits groupes pour une pratique approfondie et un accompagnement personnalisé."
         background="beige"
       >
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {yogaClasses.map((yogaClass, index) => (
             <Card key={index} hover padding="lg" className="flex flex-col">
               <div className="flex-grow">
@@ -234,7 +234,7 @@ export default function ProgrammesPage() {
         <div className="grid gap-8">
           {programmes.map((programme) => (
             <Card key={programme.id} padding="lg" className="group">
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid lg:grid-cols-3 gap-6">
                 {/* Image placeholder */}
                 <div className="md:col-span-1">
                   <div className="aspect-[4/3] bg-gradient-to-br from-terracotta/20 to-sage/20 rounded-xl flex items-center justify-center group-hover:from-terracotta/30 group-hover:to-sage/30 transition-all">
@@ -391,7 +391,7 @@ export default function ProgrammesPage() {
             notre être - corps, mental, cœur et esprit.
           </p>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-2 gap-8">
             <Card padding="md">
               <h4 className="font-semibold text-deep-blue mb-3">
                 Tradition Authentique
@@ -445,7 +445,7 @@ export default function ProgrammesPage() {
         padding="lg"
       >
         <div className="max-w-3xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-terracotta/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg

@@ -30,7 +30,7 @@ export default function OrganisationsPage() {
         background="beige"
         centered
       >
-        <div className="grid md:grid-cols-3 gap-8 mt-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
           <Card hover padding="lg">
             <div className="text-center">
               <div className="w-16 h-16 bg-terracotta/10 rounded-2xl flex items-center justify-center mx-auto mb-6">

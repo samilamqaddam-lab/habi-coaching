@@ -58,7 +58,7 @@ export default function CoachingPage() {
         background="beige"
         centered
       >
-        <div className="grid md:grid-cols-3 gap-8 mt-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
           {coachingTypes.map((type, index) => (
             <Card key={index} hover padding="lg" className="flex flex-col">
               <div className="flex-grow">
