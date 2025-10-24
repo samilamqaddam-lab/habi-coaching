@@ -443,11 +443,23 @@
       "primaryCTA": "Me contacter"
     },
     "methods": {
-      "phone": "Téléphone",
-      "location": "Localisation",
-      "locationDetails": {
+      "subtitle": "Moyens de Contact",
+      "title": "Entrer en Contact",
+      "email": {
+        "title": "Email",
+        "address": "contact@habi-coaching.com",
+        "description": "Je réponds généralement sous 24-48h."
+      },
+      "phone": {
+        "title": "Téléphone",
+        "number": "+212 6 00 00 00 00",
+        "description": "WhatsApp disponible"
+      },
+      "location": {
+        "title": "Localisation",
         "city": "Casablanca, Maroc",
-        "online": "(Sessions en ligne disponibles)"
+        "online": "(Sessions en ligne disponibles)",
+        "description": "Sessions en personne à Casablanca. Sessions en ligne partout dans le monde."
       }
     },
     "form": {
