@@ -2,7 +2,7 @@
   "common": {
     "nav": {
       "organisations": "Organizations",
-      "programmes": "Programs",
+      "programmes": "Yoga",
       "coaching": "Coaching",
       "ressources": "Resources",
       "contact": "Contact"
@@ -52,8 +52,8 @@
     "hero": {
       "title": "Transform Your Professional & Personal Life",
       "description": "Holistic coaching and traditional yogic practices for sustainable balance. Certified support for individuals and organizations in Morocco.",
-      "primaryCTA": "Book a Discovery Session",
-      "secondaryCTA": "Discover My Services"
+      "primaryCTA": "Discover My Services",
+      "secondaryCTA": "Book a Session"
     },
     "expertise": {
       "subtitle": "My Expertise",
@@ -120,22 +120,22 @@
       "individual": {
         "title": "Individual Coaching",
         "description": "Personalized support to explore your challenges, clarify your vision and navigate your professional journey on your own terms.",
-        "duration": "60-90 min",
-        "format": "In-person or online",
+        "duration": "Duration: 60-90 min",
+        "format": "Format: In-person or online",
         "price": "From €150/session"
       },
       "career": {
         "title": "Career Coaching",
         "description": "Professional guidance, career transitions (upward, lateral or reflective), and leadership development for executives and entrepreneurs.",
-        "duration": "3-6 month program",
-        "format": "Bi-monthly sessions",
+        "duration": "Duration: 3-6 month program",
+        "format": "Format: Bi-monthly sessions",
         "price": "Personalized program"
       },
       "life": {
         "title": "Life Coaching",
         "description": "Deep personal transformation, harmonious work-life integration, burnout prevention and alignment with your values.",
-        "duration": "Flexible program",
-        "format": "In-person or online",
+        "duration": "Duration: Flexible program",
+        "format": "Format: In-person or online",
         "price": "From €600/month"
       }
     },
@@ -174,10 +174,114 @@
       "primaryCTA": "Book a Class",
       "secondaryCTA": "See Retreats"
     },
-    "classes": {
+    "regularClasses": {
       "subtitle": "Regular Classes",
       "title": "Join Us on the Mat",
-      "description": "Weekly classes in small groups for in-depth practice and personalized guidance.",
+      "description": "Weekly classes in small groups for in-depth practice and personalized guidance."
+    },
+    "buttons": {
+      "book": "Book",
+      "bookSpot": "Book My Spot",
+      "moreInfo": "More Information"
+    },
+    "retreats": {
+      "subtitle": "Retreats & Immersions",
+      "title": "Transformational Experiences",
+      "description": "Retreats and immersions that combine traditional yogic practices and personal transformation in inspiring Moroccan locations.",
+      "atlas": {
+        "title": "Yoga & Meditation Retreat in the Atlas",
+        "location": "Ourika Valley, Morocco",
+        "duration": "5 days / 4 nights",
+        "dates": "May 15-19, 2025",
+        "price": "€890",
+        "description": "Total immersion in traditional yogic practice in the heart of the Atlas Mountains. Yoga, meditation, contemplative hiking and local cuisine.",
+        "highlights": {
+          "0": "Daily yoga practices",
+          "1": "Guided meditation",
+          "2": "Atlas mountain hikes",
+          "3": "Eco-lodge accommodation",
+          "4": "Organic Moroccan cuisine"
+        }
+      },
+      "silence": {
+        "title": "Silence & Contemplation Retreat",
+        "location": "Essaouira, Morocco",
+        "duration": "7 days / 6 nights",
+        "dates": "September 20-26, 2025",
+        "price": "€1,200",
+        "description": "A silent retreat by the Atlantic Ocean. Deep meditation, yogic practices, and contemplation time facing the sea.",
+        "highlights": {
+          "0": "Noble silence",
+          "1": "Intensive meditation",
+          "2": "Restorative yoga",
+          "3": "Ocean view",
+          "4": "Personal guidance"
+        }
+      }
+    },
+    "workshops": {
+      "subtitle": "Workshops",
+      "title": "Intensive Weekend Programs",
+      "description": "Short immersive programs to deepen specific aspects of practice.",
+      "leadership": {
+        "title": "Conscious Leadership Workshop",
+        "location": "Casablanca, Morocco",
+        "duration": "2 days",
+        "dates": "June 10-11, 2025",
+        "price": "€450",
+        "description": "An intensive workshop to develop your authentic leadership, combining contemplative practices and organizational facilitation tools.",
+        "highlights": {
+          "0": "Self-awareness",
+          "1": "Emotional intelligence",
+          "2": "Conscious communication",
+          "3": "Presence practices",
+          "4": "Facilitation tools"
+        }
+      },
+      "balance": {
+        "title": "Balance & Healthy Boundaries Workshop",
+        "location": "Casablanca, Morocco",
+        "duration": "2 days",
+        "dates": "July 15-16, 2025",
+        "price": "€350",
+        "description": "A practical workshop to create sustainable work-life balance. Learn to set healthy boundaries without guilt and prevent burnout.",
+        "highlights": {
+          "0": "Clarifying your values",
+          "1": "Boundary techniques",
+          "2": "Anti-stress yoga & meditation",
+          "3": "Burnout prevention",
+          "4": "Concrete daily practices"
+        }
+      }
+    },
+    "training": {
+      "subtitle": "Training Programs",
+      "title": "In-Depth Programs",
+      "description": "Extended training for those who wish to deepen their practice and understanding of yoga.",
+      "philosophy": {
+        "title": "Yoga & Philosophy Training",
+        "location": "Marrakech, Morocco",
+        "duration": "10 days",
+        "dates": "November 1-10, 2025",
+        "price": "€1,890",
+        "description": "In-depth training in traditional yoga fundamentals: asanas, pranayama, meditation and yogic philosophy.",
+        "highlights": {
+          "0": "Traditional teachings",
+          "1": "Intensive daily practice",
+          "2": "Yoga philosophy",
+          "3": "Training manual",
+          "4": "Certificate of completion"
+        }
+      }
+    },
+    "type": {
+      "retreat": "retreat",
+      "workshop": "workshop",
+      "training": "training"
+    },
+    "perPerson": "per person",
+    "programHighlights": "Program highlights:",
+    "classes": {
       "hatha": {
         "title": "Traditional Hatha Yoga",
         "description": "Classical yoga practice with focus on asanas (postures), pranayama (breathing) and meditation. All levels welcome.",
@@ -203,27 +307,6 @@
         "title": "Free Trial Class",
         "description": "New to yoga? Come try your first class for free, no commitment.",
         "cta": "Book My Trial Class"
-      }
-    },
-    "retreats": {
-      "subtitle": "Retreats & Programs",
-      "title": "Transformational Experiences",
-      "description": "Retreats, workshops and trainings that combine traditional yogic practices and personal development in inspiring locations across Morocco.",
-      "atlas": {
-        "title": "Yoga & Meditation Retreat in the Atlas",
-        "location": "Ourika Valley, Morocco",
-        "duration": "5 days / 4 nights",
-        "dates": "May 15-19, 2025",
-        "price": "€890",
-        "spotsLeft": "8 spots remaining",
-        "description": "Total immersion in traditional yogic practice in the heart of the Atlas Mountains. Yoga, meditation, contemplative hiking and local cuisine.",
-        "highlights": {
-          "yoga": "Daily yoga practices",
-          "meditation": "Guided meditation",
-          "hiking": "Atlas mountain hikes",
-          "accommodation": "Eco-lodge accommodation",
-          "food": "Organic Moroccan cuisine"
-        }
       }
     },
     "philosophy": {
@@ -287,67 +370,68 @@
         "title": "Organizational Transformation",
         "description": "Comprehensive support for your organization towards a culture of presence, collaboration and sustainable performance.",
         "items": {
-          "diagnostic": "Diagnosis and co-creation",
-          "facilitation": "Strategic facilitation",
-          "change": "Change management"
+          "0": "Diagnosis and co-creation",
+          "1": "Strategic facilitation",
+          "2": "Change management",
+          "3": "Culture transformation"
         }
       },
       "leadership": {
         "title": "Conscious Leadership",
         "description": "Leadership development at all levels, grounded in self-awareness, collective intelligence and healthy boundaries for sustainable performance.",
         "items": {
-          "coaching": "Executive coaching",
-          "seminars": "Leadership seminars",
-          "teams": "Team development"
+          "0": "Executive coaching",
+          "1": "Leadership seminars",
+          "2": "Team development",
+          "3": "360° feedback"
         }
       },
       "retreats": {
         "title": "Corporate Retreats",
         "description": "Custom retreats in Morocco combining strategic facilitation, presence practices and rejuvenation in unique locations.",
         "items": {
-          "strategic": "Strategic seminars",
-          "teamBuilding": "Authentic team building",
-          "wellbeing": "Well-being & performance"
+          "0": "Strategic seminars",
+          "1": "Authentic team building",
+          "2": "Well-being & performance",
+          "3": "Leadership retreats"
         }
       }
     },
     "quote": {
       "subtitle": "Request a Quote",
       "title": "Let's Discuss Your Project",
-      "description": "Fill out this form so we can understand your needs and propose tailored support.",
-      "form": {
-        "firstName": "First Name",
-        "lastName": "Last Name",
-        "email": "Professional Email",
-        "phone": "Phone",
-        "organization": "Organization Name",
-        "size": "Organization Size",
-        "service": "Type of Support Desired",
-        "message": "Describe Your Project",
-        "placeholders": {
-          "firstName": "Your first name",
-          "lastName": "Your last name",
-          "email": "your.email@company.com",
-          "phone": "+212 6 00 00 00 00",
-          "organization": "Your company name",
-          "message": "Tell us about your needs, challenges and expectations..."
-        },
-        "sizes": {
-          "1-10": "1-10 employees",
-          "11-50": "11-50 employees",
-          "51-200": "51-200 employees",
-          "201-500": "201-500 employees",
-          "500+": "More than 500 employees"
-        },
-        "services": {
-          "transformation": "Organizational transformation",
-          "leadership": "Conscious leadership",
-          "retreat": "Corporate retreat",
-          "facilitation": "One-off facilitation",
-          "other": "Other / To be defined together"
-        },
-        "response": "We will respond within 48 hours to schedule an initial conversation."
-      }
+      "description": "Fill out this form so we can understand your needs and propose tailored support."
+    },
+    "form": {
+      "firstName": "First Name",
+      "firstNamePlaceholder": "Your first name",
+      "lastName": "Last Name",
+      "lastNamePlaceholder": "Your last name",
+      "email": "Professional Email",
+      "emailPlaceholder": "your.email@company.com",
+      "phone": "Phone",
+      "organization": "Organization Name",
+      "organizationPlaceholder": "Your company name",
+      "size": "Organization Size",
+      "sizeOptions": {
+        "0": "1-10 employees",
+        "1": "11-50 employees",
+        "2": "51-200 employees",
+        "3": "201-500 employees",
+        "4": "More than 500 employees"
+      },
+      "service": "Type of Support Desired",
+      "serviceOptions": {
+        "0": "Organizational transformation",
+        "1": "Conscious leadership",
+        "2": "Corporate retreat",
+        "3": "One-off facilitation",
+        "4": "Other / To be defined together"
+      },
+      "message": "Describe Your Project",
+      "messagePlaceholder": "Tell us about your needs, challenges and expectations...",
+      "submit": "Send My Request",
+      "responseTime": "We will respond within 48 hours to schedule an initial conversation."
     },
     "cta": {
       "title": "Prefer to Discuss Directly?",
@@ -363,67 +447,69 @@
       "primaryCTA": "Contact Me"
     },
     "methods": {
+      "subtitle": "Contact Methods",
+      "title": "Get in Touch",
       "email": {
         "title": "Email",
-        "address": "contact@habi-coaching.com"
+        "address": "contact@habi-coaching.com",
+        "description": "I typically respond within 24-48 hours."
       },
       "phone": {
         "title": "Phone",
-        "number": "+212 6 00 00 00 00"
+        "number": "+212 6 00 00 00 00",
+        "description": "WhatsApp available"
       },
       "location": {
         "title": "Location",
         "city": "Casablanca, Morocco",
-        "online": "(Online sessions available)"
+        "online": "(Online sessions available)",
+        "description": "In-person sessions in Casablanca. Online sessions worldwide."
       }
     },
     "form": {
       "subtitle": "Contact Form",
       "title": "Send Me a Message",
       "description": "Fill out this form and I will respond within 48 hours.",
-      "fields": {
-        "firstName": "First Name",
-        "lastName": "Last Name",
-        "email": "Email",
-        "phone": "Phone",
-        "interest": "I'm interested in",
-        "message": "Your Message"
+      "firstName": "First Name",
+      "firstNamePlaceholder": "Your first name",
+      "lastName": "Last Name",
+      "lastNamePlaceholder": "Your last name",
+      "email": "Email",
+      "emailPlaceholder": "your.email@example.com",
+      "phone": "Phone (optional)",
+      "phonePlaceholder": "+212 6 00 00 00 00",
+      "interest": "I'm interested in",
+      "interestOptions": {
+        "0": "Individual coaching",
+        "1": "Yoga classes",
+        "2": "Retreat / Program",
+        "3": "Organizational support",
+        "4": "Other"
       },
-      "placeholders": {
-        "firstName": "Your first name",
-        "lastName": "Your last name",
-        "email": "your.email@example.com",
-        "phone": "+212 6 00 00 00 00",
-        "message": "Tell me about your project, your needs, your questions..."
-      },
-      "interests": {
-        "coaching": "Individual coaching",
-        "yoga": "Yoga classes",
-        "retreat": "Retreat / Program",
-        "organisation": "Organizational support",
-        "other": "Other"
-      },
+      "message": "Your Message",
+      "messagePlaceholder": "Tell me about your project, your needs, your questions...",
       "consent": "I agree that my personal data may be used to contact me regarding my request. It will never be shared with third parties.",
-      "response": "You will receive a response within 48 hours maximum."
+      "submit": "Send Message",
+      "responseTime": "You will receive a response within 48 hours maximum."
     },
     "faq": {
       "subtitle": "Frequently Asked Questions",
       "title": "You're Wondering...",
-      "q1": {
+      "0": {
         "question": "Do you offer online sessions?",
-        "answer": "Yes! Most of my services are available online via Zoom or in-person in Casablanca. Retreats take place in Morocco."
+        "answer": "Yes! Most of my services are available online via Zoom or in-person in Casablanca. Retreats take place in Morocco in inspiring locations."
       },
-      "q2": {
+      "1": {
         "question": "How long does support last?",
-        "answer": "It depends on your needs. Coaching can be one-off (1-2 sessions) or spread over 3-6 months. We discuss this together during the discovery session."
+        "answer": "It depends on your needs. Coaching can be one-off (1-2 sessions) or spread over 3-6 months. We discuss this together during the discovery session to find what works best for you."
       },
-      "q3": {
+      "2": {
         "question": "Do I need yoga experience to join classes?",
-        "answer": "Not at all! My classes are open to all levels. I even offer a free trial class for beginners."
+        "answer": "Not at all! My classes are open to all levels, from complete beginners to experienced practitioners. I even offer a free trial class for those new to yoga."
       },
-      "q4": {
+      "3": {
         "question": "How does the first discovery session work?",
-        "answer": "It's a complimentary 30-minute conversation (online or in-person) to get to know each other, understand your needs and see if we're aligned to work together."
+        "answer": "It's a complimentary 30-minute conversation (online or in-person) to get to know each other, understand your needs and see if we're aligned to work together. No pressure, just an honest conversation."
       }
     },
     "social": {
@@ -438,21 +524,81 @@
       "description": "Articles, practical guides and resources to deepen your personal and professional transformation journey.",
       "primaryCTA": "Explore Resources"
     },
+    "articles": {
+      "0": {
+        "title": "5 Daily Practices to Cultivate Presence",
+        "category": "Practices",
+        "readTime": "5 min",
+        "excerpt": "Discover how to integrate presence into your daily life with these simple yet powerful practices."
+      },
+      "1": {
+        "title": "Conscious Leadership in Business",
+        "category": "Leadership",
+        "readTime": "8 min",
+        "excerpt": "How to transform your leadership style to create more human and high-performing organizations."
+      },
+      "2": {
+        "title": "Yoga & Stress Management: What Science Says",
+        "category": "Well-being",
+        "readTime": "6 min",
+        "excerpt": "The benefits of yoga on stress and anxiety, explained by scientific research."
+      }
+    },
     "blog": {
       "subtitle": "Blog",
       "title": "Articles & Reflections",
       "description": "Inspiration, practices and reflections on yoga, coaching and transformation.",
       "readTime": "min",
-      "seeAll": "See All Articles"
+      "readArticle": "Read article →",
+      "viewAll": "See All Articles"
     },
     "guides": {
       "subtitle": "Free Downloads",
       "title": "Guides & E-books",
-      "description": "Practical resources to download to deepen your practice."
+      "description": "Practical resources to download to deepen your practice.",
+      "0": {
+        "title": "Guide: Meditation for Beginners",
+        "description": "A comprehensive 20-page guide to start meditation gently, with practical exercises.",
+        "pages": "20 pages"
+      },
+      "1": {
+        "title": "E-book: 7 Days of Contemplative Practices",
+        "description": "A 7-day program with guided practices to reconnect with yourself.",
+        "pages": "35 pages"
+      },
+      "2": {
+        "title": "Checklist: Preparing for Your Yoga Retreat",
+        "description": "Everything you need to prepare peacefully for your first yoga retreat.",
+        "pages": "5 pages"
+      }
     },
     "testimonials": {
       "subtitle": "Testimonials",
-      "title": "What My Clients Say"
+      "title": "What My Clients Say",
+      "0": {
+        "initial": "M",
+        "name": "Marie L.",
+        "role": "HR Director, Tech Group",
+        "quote": "Hajar's support transformed our leadership team. Her unique approach that blends professional facilitation and contemplative practices created a space of trust and collaboration that I had never seen before."
+      },
+      "1": {
+        "initial": "A",
+        "name": "Ahmed K.",
+        "role": "Entrepreneur",
+        "quote": "The Atlas retreat was a turning point in my life. Hajar creates a rare space of presence and authenticity. I was able to reconnect with my deep values and clarify my professional vision."
+      },
+      "2": {
+        "initial": "S",
+        "name": "Sophie D.",
+        "role": "Independent Coach",
+        "quote": "Hajar's yoga classes go far beyond the physical. She transmits yoga in its deepest dimension, with authenticity and kindness that touch the heart. Each class is an invitation to find yourself."
+      },
+      "3": {
+        "initial": "Y",
+        "name": "Youssef M.",
+        "role": "CEO",
+        "quote": "Hajar's coaching allowed me to transform my leadership style. She guided me with precision between professional demands and personal development. A real game-changer for my career."
+      }
     },
     "newsletter": {
       "title": "Stay Inspired",
@@ -469,13 +615,88 @@
       "description": "A unique journey that combines organizational transformation, certified professional coaching and traditional yogic practices.",
       "primaryCTA": "Let's Work Together"
     },
-    "journey": {
+    "story": {
       "subtitle": "My Journey",
-      "title": "From Business to Yoga: A Coherent Path"
+      "title": "From Business to Yoga: A Coherent Path",
+      "paragraph1": "I spent 20 years in the business world, leading organizational transformation projects for international companies. Strategy, change management, leadership development - I knew this universe inside out.",
+      "paragraph2": "But something was calling me beyond performance and results. A desire for depth, authenticity, meaning. This quest led me to traditional yoga and contemplative practices.",
+      "paragraph3": "Today, I no longer separate these two worlds. They nourish and enrich each other. It's this integration that I offer my clients - whether organizations or individuals."
     },
     "certifications": {
       "subtitle": "Certifications & Training",
-      "title": "Triple Excellence"
+      "title": "Triple Excellence",
+      "coaching": {
+        "title": "Professional Coaching",
+        "subtitle": "EMCC International Accreditation",
+        "training": {
+          "title": "Coach & Team Training",
+          "items": {
+            "0": "Professional certification Coach & Team",
+            "1": "EMCC accreditation (European)",
+            "2": "Individual and team coaching",
+            "3": "Organizational facilitation"
+          }
+        },
+        "expertise": {
+          "title": "Areas of Expertise",
+          "items": {
+            "0": "Career transitions & leadership",
+            "1": "Work-life balance",
+            "2": "Burnout prevention",
+            "3": "Personal transformation"
+          }
+        }
+      },
+      "yoga": {
+        "title": "Traditional Yoga",
+        "subtitle": "Isha Foundation (Sadhguru)",
+        "training": {
+          "title": "Training & Certifications",
+          "items": {
+            "0": "Classical Hatha Yoga (1750h)",
+            "1": "Bhuta Shuddhi & Surya Kriya",
+            "2": "Angamardana & Yogasanas",
+            "3": "Upa Yoga & Pranayama",
+            "4": "Yogic philosophy & meditation"
+          }
+        },
+        "teachings": {
+          "title": "Authorized Teachings",
+          "items": {
+            "0": "Hatha Yoga (Classical)",
+            "1": "Isha Kriya (meditation)",
+            "2": "Surya Kriya (complete practice)",
+            "3": "Corporate yoga programs"
+          }
+        }
+      }
+    },
+    "experience": {
+      "subtitle": "Professional Experience",
+      "title": "20 Years in Organizational Transformation",
+      "description": "Two decades supporting international organizations through their strategic and cultural transformations. From diagnosis to implementation, including change management and leadership development.",
+      "areas": {
+        "transformation": {
+          "title": "Organizational Transformation",
+          "description": "Strategic transformation, culture change, organizational design"
+        },
+        "strategy": {
+          "title": "Strategy & Facilitation",
+          "description": "Strategic planning, executive seminars, co-creative facilitation"
+        },
+        "hr": {
+          "title": "People & Leadership",
+          "description": "Leadership development, talent management, organizational coaching"
+        }
+      }
+    },
+    "philosophy": {
+      "subtitle": "My Philosophy",
+      "title": "Why This Unique Alliance",
+      "paragraph1": "The professional world and the inner world are not separate. Transforming one without the other creates imbalance. Transforming them together creates magic.",
+      "paragraph2": "My approach is based on the conviction that <strong>professional excellence and well-being are not opposites</strong>. They nourish each other when you know how to create the right conditions.",
+      "paragraph3": "Contemplative practices don't make you less performant. They make you <strong>more present, more lucid, more creative, more resilient</strong>. And therefore, paradoxically, more effective.",
+      "paragraph4": "This is the alliance I've embodied in my own life. And this is the alliance I support in my clients - whether they are organizations or individuals."
     },
     "cta": {
       "title": "Let's Work Together",

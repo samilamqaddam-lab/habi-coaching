@@ -2,7 +2,7 @@
   "common": {
     "nav": {
       "organisations": "Organisations",
-      "programmes": "Programmes",
+      "programmes": "Yoga",
       "coaching": "Coaching",
       "ressources": "Ressources",
       "contact": "Contact"
@@ -174,10 +174,12 @@
       "primaryCTA": "Réserver un cours",
       "secondaryCTA": "Voir les retraites"
     },
-    "classes": {
+    "regularClasses": {
       "subtitle": "Cours Réguliers",
       "title": "Rejoignez-Nous sur le Tapis",
-      "description": "Des cours hebdomadaires en petits groupes pour une pratique approfondie et un accompagnement personnalisé.",
+      "description": "Des cours hebdomadaires en petits groupes pour une pratique approfondie et un accompagnement personnalisé."
+    },
+    "classes": {
       "hatha": {
         "title": "Hatha Yoga Traditionnel",
         "description": "Pratique classique du yoga avec un focus sur les asanas (postures), pranayama (respiration) et méditation. Pour tous niveaux.",
@@ -198,38 +200,115 @@
         "schedule": "Dimanches 9h00",
         "duration": "60 min",
         "price": "15€/cours ou 50€/mois"
-      },
-      "freeTrial": {
-        "title": "Cours d'essai gratuit",
-        "description": "Nouveau·elle au yoga ? Venez essayer votre premier cours gratuitement, sans engagement.",
-        "cta": "Réserver mon cours d'essai"
       }
     },
-    "retreats": {
+    "buttons": {
+      "book": "Réserver",
+      "bookSpot": "Réserver ma place",
+      "moreInfo": "Plus d'informations"
+    },
+    "trialClass": {
+      "title": "Cours d'essai gratuit",
+      "description": "Nouveau·elle au yoga ? Venez essayer votre premier cours gratuitement, sans engagement.",
+      "button": "Réserver mon cours d'essai"
+    },
+    "experiences": {
       "subtitle": "Retraites & Programmes",
       "title": "Expériences Transformationnelles",
-      "description": "Des retraites, ateliers et formations qui allient pratiques yogiques traditionnelles et développement personnel dans des lieux inspirants au Maroc.",
+      "description": "Des retraites, ateliers et formations qui allient pratiques yogiques traditionnelles et développement personnel dans des lieux inspirants au Maroc."
+    },
+    "type": {
+      "retreat": "retraite",
+      "workshop": "atelier",
+      "training": "formation"
+    },
+    "retreats": {
       "atlas": {
         "title": "Retraite Yoga & Méditation dans l'Atlas",
         "location": "Vallée de l'Ourika, Maroc",
         "duration": "5 jours / 4 nuits",
         "dates": "15-19 Mai 2025",
         "price": "890€",
-        "spotsLeft": "8 places restantes",
         "description": "Immersion totale dans la pratique yogique traditionnelle au cœur des montagnes de l'Atlas. Yoga, méditation, randonnées contemplatives et cuisine locale.",
         "highlights": {
-          "yoga": "Pratiques de yoga quotidiennes",
-          "meditation": "Méditation guidée",
-          "hiking": "Randonnées dans l'Atlas",
-          "accommodation": "Hébergement en éco-lodge",
-          "food": "Cuisine marocaine bio"
+          "0": "Pratiques de yoga quotidiennes",
+          "1": "Méditation guidée",
+          "2": "Randonnées dans l'Atlas",
+          "3": "Hébergement en éco-lodge",
+          "4": "Cuisine marocaine bio"
+        }
+      },
+      "silence": {
+        "title": "Retraite Silence & Contemplation",
+        "location": "Essaouira, Maroc",
+        "duration": "7 jours / 6 nuits",
+        "dates": "20-26 Septembre 2025",
+        "price": "1.200€",
+        "description": "Une retraite en silence au bord de l'océan Atlantique. Méditation profonde, pratiques yogiques, et temps de contemplation face à la mer.",
+        "highlights": {
+          "0": "Noble silence",
+          "1": "Méditation intensive",
+          "2": "Yoga restauratif",
+          "3": "Vue sur l'océan",
+          "4": "Accompagnement personnalisé"
         }
       }
     },
+    "workshops": {
+      "leadership": {
+        "title": "Atelier Leadership Conscient",
+        "location": "Casablanca, Maroc",
+        "duration": "2 jours",
+        "dates": "10-11 Juin 2025",
+        "price": "450€",
+        "description": "Un atelier intensif pour développer votre leadership authentique, alliant pratiques contemplatives et outils de facilitation organisationnelle.",
+        "highlights": {
+          "0": "Connaissance de soi",
+          "1": "Intelligence émotionnelle",
+          "2": "Communication consciente",
+          "3": "Pratiques de présence",
+          "4": "Outils de facilitation"
+        }
+      },
+      "balance": {
+        "title": "Atelier Équilibre & Limites Saines",
+        "location": "Casablanca, Maroc",
+        "duration": "2 jours",
+        "dates": "15-16 Juillet 2025",
+        "price": "350€",
+        "description": "Un atelier pratique pour créer un équilibre durable entre vie professionnelle et personnelle. Apprenez à poser des limites saines sans culpabilité et à prévenir le burnout.",
+        "highlights": {
+          "0": "Clarification de vos valeurs",
+          "1": "Techniques de boundaries",
+          "2": "Yoga & méditation anti-stress",
+          "3": "Prévention du burnout",
+          "4": "Pratiques quotidiennes concrètes"
+        }
+      }
+    },
+    "training": {
+      "philosophy": {
+        "title": "Formation Yoga & Philosophie",
+        "location": "Marrakech, Maroc",
+        "duration": "10 jours",
+        "dates": "1-10 Novembre 2025",
+        "price": "1.890€",
+        "description": "Formation approfondie aux fondamentaux du yoga traditionnel : asanas, pranayama, méditation et philosophie yogique.",
+        "highlights": {
+          "0": "Enseignements traditionnels",
+          "1": "Pratique quotidienne intensive",
+          "2": "Philosophie du yoga",
+          "3": "Manuel de formation",
+          "4": "Certificat de participation"
+        }
+      }
+    },
+    "perPerson": "par personne",
+    "programHighlights": "Au programme :",
     "philosophy": {
       "subtitle": "Ma Philosophie",
       "title": "Le Yoga Comme Chemin de Transformation",
-      "description": "Pour moi, le yoga est bien plus qu'une pratique physique. C'est un chemin de transformation profonde qui touche tous les aspects de notre être - corps, mental, cœur et esprit.",
+      "intro": "Pour moi, le yoga est bien plus qu'une pratique physique. C'est un chemin de transformation profonde qui touche tous les aspects de notre être - corps, mental, cœur et esprit.",
       "tradition": {
         "title": "Tradition Authentique",
         "description": "Formée dans la lignée traditionnelle du Hatha Yoga, j'enseigne les pratiques dans leur forme authentique, respectueuse de la sagesse ancestrale."
@@ -238,31 +317,34 @@
         "title": "Approche Inclusive",
         "description": "Le yoga est pour tous les corps et tous les âges. J'adapte la pratique à chaque personne avec bienveillance et respect."
       },
-      "integration": {
-        "title": "Intégration à la Vie",
-        "description": "Mon approche aide à intégrer les enseignements yogiques dans la vie quotidienne, pour un équilibre durable."
-      },
-      "depth": {
+      "beyond": {
         "title": "Au-delà du Physique",
-        "description": "Le yoga que j'enseigne va au-delà des postures. Nous explorons la respiration, la méditation et la philosophie yogique."
+        "description": "Nous explorons les dimensions subtiles du yoga : pranayama, méditation, philosophie yogique et pratiques contemplatives."
+      },
+      "smallGroups": {
+        "title": "Petits Groupes",
+        "description": "Maximum 12 personnes par cours pour garantir un accompagnement personnalisé et créer une vraie communauté de pratique."
       }
     },
     "custom": {
       "subtitle": "Programme Personnalisé",
       "title": "Créons Ensemble Votre Expérience",
       "description": "Vous souhaitez un programme sur-mesure pour votre groupe, votre équipe ou une occasion spéciale ? Nous concevons des expériences uniques adaptées à vos besoins.",
-      "privateGroups": {
-        "title": "Groupes privés",
-        "description": "À partir de 6 personnes"
+      "features": {
+        "groups": {
+          "title": "Groupes privés",
+          "description": "À partir de 6 personnes"
+        },
+        "locations": {
+          "title": "Lieux uniques",
+          "description": "Riads, désert, montagnes, océan"
+        },
+        "personalized": {
+          "title": "100% personnalisé",
+          "description": "Contenu adapté à vos besoins"
+        }
       },
-      "uniqueLocations": {
-        "title": "Lieux uniques",
-        "description": "Riads, désert, montagnes, océan"
-      },
-      "personalized": {
-        "title": "100% personnalisé",
-        "description": "Contenu adapté à vos besoins"
-      }
+      "button": "Demander un programme sur-mesure"
     },
     "cta": {
       "title": "Prêt·e à Commencer ?",
@@ -286,68 +368,66 @@
       "transformation": {
         "title": "Transformation Organisationnelle",
         "description": "Accompagnement global de votre organisation vers une culture de présence, collaboration et performance durable.",
-        "items": {
-          "diagnostic": "Diagnostic et co-création",
-          "facilitation": "Facilitation stratégique",
-          "change": "Conduite du changement"
+        "features": {
+          "0": "Diagnostic et co-création",
+          "1": "Facilitation stratégique",
+          "2": "Conduite du changement"
         }
       },
       "leadership": {
         "title": "Leadership Conscient",
         "description": "Développement du leadership à tous les niveaux, ancré dans la conscience de soi, l'intelligence collective et des limites saines pour une performance durable.",
-        "items": {
-          "coaching": "Coaching de dirigeants",
-          "seminars": "Séminaires leadership",
-          "teams": "Développement d'équipes"
+        "features": {
+          "0": "Coaching de dirigeants",
+          "1": "Séminaires leadership",
+          "2": "Développement d'équipes"
         }
       },
       "retreats": {
-        "title": "Retraites Corporate",
-        "description": "Retraites sur-mesure au Maroc combinant facilitation stratégique, pratiques de présence et ressourcement dans des lieux uniques.",
-        "items": {
-          "strategic": "Séminaires stratégiques",
-          "teamBuilding": "Team building authentique",
-          "wellbeing": "Bien-être & performance"
+        "title": "Retraites Corporates",
+        "description": "Retraites sur-mesure au Maroc pour ressourcer vos équipes et renforcer la cohésion dans un cadre inspirant.",
+        "features": {
+          "0": "Séminaires stratégiques",
+          "1": "Team building authentique",
+          "2": "Reconnexion & ressourcement"
         }
       }
     },
     "quote": {
       "subtitle": "Demander un Devis",
       "title": "Discutons de Votre Projet",
-      "description": "Remplissez ce formulaire pour que nous puissions comprendre vos besoins et vous proposer un accompagnement sur-mesure.",
-      "form": {
-        "firstName": "Prénom",
-        "lastName": "Nom",
-        "email": "Email professionnel",
-        "phone": "Téléphone",
-        "organization": "Nom de l'organisation",
-        "size": "Taille de l'organisation",
-        "service": "Type d'accompagnement souhaité",
-        "message": "Décrivez votre projet",
-        "placeholders": {
-          "firstName": "Votre prénom",
-          "lastName": "Votre nom",
-          "email": "votre.email@entreprise.com",
-          "phone": "+212 6 00 00 00 00",
-          "organization": "Nom de votre entreprise",
-          "message": "Parlez-nous de vos besoins, vos enjeux et vos attentes..."
-        },
-        "sizes": {
-          "1-10": "1-10 employés",
-          "11-50": "11-50 employés",
-          "51-200": "51-200 employés",
-          "201-500": "201-500 employés",
-          "500+": "Plus de 500 employés"
-        },
-        "services": {
-          "transformation": "Transformation organisationnelle",
-          "leadership": "Leadership conscient",
-          "retreat": "Retraite corporate",
-          "facilitation": "Facilitation ponctuelle",
-          "other": "Autre / À définir ensemble"
-        },
-        "response": "Nous vous répondrons sous 48h pour planifier un premier échange."
-      }
+      "description": "Remplissez ce formulaire pour que nous puissions comprendre vos besoins et vous proposer un accompagnement sur-mesure."
+    },
+    "form": {
+      "firstName": "Prénom",
+      "firstNamePlaceholder": "Votre prénom",
+      "lastName": "Nom",
+      "lastNamePlaceholder": "Votre nom",
+      "email": "Email professionnel",
+      "emailPlaceholder": "votre.email@entreprise.com",
+      "phone": "Téléphone",
+      "organization": "Nom de l'organisation",
+      "organizationPlaceholder": "Nom de votre entreprise",
+      "size": "Taille de l'organisation",
+      "sizeOptions": {
+        "0": "1-10 employés",
+        "1": "11-50 employés",
+        "2": "51-200 employés",
+        "3": "201-500 employés",
+        "4": "Plus de 500 employés"
+      },
+      "service": "Type d'accompagnement souhaité",
+      "serviceOptions": {
+        "0": "Transformation organisationnelle",
+        "1": "Leadership conscient",
+        "2": "Retraite corporate",
+        "3": "Facilitation ponctuelle",
+        "4": "Autre / À définir ensemble"
+      },
+      "message": "Décrivez votre projet",
+      "messagePlaceholder": "Parlez-nous de vos besoins, vos enjeux et vos attentes...",
+      "submit": "Envoyer ma demande",
+      "responseTime": "Nous vous répondrons sous 48h pour planifier un premier échange."
     },
     "cta": {
       "title": "Vous préférez en discuter directement ?",
@@ -363,16 +443,9 @@
       "primaryCTA": "Me contacter"
     },
     "methods": {
-      "email": {
-        "title": "Email",
-        "address": "contact@habi-coaching.com"
-      },
-      "phone": {
-        "title": "Téléphone",
-        "number": "+212 6 00 00 00 00"
-      },
-      "location": {
-        "title": "Localisation",
+      "phone": "Téléphone",
+      "location": "Localisation",
+      "locationDetails": {
         "city": "Casablanca, Maroc",
         "online": "(Sessions en ligne disponibles)"
       }
@@ -381,30 +454,25 @@
       "subtitle": "Formulaire de Contact",
       "title": "Envoyez-Moi un Message",
       "description": "Remplissez ce formulaire et je vous répondrai sous 48h.",
-      "fields": {
-        "firstName": "Prénom",
-        "lastName": "Nom",
-        "email": "Email",
-        "phone": "Téléphone",
-        "interest": "Je m'intéresse à",
-        "message": "Votre message"
+      "firstName": "Prénom",
+      "firstNamePlaceholder": "Votre prénom",
+      "lastName": "Nom",
+      "lastNamePlaceholder": "Votre nom",
+      "emailPlaceholder": "votre.email@exemple.com",
+      "phone": "Téléphone",
+      "interest": "Je m'intéresse à",
+      "interestOptions": {
+        "0": "Coaching individuel",
+        "1": "Cours de yoga",
+        "2": "Retraite / Programme",
+        "3": "Accompagnement organisation",
+        "4": "Autre"
       },
-      "placeholders": {
-        "firstName": "Votre prénom",
-        "lastName": "Votre nom",
-        "email": "votre.email@exemple.com",
-        "phone": "+212 6 00 00 00 00",
-        "message": "Parlez-moi de votre projet, vos besoins, vos questions..."
-      },
-      "interests": {
-        "coaching": "Coaching individuel",
-        "yoga": "Cours de yoga",
-        "retreat": "Retraite / Programme",
-        "organisation": "Accompagnement organisation",
-        "other": "Autre"
-      },
+      "message": "Votre message",
+      "messagePlaceholder": "Parlez-moi de votre projet, vos besoins, vos questions...",
       "consent": "J'accepte que mes données personnelles soient utilisées pour me recontacter concernant ma demande. Elles ne seront jamais partagées avec des tiers.",
-      "response": "Vous recevrez une réponse sous 48h maximum."
+      "submit": "Envoyer mon message",
+      "responseTime": "Vous recevrez une réponse sous 48h maximum."
     },
     "faq": {
       "subtitle": "Questions Fréquentes",
@@ -442,40 +510,177 @@
       "subtitle": "Blog",
       "title": "Articles & Réflexions",
       "description": "Inspirations, pratiques et réflexions sur le yoga, le coaching et la transformation.",
-      "readTime": "min",
-      "seeAll": "Voir tous les articles"
+      "readArticle": "Lire l'article →",
+      "viewAll": "Voir tous les articles"
     },
-    "guides": {
+    "articles": {
+      "0": {
+        "title": "5 Pratiques Quotidiennes pour Cultiver la Présence",
+        "category": "Pratiques",
+        "readTime": "5 min",
+        "excerpt": "Découvrez comment intégrer la présence dans votre quotidien avec ces pratiques simples mais puissantes."
+      },
+      "1": {
+        "title": "Le Leadership Conscient en Entreprise",
+        "category": "Leadership",
+        "readTime": "8 min",
+        "excerpt": "Comment transformer votre style de leadership pour créer des organisations plus humaines et performantes."
+      },
+      "2": {
+        "title": "Yoga & Gestion du Stress : Ce que Dit la Science",
+        "category": "Bien-être",
+        "readTime": "6 min",
+        "excerpt": "Les bienfaits du yoga sur le stress et l'anxiété, expliqués par la recherche scientifique."
+      }
+    },
+    "downloads": {
       "subtitle": "Téléchargements Gratuits",
       "title": "Guides & E-books",
-      "description": "Des ressources pratiques à télécharger pour approfondir votre pratique."
+      "description": "Des ressources pratiques à télécharger pour approfondir votre pratique.",
+      "download": "Télécharger gratuitement"
+    },
+    "guides": {
+      "0": {
+        "title": "Guide : Méditation pour Débutants",
+        "description": "Un guide complet de 20 pages pour commencer la méditation en douceur, avec des exercices pratiques.",
+        "pages": "20 pages"
+      },
+      "1": {
+        "title": "E-book : 7 Jours de Pratiques Contemplatives",
+        "description": "Un programme de 7 jours avec des pratiques guidées pour vous reconnecter à vous-même.",
+        "pages": "35 pages"
+      },
+      "2": {
+        "title": "Check-list : Préparer Sa Retraite Yoga",
+        "description": "Tout ce dont vous avez besoin pour préparer sereinement votre première retraite de yoga.",
+        "pages": "5 pages"
+      }
     },
     "testimonials": {
       "subtitle": "Témoignages",
-      "title": "Ce Que Disent Mes Clients"
+      "title": "Ce Que Disent Mes Clients",
+      "0": {
+        "initial": "M",
+        "name": "Marie L.",
+        "role": "DRH, Groupe Tech",
+        "quote": "L'accompagnement de Hajar a transformé notre équipe de direction. Son approche unique qui mêle facilitation professionnelle et pratiques contemplatives a créé un espace de confiance et de collaboration que je n'avais jamais vu auparavant."
+      },
+      "1": {
+        "initial": "A",
+        "name": "Ahmed K.",
+        "role": "Entrepreneur",
+        "quote": "La retraite dans l'Atlas a été un tournant dans ma vie. Hajar crée un espace de présence et d'authenticité rare. J'ai pu me reconnecter à mes valeurs profondes et clarifier ma vision professionnelle."
+      },
+      "2": {
+        "initial": "S",
+        "name": "Sophie D.",
+        "role": "Coach Indépendante",
+        "quote": "Les cours de yoga de Hajar vont bien au-delà du physique. Elle transmet le yoga dans sa dimension la plus profonde, avec une authenticité et une bienveillance qui touchent le cœur. Chaque cours est une invitation à se retrouver."
+      },
+      "3": {
+        "initial": "Y",
+        "name": "Youssef M.",
+        "role": "Directeur Général",
+        "quote": "Le coaching de Hajar m'a permis de transformer mon style de leadership. Elle a su m'accompagner avec justesse entre exigence professionnelle et développement personnel. Un vrai game-changer pour ma carrière."
+      }
     },
     "newsletter": {
       "title": "Restez Inspiré·e",
       "description": "Inscrivez-vous à ma newsletter mensuelle pour recevoir des inspirations, des pratiques guidées et les actualités des prochains programmes.",
       "placeholder": "Votre email",
-      "button": "S'inscrire",
-      "consent": "Pas de spam. Désabonnement possible à tout moment."
+      "submit": "S'inscrire",
+      "disclaimer": "Pas de spam. Désabonnement possible à tout moment."
     }
   },
   "expertise": {
     "hero": {
-      "subtitle": "Mon Parcours",
-      "title": "L'Alliance de Trois Expertises",
-      "description": "Un parcours unique qui allie transformation organisationnelle, coaching professionnel certifié et pratiques yogiques traditionnelles.",
-      "primaryCTA": "Travaillons ensemble"
+      "subtitle": "Parcours & Expertise",
+      "title": "Une Alliance Rare au Service de Votre Transformation",
+      "description": "Découvrez le parcours qui me permet d'accompagner les organisations et les individus avec une approche unique, alliant excellence professionnelle et profondeur spirituelle.",
+      "primaryCTA": "Me contacter"
     },
-    "journey": {
-      "subtitle": "Mon Parcours",
-      "title": "De l'Entreprise au Yoga : Un Chemin Cohérent"
+    "story": {
+      "subtitle": "Mon Histoire",
+      "title": "L'Alliance de Deux Mondes",
+      "paragraph1": "Mon parcours incarne une alliance rare : celle du monde organisationnel pragmatique et du monde contemplatif profond.",
+      "paragraph2": "Pendant 20 ans, j'ai accompagné des organisations internationales dans leur transformation stratégique et le développement de leurs équipes. En parallèle, j'ai approfondi ma pratique et ma compréhension du yoga traditionnel et des philosophies contemplatives.",
+      "paragraph3": "Cette double expertise n'est pas un positionnement marketing. C'est qui je suis. Et c'est ce qui me permet d'accompagner les transformations avec une vision à la fois pragmatique et profonde, ancrée dans l'action et la présence."
     },
     "certifications": {
       "subtitle": "Certifications & Formations",
-      "title": "Une Triple Excellence"
+      "title": "Des Formations d'Excellence Internationale",
+      "coaching": {
+        "title": "Coach Professionnelle Certifiée",
+        "subtitle": "Coach & Team - Accréditation EMCC",
+        "training": {
+          "title": "Formation",
+          "items": {
+            "0": "2 ans de formation intensive (180 heures)",
+            "1": "Méthodologie Coach & Team (école pionnière depuis 1988)",
+            "2": "Accréditation EMCC (European Mentoring & Coaching Council)",
+            "3": "Standard européen du coaching professionnel"
+          }
+        },
+        "expertise": {
+          "title": "Expertise",
+          "items": {
+            "0": "Coaching individuel et de carrière",
+            "1": "Coaching d'équipe et facilitation",
+            "2": "Accompagnement des dirigeants",
+            "3": "Transformation organisationnelle"
+          }
+        }
+      },
+      "yoga": {
+        "title": "Professeure de Yoga Certifiée",
+        "subtitle": "Isha Foundation - Classical Hatha Yoga",
+        "training": {
+          "title": "Formation",
+          "items": {
+            "0": "21 semaines résidentielles en Inde (1750 heures)",
+            "1": "Isha Yoga Center, Coimbatore, Tamil Nadu",
+            "2": "Programme conçu par Sadhguru",
+            "3": "Classical Hatha Yoga (tradition authentique)",
+            "4": "Membre d'une communauté mondiale (1800 enseignants, 84 pays)"
+          }
+        },
+        "teachings": {
+          "title": "Enseignements",
+          "items": {
+            "0": "Asanas, Pranayama, Kriyas, Bandhas",
+            "1": "Méditation & philosophie yogique",
+            "2": "Mantra Yoga & Nada Yoga",
+            "3": "48+ modules d'enseignement maîtrisés"
+          }
+        }
+      }
+    },
+    "experience": {
+      "subtitle": "Expérience",
+      "title": "20 Ans au Service des Organisations",
+      "description": "Deux décennies d'expérience auprès d'organisations internationales dans les domaines de la transformation, de la stratégie et des ressources humaines.",
+      "areas": {
+        "transformation": {
+          "title": "Transformation Organisationnelle",
+          "description": "Accompagnement de projets de transformation culturelle et structurelle dans des contextes complexes"
+        },
+        "strategy": {
+          "title": "Stratégie d'Entreprise",
+          "description": "Participation à l'élaboration et au déploiement de stratégies organisationnelles alignées avec les enjeux business"
+        },
+        "hr": {
+          "title": "Ressources Humaines",
+          "description": "Développement des talents, leadership, gestion du changement et cohésion d'équipe"
+        }
+      }
+    },
+    "philosophy": {
+      "subtitle": "Ma Philosophie",
+      "title": "Pourquoi Cette Alliance Unique",
+      "paragraph1": "Le monde du travail et le monde intérieur ne sont pas séparés. Transformer l'un sans l'autre crée déséquilibre. Les transformer ensemble crée magie.",
+      "paragraph2": "Mon approche repose sur la conviction que <strong>l'excellence professionnelle et le bien-être ne sont pas opposés</strong>. Ils se nourrissent mutuellement quand on sait créer les conditions justes.",
+      "paragraph3": "Les pratiques contemplatives ne rendent pas moins performant. Elles rendent <strong>plus présent, plus lucide, plus créatif, plus résilient</strong>. Et donc, paradoxalement, plus efficace.",
+      "paragraph4": "C'est cette alliance que j'ai incarnée dans ma propre vie. Et c'est cette alliance que j'accompagne chez mes clients - qu'ils soient des organisations ou des individus."
     },
     "cta": {
       "title": "Travaillons Ensemble",
