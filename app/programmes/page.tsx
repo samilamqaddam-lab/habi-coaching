@@ -208,7 +208,7 @@ export default function ProgrammesPage() {
         </div>
 
         <div className="mt-12 text-center">
-          <Card padding="lg" className="max-w-3xl mx-auto bg-mystic-mauve-light/10">
+          <Card padding="lg" className="max-w-3xl mx-auto bg-golden-orange/10">
             <h4 className="font-semibold text-deep-blue mb-3">
               {t('programmes.trialClass.title')}
             </h4>
@@ -236,7 +236,7 @@ export default function ProgrammesPage() {
               <div className="grid lg:grid-cols-3 gap-6">
                 {/* Image placeholder */}
                 <div className="md:col-span-1">
-                  <div className="aspect-[4/3] bg-gradient-to-br from-golden-orange/20 to-mystic-mauve/20 rounded-xl flex items-center justify-center group-hover:from-golden-orange/30 group-hover:to-mystic-mauve/30 transition-all">
+                  <div className="aspect-[4/3] bg-gradient-to-br from-golden-orange/20 to-desert-ocre/30 rounded-xl flex items-center justify-center group-hover:from-golden-orange/30 group-hover:to-desert-ocre/40 transition-all">
                     <svg
                       className="w-16 h-16 text-deep-earth/40"
                       fill="none"
@@ -522,7 +522,7 @@ export default function ProgrammesPage() {
       </Section>
 
       {/* CTA */}
-      <Section background="mystic-mauve-light" padding="lg" centered>
+      <Section background="beige" padding="lg" centered>
         <div className="max-w-3xl mx-auto">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-deep-blue mb-6">
             {t('programmes.cta.title')}

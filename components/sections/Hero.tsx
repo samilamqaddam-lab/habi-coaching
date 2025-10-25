@@ -33,7 +33,7 @@ export default function Hero({
 }: HeroProps) {
   // Theme-based gradients (intensified for better visibility)
   const gradients = {
-    yoga: 'bg-gradient-to-br from-golden-orange/25 via-warm-white to-mystic-mauve-light/30',
+    yoga: 'bg-gradient-to-br from-golden-orange/25 via-warm-white to-desert-light',
     coaching: 'bg-gradient-to-br from-mystic-mauve/25 via-warm-white to-golden-orange/20',
     corporate: 'bg-gradient-to-br from-sky-blue/30 via-warm-white to-morocco-blue/10',
     default: 'bg-gradient-to-br from-dune-beige via-warm-white to-mystic-mauve-light/20',
