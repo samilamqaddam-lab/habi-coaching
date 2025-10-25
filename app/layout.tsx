@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 
@@ -17,6 +17,13 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "HABI - Coaching Organisationnel & Yoga",
   description: "Hajar Habi - Experte en coaching organisationnel et pratiques yogiques traditionnelles. Transformation des organisations et accompagnement individuel.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
 };
 
 import Header from "@/components/layout/Header";
