@@ -140,6 +140,7 @@ export default function ProgrammesPage() {
           text: t('programmes.hero.secondaryCTA'),
           href: '#retraites',
         }}
+        theme="yoga"
       />
 
       {/* Cours réguliers */}
@@ -149,6 +150,7 @@ export default function ProgrammesPage() {
         title={t('programmes.regularClasses.title')}
         description={t('programmes.regularClasses.description')}
         background="beige"
+        accentColor="yoga"
       >
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {yogaClasses.map((yogaClass, index) => (
@@ -226,6 +228,7 @@ export default function ProgrammesPage() {
         subtitle={t('programmes.experiences.subtitle')}
         title={t('programmes.experiences.title')}
         description={t('programmes.experiences.description')}
+        accentColor="yoga"
       >
         <div className="grid gap-8">
           {programmes.map((programme) => (

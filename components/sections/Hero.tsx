@@ -17,6 +17,7 @@ interface HeroProps {
   backgroundImage?: string;
   overlay?: boolean;
   centered?: boolean;
+  theme?: 'yoga' | 'coaching' | 'corporate' | 'default';
 }
 
 export default function Hero({
@@ -28,11 +29,36 @@ export default function Hero({
   backgroundImage,
   overlay = true,
   centered = true,
+  theme = 'default',
 }: HeroProps) {
+  // Theme-based gradients (intensified for better visibility)
+  const gradients = {
+    yoga: 'bg-gradient-to-br from-golden-orange/25 via-warm-white to-mystic-mauve-light/30',
+    coaching: 'bg-gradient-to-br from-mystic-mauve/25 via-warm-white to-golden-orange/20',
+    corporate: 'bg-gradient-to-br from-sky-blue/30 via-warm-white to-morocco-blue/10',
+    default: 'bg-gradient-to-br from-dune-beige via-warm-white to-mystic-mauve-light/20',
+  };
+
+  // Theme-based subtitle colors
+  const subtitleColors = {
+    yoga: 'text-golden-orange',
+    coaching: 'text-mystic-mauve',
+    corporate: 'text-morocco-blue',
+    default: 'text-golden-orange',
+  };
+
+  // Theme-based scroll indicator colors
+  const scrollColors = {
+    yoga: 'text-golden-orange',
+    coaching: 'text-mystic-mauve',
+    corporate: 'text-morocco-blue',
+    default: 'text-golden-orange',
+  };
+
   return (
     <section
       className={`relative min-h-[75vh] flex items-center ${
-        backgroundImage ? 'bg-cover bg-center' : 'bg-gradient-to-br from-dune-beige via-warm-white to-sage-light'
+        backgroundImage ? 'bg-cover bg-center' : gradients[theme]
       }`}
       style={backgroundImage ? { backgroundImage: `url(${backgroundImage})` } : undefined}
     >
@@ -44,7 +70,7 @@ export default function Hero({
       <Container className={`relative z-10 py-20 -translate-y-6 ${centered ? 'text-center' : ''}`}>
         <div className={`max-w-4xl ${centered ? 'mx-auto' : ''}`}>
           {subtitle && (
-            <p className="text-terracotta text-sm md:text-base font-medium uppercase tracking-wider mb-4">
+            <p className={`${subtitleColors[theme]} text-sm md:text-base font-medium uppercase tracking-wider mb-4`}>
               {subtitle}
             </p>
           )}
@@ -89,7 +115,7 @@ export default function Hero({
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
         <svg
-          className={`w-6 h-6 ${backgroundImage ? 'text-warm-white' : 'text-terracotta'}`}
+          className={`w-6 h-6 ${backgroundImage ? 'text-warm-white' : scrollColors[theme]}`}
           fill="none"
           strokeLinecap="round"
           strokeLinejoin="round"

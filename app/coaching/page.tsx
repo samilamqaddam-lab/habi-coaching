@@ -50,6 +50,7 @@ export default function CoachingPage() {
           text: t('coaching.hero.secondaryCTA'),
           href: '#approche',
         }}
+        theme="coaching"
       />
 
       {/* Types de coaching */}
@@ -59,6 +60,7 @@ export default function CoachingPage() {
         title={t('coaching.services.title')}
         background="beige"
         centered
+        accentColor="coaching"
       >
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
           {coachingTypes.map((type, index) => (
@@ -133,6 +135,7 @@ export default function CoachingPage() {
         subtitle={t('coaching.approach.subtitle')}
         title={t('coaching.approach.title')}
         description={t('coaching.approach.description')}
+        accentColor="coaching"
       >
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>

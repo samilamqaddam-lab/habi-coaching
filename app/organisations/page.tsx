@@ -24,6 +24,7 @@ export default function OrganisationsPage() {
           text: t('organisations.hero.secondaryCTA'),
           href: '#programmes',
         }}
+        theme="corporate"
       />
 
       {/* Services pour Organisations */}
@@ -34,6 +35,7 @@ export default function OrganisationsPage() {
         description={t('organisations.services.description')}
         background="beige"
         centered
+        accentColor="corporate"
       >
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
           <Card hover padding="lg">
@@ -138,6 +140,7 @@ export default function OrganisationsPage() {
         title={t('organisations.quote.title')}
         description={t('organisations.quote.description')}
         centered
+        accentColor="corporate"
       >
         <div className="max-w-3xl mx-auto">
           <Card padding="lg">

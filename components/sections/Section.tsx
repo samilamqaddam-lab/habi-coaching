@@ -11,6 +11,7 @@ interface SectionProps {
   padding?: 'sm' | 'md' | 'lg' | 'xl';
   centered?: boolean;
   containerSize?: 'sm' | 'md' | 'lg' | 'full';
+  accentColor?: 'yoga' | 'coaching' | 'corporate' | 'none';
 }
 
 export default function Section({
@@ -23,13 +24,14 @@ export default function Section({
   padding = 'lg',
   centered = false,
   containerSize = 'lg',
+  accentColor = 'none',
 }: SectionProps) {
   const backgrounds = {
     white: 'bg-warm-white',
     beige: 'bg-dune-beige',
     sage: 'bg-sage-light/20',
-    'mystic-mauve-light': 'bg-mystic-mauve-light/20',
-    'sky-blue-light': 'bg-sky-blue/10',
+    'mystic-mauve-light': 'bg-mystic-mauve-light/30',
+    'sky-blue-light': 'bg-sky-blue/15',
     none: '',
   };
 
@@ -40,13 +42,32 @@ export default function Section({
     xl: 'py-28 md:py-36',
   };
 
+  const accentColors = {
+    yoga: 'text-golden-orange',
+    coaching: 'text-mystic-mauve',
+    corporate: 'text-morocco-blue',
+    none: 'text-golden-orange',
+  };
+
+  const accentBorders = {
+    yoga: 'border-golden-orange',
+    coaching: 'border-mystic-mauve',
+    corporate: 'border-morocco-blue',
+    none: '',
+  };
+
   return (
-    <section id={id} className={`${backgrounds[background]} ${paddings[padding]}`}>
+    <section
+      id={id}
+      className={`${backgrounds[background]} ${paddings[padding]} ${
+        accentColor !== 'none' ? `border-t-4 ${accentBorders[accentColor]}` : ''
+      }`}
+    >
       <Container size={containerSize}>
         {(title || subtitle || description) && (
           <div className={`mb-12 md:mb-16 ${centered ? 'text-center max-w-3xl mx-auto' : ''}`}>
             {subtitle && (
-              <p className="text-terracotta text-sm md:text-base font-medium uppercase tracking-wider mb-3">
+              <p className={`${accentColors[accentColor]} text-sm md:text-base font-medium uppercase tracking-wider mb-3`}>
                 {subtitle}
               </p>
             )}
