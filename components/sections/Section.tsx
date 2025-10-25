@@ -59,9 +59,7 @@ export default function Section({
   return (
     <section
       id={id}
-      className={`${backgrounds[background]} ${paddings[padding]} ${
-        accentColor !== 'none' ? `border-t-4 ${accentBorders[accentColor]}` : ''
-      }`}
+      className={`${backgrounds[background]} ${paddings[padding]}`}
     >
       <Container size={containerSize}>
         {(title || subtitle || description) && (
