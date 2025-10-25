@@ -123,9 +123,9 @@ export default function RessourcesPage() {
       {/* Guides Gratuits */}
       <Section
         id="guides"
-        subtitle={t('ressources.downloads.subtitle')}
-        title={t('ressources.downloads.title')}
-        description={t('ressources.downloads.description')}
+        subtitle={t('ressources.guides.subtitle')}
+        title={t('ressources.guides.title')}
+        description={t('ressources.guides.description')}
         centered
       >
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
@@ -161,7 +161,7 @@ export default function RessourcesPage() {
                 </div>
               </div>
               <Button variant="outline" fullWidth href="/contact">
-                {t('ressources.downloads.download')}
+                {t('common.buttons.download')}
               </Button>
             </Card>
           ))}
