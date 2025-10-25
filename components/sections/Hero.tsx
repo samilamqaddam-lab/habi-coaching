@@ -31,12 +31,12 @@ export default function Hero({
   centered = true,
   theme = 'default',
 }: HeroProps) {
-  // Theme-based gradients (intensified for better visibility)
+  // Theme-based gradients with smooth bottom transition to beige
   const gradients = {
-    yoga: 'bg-gradient-to-br from-golden-orange/25 via-warm-white to-desert-light',
-    coaching: 'bg-gradient-to-br from-mystic-mauve/25 via-warm-white to-golden-orange/20',
-    corporate: 'bg-gradient-to-br from-sky-blue/30 via-warm-white to-morocco-blue/10',
-    default: 'bg-gradient-to-br from-dune-beige via-warm-white to-mystic-mauve-light/20',
+    yoga: 'bg-gradient-to-b from-golden-orange/20 via-warm-white via-70% to-dune-beige',
+    coaching: 'bg-gradient-to-b from-mystic-mauve/20 via-warm-white via-70% to-dune-beige',
+    corporate: 'bg-gradient-to-b from-sky-blue/25 via-warm-white via-70% to-dune-beige',
+    default: 'bg-gradient-to-b from-dune-beige via-warm-white via-70% to-dune-beige',
   };
 
   // Theme-based subtitle colors
