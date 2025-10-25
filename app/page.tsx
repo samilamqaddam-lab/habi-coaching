@@ -52,10 +52,10 @@ export default function Home() {
                 />
               </svg>
             </div>
-            <h3 className="font-heading text-xl font-bold text-deep-blue mb-3">
+            <h3 className="font-heading text-2xl font-bold text-deep-blue mb-3">
               {t('home.expertise.corporate.title')}
             </h3>
-            <div className="text-2xl font-bold text-morocco-blue mb-3">
+            <div className="text-xl font-bold text-morocco-blue mb-3">
               {t('home.expertise.corporate.years')}
             </div>
             <p className="text-text-secondary text-sm leading-relaxed">
@@ -80,10 +80,10 @@ export default function Home() {
                 />
               </svg>
             </div>
-            <h3 className="font-heading text-xl font-bold text-deep-blue mb-3">
+            <h3 className="font-heading text-2xl font-bold text-deep-blue mb-3">
               {t('home.expertise.coaching.title')}
             </h3>
-            <div className="text-2xl font-bold text-terracotta mb-3">
+            <div className="text-xl font-bold text-terracotta mb-3">
               {t('home.expertise.coaching.certification')}
             </div>
             <p className="text-text-secondary text-sm leading-relaxed">
@@ -108,10 +108,10 @@ export default function Home() {
                 />
               </svg>
             </div>
-            <h3 className="font-heading text-xl font-bold text-deep-blue mb-3">
+            <h3 className="font-heading text-2xl font-bold text-deep-blue mb-3">
               {t('home.expertise.yoga.title')}
             </h3>
-            <div className="text-2xl font-bold text-sage mb-1">
+            <div className="text-xl font-bold text-sage mb-1">
               {t('home.expertise.yoga.certification')}
             </div>
             <div className="text-sm text-sage/70 mb-3">
