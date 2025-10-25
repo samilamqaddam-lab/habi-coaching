@@ -65,9 +65,9 @@ export default function Home() {
 
           {/* Coaching */}
           <Card padding="lg" className="text-center">
-            <div className="w-16 h-16 bg-terracotta/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="w-16 h-16 bg-mystic-mauve/10 rounded-full flex items-center justify-center mx-auto mb-6">
               <svg
-                className="w-8 h-8 text-terracotta"
+                className="w-8 h-8 text-mystic-mauve"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -83,7 +83,7 @@ export default function Home() {
             <h3 className="font-heading text-2xl font-bold text-deep-blue mb-3">
               {t('home.expertise.coaching.title')}
             </h3>
-            <div className="text-xl font-bold text-terracotta mb-3">
+            <div className="text-xl font-bold text-mystic-mauve mb-3">
               {t('home.expertise.coaching.certification')}
             </div>
             <p className="text-text-secondary text-sm leading-relaxed">
@@ -93,9 +93,9 @@ export default function Home() {
 
           {/* Yoga */}
           <Card padding="lg" className="text-center">
-            <div className="w-16 h-16 bg-sage/20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="w-16 h-16 bg-golden-orange/10 rounded-full flex items-center justify-center mx-auto mb-6">
               <svg
-                className="w-8 h-8 text-sage"
+                className="w-8 h-8 text-golden-orange"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -111,10 +111,10 @@ export default function Home() {
             <h3 className="font-heading text-2xl font-bold text-deep-blue mb-3">
               {t('home.expertise.yoga.title')}
             </h3>
-            <div className="text-xl font-bold text-sage mb-1">
+            <div className="text-xl font-bold text-golden-orange mb-1">
               {t('home.expertise.yoga.certification')}
             </div>
-            <div className="text-sm text-sage/70 mb-3">
+            <div className="text-sm text-golden-orange/70 mb-3">
               {t('home.expertise.yoga.hours')}
             </div>
             <p className="text-text-secondary text-sm leading-relaxed">
@@ -166,9 +166,9 @@ export default function Home() {
           {/* Coaching */}
           <Card hover padding="lg" className="flex flex-col">
             <div className="flex-grow">
-              <div className="w-16 h-16 bg-terracotta/10 rounded-2xl flex items-center justify-center mb-6">
+              <div className="w-16 h-16 bg-mystic-mauve/10 rounded-2xl flex items-center justify-center mb-6">
                 <svg
-                  className="w-8 h-8 text-terracotta"
+                  className="w-8 h-8 text-mystic-mauve"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -196,9 +196,9 @@ export default function Home() {
           {/* Yoga */}
           <Card hover padding="lg" className="flex flex-col">
             <div className="flex-grow">
-              <div className="w-16 h-16 bg-sage/20 rounded-2xl flex items-center justify-center mb-6">
+              <div className="w-16 h-16 bg-golden-orange/10 rounded-2xl flex items-center justify-center mb-6">
                 <svg
-                  className="w-8 h-8 text-sage"
+                  className="w-8 h-8 text-golden-orange"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -226,7 +226,7 @@ export default function Home() {
       </Section>
 
       {/* CTA Section */}
-      <Section background="sage" padding="lg" centered>
+      <Section background="mystic-mauve-light" padding="lg" centered>
         <div className="max-w-3xl mx-auto">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-deep-blue mb-6">
             {t('home.cta.title')}

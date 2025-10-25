@@ -5,10 +5,27 @@
   --desert-ocre: #C89F6F;
   --desert-light: #E5D3B3;
   --dune-beige: #F5EFE7;
+
+  /* Nouveaux - Inspirés Sadhguru (Yoga) */
+  --golden-orange: #D4924F;
+  --golden-orange-dark: #B87A3D;
+  --deep-earth: #3D3426;
+  --deep-earth-light: #5A4D3A;
+
+  /* Anciens terracotta - gardés pour compatibilité */
   --terracotta: #C67B5C;
   --terracotta-dark: #A05F45;
+
+  /* Nouveaux - Spiritualité & Coaching (Mauve) */
+  --mystic-mauve: #9F8AAA;
+  --mystic-mauve-light: #C8BADB;
+  --mystic-mauve-dark: #87738F;
+
+  /* Anciens sage - gardés pour compatibilité */
   --sage-green: #9DAE8D;
   --sage-light: #C9D5BE;
+
+  /* Corporate & Professionnalisme */
   --morocco-blue: #2C4B5E;
   --deep-blue: #1A3A4A;
   --sky-blue: #7BA0B4;
@@ -26,10 +43,27 @@
   --color-desert-ocre: var(--desert-ocre);
   --color-desert-light: var(--desert-light);
   --color-dune-beige: var(--dune-beige);
+
+  /* Yoga - Sadhguru inspired */
+  --color-golden-orange: var(--golden-orange);
+  --color-golden-orange-dark: var(--golden-orange-dark);
+  --color-deep-earth: var(--deep-earth);
+  --color-deep-earth-light: var(--deep-earth-light);
+
+  /* Anciens terracotta */
   --color-terracotta: var(--terracotta);
   --color-terracotta-dark: var(--terracotta-dark);
+
+  /* Coaching - Mystic Mauve */
+  --color-mystic-mauve: var(--mystic-mauve);
+  --color-mystic-mauve-light: var(--mystic-mauve-light);
+  --color-mystic-mauve-dark: var(--mystic-mauve-dark);
+
+  /* Anciens sage */
   --color-sage: var(--sage-green);
   --color-sage-light: var(--sage-light);
+
+  /* Corporate */
   --color-morocco-blue: var(--morocco-blue);
   --color-deep-blue: var(--deep-blue);
   --color-sky-blue: var(--sky-blue);
@@ -90,4 +124,72 @@ p, h1, h2, h3, h4, h5, h6, span, div, label {
 input, textarea, select {
   word-wrap: normal;
   overflow-wrap: normal;
+}
+
+/* ========================================
+   THÈMES CONTEXTUELS PAR PAGE
+   ======================================== */
+
+/* 📿 YOGA THEME - Sadhguru inspired (Spiritual & Solar) */
+.theme-yoga {
+  --theme-primary: var(--golden-orange);
+  --theme-primary-dark: var(--golden-orange-dark);
+  --theme-secondary: var(--mystic-mauve);
+  --theme-secondary-light: var(--mystic-mauve-light);
+  --theme-earth: var(--deep-earth);
+  --theme-earth-light: var(--deep-earth-light);
+}
+
+.theme-yoga .accent-primary {
+  color: var(--golden-orange);
+}
+
+.theme-yoga .bg-accent-primary {
+  background-color: var(--golden-orange);
+}
+
+.theme-yoga .border-accent-primary {
+  border-color: var(--golden-orange);
+}
+
+/* 💭 COACHING THEME - Transformation (Introspective & Warm) */
+.theme-coaching {
+  --theme-primary: var(--mystic-mauve);
+  --theme-primary-dark: var(--mystic-mauve-dark);
+  --theme-primary-light: var(--mystic-mauve-light);
+  --theme-secondary: var(--golden-orange);
+  --theme-secondary-dark: var(--golden-orange-dark);
+}
+
+.theme-coaching .accent-primary {
+  color: var(--mystic-mauve);
+}
+
+.theme-coaching .bg-accent-primary {
+  background-color: var(--mystic-mauve);
+}
+
+.theme-coaching .border-accent-primary {
+  border-color: var(--mystic-mauve);
+}
+
+/* 🏢 CORPORATE THEME - Professional & Human */
+.theme-corporate {
+  --theme-primary: var(--morocco-blue);
+  --theme-primary-dark: var(--deep-blue);
+  --theme-secondary: var(--golden-orange);
+  --theme-secondary-dark: var(--golden-orange-dark);
+  --theme-accent: var(--sky-blue);
+}
+
+.theme-corporate .accent-primary {
+  color: var(--morocco-blue);
+}
+
+.theme-corporate .bg-accent-primary {
+  background-color: var(--morocco-blue);
+}
+
+.theme-corporate .border-accent-primary {
+  border-color: var(--morocco-blue);
 }

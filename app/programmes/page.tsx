@@ -163,7 +163,7 @@ export default function ProgrammesPage() {
                 <div className="space-y-2 mb-6 text-sm">
                   <div className="flex items-center text-text-secondary">
                     <svg
-                      className="w-4 h-4 mr-2 text-sage"
+                      className="w-4 h-4 mr-2 text-golden-orange"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -179,7 +179,7 @@ export default function ProgrammesPage() {
                   </div>
                   <div className="flex items-center text-text-secondary">
                     <svg
-                      className="w-4 h-4 mr-2 text-sage"
+                      className="w-4 h-4 mr-2 text-golden-orange"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -193,7 +193,7 @@ export default function ProgrammesPage() {
                     </svg>
                     {yogaClass.duration}
                   </div>
-                  <p className="font-semibold text-terracotta mt-4">
+                  <p className="font-semibold text-golden-orange mt-4">
                     {yogaClass.price}
                   </p>
                 </div>
@@ -206,7 +206,7 @@ export default function ProgrammesPage() {
         </div>
 
         <div className="mt-12 text-center">
-          <Card padding="lg" className="max-w-3xl mx-auto bg-sage-light/10">
+          <Card padding="lg" className="max-w-3xl mx-auto bg-mystic-mauve-light/10">
             <h4 className="font-semibold text-deep-blue mb-3">
               {t('programmes.trialClass.title')}
             </h4>
@@ -233,9 +233,9 @@ export default function ProgrammesPage() {
               <div className="grid lg:grid-cols-3 gap-6">
                 {/* Image placeholder */}
                 <div className="md:col-span-1">
-                  <div className="aspect-[4/3] bg-gradient-to-br from-terracotta/20 to-sage/20 rounded-xl flex items-center justify-center group-hover:from-terracotta/30 group-hover:to-sage/30 transition-all">
+                  <div className="aspect-[4/3] bg-gradient-to-br from-golden-orange/20 to-mystic-mauve/20 rounded-xl flex items-center justify-center group-hover:from-golden-orange/30 group-hover:to-mystic-mauve/30 transition-all">
                     <svg
-                      className="w-16 h-16 text-morocco-blue/40"
+                      className="w-16 h-16 text-deep-earth/40"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -254,7 +254,7 @@ export default function ProgrammesPage() {
                 <div className="md:col-span-2">
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <span className="inline-block px-3 py-1 bg-terracotta/10 text-terracotta text-xs font-medium rounded-full mb-3 uppercase">
+                      <span className="inline-block px-3 py-1 bg-golden-orange/10 text-golden-orange text-xs font-medium rounded-full mb-3 uppercase">
                         {programme.type}
                       </span>
                       <h3 className="font-heading text-2xl font-bold text-deep-blue mb-2">
@@ -263,7 +263,7 @@ export default function ProgrammesPage() {
                       <div className="flex flex-wrap gap-4 text-sm text-text-secondary mb-4">
                         <div className="flex items-center">
                           <svg
-                            className="w-4 h-4 mr-2 text-sage"
+                            className="w-4 h-4 mr-2 text-golden-orange"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -285,7 +285,7 @@ export default function ProgrammesPage() {
                         </div>
                         <div className="flex items-center">
                           <svg
-                            className="w-4 h-4 mr-2 text-sage"
+                            className="w-4 h-4 mr-2 text-golden-orange"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -301,7 +301,7 @@ export default function ProgrammesPage() {
                         </div>
                         <div className="flex items-center">
                           <svg
-                            className="w-4 h-4 mr-2 text-sage"
+                            className="w-4 h-4 mr-2 text-golden-orange"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -318,14 +318,14 @@ export default function ProgrammesPage() {
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="font-heading text-3xl font-bold text-terracotta mb-1">
+                      <p className="font-heading text-3xl font-bold text-golden-orange mb-1">
                         {programme.price}
                       </p>
                       <p className="text-xs text-text-secondary">
                         {t('programmes.perPerson')}
                       </p>
                       {programme.spotsLeft <= 5 && (
-                        <p className="text-xs text-terracotta font-medium mt-2">
+                        <p className="text-xs text-golden-orange font-medium mt-2">
                           Plus que {programme.spotsLeft} places
                         </p>
                       )}
@@ -344,7 +344,7 @@ export default function ProgrammesPage() {
                       {programme.highlights.map((highlight, index) => (
                         <li key={index} className="flex items-start text-sm">
                           <svg
-                            className="w-4 h-4 text-sage mr-2 mt-0.5 flex-shrink-0"
+                            className="w-4 h-4 text-golden-orange mr-2 mt-0.5 flex-shrink-0"
                             fill="currentColor"
                             viewBox="0 0 20 20"
                           >
@@ -438,9 +438,9 @@ export default function ProgrammesPage() {
         <div className="max-w-3xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-terracotta/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-golden-orange/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
-                  className="w-8 h-8 text-terracotta"
+                  className="w-8 h-8 text-golden-orange"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -462,9 +462,9 @@ export default function ProgrammesPage() {
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-terracotta/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-golden-orange/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
-                  className="w-8 h-8 text-terracotta"
+                  className="w-8 h-8 text-golden-orange"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -486,9 +486,9 @@ export default function ProgrammesPage() {
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-terracotta/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-golden-orange/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
-                  className="w-8 h-8 text-terracotta"
+                  className="w-8 h-8 text-golden-orange"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -519,7 +519,7 @@ export default function ProgrammesPage() {
       </Section>
 
       {/* CTA */}
-      <Section background="sage" padding="lg" centered>
+      <Section background="mystic-mauve-light" padding="lg" centered>
         <div className="max-w-3xl mx-auto">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-deep-blue mb-6">
             {t('programmes.cta.title')}

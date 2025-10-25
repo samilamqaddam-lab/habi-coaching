@@ -38,9 +38,9 @@ export default function OrganisationsPage() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
           <Card hover padding="lg">
             <div className="text-center">
-              <div className="w-16 h-16 bg-terracotta/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 bg-morocco-blue/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <svg
-                  className="w-8 h-8 text-terracotta"
+                  className="w-8 h-8 text-morocco-blue"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -69,9 +69,9 @@ export default function OrganisationsPage() {
 
           <Card hover padding="lg">
             <div className="text-center">
-              <div className="w-16 h-16 bg-sage/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 bg-golden-orange/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <svg
-                  className="w-8 h-8 text-sage"
+                  className="w-8 h-8 text-golden-orange"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -235,7 +235,7 @@ export default function OrganisationsPage() {
       </Section>
 
       {/* CTA */}
-      <Section background="sage" padding="md" centered>
+      <Section background="sky-blue-light" padding="md" centered>
         <div className="max-w-3xl mx-auto">
           <h3 className="font-heading text-2xl md:text-3xl font-bold text-deep-blue mb-4">
             {t('organisations.cta.title')}

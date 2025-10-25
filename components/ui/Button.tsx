@@ -22,9 +22,9 @@ export default function Button({
   const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-300 rounded-full';
 
   const variants = {
-    primary: 'bg-terracotta text-warm-white hover:bg-terracotta-dark shadow-md hover:shadow-lg',
-    secondary: 'bg-sage text-charcoal hover:bg-sage-light shadow-md hover:shadow-lg',
-    outline: 'border-2 border-terracotta text-terracotta hover:bg-terracotta hover:text-warm-white',
+    primary: 'bg-golden-orange text-warm-white hover:bg-golden-orange-dark shadow-md hover:shadow-lg',
+    secondary: 'bg-mystic-mauve text-warm-white hover:bg-mystic-mauve-dark shadow-md hover:shadow-lg',
+    outline: 'border-2 border-deep-blue text-deep-blue hover:bg-deep-blue hover:text-warm-white',
     text: 'text-morocco-blue hover:text-deep-blue',
   };
 

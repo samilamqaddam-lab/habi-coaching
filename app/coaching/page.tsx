@@ -64,9 +64,9 @@ export default function CoachingPage() {
           {coachingTypes.map((type, index) => (
             <Card key={index} hover padding="lg" className="flex flex-col">
               <div className="flex-grow">
-                <div className="w-16 h-16 bg-terracotta/10 rounded-2xl flex items-center justify-center mb-6">
+                <div className="w-16 h-16 bg-mystic-mauve/10 rounded-2xl flex items-center justify-center mb-6">
                   <svg
-                    className="w-8 h-8 text-terracotta"
+                    className="w-8 h-8 text-mystic-mauve"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -116,7 +116,7 @@ export default function CoachingPage() {
                     </strong>{' '}
                     {type.format}
                   </p>
-                  <p className="font-semibold text-terracotta">{type.price}</p>
+                  <p className="font-semibold text-mystic-mauve">{type.price}</p>
                 </div>
               </div>
               <Button variant="outline" href="/contact" fullWidth>
@@ -138,8 +138,8 @@ export default function CoachingPage() {
           <div>
             <div className="space-y-6">
               <div className="flex items-start">
-                <div className="flex-shrink-0 w-12 h-12 bg-terracotta/10 rounded-lg flex items-center justify-center mr-4">
-                  <span className="text-terracotta font-bold">1</span>
+                <div className="flex-shrink-0 w-12 h-12 bg-mystic-mauve/10 rounded-lg flex items-center justify-center mr-4">
+                  <span className="text-mystic-mauve font-bold">1</span>
                 </div>
                 <div>
                   <h4 className="font-semibold text-deep-blue mb-2">
@@ -152,8 +152,8 @@ export default function CoachingPage() {
               </div>
 
               <div className="flex items-start">
-                <div className="flex-shrink-0 w-12 h-12 bg-sage/20 rounded-lg flex items-center justify-center mr-4">
-                  <span className="text-sage font-bold">2</span>
+                <div className="flex-shrink-0 w-12 h-12 bg-golden-orange/10 rounded-lg flex items-center justify-center mr-4">
+                  <span className="text-golden-orange font-bold">2</span>
                 </div>
                 <div>
                   <h4 className="font-semibold text-deep-blue mb-2">
@@ -166,8 +166,8 @@ export default function CoachingPage() {
               </div>
 
               <div className="flex items-start">
-                <div className="flex-shrink-0 w-12 h-12 bg-morocco-blue/10 rounded-lg flex items-center justify-center mr-4">
-                  <span className="text-morocco-blue font-bold">3</span>
+                <div className="flex-shrink-0 w-12 h-12 bg-mystic-mauve/10 rounded-lg flex items-center justify-center mr-4">
+                  <span className="text-mystic-mauve font-bold">3</span>
                 </div>
                 <div>
                   <h4 className="font-semibold text-deep-blue mb-2">
@@ -181,7 +181,7 @@ export default function CoachingPage() {
             </div>
           </div>
 
-          <Card padding="lg" className="bg-gradient-to-br from-dune-beige to-sage-light/20">
+          <Card padding="lg" className="bg-gradient-to-br from-dune-beige to-mystic-mauve-light/20">
             <h4 className="font-heading text-xl font-bold text-deep-blue mb-4">
               {t('home.testimonials.title')}
             </h4>
@@ -196,7 +196,7 @@ export default function CoachingPage() {
       </Section>
 
       {/* CTA */}
-      <Section background="sage" padding="lg" centered>
+      <Section background="mystic-mauve-light" padding="lg" centered>
         <div className="max-w-3xl mx-auto">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-deep-blue mb-6">
             {t('coaching.cta.title')}

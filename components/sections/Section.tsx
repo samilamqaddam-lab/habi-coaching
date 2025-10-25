@@ -7,7 +7,7 @@ interface SectionProps {
   title?: string;
   subtitle?: string;
   description?: string;
-  background?: 'white' | 'beige' | 'sage' | 'none';
+  background?: 'white' | 'beige' | 'sage' | 'mystic-mauve-light' | 'sky-blue-light' | 'none';
   padding?: 'sm' | 'md' | 'lg' | 'xl';
   centered?: boolean;
   containerSize?: 'sm' | 'md' | 'lg' | 'full';
@@ -28,6 +28,8 @@ export default function Section({
     white: 'bg-warm-white',
     beige: 'bg-dune-beige',
     sage: 'bg-sage-light/20',
+    'mystic-mauve-light': 'bg-mystic-mauve-light/20',
+    'sky-blue-light': 'bg-sky-blue/10',
     none: '',
   };
 
