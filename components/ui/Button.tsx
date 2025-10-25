@@ -2,7 +2,7 @@ import React from 'react';
 
 interface ButtonProps {
   children: React.ReactNode;
-  variant?: 'primary' | 'secondary' | 'outline' | 'text';
+  variant?: 'primary' | 'secondary' | 'outline' | 'text' | 'corporate';
   size?: 'sm' | 'md' | 'lg';
   href?: string;
   onClick?: () => void;
@@ -24,6 +24,7 @@ export default function Button({
   const variants = {
     primary: 'bg-golden-orange text-warm-white hover:bg-golden-orange-dark shadow-md hover:shadow-lg',
     secondary: 'bg-mystic-mauve text-warm-white hover:bg-mystic-mauve-dark shadow-md hover:shadow-lg',
+    corporate: 'bg-morocco-blue text-warm-white hover:bg-deep-blue shadow-md hover:shadow-lg',
     outline: 'border-2 border-deep-blue text-deep-blue hover:bg-deep-blue hover:text-warm-white',
     text: 'text-morocco-blue hover:text-deep-blue',
   };

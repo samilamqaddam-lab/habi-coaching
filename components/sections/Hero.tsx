@@ -100,7 +100,7 @@ export default function Hero({
               )}
               {secondaryCTA && (
                 <Button
-                  variant={backgroundImage ? 'outline' : 'secondary'}
+                  variant={backgroundImage ? 'outline' : theme === 'corporate' ? 'corporate' : 'secondary'}
                   size="lg"
                   href={secondaryCTA.href}
                 >
