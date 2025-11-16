@@ -103,47 +103,50 @@ export default function CoachingPackageModal({
 
         {/* Content */}
         <div className="p-4 sm:p-6 max-h-[calc(100vh-200px)] overflow-y-auto">
-          {/* Séance Unique - Mise en avant */}
+          {/* Séance Unique - Mise en avant avec fond sombre */}
           <div className="mb-6 sm:mb-8">
-            <div className="bg-gradient-to-br from-dune-beige/30 to-dune-beige/50 rounded-2xl p-6 sm:p-8 border-2 border-mystic-mauve/40 shadow-xl relative overflow-hidden hover:border-mystic-mauve/60 transition-colors duration-300">
+            <div className="bg-gradient-to-br from-mystic-mauve to-mystic-mauve-dark rounded-xl p-5 sm:p-6 border-2 border-mystic-mauve-dark shadow-xl relative overflow-hidden hover:border-golden-orange/50 transition-all duration-300 group">
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
                 <div className="flex-1">
-                  <h4 className="font-heading text-xl sm:text-2xl font-bold text-deep-blue mb-3">
-                    Séance Unique
-                  </h4>
-                  <p className="text-deep-blue/80 leading-relaxed mb-3">
-                    Parfait pour découvrir le coaching ou répondre à un besoin ponctuel
-                  </p>
-                  <ul className="space-y-2 text-sm">
+                  <div className="text-xs sm:text-sm font-semibold text-warm-white/90 uppercase tracking-wide mb-2">
+                    Réservation immédiate
+                  </div>
+                  <ul className="space-y-2.5 text-sm text-warm-white/90">
                     <li className="flex items-start">
-                      <svg className="w-5 h-5 text-mystic-mauve mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="w-5 h-5 text-warm-white mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                       </svg>
-                      <span className="text-deep-blue/70">60 minutes d'échange approfondi</span>
+                      <span className="leading-relaxed">60 minutes d'échange approfondi</span>
                     </li>
                     <li className="flex items-start">
-                      <svg className="w-5 h-5 text-mystic-mauve mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="w-5 h-5 text-warm-white mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                       </svg>
-                      <span className="text-deep-blue/70">Réservation immédiate en ligne</span>
+                      <span className="leading-relaxed">Parfait pour découvrir le coaching</span>
+                    </li>
+                    <li className="flex items-start">
+                      <svg className="w-5 h-5 text-warm-white mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      <span className="leading-relaxed">Réservation en ligne immédiate</span>
                     </li>
                   </ul>
                 </div>
                 <div className="text-left sm:text-right flex-shrink-0">
-                  <div className="text-4xl sm:text-5xl font-bold text-mystic-mauve leading-none">510 DH</div>
-                  <div className="text-sm text-deep-blue/60 mt-2">séance de 60 min</div>
+                  <div className="text-4xl sm:text-5xl font-bold text-warm-white mb-1 leading-none">510 DH</div>
+                  <div className="text-xs sm:text-sm text-warm-white/80 mt-1.5">Séance unique • 60 min</div>
+                  <div className="inline-block mt-2.5 px-3 py-1 bg-warm-white/20 text-warm-white rounded-full text-xs font-semibold backdrop-blur-sm">
+                    Commencez aujourd'hui
+                  </div>
                 </div>
               </div>
               <a
                 href={`https://cal.com/${calcomUsername}/${calcomCoachingSlug}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center w-full px-6 py-3 bg-mystic-mauve text-white rounded-full font-bold text-base hover:bg-mystic-mauve-dark hover:-translate-y-0.5 transition-all duration-200 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-mystic-mauve focus:ring-offset-2"
+                className="block w-full px-4 py-2.5 bg-warm-white text-mystic-mauve rounded-full font-semibold text-sm text-center hover:bg-warm-white/95 hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-warm-white focus:ring-offset-2 focus:ring-offset-mystic-mauve-dark"
               >
                 Réserver cette séance
-                <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
               </a>
             </div>
           </div>
