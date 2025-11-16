@@ -21,6 +21,7 @@ export default function ContactPage() {
           href: '#contact-form',
         }}
         centered
+        compact
       />
 
       {/* Contact Methods */}

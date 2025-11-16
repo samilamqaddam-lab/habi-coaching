@@ -62,6 +62,7 @@ export default function RessourcesPage() {
           href: '#articles',
         }}
         centered
+        compact
       />
 
       {/* Articles */}

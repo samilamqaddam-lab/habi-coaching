@@ -18,6 +18,7 @@ interface HeroProps {
   overlay?: boolean;
   centered?: boolean;
   theme?: 'yoga' | 'coaching' | 'corporate' | 'default';
+  compact?: boolean; // Réduit la hauteur pour les pages internes
 }
 
 export default function Hero({
@@ -30,6 +31,7 @@ export default function Hero({
   overlay = true,
   centered = true,
   theme = 'default',
+  compact = false,
 }: HeroProps) {
   // Theme-based gradients with smooth bottom transition to beige
   const gradients = {
@@ -57,7 +59,7 @@ export default function Hero({
 
   return (
     <section
-      className={`relative min-h-[75vh] flex items-center ${
+      className={`relative ${compact ? 'min-h-[50vh]' : 'min-h-[75vh]'} flex items-center ${
         backgroundImage ? 'bg-cover bg-center' : gradients[theme]
       }`}
       style={backgroundImage ? { backgroundImage: `url(${backgroundImage})` } : undefined}
@@ -67,7 +69,7 @@ export default function Hero({
         <div className="absolute inset-0 bg-deep-blue/40" />
       )}
 
-      <Container className={`relative z-10 py-20 -translate-y-6 ${centered ? 'text-center' : ''}`}>
+      <Container className={`relative z-10 ${compact ? 'py-12 -translate-y-4' : 'py-20 -translate-y-6'} ${centered ? 'text-center' : ''}`}>
         <div className={`max-w-4xl ${centered ? 'mx-auto' : ''}`}>
           {subtitle && (
             <p className={`${subtitleColors[theme]} text-sm md:text-base font-medium uppercase tracking-wider mb-4`}>
@@ -113,7 +115,7 @@ export default function Hero({
       </Container>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <div className={`absolute ${compact ? 'bottom-6' : 'bottom-8'} left-1/2 transform -translate-x-1/2 animate-bounce`}>
         <svg
           className={`w-6 h-6 ${backgroundImage ? 'text-warm-white' : scrollColors[theme]}`}
           fill="none"

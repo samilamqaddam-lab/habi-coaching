@@ -28,9 +28,9 @@ export default function PrivateYogaRequestModal({
     return () => setMounted(false);
   }, []);
 
-  const handleOpen = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const handleOpen = (e?: React.MouseEvent) => {
+    e?.preventDefault();
+    e?.stopPropagation();
     setIsOpen(true);
   };
 

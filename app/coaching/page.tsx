@@ -59,6 +59,7 @@ export default function CoachingPage() {
           href: '#approche',
         }}
         theme="coaching"
+        compact
       />
 
       {/* Types de coaching */}

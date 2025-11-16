@@ -142,6 +142,7 @@ export default function ProgrammesPage() {
           href: '#retraites',
         }}
         theme="yoga"
+        compact
       />
 
       {/* Cours réguliers */}

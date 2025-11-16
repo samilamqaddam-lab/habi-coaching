@@ -25,6 +25,7 @@ export default function OrganisationsPage() {
           href: '#programmes',
         }}
         theme="corporate"
+        compact
       />
 
       {/* Services pour Organisations */}
