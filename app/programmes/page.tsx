@@ -154,6 +154,7 @@ export default function ProgrammesPage() {
         background="beige"
         accentColor="yoga"
         afterHero
+        centered
       >
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {yogaClasses.map((yogaClass, index) => (
@@ -210,22 +211,6 @@ export default function ProgrammesPage() {
               />
             </Card>
           ))}
-        </div>
-
-        <div className="mt-12 text-center">
-          <Card padding="lg" className="max-w-3xl mx-auto bg-golden-orange/10">
-            <h4 className="font-semibold text-deep-blue mb-3">
-              {t('programmes.trialClass.title')}
-            </h4>
-            <p className="text-text-secondary mb-4">
-              {t('programmes.trialClass.description')}
-            </p>
-            <PrivateYogaRequestModal
-              triggerText={t('programmes.trialClass.button')}
-              variant="primary"
-              size="md"
-            />
-          </Card>
         </div>
       </Section>
 
