@@ -24,6 +24,7 @@ export default function Home() {
           text: t('home.hero.secondaryCTA'),
           href: '/contact',
         }}
+        useVhSpacing
       />
 
       {/* Expertise Section */}
