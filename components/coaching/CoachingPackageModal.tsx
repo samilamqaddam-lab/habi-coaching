@@ -140,7 +140,7 @@ export default function CoachingPackageModal({
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center w-full px-6 py-3 bg-mystic-mauve text-white rounded-full font-bold text-base hover:bg-mystic-mauve-dark hover:-translate-y-0.5 transition-all duration-200 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-mystic-mauve focus:ring-offset-2"
               >
-                Réserver ma séance découverte
+                Réserver cette séance
                 <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
