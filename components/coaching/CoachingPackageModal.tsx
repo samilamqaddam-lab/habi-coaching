@@ -105,13 +105,16 @@ export default function CoachingPackageModal({
         <div className="p-4 sm:p-6 max-h-[calc(100vh-200px)] overflow-y-auto">
           {/* Séance Unique - Mise en avant avec fond sombre */}
           <div className="mb-6 sm:mb-8">
-            <div className="bg-gradient-to-br from-mystic-mauve to-mystic-mauve-dark rounded-xl p-5 sm:p-6 border-2 border-mystic-mauve-dark shadow-xl relative overflow-hidden hover:border-golden-orange/50 transition-all duration-300 group">
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
+            <div className="bg-gradient-to-br from-deep-blue to-morocco-blue rounded-xl p-5 sm:p-6 border-2 border-deep-blue shadow-xl relative overflow-hidden hover:border-golden-orange/50 transition-all duration-300 group">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
                 <div className="flex-1">
+                  <h4 className="font-heading text-xl sm:text-2xl font-bold text-warm-white mb-3">
+                    Séance Unique
+                  </h4>
                   <div className="text-xs sm:text-sm font-semibold text-warm-white/90 uppercase tracking-wide mb-2">
                     Réservation immédiate
                   </div>
-                  <ul className="space-y-2.5 text-sm text-warm-white/90">
+                  <ul className="space-y-2 text-sm text-warm-white/90">
                     <li className="flex items-start">
                       <svg className="w-5 h-5 text-warm-white mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -144,9 +147,9 @@ export default function CoachingPackageModal({
                 href={`https://cal.com/${calcomUsername}/${calcomCoachingSlug}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full px-4 py-2.5 bg-warm-white text-mystic-mauve rounded-full font-semibold text-sm text-center hover:bg-warm-white/95 hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-warm-white focus:ring-offset-2 focus:ring-offset-mystic-mauve-dark"
+                className="block w-full px-4 py-2.5 bg-warm-white text-deep-blue rounded-full font-semibold text-sm text-center hover:bg-warm-white/95 hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-warm-white focus:ring-offset-2 focus:ring-offset-deep-blue"
               >
-                Réserver cette séance
+                Réserver une séance
               </a>
             </div>
           </div>
@@ -163,13 +166,13 @@ export default function CoachingPackageModal({
             </div>
             <div className="grid grid-cols-1 gap-4 sm:gap-5">
               {/* Pack 3 */}
-              <div className="bg-white border-2 border-gray-200 rounded-xl p-5 sm:p-6 hover:border-golden-orange hover:shadow-lg transition-all duration-300 group">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
+              <div className="bg-white border-2 border-gray-200 rounded-xl p-4 sm:p-5 hover:border-golden-orange hover:shadow-lg transition-all duration-300 group">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
                   <div className="flex-1">
                     <div className="text-xs sm:text-sm font-semibold text-golden-orange uppercase tracking-wide mb-2">
                       Initiation
                     </div>
-                    <ul className="space-y-2.5 text-sm text-text-secondary">
+                    <ul className="space-y-2 text-sm text-text-secondary">
                       <li className="flex items-start">
                         <svg className="w-5 h-5 text-golden-orange mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -207,16 +210,16 @@ export default function CoachingPackageModal({
               </div>
 
               {/* Pack 6 - Recommandé */}
-              <div className="bg-white border-2 border-mystic-mauve rounded-xl p-5 sm:p-6 relative hover:border-mystic-mauve-dark hover:shadow-xl transition-all duration-300 shadow-lg ring-2 ring-mystic-mauve/10 group">
+              <div className="bg-white border-2 border-mystic-mauve rounded-xl p-4 sm:p-5 relative hover:border-mystic-mauve-dark hover:shadow-xl transition-all duration-300 shadow-lg ring-2 ring-mystic-mauve/10 group">
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-mystic-mauve text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide shadow-md">
                   Recommandé
                 </div>
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6 pt-2">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4 pt-2">
                   <div className="flex-1">
                     <div className="text-xs sm:text-sm font-semibold text-mystic-mauve uppercase tracking-wide mb-2">
                       Approfondissement
                     </div>
-                    <ul className="space-y-2.5 text-sm text-text-secondary">
+                    <ul className="space-y-2 text-sm text-text-secondary">
                       <li className="flex items-start">
                         <svg className="w-5 h-5 text-mystic-mauve mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -238,7 +241,7 @@ export default function CoachingPackageModal({
                     </ul>
                   </div>
                   <div className="text-left sm:text-right flex-shrink-0">
-                    <div className="text-4xl sm:text-5xl font-bold text-deep-blue mb-1 leading-none">2500 DH</div>
+                    <div className="text-3xl sm:text-4xl font-bold text-deep-blue mb-1 leading-none">2500 DH</div>
                     <div className="text-xs sm:text-sm text-text-secondary mt-1.5">6 séances • 417 DH/séance</div>
                     <div className="inline-block mt-2.5 px-3 py-1 bg-mystic-mauve/10 text-mystic-mauve rounded-full text-xs font-semibold">
                       Pour ancrer votre transformation
@@ -254,13 +257,13 @@ export default function CoachingPackageModal({
               </div>
 
               {/* Pack 12 */}
-              <div className="bg-white border-2 border-gray-200 rounded-xl p-5 sm:p-6 hover:border-morocco-blue hover:shadow-lg transition-all duration-300 group">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
+              <div className="bg-white border-2 border-gray-200 rounded-xl p-4 sm:p-5 hover:border-morocco-blue hover:shadow-lg transition-all duration-300 group">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
                   <div className="flex-1">
                     <div className="text-xs sm:text-sm font-semibold text-morocco-blue uppercase tracking-wide mb-2">
                       Transformation
                     </div>
-                    <ul className="space-y-2.5 text-sm text-text-secondary">
+                    <ul className="space-y-2 text-sm text-text-secondary">
                       <li className="flex items-start">
                         <svg className="w-5 h-5 text-morocco-blue mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
