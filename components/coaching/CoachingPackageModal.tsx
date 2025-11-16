@@ -106,14 +106,9 @@ export default function CoachingPackageModal({
           {/* Séance Unique - Mise en avant */}
           <div className="mb-6 sm:mb-8">
             <div className="bg-gradient-to-br from-dune-beige/30 to-dune-beige/50 rounded-2xl p-6 sm:p-8 border-2 border-mystic-mauve/40 shadow-xl relative overflow-hidden hover:border-mystic-mauve/60 transition-colors duration-300">
-              {/* Badge "Découverte" */}
-              <div className="absolute top-4 right-4 bg-mystic-mauve px-3 py-1.5 rounded-full text-xs font-bold text-white uppercase tracking-wide shadow-md">
-                Découverte
-              </div>
-
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
                 <div className="flex-1">
-                  <h4 className="font-heading text-2xl sm:text-3xl font-bold text-deep-blue mb-3">
+                  <h4 className="font-heading text-xl sm:text-2xl font-bold text-deep-blue mb-3">
                     Séance Unique
                   </h4>
                   <p className="text-deep-blue/80 leading-relaxed mb-3">
@@ -164,11 +159,11 @@ export default function CoachingPackageModal({
 
           {/* Packages */}
           <div>
-            <div className="mb-6">
-              <h4 className="font-heading text-xl sm:text-2xl font-bold text-deep-blue mb-3 text-center">
+            <div className="mb-6 text-center">
+              <h4 className="font-heading text-xl sm:text-2xl font-bold text-deep-blue mb-3">
                 Parcours d'accompagnement
               </h4>
-              <p className="text-sm text-text-secondary max-w-xl leading-relaxed">
+              <p className="text-sm text-text-secondary max-w-3xl mx-auto leading-relaxed">
                 Plusieurs séances permettent d'ancrer les transformations et d'approfondir votre cheminement avec continuité et bienveillance
               </p>
             </div>
