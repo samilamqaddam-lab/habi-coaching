@@ -37,7 +37,7 @@ export default function Hero({
 }: HeroProps) {
   // Theme-based gradients with smooth bottom transition to beige
   const gradients = {
-    yoga: 'bg-gradient-to-b from-golden-orange/20 via-warm-white via-70% to-dune-beige',
+    yoga: 'bg-gradient-to-b from-golden-orange/10 via-warm-white via-70% to-dune-beige',
     coaching: 'bg-gradient-to-b from-mystic-mauve/20 via-warm-white via-70% to-dune-beige',
     corporate: 'bg-gradient-to-b from-sky-blue/25 via-warm-white via-70% to-dune-beige',
     default: 'bg-gradient-to-b from-dune-beige via-warm-white via-70% to-dune-beige',
