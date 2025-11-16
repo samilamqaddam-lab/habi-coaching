@@ -35,12 +35,12 @@ export default function Hero({
   compact = false,
   useVhSpacing = false,
 }: HeroProps) {
-  // Theme-based gradients with elegant fade to white for smooth section transitions
+  // Theme-based gradients with smooth bottom transition to beige
   const gradients = {
-    yoga: 'bg-gradient-to-b from-golden-orange/20 via-warm-white via-50% to-warm-white',
-    coaching: 'bg-gradient-to-b from-mystic-mauve/20 via-warm-white via-50% to-warm-white',
-    corporate: 'bg-gradient-to-b from-sky-blue/25 via-warm-white via-50% to-warm-white',
-    default: 'bg-gradient-to-b from-dune-beige/30 via-warm-white via-50% to-warm-white',
+    yoga: 'bg-gradient-to-b from-golden-orange/20 via-warm-white via-70% to-dune-beige',
+    coaching: 'bg-gradient-to-b from-mystic-mauve/20 via-warm-white via-70% to-dune-beige',
+    corporate: 'bg-gradient-to-b from-sky-blue/25 via-warm-white via-70% to-dune-beige',
+    default: 'bg-gradient-to-b from-dune-beige via-warm-white via-70% to-dune-beige',
   };
 
   // Theme-based subtitle colors
