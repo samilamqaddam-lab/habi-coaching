@@ -138,7 +138,7 @@ export default function CoachingPackageModal({
                 href={`https://cal.com/${calcomUsername}/${calcomCoachingSlug}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center w-full px-8 py-4 bg-mystic-mauve text-white rounded-full font-bold text-lg hover:bg-mystic-mauve-dark hover:-translate-y-0.5 transition-all duration-200 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-mystic-mauve focus:ring-offset-2"
+                className="inline-flex items-center justify-center w-full px-6 py-3 bg-mystic-mauve text-white rounded-full font-bold text-base hover:bg-mystic-mauve-dark hover:-translate-y-0.5 transition-all duration-200 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-mystic-mauve focus:ring-offset-2"
               >
                 Réserver ma séance découverte
                 <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -146,15 +146,6 @@ export default function CoachingPackageModal({
                 </svg>
               </a>
             </div>
-          </div>
-
-          {/* Divider */}
-          <div className="flex items-center justify-center mb-6 sm:mb-8">
-            <div className="flex-grow border-t border-gray-300"></div>
-            <span className="px-3 sm:px-4 text-xs sm:text-sm font-semibold text-text-secondary uppercase tracking-wider">
-              Pour un accompagnement suivi
-            </span>
-            <div className="flex-grow border-t border-gray-300"></div>
           </div>
 
           {/* Packages */}
@@ -191,7 +182,7 @@ export default function CoachingPackageModal({
                     <svg className="w-5 h-5 text-golden-orange mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="leading-relaxed">Suivi personnalisé sur 3 mois</span>
+                    <span className="leading-relaxed">Suivi personnalisé et flexible</span>
                   </li>
                   <li className="flex items-start">
                     <svg className="w-5 h-5 text-golden-orange mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -202,7 +193,7 @@ export default function CoachingPackageModal({
                 </ul>
                 <button
                   onClick={() => handlePackageClick('3', 1400)}
-                  className="block w-full px-4 py-3 sm:py-3.5 bg-golden-orange text-white rounded-full font-semibold text-center hover:bg-golden-orange-dark hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-golden-orange focus:ring-offset-2"
+                  className="block w-full px-4 py-2.5 bg-golden-orange text-white rounded-full font-semibold text-sm text-center hover:bg-golden-orange-dark hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-golden-orange focus:ring-offset-2"
                 >
                   Commencer ce parcours
                 </button>
@@ -234,7 +225,7 @@ export default function CoachingPackageModal({
                     <svg className="w-5 h-5 text-terracotta mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="leading-relaxed">Continuité sur 6 mois</span>
+                    <span className="leading-relaxed">Continuité de votre cheminement</span>
                   </li>
                   <li className="flex items-start">
                     <svg className="w-5 h-5 text-terracotta mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -245,7 +236,7 @@ export default function CoachingPackageModal({
                 </ul>
                 <button
                   onClick={() => handlePackageClick('6', 2500)}
-                  className="block w-full px-4 py-3 sm:py-3.5 bg-terracotta text-white rounded-full font-semibold text-center hover:bg-terracotta-dark hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2"
+                  className="block w-full px-4 py-2.5 bg-terracotta text-white rounded-full font-semibold text-sm text-center hover:bg-terracotta-dark hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2"
                 >
                   Commencer ce parcours
                 </button>
@@ -268,7 +259,7 @@ export default function CoachingPackageModal({
                     <svg className="w-5 h-5 text-morocco-blue mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="leading-relaxed">Accompagnement complet sur l'année</span>
+                    <span className="leading-relaxed">Accompagnement complet et approfondi</span>
                   </li>
                   <li className="flex items-start">
                     <svg className="w-5 h-5 text-morocco-blue mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -285,7 +276,7 @@ export default function CoachingPackageModal({
                 </ul>
                 <button
                   onClick={() => handlePackageClick('12', 4500)}
-                  className="block w-full px-4 py-3 sm:py-3.5 bg-morocco-blue text-white rounded-full font-semibold text-center hover:bg-deep-blue hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-morocco-blue focus:ring-offset-2"
+                  className="block w-full px-4 py-2.5 bg-morocco-blue text-white rounded-full font-semibold text-sm text-center hover:bg-deep-blue hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-morocco-blue focus:ring-offset-2"
                 >
                   Commencer ce parcours
                 </button>
