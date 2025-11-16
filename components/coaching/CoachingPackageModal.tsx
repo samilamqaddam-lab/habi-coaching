@@ -103,30 +103,49 @@ export default function CoachingPackageModal({
 
         {/* Content */}
         <div className="p-4 sm:p-6 max-h-[calc(100vh-200px)] overflow-y-auto">
-          {/* Séance Unique */}
+          {/* Séance Unique - Mise en avant */}
           <div className="mb-6 sm:mb-8">
-            <div className="bg-gradient-to-br from-mystic-mauve/5 to-mystic-mauve/10 rounded-xl sm:rounded-2xl p-5 sm:p-6 border-2 border-mystic-mauve/30 hover:border-mystic-mauve/50 transition-all duration-300 hover:shadow-lg">
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-5">
+            <div className="bg-gradient-to-br from-mystic-mauve/10 to-mystic-mauve/20 rounded-2xl p-6 sm:p-8 border-2 border-mystic-mauve shadow-xl relative overflow-hidden">
+              {/* Badge "Découverte" */}
+              <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-bold text-mystic-mauve uppercase tracking-wide shadow-md">
+                Découverte
+              </div>
+
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
                 <div className="flex-1">
-                  <h4 className="font-heading text-lg sm:text-xl font-bold text-deep-blue mb-2">
+                  <h4 className="font-heading text-2xl sm:text-3xl font-bold text-deep-blue mb-3">
                     Séance Unique
                   </h4>
-                  <p className="text-text-secondary text-sm leading-relaxed">
-                    60 min pour explorer vos besoins ou bénéficier d'un accompagnement ponctuel
+                  <p className="text-text-secondary leading-relaxed mb-3">
+                    Parfait pour découvrir le coaching ou répondre à un besoin ponctuel
                   </p>
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex items-start">
+                      <svg className="w-5 h-5 text-mystic-mauve mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      <span className="text-text-secondary">60 minutes d'échange approfondi</span>
+                    </li>
+                    <li className="flex items-start">
+                      <svg className="w-5 h-5 text-mystic-mauve mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      <span className="text-text-secondary">Réservation immédiate en ligne</span>
+                    </li>
+                  </ul>
                 </div>
                 <div className="text-left sm:text-right flex-shrink-0">
-                  <div className="text-3xl sm:text-4xl font-bold text-deep-blue leading-none">510 DH</div>
-                  <div className="text-xs text-text-secondary mt-1">par séance</div>
+                  <div className="text-4xl sm:text-5xl font-bold text-mystic-mauve leading-none">510 DH</div>
+                  <div className="text-sm text-text-secondary mt-2">séance de 60 min</div>
                 </div>
               </div>
               <a
                 href={`https://cal.com/${calcomUsername}/${calcomCoachingSlug}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center w-full px-6 py-3.5 bg-mystic-mauve text-white rounded-full font-semibold hover:bg-mystic-mauve-dark active:scale-[0.98] transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-mystic-mauve focus:ring-offset-2"
+                className="inline-flex items-center justify-center w-full px-8 py-4 bg-mystic-mauve text-white rounded-full font-bold text-lg hover:bg-mystic-mauve-dark hover:-translate-y-0.5 transition-all duration-200 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-mystic-mauve focus:ring-offset-2"
               >
-                Réserver maintenant
+                Réserver ma séance découverte
                 <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
@@ -138,97 +157,102 @@ export default function CoachingPackageModal({
           <div className="flex items-center justify-center mb-6 sm:mb-8">
             <div className="flex-grow border-t border-gray-300"></div>
             <span className="px-3 sm:px-4 text-xs sm:text-sm font-semibold text-text-secondary uppercase tracking-wider">
-              ou
+              Pour un accompagnement suivi
             </span>
             <div className="flex-grow border-t border-gray-300"></div>
           </div>
 
           {/* Packages */}
           <div>
-            <h4 className="font-heading text-lg sm:text-xl font-bold text-deep-blue mb-5 sm:mb-6 text-center">
-              Packages
-            </h4>
+            <div className="text-center mb-6">
+              <h4 className="font-heading text-xl sm:text-2xl font-bold text-deep-blue mb-2">
+                Parcours d'accompagnement
+              </h4>
+              <p className="text-sm text-text-secondary max-w-2xl mx-auto leading-relaxed">
+                Plusieurs séances permettent d'ancrer les transformations et d'approfondir votre cheminement avec continuité et bienveillance
+              </p>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
               {/* Pack 3 */}
               <div className="bg-white border-2 border-gray-200 rounded-xl p-5 sm:p-6 hover:border-golden-orange hover:shadow-lg transition-all duration-300 group">
                 <div className="text-center mb-4">
                   <div className="text-xs sm:text-sm font-semibold text-golden-orange uppercase tracking-wide mb-2">
-                    Pack 3 Séances
+                    Initiation
                   </div>
                   <div className="text-3xl sm:text-4xl font-bold text-deep-blue mb-1 leading-none">1400 DH</div>
-                  <div className="text-xs sm:text-sm text-text-secondary mt-1.5">467 DH/séance</div>
-                  <div className="inline-block mt-2.5 px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">
-                    Économie de 8%
+                  <div className="text-xs sm:text-sm text-text-secondary mt-1.5">3 séances • 467 DH/séance</div>
+                  <div className="inline-block mt-2.5 px-3 py-1 bg-golden-orange/10 text-golden-orange rounded-full text-xs font-semibold">
+                    Pour démarrer votre parcours
                   </div>
                 </div>
                 <ul className="space-y-2.5 mb-6 text-sm text-text-secondary">
                   <li className="flex items-start">
-                    <svg className="w-5 h-5 text-green-500 mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-5 h-5 text-golden-orange mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="leading-relaxed">3 séances de 60 min</span>
+                    <span className="leading-relaxed">Initier votre transformation</span>
                   </li>
                   <li className="flex items-start">
-                    <svg className="w-5 h-5 text-green-500 mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-5 h-5 text-golden-orange mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="leading-relaxed">Valable 3 mois</span>
+                    <span className="leading-relaxed">Suivi personnalisé sur 3 mois</span>
                   </li>
                   <li className="flex items-start">
-                    <svg className="w-5 h-5 text-green-500 mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-5 h-5 text-golden-orange mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="leading-relaxed">Visio</span>
+                    <span className="leading-relaxed">Séances en visio</span>
                   </li>
                 </ul>
                 <button
                   onClick={() => handlePackageClick('3', 1400)}
-                  className="block w-full px-4 py-3 sm:py-3.5 bg-golden-orange text-white rounded-full font-semibold text-center hover:bg-golden-orange-dark active:scale-[0.98] transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-golden-orange focus:ring-offset-2"
+                  className="block w-full px-4 py-3 sm:py-3.5 bg-golden-orange text-white rounded-full font-semibold text-center hover:bg-golden-orange-dark hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-golden-orange focus:ring-offset-2"
                 >
-                  Réserver ce pack
+                  Commencer ce parcours
                 </button>
               </div>
 
-              {/* Pack 6 - Populaire */}
+              {/* Pack 6 - Recommandé */}
               <div className="bg-white border-2 border-mystic-mauve rounded-xl p-5 sm:p-6 relative hover:border-mystic-mauve-dark hover:shadow-xl transition-all duration-300 shadow-lg ring-2 ring-mystic-mauve/10 sm:scale-[1.02] group">
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-mystic-mauve text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide shadow-md">
-                  Populaire
+                  Recommandé
                 </div>
                 <div className="text-center mb-4 pt-2">
                   <div className="text-xs sm:text-sm font-semibold text-mystic-mauve uppercase tracking-wide mb-2">
-                    Pack 6 Séances
+                    Approfondissement
                   </div>
                   <div className="text-4xl sm:text-5xl font-bold text-deep-blue mb-1 leading-none">2500 DH</div>
-                  <div className="text-xs sm:text-sm text-text-secondary mt-1.5">417 DH/séance</div>
-                  <div className="inline-block mt-2.5 px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">
-                    Économie de 18%
+                  <div className="text-xs sm:text-sm text-text-secondary mt-1.5">6 séances • 417 DH/séance</div>
+                  <div className="inline-block mt-2.5 px-3 py-1 bg-mystic-mauve/10 text-mystic-mauve rounded-full text-xs font-semibold">
+                    Pour ancrer votre transformation
                   </div>
                 </div>
                 <ul className="space-y-2.5 mb-6 text-sm text-text-secondary">
                   <li className="flex items-start">
-                    <svg className="w-5 h-5 text-green-500 mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-5 h-5 text-mystic-mauve mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="leading-relaxed">6 séances de 60 min</span>
+                    <span className="leading-relaxed">Accompagnement en profondeur</span>
                   </li>
                   <li className="flex items-start">
-                    <svg className="w-5 h-5 text-green-500 mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-5 h-5 text-mystic-mauve mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="leading-relaxed">Valable 6 mois</span>
+                    <span className="leading-relaxed">Continuité sur 6 mois</span>
                   </li>
                   <li className="flex items-start">
-                    <svg className="w-5 h-5 text-green-500 mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-5 h-5 text-mystic-mauve mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="leading-relaxed">Visio</span>
+                    <span className="leading-relaxed">Outils et ressources personnalisés</span>
                   </li>
                 </ul>
                 <button
                   onClick={() => handlePackageClick('6', 2500)}
-                  className="block w-full px-4 py-3 sm:py-3.5 bg-mystic-mauve text-white rounded-full font-semibold text-center hover:bg-mystic-mauve-dark active:scale-[0.98] transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-mystic-mauve focus:ring-offset-2"
+                  className="block w-full px-4 py-3 sm:py-3.5 bg-mystic-mauve text-white rounded-full font-semibold text-center hover:bg-mystic-mauve-dark hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-mystic-mauve focus:ring-offset-2"
                 >
-                  Réserver ce pack
+                  Commencer ce parcours
                 </button>
               </div>
 
@@ -236,39 +260,39 @@ export default function CoachingPackageModal({
               <div className="bg-white border-2 border-gray-200 rounded-xl p-5 sm:p-6 hover:border-morocco-blue hover:shadow-lg transition-all duration-300 group sm:col-span-2 lg:col-span-1">
                 <div className="text-center mb-4">
                   <div className="text-xs sm:text-sm font-semibold text-morocco-blue uppercase tracking-wide mb-2">
-                    Pack 12 Séances
+                    Transformation
                   </div>
                   <div className="text-3xl sm:text-4xl font-bold text-deep-blue mb-1 leading-none">4500 DH</div>
-                  <div className="text-xs sm:text-sm text-text-secondary mt-1.5">375 DH/séance</div>
-                  <div className="inline-block mt-2.5 px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">
-                    Économie de 26%
+                  <div className="text-xs sm:text-sm text-text-secondary mt-1.5">12 séances • 375 DH/séance</div>
+                  <div className="inline-block mt-2.5 px-3 py-1 bg-morocco-blue/10 text-morocco-blue rounded-full text-xs font-semibold">
+                    Pour une évolution durable
                   </div>
                 </div>
                 <ul className="space-y-2.5 mb-6 text-sm text-text-secondary">
                   <li className="flex items-start">
-                    <svg className="w-5 h-5 text-green-500 mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-5 h-5 text-morocco-blue mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="leading-relaxed">12 séances de 60 min</span>
+                    <span className="leading-relaxed">Accompagnement complet sur l'année</span>
                   </li>
                   <li className="flex items-start">
-                    <svg className="w-5 h-5 text-green-500 mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-5 h-5 text-morocco-blue mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="leading-relaxed">Valable 12 mois</span>
+                    <span className="leading-relaxed">Changements profonds et durables</span>
                   </li>
                   <li className="flex items-start">
-                    <svg className="w-5 h-5 text-green-500 mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-5 h-5 text-morocco-blue mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="leading-relaxed">Visio</span>
+                    <span className="leading-relaxed">Suivi régulier et soutien continu</span>
                   </li>
                 </ul>
                 <button
                   onClick={() => handlePackageClick('12', 4500)}
-                  className="block w-full px-4 py-3 sm:py-3.5 bg-morocco-blue text-white rounded-full font-semibold text-center hover:bg-deep-blue active:scale-[0.98] transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-morocco-blue focus:ring-offset-2"
+                  className="block w-full px-4 py-3 sm:py-3.5 bg-morocco-blue text-white rounded-full font-semibold text-center hover:bg-deep-blue hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-morocco-blue focus:ring-offset-2"
                 >
-                  Réserver ce pack
+                  Commencer ce parcours
                 </button>
               </div>
             </div>
