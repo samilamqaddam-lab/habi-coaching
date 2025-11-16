@@ -59,7 +59,11 @@ export default function Hero({
 
   return (
     <section
-      className={`relative ${compact ? 'min-h-[60vh] md:min-h-[65vh]' : 'min-h-[75vh]'} flex items-center ${
+      className={`relative ${
+        compact
+          ? 'min-h-[32rem] sm:min-h-[36rem] lg:min-h-[40rem]'
+          : 'min-h-[40rem] sm:min-h-[44rem] lg:min-h-[48rem] xl:min-h-[52rem]'
+      } flex items-center ${
         backgroundImage ? 'bg-cover bg-center' : gradients[theme]
       }`}
       style={backgroundImage ? { backgroundImage: `url(${backgroundImage})` } : undefined}
@@ -69,7 +73,11 @@ export default function Hero({
         <div className="absolute inset-0 bg-deep-blue/40" />
       )}
 
-      <Container className={`relative z-10 ${compact ? 'py-16 md:py-20 -translate-y-6 md:-translate-y-8' : 'py-20 -translate-y-6'} ${centered ? 'text-center' : ''}`}>
+      <Container className={`relative z-10 ${
+        compact
+          ? 'py-12 sm:py-16 md:py-20 lg:py-24'
+          : 'py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32'
+      } ${centered ? 'text-center' : ''}`}>
         <div className={`max-w-4xl ${centered ? 'mx-auto' : ''}`}>
           {subtitle && (
             <p className={`${subtitleColors[theme]} text-sm md:text-base font-medium uppercase tracking-wider mb-4`}>
@@ -115,7 +123,9 @@ export default function Hero({
       </Container>
 
       {/* Scroll indicator */}
-      <div className={`absolute ${compact ? 'bottom-10 md:bottom-12' : 'bottom-8'} left-1/2 transform -translate-x-1/2 animate-bounce`}>
+      <div className={`absolute ${
+        compact ? 'bottom-8 sm:bottom-10 md:bottom-12' : 'bottom-10 sm:bottom-12 md:bottom-14 lg:bottom-16'
+      } left-1/2 transform -translate-x-1/2 animate-bounce`}>
         <svg
           className={`w-6 h-6 ${backgroundImage ? 'text-warm-white' : scrollColors[theme]}`}
           fill="none"
