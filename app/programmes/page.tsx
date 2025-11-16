@@ -4,6 +4,7 @@ import Hero from '@/components/sections/Hero';
 import Section from '@/components/sections/Section';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
+import { PrivateYogaRequestModal } from '@/components/forms';
 import { useTranslation } from '@/hooks/useTranslation';
 
 export default function ProgrammesPage() {
@@ -200,9 +201,11 @@ export default function ProgrammesPage() {
                   </p>
                 </div>
               </div>
-              <Button variant="outline" href="/contact" fullWidth>
-                {t('programmes.buttons.book')}
-              </Button>
+              <PrivateYogaRequestModal
+                triggerText={t('programmes.buttons.book')}
+                variant="outline"
+                fullWidth
+              />
             </Card>
           ))}
         </div>
@@ -215,9 +218,11 @@ export default function ProgrammesPage() {
             <p className="text-text-secondary mb-4">
               {t('programmes.trialClass.description')}
             </p>
-            <Button variant="primary" size="md" href="/contact">
-              {t('programmes.trialClass.button')}
-            </Button>
+            <PrivateYogaRequestModal
+              triggerText={t('programmes.trialClass.button')}
+              variant="primary"
+              size="md"
+            />
           </Card>
         </div>
       </Section>

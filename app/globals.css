@@ -102,12 +102,12 @@ body {
   color: var(--text-primary);
   font-family: var(--font-inter), system-ui, sans-serif;
   line-height: 1.7;
-  /* Amélioration du word-wrapping */
+  /* Amélioration du word-wrapping - sans césure */
   word-wrap: break-word;
   overflow-wrap: break-word;
-  hyphens: auto;
-  -webkit-hyphens: auto;
-  -ms-hyphens: auto;
+  hyphens: none;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
 }
 
 /* Transitions sélectives (pas sur tous les éléments) */

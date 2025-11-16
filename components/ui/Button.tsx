@@ -5,9 +5,11 @@ interface ButtonProps {
   variant?: 'primary' | 'secondary' | 'outline' | 'text' | 'corporate';
   size?: 'sm' | 'md' | 'lg';
   href?: string;
-  onClick?: () => void;
+  onClick?: (e?: React.MouseEvent) => void;
   className?: string;
   fullWidth?: boolean;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
 }
 
 export default function Button({
@@ -18,6 +20,8 @@ export default function Button({
   onClick,
   className = '',
   fullWidth = false,
+  type = 'button',
+  disabled = false,
 }: ButtonProps) {
   const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-300 rounded-full';
 
@@ -48,7 +52,7 @@ export default function Button({
   }
 
   return (
-    <button onClick={onClick} className={classes}>
+    <button onClick={(e) => onClick?.(e)} type={type} disabled={disabled} className={classes}>
       {children}
     </button>
   );

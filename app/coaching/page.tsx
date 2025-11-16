@@ -4,12 +4,20 @@ import Hero from '@/components/sections/Hero';
 import Section from '@/components/sections/Section';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
+import { CoachingPackageModal } from '@/components/coaching';
 import { useTranslation } from '@/hooks/useTranslation';
 
 export default function CoachingPage() {
   const { t } = useTranslation();
 
-  const coachingTypes = [
+  const coachingTypes: Array<{
+    title: string;
+    description: string;
+    duration: string;
+    format: string;
+    price: string;
+    icon: 'user' | 'briefcase' | 'heart';
+  }> = [
     {
       title: t('coaching.services.individual.title'),
       description: t('coaching.services.individual.description'),
@@ -121,9 +129,11 @@ export default function CoachingPage() {
                   <p className="font-semibold text-mystic-mauve">{type.price}</p>
                 </div>
               </div>
-              <Button variant="outline" href="/contact" fullWidth>
-                {t('common.buttons.learnMore')}
-              </Button>
+              <CoachingPackageModal
+                triggerText="Réserver une séance"
+                variant="outline"
+                fullWidth
+              />
             </Card>
           ))}
         </div>
