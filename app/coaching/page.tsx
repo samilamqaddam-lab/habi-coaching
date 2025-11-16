@@ -70,6 +70,7 @@ export default function CoachingPage() {
         background="beige"
         centered
         accentColor="coaching"
+        afterHero
       >
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
           {coachingTypes.map((type, index) => (

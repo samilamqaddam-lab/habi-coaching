@@ -28,6 +28,7 @@ export default function ExpertisePage() {
         title={t('expertise.story.title')}
         background="beige"
         centered
+        afterHero
       >
         <div className="max-w-4xl mx-auto">
           <p className="text-lg text-text-secondary leading-relaxed mb-6">

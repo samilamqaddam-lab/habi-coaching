@@ -37,6 +37,7 @@ export default function OrganisationsPage() {
         background="beige"
         centered
         accentColor="corporate"
+        afterHero
       >
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
           <Card hover padding="lg">

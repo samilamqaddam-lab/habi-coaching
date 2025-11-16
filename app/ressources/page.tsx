@@ -72,6 +72,7 @@ export default function RessourcesPage() {
         title={t('ressources.blog.title')}
         description={t('ressources.blog.description')}
         background="beige"
+        afterHero
       >
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {articles.map((article, index) => (

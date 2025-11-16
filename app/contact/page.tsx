@@ -25,7 +25,7 @@ export default function ContactPage() {
       />
 
       {/* Contact Methods */}
-      <Section background="beige" padding="lg">
+      <Section background="beige" padding="lg" afterHero>
         <div className="grid md:grid-cols-3 gap-8 mb-16">
           <Card padding="lg" className="text-center">
             <div className="w-16 h-16 bg-terracotta/10 rounded-full flex items-center justify-center mx-auto mb-6">

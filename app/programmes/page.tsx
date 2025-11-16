@@ -153,6 +153,7 @@ export default function ProgrammesPage() {
         description={t('programmes.regularClasses.description')}
         background="beige"
         accentColor="yoga"
+        afterHero
       >
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {yogaClasses.map((yogaClass, index) => (

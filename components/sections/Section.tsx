@@ -12,6 +12,7 @@ interface SectionProps {
   centered?: boolean;
   containerSize?: 'sm' | 'md' | 'lg' | 'full';
   accentColor?: 'yoga' | 'coaching' | 'corporate' | 'none';
+  afterHero?: boolean; // Réduit le padding-top pour les sections juste après le Hero
 }
 
 export default function Section({
@@ -25,6 +26,7 @@ export default function Section({
   centered = false,
   containerSize = 'lg',
   accentColor = 'none',
+  afterHero = false,
 }: SectionProps) {
   const backgrounds = {
     white: 'bg-warm-white',
@@ -40,6 +42,14 @@ export default function Section({
     md: 'py-16 md:py-20',
     lg: 'py-20 md:py-28',
     xl: 'py-28 md:py-36',
+  };
+
+  // Paddings réduits pour sections après Hero (padding-top réduit pour équilibrer avec la flèche)
+  const afterHeroPaddings = {
+    sm: 'pt-4 pb-12 md:pt-6 md:pb-16',
+    md: 'pt-6 pb-16 md:pt-8 md:pb-20',
+    lg: 'pt-6 pb-20 md:pt-8 md:pb-28',
+    xl: 'pt-12 pb-28 md:pt-16 md:pb-36',
   };
 
   const accentColors = {
@@ -59,7 +69,7 @@ export default function Section({
   return (
     <section
       id={id}
-      className={`${backgrounds[background]} ${paddings[padding]}`}
+      className={`${backgrounds[background]} ${afterHero ? afterHeroPaddings[padding] : paddings[padding]}`}
     >
       <Container size={containerSize}>
         {(title || subtitle || description) && (
