@@ -169,7 +169,7 @@ export default function CoachingPackageModal({
               <div className="bg-white border-2 border-gray-200 rounded-xl p-4 sm:p-5 hover:border-golden-orange hover:shadow-lg transition-all duration-300 group">
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
                   <div className="flex-1">
-                    <div className="text-xs sm:text-sm font-semibold text-deep-blue uppercase tracking-wide mb-2">
+                    <div className="text-xs sm:text-sm font-semibold text-golden-orange uppercase tracking-wide mb-2">
                       Initiation
                     </div>
                     <ul className="space-y-2 text-sm text-text-secondary">
@@ -203,7 +203,7 @@ export default function CoachingPackageModal({
                 </div>
                 <button
                   onClick={() => handlePackageClick('3', 1400)}
-                  className="block w-full px-4 py-2.5 bg-deep-blue text-white rounded-full font-semibold text-sm text-center hover:bg-morocco-blue hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-deep-blue focus:ring-offset-2"
+                  className="block w-full px-4 py-2.5 bg-golden-orange text-white rounded-full font-semibold text-sm text-center hover:bg-golden-orange-dark hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-golden-orange focus:ring-offset-2"
                 >
                   Commencer ce parcours
                 </button>
@@ -216,7 +216,7 @@ export default function CoachingPackageModal({
                 </div>
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4 pt-2">
                   <div className="flex-1">
-                    <div className="text-xs sm:text-sm font-semibold text-deep-blue uppercase tracking-wide mb-2">
+                    <div className="text-xs sm:text-sm font-semibold text-mystic-mauve uppercase tracking-wide mb-2">
                       Approfondissement
                     </div>
                     <ul className="space-y-2 text-sm text-text-secondary">
@@ -250,7 +250,7 @@ export default function CoachingPackageModal({
                 </div>
                 <button
                   onClick={() => handlePackageClick('6', 2500)}
-                  className="block w-full px-4 py-2.5 bg-deep-blue text-white rounded-full font-semibold text-sm text-center hover:bg-morocco-blue hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-deep-blue focus:ring-offset-2"
+                  className="block w-full px-4 py-2.5 bg-mystic-mauve text-white rounded-full font-semibold text-sm text-center hover:bg-mystic-mauve-dark hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-mystic-mauve focus:ring-offset-2"
                 >
                   Commencer ce parcours
                 </button>
@@ -260,7 +260,7 @@ export default function CoachingPackageModal({
               <div className="bg-white border-2 border-gray-200 rounded-xl p-4 sm:p-5 hover:border-morocco-blue hover:shadow-lg transition-all duration-300 group">
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
                   <div className="flex-1">
-                    <div className="text-xs sm:text-sm font-semibold text-deep-blue uppercase tracking-wide mb-2">
+                    <div className="text-xs sm:text-sm font-semibold text-morocco-blue uppercase tracking-wide mb-2">
                       Transformation
                     </div>
                     <ul className="space-y-2 text-sm text-text-secondary">
@@ -294,7 +294,7 @@ export default function CoachingPackageModal({
                 </div>
                 <button
                   onClick={() => handlePackageClick('12', 4500)}
-                  className="block w-full px-4 py-2.5 bg-deep-blue text-white rounded-full font-semibold text-sm text-center hover:bg-morocco-blue hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-deep-blue focus:ring-offset-2"
+                  className="block w-full px-4 py-2.5 bg-morocco-blue text-white rounded-full font-semibold text-sm text-center hover:bg-deep-blue hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-morocco-blue focus:ring-offset-2"
                 >
                   Commencer ce parcours
                 </button>
