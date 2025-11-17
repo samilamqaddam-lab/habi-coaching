@@ -52,19 +52,19 @@ export default function PrivateYogaRequestModal({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
-          <div>
-            <h3 className="font-heading text-2xl font-bold text-deep-blue">
+        <div className="flex items-start justify-between p-4 sm:p-6 border-b border-gray-200 gap-3">
+          <div className="flex-1 min-w-0">
+            <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-deep-blue leading-snug break-words">
               Demande de Cours Privé de Yoga
             </h3>
-            <p className="text-sm text-text-secondary mt-1">
+            <p className="text-xs sm:text-sm text-text-secondary mt-1.5 leading-relaxed">
               Programme personnalisé avec une professeure certifiée Isha Foundation (Sadhguru)
             </p>
           </div>
           <button
             onClick={handleClose}
             type="button"
-            className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors flex-shrink-0"
+            className="w-11 h-11 rounded-full flex items-center justify-center hover:bg-gray-100 active:bg-gray-200 transition-colors flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-golden-orange focus:ring-offset-2"
             aria-label="Fermer"
           >
             <svg

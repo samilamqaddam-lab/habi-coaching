@@ -335,9 +335,9 @@ export default function ProgrammesPage() {
                     <h4 className="font-semibold text-deep-blue mb-3 text-sm">
                       {t('programmes.programHighlights')}
                     </h4>
-                    <ul className="grid grid-cols-2 gap-2">
+                    <ul className="grid grid-cols-1 min-[400px]:grid-cols-2 gap-2">
                       {programme.highlights.map((highlight, index) => (
-                        <li key={index} className="flex items-start text-sm">
+                        <li key={index} className="flex items-start text-xs sm:text-sm">
                           <svg
                             className="w-4 h-4 text-golden-orange mr-2 mt-0.5 flex-shrink-0"
                             fill="currentColor"

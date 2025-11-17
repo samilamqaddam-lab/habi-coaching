@@ -20,7 +20,7 @@ export default function FormInput({
   rows = 4,
 }: FormInputProps) {
   const baseInputStyles =
-    'w-full px-4 py-3 rounded-lg border-2 border-soft-gray focus:border-terracotta focus:outline-none transition-colors bg-warm-white text-text-primary';
+    'w-full px-4 py-3 text-base rounded-lg border-2 border-soft-gray focus:border-terracotta focus:outline-none transition-colors bg-warm-white text-text-primary';
 
   return (
     <div className="mb-6">

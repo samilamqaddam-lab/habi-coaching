@@ -113,11 +113,11 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
-            <div className="flex space-x-4 mt-6">
+            <div className="flex space-x-2 mt-6">
               {/* Social Icons */}
               <a
                 href="#"
-                className="text-sage-light hover:text-warm-white transition-colors"
+                className="text-sage-light hover:text-warm-white transition-colors p-3 -m-3 rounded-full hover:bg-warm-white/10"
                 aria-label="Instagram"
               >
                 <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
@@ -126,7 +126,7 @@ export default function Footer() {
               </a>
               <a
                 href="#"
-                className="text-sage-light hover:text-warm-white transition-colors"
+                className="text-sage-light hover:text-warm-white transition-colors p-3 -m-3 rounded-full hover:bg-warm-white/10"
                 aria-label="LinkedIn"
               >
                 <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">

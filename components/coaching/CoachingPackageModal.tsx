@@ -72,7 +72,7 @@ export default function CoachingPackageModal({
         {/* Header */}
         <div className="flex items-start justify-between p-4 sm:p-6 border-b border-gray-200 gap-3">
           <div className="flex-1 min-w-0">
-            <h3 className="font-heading text-xl sm:text-2xl font-bold text-deep-blue leading-tight">
+            <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-deep-blue leading-snug break-words">
               Choisissez votre formule de coaching
             </h3>
             <p className="text-xs sm:text-sm text-text-secondary mt-1.5 leading-relaxed">
@@ -136,7 +136,7 @@ export default function CoachingPackageModal({
                   </ul>
                 </div>
                 <div className="text-left sm:text-right flex-shrink-0">
-                  <div className="text-4xl sm:text-5xl font-bold text-warm-white mb-1 leading-none">510 DH</div>
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-warm-white mb-1 leading-none">510 DH</div>
                   <div className="text-xs sm:text-sm text-warm-white/80 mt-1.5">Séance unique • 60 min</div>
                   <div className="inline-block mt-2.5 px-3 py-1 bg-warm-white/20 text-warm-white rounded-full text-xs font-semibold backdrop-blur-sm">
                     Commencez aujourd'hui
@@ -194,7 +194,7 @@ export default function CoachingPackageModal({
                     </ul>
                   </div>
                   <div className="text-left sm:text-right flex-shrink-0">
-                    <div className="text-3xl sm:text-4xl font-bold text-deep-blue mb-1 leading-none">1400 DH</div>
+                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-deep-blue mb-1 leading-none">1400 DH</div>
                     <div className="text-xs sm:text-sm text-text-secondary mt-1.5">3 séances • 467 DH/séance</div>
                     <div className="inline-block mt-2.5 px-3 py-1 bg-golden-orange/10 text-golden-orange rounded-full text-xs font-semibold">
                       Pour démarrer votre parcours
@@ -241,7 +241,7 @@ export default function CoachingPackageModal({
                     </ul>
                   </div>
                   <div className="text-left sm:text-right flex-shrink-0">
-                    <div className="text-3xl sm:text-4xl font-bold text-deep-blue mb-1 leading-none">2500 DH</div>
+                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-deep-blue mb-1 leading-none">2500 DH</div>
                     <div className="text-xs sm:text-sm text-text-secondary mt-1.5">6 séances • 417 DH/séance</div>
                     <div className="inline-block mt-2.5 px-3 py-1 bg-mystic-mauve/10 text-mystic-mauve rounded-full text-xs font-semibold">
                       Pour ancrer votre transformation
@@ -285,7 +285,7 @@ export default function CoachingPackageModal({
                     </ul>
                   </div>
                   <div className="text-left sm:text-right flex-shrink-0">
-                    <div className="text-3xl sm:text-4xl font-bold text-deep-blue mb-1 leading-none">4500 DH</div>
+                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-deep-blue mb-1 leading-none">4500 DH</div>
                     <div className="text-xs sm:text-sm text-text-secondary mt-1.5">12 séances • 375 DH/séance</div>
                     <div className="inline-block mt-2.5 px-3 py-1 bg-morocco-blue/10 text-morocco-blue rounded-full text-xs font-semibold">
                       Pour une évolution durable
