@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Hero from '@/components/sections/Hero';
 import Section from '@/components/sections/Section';
 import Card from '@/components/ui/Card';
@@ -123,6 +124,50 @@ export default function Home() {
             </p>
           </Card>
         </div>
+      </Section>
+
+      {/* À Propos - CTA vers Expertise */}
+      <Section background="white">
+        <Card className="max-w-5xl mx-auto overflow-hidden p-0">
+          <div className="grid md:grid-cols-2 gap-0">
+            {/* Image Portrait */}
+            <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[400px]">
+              <Image
+                src="/images/Reel/Hajar.jpg"
+                alt="Hajar Habi - Coach Holistique & Professeure de Yoga"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+
+            {/* Contenu */}
+            <div className="p-8 md:p-12 flex flex-col justify-center bg-gradient-to-br from-dune-beige/30 to-warm-white">
+              <div className="inline-block px-4 py-1.5 bg-mystic-mauve/10 text-mystic-mauve text-xs font-semibold rounded-full mb-6 self-start uppercase tracking-wide">
+                Mon Parcours
+              </div>
+
+              <h2 className="font-heading text-3xl md:text-4xl font-bold text-deep-blue mb-4 leading-tight">
+                Qui suis-je ?
+              </h2>
+
+              <p className="text-text-secondary text-base md:text-lg leading-relaxed mb-8">
+                Plus de 10 ans d'expérience corporate, certifiée Coach & Team® et
+                professeure de Yoga traditionnelle (Isha Foundation). Découvrez mon
+                parcours et mes qualifications complètes.
+              </p>
+
+              <Button
+                href="/expertise"
+                variant="primary"
+                size="lg"
+                className="self-start"
+              >
+                Découvrir mon parcours
+              </Button>
+            </div>
+          </div>
+        </Card>
       </Section>
 
       {/* Services Section */}

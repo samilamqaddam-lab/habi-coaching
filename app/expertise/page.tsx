@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Hero from '@/components/sections/Hero';
 import Section from '@/components/sections/Section';
 import Card from '@/components/ui/Card';
@@ -22,7 +23,7 @@ export default function ExpertisePage() {
         compact
       />
 
-      {/* Histoire */}
+      {/* Histoire - Tile/Image Layout */}
       <Section
         subtitle={t('expertise.story.subtitle')}
         title={t('expertise.story.title')}
@@ -30,16 +31,35 @@ export default function ExpertisePage() {
         centered
         afterHero
       >
-        <div className="max-w-4xl mx-auto">
-          <p className="text-lg text-text-secondary leading-relaxed mb-6">
-            {t('expertise.story.paragraph1')}
-          </p>
-          <p className="text-lg text-text-secondary leading-relaxed mb-6">
-            {t('expertise.story.paragraph2')}
-          </p>
-          <p className="text-lg text-text-secondary leading-relaxed">
-            {t('expertise.story.paragraph3')}
-          </p>
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-5 gap-12 items-start">
+            {/* Image Column - Portrait Hajar */}
+            <div className="lg:col-span-2">
+              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-xl">
+                <Image
+                  src="/images/Reel/Hajar.jpg"
+                  alt="Hajar Habi - Coach & Professeure de Yoga"
+                  fill
+                  className="object-cover object-center"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  priority
+                />
+              </div>
+            </div>
+
+            {/* Text Column */}
+            <div className="lg:col-span-3 space-y-6">
+              <p className="text-lg text-text-secondary leading-relaxed">
+                {t('expertise.story.paragraph1')}
+              </p>
+              <p className="text-lg text-text-secondary leading-relaxed">
+                {t('expertise.story.paragraph2')}
+              </p>
+              <p className="text-lg text-text-secondary leading-relaxed">
+                {t('expertise.story.paragraph3')}
+              </p>
+            </div>
+          </div>
         </div>
       </Section>
 
@@ -48,6 +68,38 @@ export default function ExpertisePage() {
         subtitle={t('expertise.certifications.subtitle')}
         title={t('expertise.certifications.title')}
       >
+        {/* Photo Certification mise en avant */}
+        <div className="mb-16 max-w-4xl mx-auto">
+          <Card padding="lg" className="bg-gradient-to-br from-mystic-mauve/5 to-warm-white">
+            <div className="grid md:grid-cols-5 gap-8 items-center">
+              <div className="md:col-span-2">
+                <div className="relative aspect-square rounded-xl overflow-hidden shadow-lg">
+                  <Image
+                    src="/images/Reel/3272a112-4dde-492f-85e2-d2acec8582be.jpg"
+                    alt="Hajar Habi - Certification Coach & Team"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 40vw"
+                  />
+                </div>
+              </div>
+              <div className="md:col-span-3">
+                <div className="inline-block px-4 py-1.5 bg-mystic-mauve/10 text-mystic-mauve text-xs font-semibold rounded-full mb-4 uppercase tracking-wide">
+                  Certification Officielle
+                </div>
+                <h3 className="font-heading text-2xl md:text-3xl font-bold text-deep-blue mb-3">
+                  Coach & Team® certifiée
+                </h3>
+                <p className="text-text-secondary leading-relaxed text-base md:text-lg">
+                  Formation complète en coaching professionnel reconnue, combinant approches
+                  systémiques et outils pratiques pour accompagner individus et équipes dans
+                  leur transformation.
+                </p>
+              </div>
+            </div>
+          </Card>
+        </div>
+
         <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Coach & Team */}
           <Card padding="lg">
