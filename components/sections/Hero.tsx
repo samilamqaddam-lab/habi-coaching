@@ -163,12 +163,12 @@ export default function Hero({
           </div>
         </Container>
 
-        {/* Scroll indicator */}
+        {/* Scroll indicator - centered under left text column on lg screens */}
         <div className={`absolute ${
           useVhSpacing
             ? 'bottom-10'
             : 'bottom-10 sm:bottom-12 md:bottom-14 lg:bottom-16'
-        } left-1/2 transform -translate-x-1/2 animate-bounce`}>
+        } left-1/2 lg:left-1/4 transform -translate-x-1/2 animate-bounce`}>
           <svg
             className={`w-6 h-6 ${scrollColors[theme]}`}
             fill="none"
