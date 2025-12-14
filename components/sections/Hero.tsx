@@ -198,7 +198,7 @@ export default function Hero({
         useVhSpacing
           ? 'min-h-[75vh]'
           : minimal
-          ? 'min-h-[24rem] sm:min-h-[26rem] lg:min-h-[28rem]'
+          ? 'min-h-[28rem] sm:min-h-[32rem] lg:min-h-[34rem]'
           : compact
           ? 'min-h-[32rem] sm:min-h-[36rem] lg:min-h-[40rem]'
           : 'min-h-[40rem] sm:min-h-[44rem] lg:min-h-[48rem] xl:min-h-[52rem]'
@@ -216,7 +216,7 @@ export default function Hero({
         useVhSpacing
           ? 'py-20 -translate-y-6'
           : minimal
-          ? 'py-8 sm:py-10 md:py-12'
+          ? 'py-10 sm:py-12 md:py-16'
           : compact
           ? 'py-12 sm:py-16 md:py-20 lg:py-24'
           : 'py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32'
@@ -281,7 +281,7 @@ export default function Hero({
         useVhSpacing
           ? 'bottom-10'
           : minimal
-          ? 'bottom-4 sm:bottom-6'
+          ? 'bottom-6 sm:bottom-8'
           : compact
           ? 'bottom-8 sm:bottom-10 md:bottom-12'
           : 'bottom-10 sm:bottom-12 md:bottom-14 lg:bottom-16'
