@@ -21,6 +21,7 @@ interface HeroProps {
   centered?: boolean;
   theme?: 'yoga' | 'coaching' | 'corporate' | 'default';
   compact?: boolean; // Réduit la hauteur pour les pages internes
+  minimal?: boolean; // Hauteur minimale pour homepage
   useVhSpacing?: boolean; // Utilise l'ancien système vh pour la page d'accueil
   endWithWhite?: boolean; // Force le gradient à se terminer en blanc pour plus de contraste
   splitLayout?: boolean; // Active le layout split avec image à droite
@@ -40,6 +41,7 @@ export default function Hero({
   centered = true,
   theme = 'default',
   compact = false,
+  minimal = false,
   useVhSpacing = false,
   endWithWhite = false,
   splitLayout = false,
@@ -195,6 +197,8 @@ export default function Hero({
       className={`relative ${
         useVhSpacing
           ? 'min-h-[75vh]'
+          : minimal
+          ? 'min-h-[24rem] sm:min-h-[26rem] lg:min-h-[28rem]'
           : compact
           ? 'min-h-[32rem] sm:min-h-[36rem] lg:min-h-[40rem]'
           : 'min-h-[40rem] sm:min-h-[44rem] lg:min-h-[48rem] xl:min-h-[52rem]'
@@ -211,6 +215,8 @@ export default function Hero({
       <Container className={`relative z-10 ${
         useVhSpacing
           ? 'py-20 -translate-y-6'
+          : minimal
+          ? 'py-8 sm:py-10 md:py-12'
           : compact
           ? 'py-12 sm:py-16 md:py-20 lg:py-24'
           : 'py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32'
@@ -274,6 +280,8 @@ export default function Hero({
       <div className={`absolute ${
         useVhSpacing
           ? 'bottom-10'
+          : minimal
+          ? 'bottom-4 sm:bottom-6'
           : compact
           ? 'bottom-8 sm:bottom-10 md:bottom-12'
           : 'bottom-10 sm:bottom-12 md:bottom-14 lg:bottom-16'
