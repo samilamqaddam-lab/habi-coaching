@@ -306,6 +306,30 @@
     },
     "perPerson": "per person",
     "programHighlights": "Program highlights:",
+    "designedBy": "By Sadhguru",
+    "lineage": {
+      "subtitle": "Lineage & Tradition",
+      "title": "In the Lineage of Sadhguru",
+      "intro": "All yoga teachings offered are rooted in the Classical Hatha Yoga tradition, transmitted by Sadhguru through Isha Foundation. An ancient lineage preserved in its purity and authenticity.",
+      "sadhguru": {
+        "title": "Sadhguru",
+        "role": "Founder of Isha Foundation",
+        "description": "Yogi, mystic and visionary, Sadhguru has dedicated his life to making yoga accessible to all in its purest form. His teacher training program is globally recognized for its authenticity and rigor.",
+        "link": "Discover Isha Foundation"
+      },
+      "training": {
+        "title": "Isha Certified Training",
+        "description": "Intensive 21-week residential training at the Isha Yoga Center in India, under Sadhguru's direct guidance."
+      },
+      "hours": {
+        "title": "1750+ Hours of Training",
+        "description": "A complete immersion in yogic practices: asanas, pranayama, kriyas, meditation and yogic philosophy."
+      },
+      "global": {
+        "title": "Global Community",
+        "description": "Isha Foundation is present in over 150 countries, with millions of practitioners benefiting from these transformative teachings."
+      }
+    },
     "philosophy": {
       "subtitle": "My Philosophy",
       "title": "Yoga as a Path of Transformation",

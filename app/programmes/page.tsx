@@ -171,9 +171,17 @@ export default function ProgrammesPage() {
           {yogaClasses.map((yogaClass, index) => (
             <Card key={index} hover padding="lg" className="flex flex-col">
               <div className="flex-grow">
-                <h3 className="font-heading text-xl font-bold text-deep-blue mb-4">
-                  {yogaClass.title}
-                </h3>
+                <div className="flex items-start justify-between mb-4">
+                  <h3 className="font-heading text-xl font-bold text-deep-blue">
+                    {yogaClass.title}
+                  </h3>
+                  <span className="inline-flex items-center px-2 py-1 bg-golden-orange/10 text-golden-orange text-xs font-medium rounded-full whitespace-nowrap ml-2">
+                    <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    {t('programmes.designedBy')}
+                  </span>
+                </div>
                 <p className="text-text-secondary leading-relaxed mb-6">
                   {yogaClass.description}
                 </p>
@@ -375,11 +383,117 @@ export default function ProgrammesPage() {
         </div>
       </Section>
 
+      {/* Lignée Isha Foundation */}
+      <Section
+        id="lignee"
+        subtitle={t('programmes.lineage.subtitle')}
+        title={t('programmes.lineage.title')}
+        background="beige"
+        centered
+      >
+        <div className="max-w-4xl mx-auto">
+          <p className="text-lg text-text-secondary leading-relaxed mb-10 text-center">
+            {t('programmes.lineage.intro')}
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            {/* Sadhguru Info Card */}
+            <Card className="p-8 bg-gradient-to-br from-warm-white to-golden-orange/5 border border-golden-orange/10">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-16 h-16 bg-golden-orange/10 rounded-full flex items-center justify-center flex-shrink-0">
+                  <svg className="w-8 h-8 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-heading text-2xl font-bold text-deep-blue">
+                    {t('programmes.lineage.sadhguru.title')}
+                  </h3>
+                  <p className="text-sm text-golden-orange font-medium">
+                    {t('programmes.lineage.sadhguru.role')}
+                  </p>
+                </div>
+              </div>
+              <p className="text-text-secondary leading-relaxed mb-4">
+                {t('programmes.lineage.sadhguru.description')}
+              </p>
+              <a
+                href="https://isha.sadhguru.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-sm text-golden-orange hover:text-golden-orange/80 transition-colors font-medium"
+              >
+                {t('programmes.lineage.sadhguru.link')}
+                <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </Card>
+
+            {/* Formation Info */}
+            <div className="space-y-6">
+              <Card padding="md" className="bg-warm-white">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-golden-orange/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-deep-blue mb-1">
+                      {t('programmes.lineage.training.title')}
+                    </h4>
+                    <p className="text-sm text-text-secondary">
+                      {t('programmes.lineage.training.description')}
+                    </p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card padding="md" className="bg-warm-white">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-golden-orange/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-deep-blue mb-1">
+                      {t('programmes.lineage.hours.title')}
+                    </h4>
+                    <p className="text-sm text-text-secondary">
+                      {t('programmes.lineage.hours.description')}
+                    </p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card padding="md" className="bg-warm-white">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-golden-orange/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-deep-blue mb-1">
+                      {t('programmes.lineage.global.title')}
+                    </h4>
+                    <p className="text-sm text-text-secondary">
+                      {t('programmes.lineage.global.description')}
+                    </p>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </Section>
+
       {/* Philosophie */}
       <Section
         subtitle={t('programmes.philosophy.subtitle')}
         title={t('programmes.philosophy.title')}
-        background="beige"
         centered
       >
         <div className="max-w-3xl mx-auto">
