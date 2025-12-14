@@ -61,8 +61,9 @@ export default function RessourcesPage() {
           text: t('ressources.hero.primaryCTA'),
           href: '#articles',
         }}
-        centered
         compact
+        splitLayout
+        splitImage="/images/heroes/ressources-notebook-hero.jpg"
       />
 
       {/* Articles */}

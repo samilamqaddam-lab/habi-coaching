@@ -26,6 +26,7 @@ export default function Home() {
           href: '/contact',
         }}
         useVhSpacing
+        endWithWhite
       />
 
       {/* Expertise Section */}
@@ -34,6 +35,7 @@ export default function Home() {
         subtitle={t('home.expertise.subtitle')}
         title={t('home.expertise.title')}
         description={t('home.expertise.description')}
+        background="beige"
         centered
       >
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 max-w-5xl mx-auto">
@@ -127,47 +129,55 @@ export default function Home() {
       </Section>
 
       {/* À Propos - CTA vers Expertise */}
-      <Section background="white">
-        <Card className="max-w-5xl mx-auto overflow-hidden p-0">
-          <div className="grid md:grid-cols-2 gap-0">
-            {/* Image Portrait */}
-            <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[400px]">
-              <Image
-                src="/images/Reel/Hajar.jpg"
-                alt="Hajar Habi - Coach Holistique & Professeure de Yoga"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
+      <Section background="sage">
+        <div className="max-w-6xl mx-auto">
+          {/* Asymmetric Layout with Offset Image */}
+          <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
+            {/* Image Portrait - Offset and Floating */}
+            <div className="md:col-span-5 relative">
+              <div className="relative aspect-[3/4] md:aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl transform md:-rotate-2 hover:rotate-0 transition-transform duration-500">
+                <Image
+                  src="/images/Reel/Hajar.jpg"
+                  alt="Hajar Habi - Coach Holistique & Professeure de Yoga"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                />
+              </div>
+              {/* Subtle decorative element */}
+              <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-mystic-mauve/20 rounded-full blur-2xl -z-10"></div>
+              <div className="absolute -top-4 -left-4 w-32 h-32 bg-golden-orange/15 rounded-full blur-2xl -z-10"></div>
             </div>
 
-            {/* Contenu */}
-            <div className="p-8 md:p-12 flex flex-col justify-center bg-gradient-to-br from-dune-beige/30 to-warm-white">
-              <div className="inline-block px-4 py-1.5 bg-mystic-mauve/10 text-mystic-mauve text-xs font-semibold rounded-full mb-6 self-start uppercase tracking-wide">
-                Mon Parcours
-              </div>
+            {/* Content - Overlapping Card */}
+            <div className="md:col-span-7 relative">
+              <Card className="p-8 md:p-12 bg-gradient-to-br from-warm-white via-warm-white to-dune-beige/20 shadow-xl">
+                <div className="inline-block px-4 py-1.5 bg-mystic-mauve/10 text-mystic-mauve text-xs font-semibold rounded-full mb-6 self-start uppercase tracking-wide">
+                  Mon Parcours
+                </div>
 
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-deep-blue mb-4 leading-tight">
-                Qui suis-je ?
-              </h2>
+                <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-deep-blue mb-4 leading-tight">
+                  Qui suis-je ?
+                </h2>
 
-              <p className="text-text-secondary text-base md:text-lg leading-relaxed mb-8">
-                Plus de 10 ans d'expérience corporate, certifiée Coach & Team® et
-                professeure de Yoga traditionnelle (Isha Foundation). Découvrez mon
-                parcours et mes qualifications complètes.
-              </p>
+                <p className="text-text-secondary text-base md:text-lg leading-relaxed mb-8">
+                  Plus de 20 ans d'expérience corporate, certifiée Coach & Team® et
+                  professeure de Yoga traditionnelle (Isha Foundation). Découvrez mon
+                  parcours et mes qualifications complètes.
+                </p>
 
-              <Button
-                href="/expertise"
-                variant="primary"
-                size="lg"
-                className="self-start"
-              >
-                Découvrir mon parcours
-              </Button>
+                <Button
+                  href="/expertise"
+                  variant="primary"
+                  size="lg"
+                  className="self-start"
+                >
+                  Découvrir mon parcours
+                </Button>
+              </Card>
             </div>
           </div>
-        </Card>
+        </div>
       </Section>
 
       {/* Services Section */}

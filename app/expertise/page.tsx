@@ -68,38 +68,6 @@ export default function ExpertisePage() {
         subtitle={t('expertise.certifications.subtitle')}
         title={t('expertise.certifications.title')}
       >
-        {/* Photo Certification mise en avant */}
-        <div className="mb-16 max-w-4xl mx-auto">
-          <Card padding="lg" className="bg-gradient-to-br from-mystic-mauve/5 to-warm-white">
-            <div className="grid md:grid-cols-5 gap-8 items-center">
-              <div className="md:col-span-2">
-                <div className="relative aspect-square rounded-xl overflow-hidden shadow-lg">
-                  <Image
-                    src="/images/Reel/3272a112-4dde-492f-85e2-d2acec8582be.jpg"
-                    alt="Hajar Habi - Certification Coach & Team"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 40vw"
-                  />
-                </div>
-              </div>
-              <div className="md:col-span-3">
-                <div className="inline-block px-4 py-1.5 bg-mystic-mauve/10 text-mystic-mauve text-xs font-semibold rounded-full mb-4 uppercase tracking-wide">
-                  Certification Officielle
-                </div>
-                <h3 className="font-heading text-2xl md:text-3xl font-bold text-deep-blue mb-3">
-                  Coach & Team® certifiée
-                </h3>
-                <p className="text-text-secondary leading-relaxed text-base md:text-lg">
-                  Formation complète en coaching professionnel reconnue, combinant approches
-                  systémiques et outils pratiques pour accompagner individus et équipes dans
-                  leur transformation.
-                </p>
-              </div>
-            </div>
-          </Card>
-        </div>
-
         <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Coach & Team */}
           <Card padding="lg">
@@ -222,7 +190,7 @@ export default function ExpertisePage() {
         centered
       >
         <div className="max-w-4xl mx-auto">
-          <p className="text-lg text-text-secondary leading-relaxed mb-12">
+          <p className="text-lg text-text-secondary leading-relaxed mb-12 text-center">
             {t('expertise.experience.description')}
           </p>
 

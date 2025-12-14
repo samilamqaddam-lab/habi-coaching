@@ -152,6 +152,8 @@ export default function ProgrammesPage() {
         }}
         theme="yoga"
         compact
+        splitLayout
+        splitImage="/images/heroes/yoga-nature-hero.jpg"
       />
 
       {/* Cours réguliers */}

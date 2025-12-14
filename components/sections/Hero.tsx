@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import Container from '../ui/Container';
 import Button from '../ui/Button';
 
@@ -20,6 +21,9 @@ interface HeroProps {
   theme?: 'yoga' | 'coaching' | 'corporate' | 'default';
   compact?: boolean; // Réduit la hauteur pour les pages internes
   useVhSpacing?: boolean; // Utilise l'ancien système vh pour la page d'accueil
+  endWithWhite?: boolean; // Force le gradient à se terminer en blanc pour plus de contraste
+  splitLayout?: boolean; // Active le layout split avec image à droite
+  splitImage?: string; // Image pour le layout split
 }
 
 export default function Hero({
@@ -34,9 +38,17 @@ export default function Hero({
   theme = 'default',
   compact = false,
   useVhSpacing = false,
+  endWithWhite = false,
+  splitLayout = false,
+  splitImage,
 }: HeroProps) {
-  // Theme-based gradients with smooth bottom transition to beige
-  const gradients = {
+  // Theme-based gradients with smooth bottom transition to beige (or white if endWithWhite is true)
+  const gradients = endWithWhite ? {
+    yoga: 'bg-gradient-to-b from-golden-orange/10 via-warm-white to-warm-white',
+    coaching: 'bg-gradient-to-b from-mystic-mauve/20 via-warm-white to-warm-white',
+    corporate: 'bg-gradient-to-b from-sky-blue/25 via-warm-white to-warm-white',
+    default: 'bg-gradient-to-b from-dune-beige/30 via-warm-white to-warm-white',
+  } : {
     yoga: 'bg-gradient-to-b from-golden-orange/10 via-warm-white via-70% to-dune-beige',
     coaching: 'bg-gradient-to-b from-mystic-mauve/20 via-warm-white via-70% to-dune-beige',
     corporate: 'bg-gradient-to-b from-sky-blue/25 via-warm-white via-70% to-dune-beige',
@@ -59,6 +71,121 @@ export default function Hero({
     default: 'text-golden-orange',
   };
 
+  // Split Layout Rendering
+  if (splitLayout) {
+    return (
+      <section
+        className={`relative ${
+          useVhSpacing
+            ? 'min-h-[85vh]'
+            : compact
+            ? 'min-h-[40rem] sm:min-h-[44rem] lg:min-h-[48rem]'
+            : 'min-h-[44rem] sm:min-h-[48rem] lg:min-h-[52rem] xl:min-h-[56rem]'
+        } flex items-center ${gradients[theme]}`}
+      >
+        <Container className={`relative z-10 ${
+          useVhSpacing
+            ? 'py-16 sm:py-20'
+            : compact
+            ? 'py-12 sm:py-16 md:py-20'
+            : 'py-16 sm:py-20 md:py-24 lg:py-28'
+        }`}>
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left Side - Text Content */}
+            <div className="order-2 lg:order-1 space-y-6">
+              {subtitle && (
+                <p className={`${subtitleColors[theme]} text-sm md:text-base font-medium uppercase tracking-wider`}>
+                  {subtitle}
+                </p>
+              )}
+
+              <h1 className={`font-heading font-bold text-deep-blue leading-tight ${
+                compact
+                  ? 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl'
+                  : 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl'
+              }`}>
+                {title}
+              </h1>
+
+              <p className={`leading-relaxed text-text-secondary ${
+                compact ? 'text-base md:text-lg' : 'text-lg md:text-xl'
+              }`}>
+                {description}
+              </p>
+
+              {(primaryCTA || secondaryCTA) && (
+                <div className="flex flex-col sm:flex-row gap-4 pt-2">
+                  {primaryCTA && (
+                    <Button variant="primary" size="lg" href={primaryCTA.href}>
+                      {primaryCTA.text}
+                    </Button>
+                  )}
+                  {secondaryCTA && (
+                    <Button
+                      variant={theme === 'corporate' ? 'corporate' : 'secondary'}
+                      size="lg"
+                      href={secondaryCTA.href}
+                    >
+                      {secondaryCTA.text}
+                    </Button>
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* Right Side - Image */}
+            <div className="order-1 lg:order-2 relative">
+              <div className="relative w-full aspect-[4/5] lg:aspect-[3/4]">
+                {/* Decorative background elements */}
+                <div className="absolute -top-6 -left-6 w-32 h-32 bg-golden-orange/15 rounded-full blur-3xl -z-10"></div>
+                <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-mystic-mauve/20 rounded-full blur-3xl -z-10"></div>
+
+                {/* Image container with creative styling */}
+                <div className="relative h-full w-full rounded-3xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-500">
+                  {splitImage && (
+                    <Image
+                      src={splitImage}
+                      alt={title}
+                      fill
+                      className="object-cover object-center"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      priority
+                    />
+                  )}
+                  {/* Subtle overlay for depth */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-deep-blue/5 to-transparent"></div>
+                </div>
+
+                {/* Decorative frame accent */}
+                <div className="absolute -inset-4 border-2 border-golden-orange/10 rounded-3xl -z-10 hidden lg:block"></div>
+              </div>
+            </div>
+          </div>
+        </Container>
+
+        {/* Scroll indicator */}
+        <div className={`absolute ${
+          useVhSpacing
+            ? 'bottom-10'
+            : 'bottom-10 sm:bottom-12 md:bottom-14 lg:bottom-16'
+        } left-1/2 transform -translate-x-1/2 animate-bounce`}>
+          <svg
+            className={`w-6 h-6 ${scrollColors[theme]}`}
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </div>
+      </section>
+    );
+  }
+
+  // Original Centered Layout
   return (
     <section
       className={`relative ${

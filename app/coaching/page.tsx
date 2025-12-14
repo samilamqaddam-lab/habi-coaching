@@ -60,6 +60,8 @@ export default function CoachingPage() {
         }}
         theme="coaching"
         compact
+        splitLayout
+        splitImage="/images/heroes/coaching-path-hero.jpg"
       />
 
       {/* Types de coaching */}

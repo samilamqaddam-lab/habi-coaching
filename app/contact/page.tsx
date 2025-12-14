@@ -20,8 +20,9 @@ export default function ContactPage() {
           text: t('contact.hero.primaryCTA'),
           href: '#contact-form',
         }}
-        centered
         compact
+        splitLayout
+        splitImage="/images/heroes/contact-coffee-cups-hero.jpg"
       />
 
       {/* Contact Methods */}
