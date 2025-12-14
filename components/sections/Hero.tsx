@@ -276,28 +276,28 @@ export default function Hero({
         </div>
       </Container>
 
-      {/* Scroll indicator */}
-      <div className={`absolute ${
-        useVhSpacing
-          ? 'bottom-10'
-          : minimal
-          ? 'bottom-6 sm:bottom-8'
-          : compact
-          ? 'bottom-8 sm:bottom-10 md:bottom-12'
-          : 'bottom-10 sm:bottom-12 md:bottom-14 lg:bottom-16'
-      } left-1/2 transform -translate-x-1/2 animate-bounce`}>
-        <svg
-          className={`w-6 h-6 ${backgroundImage ? 'text-warm-white' : scrollColors[theme]}`}
-          fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
-      </div>
+      {/* Scroll indicator - hidden in minimal mode */}
+      {!minimal && (
+        <div className={`absolute ${
+          useVhSpacing
+            ? 'bottom-10'
+            : compact
+            ? 'bottom-8 sm:bottom-10 md:bottom-12'
+            : 'bottom-10 sm:bottom-12 md:bottom-14 lg:bottom-16'
+        } left-1/2 transform -translate-x-1/2 animate-bounce`}>
+          <svg
+            className={`w-6 h-6 ${backgroundImage ? 'text-warm-white' : scrollColors[theme]}`}
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </div>
+      )}
     </section>
   );
 }
