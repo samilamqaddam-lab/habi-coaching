@@ -5,6 +5,7 @@ import Button from '../ui/Button';
 
 interface HeroProps {
   title: string;
+  titleSuffix?: string; // Displayed below title with different styling (e.g., "— Individus & Organisations")
   subtitle?: string;
   description: string;
   primaryCTA?: {
@@ -24,10 +25,12 @@ interface HeroProps {
   endWithWhite?: boolean; // Force le gradient à se terminer en blanc pour plus de contraste
   splitLayout?: boolean; // Active le layout split avec image à droite
   splitImage?: string; // Image pour le layout split
+  children?: React.ReactNode; // Contenu additionnel après les CTAs
 }
 
 export default function Hero({
   title,
+  titleSuffix,
   subtitle,
   description,
   primaryCTA,
@@ -41,6 +44,7 @@ export default function Hero({
   endWithWhite = false,
   splitLayout = false,
   splitImage,
+  children,
 }: HeroProps) {
   // Theme-based gradients with smooth bottom transition to beige (or white if endWithWhite is true)
   const gradients = endWithWhite ? {
@@ -219,12 +223,20 @@ export default function Hero({
           )}
 
           <h1
-            className={`font-heading text-4xl md:text-6xl lg:text-7xl font-bold mb-6 ${
+            className={`font-heading text-4xl md:text-6xl lg:text-7xl font-bold ${titleSuffix ? 'mb-2' : 'mb-6'} ${
               backgroundImage ? 'text-warm-white' : 'text-deep-blue'
             }`}
           >
             {title}
           </h1>
+
+          {titleSuffix && (
+            <p className={`font-heading text-xl md:text-2xl lg:text-3xl font-medium mb-6 ${
+              backgroundImage ? 'text-warm-white/80' : 'text-text-secondary'
+            }`}>
+              — {titleSuffix} —
+            </p>
+          )}
 
           <p
             className={`text-lg md:text-xl mb-10 leading-relaxed ${
@@ -252,6 +264,9 @@ export default function Hero({
               )}
             </div>
           )}
+
+          {/* Additional content (e.g., service pills) */}
+          {children}
         </div>
       </Container>
 
