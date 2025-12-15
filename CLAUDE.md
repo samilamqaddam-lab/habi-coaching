@@ -4,10 +4,14 @@
 Professional coaching website for Hajar Habi - Holistic Coach & Traditional Yoga Teacher.
 
 **Tech Stack:**
-- Next.js 14+ (App Router)
+- Next.js 16.0.10 (App Router)
+- React 19.2.2
 - TypeScript
-- Tailwind CSS
+- Tailwind CSS 4
 - i18n with JSON locale files (fr.json, en.json)
+
+**Repository:** https://github.com/samilamqaddam-lab/habi-coaching.git
+**Deployment:** Vercel (auto-deploy on push to main)
 
 ## Design System
 
@@ -20,93 +24,160 @@ Professional coaching website for Hajar Habi - Holistic Coach & Traditional Yoga
 ### Key Design Principles
 - NO background images on Hero sections - preserve color gradient flow
 - Split layout (text left, image right) for internal pages
-- Centered layout for Homepage (Hajar's photo appears in "Qui suis-je?" section below)
+- Centered layout for Homepage with minimal height
 - Images should be situational, symbolic - avoid showing faces unless it's Hajar herself
+- Sadhguru presence on yoga page to honor the Isha Foundation lineage
 
-## Hero Component - Split Layout
+## Hero Component Modes
 
-Added in December 2024. New props:
+### Props Available
 ```tsx
-splitLayout?: boolean;  // Activates split layout with image on right
-splitImage?: string;    // Image path for split layout
-endWithWhite?: boolean; // Force gradient to end white (homepage only)
+interface HeroProps {
+  title: string;
+  titleSuffix?: string;      // Displayed below title (e.g., "— Individus & Organisations")
+  subtitle?: string;
+  description: string;
+  primaryCTA?: { text: string; href: string };
+  secondaryCTA?: { text: string; href: string };
+  backgroundImage?: string;
+  overlay?: boolean;
+  centered?: boolean;
+  theme?: 'yoga' | 'coaching' | 'corporate' | 'default';
+  compact?: boolean;         // Reduced height for internal pages
+  minimal?: boolean;         // Minimum height for homepage
+  useVhSpacing?: boolean;    // Legacy vh-based spacing
+  endWithWhite?: boolean;    // Gradient ends white (for contrast)
+  splitLayout?: boolean;     // Text left, image right
+  splitImage?: string;       // Image for split layout
+  children?: React.ReactNode; // Additional content after CTAs
+}
 ```
 
-### Split Layout Implementation
-- Grid: `lg:grid-cols-2 gap-12 lg:gap-16`
-- Text on left (order-2 lg:order-1), Image on right (order-1 lg:order-2)
-- Image container: `aspect-[4/5] lg:aspect-[3/4]`, rounded-3xl, shadow-2xl
-- Decorative blur elements with theme colors
-- Hover scale effect on image
+### Height Modes
+- **minimal**: `min-h-[28rem] sm:min-h-[32rem] lg:min-h-[34rem]` - Homepage only
+- **compact**: `min-h-[32rem] sm:min-h-[36rem] lg:min-h-[40rem]` - Internal pages
+- **default**: `min-h-[40rem] sm:min-h-[44rem] lg:min-h-[48rem] xl:min-h-[52rem]`
+- **splitLayout**: `min-h-[44rem] sm:min-h-[48rem] lg:min-h-[52rem] xl:min-h-[56rem]`
 
-## Pages Using Split Layout
+### Scroll Arrow
+- Hidden in `minimal` mode
+- Centered under left text column in `splitLayout` mode (`left-1/2 lg:left-1/4`)
+
+## Pages Configuration
+
+### Homepage (`/`)
+- **Layout:** Centered, minimal height
+- **Title:** Slogan "Croissance Consciente & Transformation"
+- **titleSuffix:** "Individus & Organisations"
+- **Props:** `minimal`, `endWithWhite`
+- **NO scroll arrow**
+- Hajar's photo appears in "Qui suis-je?" section below
 
 ### /programmes (Yoga)
-- Image: `/images/heroes/yoga-nature-hero.jpg`
-- Theme: yoga (golden-orange accents)
+- **Image:** `/images/heroes/sadhguru-hero.jpg`
+- **Source:** Pexels - Traditional monk in meditation (orange robes)
+- **Theme:** yoga (golden-orange accents)
+- **Special Features:**
+  - "By Sadhguru" badges on all yoga class cards
+  - Isha Foundation lineage section with Sadhguru info
+  - Link to isha.sadhguru.org
 
 ### /coaching
-- Image: `/images/heroes/coaching-path-hero.jpg`
-- Source: Pexels - "Tunnel de feuillage menant vers la lumiere"
-- Theme: coaching (mystic-mauve accents)
-- Symbolism: Path through transformation toward light/clarity
+- **Image:** `/images/heroes/coaching-path-hero.jpg`
+- **Source:** Pexels - Tunnel de feuillage menant vers la lumière
+- **Theme:** coaching (mystic-mauve accents)
+- **Symbolism:** Path through transformation toward light/clarity
 
 ### /organisations
-- Image: `/images/heroes/organisations-meeting-room-hero.jpg`
-- Source: Unsplash (Adrien Olichon) - Glass walled meeting room with table and chairs
-- Theme: corporate (morocco-blue accents)
-- Symbolism: Professional corporate environment, modern business setting
+- **Image:** `/images/heroes/organisations-meeting-room-hero.jpg`
+- **Source:** Unsplash (Adrien Olichon) - Glass walled meeting room
+- **Theme:** corporate (morocco-blue accents)
+- **Symbolism:** Professional corporate environment
 
 ### /ressources
-- Image: `/images/heroes/ressources-notebook-hero.jpg`
-- Source: Pexels (Ann poan) - Notebook with candle and mug
-- Theme: default
-- Symbolism: Learning, reflection, personal development resources
+- **Image:** `/images/heroes/ressources-notebook-hero.jpg`
+- **Source:** Pexels (Ann poan) - Notebook with candle and mug
+- **Theme:** default
+- **Symbolism:** Learning, reflection, personal development
 
 ### /contact
-- Image: `/images/heroes/contact-coffee-cups-hero.jpg`
-- Source: Pexels (Hilal Cavus) - Two coffee cups on wooden table
-- Theme: default
-- Symbolism: Invitation to conversation, warmth, connection
+- **Image:** `/images/heroes/contact-coffee-cups-hero.jpg`
+- **Source:** Pexels (Hilal Cavus) - Two coffee cups on wooden table
+- **Theme:** default
+- **Symbolism:** Invitation to conversation, warmth, connection
 
-### /page (Homepage)
-- **NO split layout** - keeps centered hero
-- Reason: Hajar's photo already in "Qui suis-je?" section (line 140)
-- Uses `endWithWhite` prop for contrast with following beige section
+### /expertise
+- Detailed credentials page
+- Coach & Team (EMCC), Isha Foundation, 20 years corporate
+
+## Sadhguru / Isha Foundation Integration
+
+### Yoga Page Lineage Section
+Added December 2024 - honors the source of Hajar's yoga training:
+- Sadhguru info card with role "Fondateur de Isha Foundation"
+- Training details: 21-week residential, 1750+ hours
+- Global community: 150+ countries
+- External link to official Isha Foundation website
+
+### Translation Keys
+```
+programmes.designedBy: "Par Sadhguru" / "By Sadhguru"
+programmes.lineage.subtitle/title/intro
+programmes.lineage.sadhguru.title/role/description/link
+programmes.lineage.training.title/description
+programmes.lineage.hours.title/description
+programmes.lineage.global.title/description
+```
 
 ## Real Photos Available
 Location: `/public/images/Reel/`
 - `Hajar.jpg` - Main portrait (used in Homepage "Qui suis-je?")
+- `IMG_4078.jpeg` - Retreat location (used in programmes)
 - Other real photos for testimonials and about sections
 
-## Important Corrections Made
-- Hero description should mention 20 years corporate experience (not 10)
+## Important Notes
+
+### Hajar's Credentials
+- 20+ years corporate experience (not 10)
 - Certification: Coach & Team with EMCC accreditation
+- Isha Foundation Hatha Yoga Teacher (1750h training with Sadhguru)
+
+### Design Rules
 - Avoid duplicating Hajar's photo on same page
 - Always maintain contrast between hero gradient and following section
+- Balance Sadhguru presence with Hajar's content on yoga page
 
-## Translation Keys
-Translations in `/locales/fr.json` and `/locales/en.json`
-Use `useTranslation()` hook from `@/hooks/useTranslation`
+### Security
+- React 19.2.2 and Next.js 16.0.10 (patched for CVE-2025-55182, CVE-2025-55183, CVE-2025-55184)
+
+## Translation Files
+Location: `/locales/fr.json` and `/locales/en.json`
+Hook: `useTranslation()` from `@/hooks/useTranslation`
 
 ## File Structure
 ```
 /app
-  /coaching/page.tsx     - Coaching page with split layout
-  /programmes/page.tsx   - Yoga programs with split layout
-  /page.tsx              - Homepage (centered hero)
-  /contact/page.tsx      - Contact page with split layout
-  /organisations/page.tsx - B2B services with split layout
-  /ressources/page.tsx   - Resources page with split layout
-  /expertise/page.tsx
+  /page.tsx              - Homepage (centered, minimal hero)
+  /coaching/page.tsx     - Coaching (split layout)
+  /programmes/page.tsx   - Yoga + Sadhguru section (split layout)
+  /contact/page.tsx      - Contact (split layout)
+  /organisations/page.tsx - B2B services (split layout)
+  /ressources/page.tsx   - Resources (split layout)
+  /expertise/page.tsx    - Credentials page
 
 /components
-  /sections/Hero.tsx     - Main hero component with split/centered modes
+  /sections/Hero.tsx     - Hero with split/centered/minimal modes
   /sections/Section.tsx
   /ui/Button.tsx
   /ui/Card.tsx
+  /forms/               - Contact forms, modals
 
 /public/images
-  /heroes/               - Hero section images
-  /Reel/                 - Real photos of Hajar
+  /heroes/              - Hero section images
+  /Reel/                - Real photos of Hajar
+  /programmes/          - Programme-specific images
+
+/locales
+  /fr.json              - French translations
+  /en.json              - English translations
 ```
