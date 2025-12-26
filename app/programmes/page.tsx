@@ -153,7 +153,7 @@ export default function ProgrammesPage() {
         theme="yoga"
         compact
         splitLayout
-        splitImage="/images/heroes/sadhguru-hero.jpg"
+        splitImage="/images/sadhguru/sadhguru-portrait-2.jpg"
       />
 
       {/* Cours réguliers */}
@@ -396,42 +396,60 @@ export default function ProgrammesPage() {
             {t('programmes.lineage.intro')}
           </p>
 
+          {/* Certification Logo */}
+          <div className="flex justify-center mb-10">
+            <Image
+              src="/images/certifications/isha-hatha-yoga-certified.png"
+              alt="Classical Hatha Yoga - Sadhguru Gurukulam Certified Teacher"
+              width={320}
+              height={100}
+              className="object-contain"
+            />
+          </div>
+
           <div className="grid md:grid-cols-2 gap-8 items-center">
-            {/* Sadhguru Info Card */}
-            <Card className="p-8 bg-gradient-to-br from-warm-white to-golden-orange/5 border border-golden-orange/10">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 bg-golden-orange/10 rounded-full flex items-center justify-center flex-shrink-0">
-                  <svg className="w-8 h-8 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-heading text-2xl font-bold text-deep-blue">
-                    {t('programmes.lineage.sadhguru.title')}
-                  </h3>
-                  <p className="text-sm text-golden-orange font-medium">
-                    {t('programmes.lineage.sadhguru.role')}
-                  </p>
-                </div>
+            {/* Sadhguru Photo Card */}
+            <div className="relative">
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/images/sadhguru/sadhguru-portrait-1.jpg"
+                  alt="Sadhguru en méditation"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
               </div>
-              <p className="text-text-secondary leading-relaxed mb-4">
-                {t('programmes.lineage.sadhguru.description')}
-              </p>
-              <a
-                href="https://isha.sadhguru.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center text-sm text-golden-orange hover:text-golden-orange/80 transition-colors font-medium"
-              >
-                {t('programmes.lineage.sadhguru.link')}
-                <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </a>
-            </Card>
+              {/* Info overlay */}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-deep-blue/90 via-deep-blue/60 to-transparent p-6 rounded-b-2xl">
+                <h3 className="font-heading text-2xl font-bold text-warm-white mb-1">
+                  {t('programmes.lineage.sadhguru.title')}
+                </h3>
+                <p className="text-golden-orange font-medium text-sm mb-3">
+                  {t('programmes.lineage.sadhguru.role')}
+                </p>
+                <a
+                  href="https://isha.sadhguru.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-sm text-warm-white hover:text-golden-orange transition-colors font-medium"
+                >
+                  {t('programmes.lineage.sadhguru.link')}
+                  <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </div>
+            </div>
 
             {/* Formation Info */}
-            <div className="space-y-6">
+            <div className="space-y-4">
+              {/* Sadhguru Description */}
+              <Card padding="md" className="bg-gradient-to-br from-warm-white to-golden-orange/5 border border-golden-orange/10">
+                <p className="text-text-secondary leading-relaxed text-sm">
+                  {t('programmes.lineage.sadhguru.description')}
+                </p>
+              </Card>
+
               <Card padding="md" className="bg-warm-white">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 bg-golden-orange/10 rounded-lg flex items-center justify-center flex-shrink-0">
