@@ -651,14 +651,13 @@
       "title": "Des Formations d'Excellence Internationale",
       "coaching": {
         "title": "Coach Professionnelle Certifiée",
-        "subtitle": "Coach & Team - Accréditation EMCC",
+        "subtitle": "Coach & Team – Transformance Pro",
         "training": {
           "title": "Formation",
           "items": {
-            "0": "2 ans de formation intensive (180 heures)",
+            "0": "1 an de formation intensive",
             "1": "Méthodologie Coach & Team (école pionnière depuis 1988)",
-            "2": "Accréditation EMCC (European Mentoring & Coaching Council)",
-            "3": "Standard européen du coaching professionnel"
+            "2": "Standard européen du coaching professionnel"
           }
         },
         "expertise": {
@@ -673,24 +672,24 @@
       },
       "yoga": {
         "title": "Professeure de Yoga Certifiée",
-        "subtitle": "Isha Foundation - Classical Hatha Yoga",
+        "subtitle": "Sadhguru Gurukulam – Classical Hatha Yoga",
         "training": {
           "title": "Formation",
           "items": {
             "0": "21 semaines résidentielles en Inde (1750 heures)",
             "1": "Isha Yoga Center, Coimbatore, Tamil Nadu",
-            "2": "Programme conçu par Sadhguru",
+            "2": "Programme structuré par Sadhguru",
             "3": "Classical Hatha Yoga (tradition authentique)",
-            "4": "Membre d'une communauté mondiale (1800 enseignants, 84 pays)"
+            "4": "Membre d'une communauté mondiale (1800 enseignant·e·s, 84 pays)"
           }
         },
         "teachings": {
           "title": "Enseignements",
           "items": {
             "0": "Asanas, Pranayama, Kriyas, Bandhas",
-            "1": "Méditation & philosophie yogique",
+            "1": "Méditation et mode de vie yogique",
             "2": "Mantra Yoga & Nada Yoga",
-            "3": "48+ modules d'enseignement maîtrisés"
+            "3": "+70 modules d'enseignements maîtrisés"
           }
         }
       }

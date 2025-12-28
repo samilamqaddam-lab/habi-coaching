@@ -115,7 +115,6 @@ export default function ExpertisePage() {
                   <li>• {t('expertise.certifications.coaching.training.items.0')}</li>
                   <li>• {t('expertise.certifications.coaching.training.items.1')}</li>
                   <li>• {t('expertise.certifications.coaching.training.items.2')}</li>
-                  <li>• {t('expertise.certifications.coaching.training.items.3')}</li>
                 </ul>
               </div>
 
