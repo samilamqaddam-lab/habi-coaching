@@ -84,32 +84,21 @@ export default function ContactPage() {
             <div className="w-16 h-16 bg-morocco-blue/10 rounded-full flex items-center justify-center mx-auto mb-6">
               <svg
                 className="w-8 h-8 text-morocco-blue"
-                fill="none"
+                fill="currentColor"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                />
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
               </svg>
             </div>
-            <h3 className="font-semibold text-deep-blue mb-3">
-              {t('contact.methods.location')}
-            </h3>
-            <p className="text-text-secondary">
-              {t('contact.methods.locationDetails.city')}
-              <br />
-              {t('contact.methods.locationDetails.online')}
-            </p>
+            <h3 className="font-semibold text-deep-blue mb-3">LinkedIn</h3>
+            <a
+              href="https://www.linkedin.com/in/hajar-habi/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-text-secondary hover:text-terracotta transition-colors"
+            >
+              {t('contact.methods.linkedin.profile')}
+            </a>
           </Card>
         </div>
 
@@ -161,6 +150,27 @@ export default function ContactPage() {
                 placeholder="+212 6 00 00 00 00"
               />
 
+              <div className="grid lg:grid-cols-3 gap-6">
+                <FormInput
+                  label={t('contact.form.organization')}
+                  name="organization"
+                  type="text"
+                  placeholder={t('contact.form.organizationPlaceholder')}
+                />
+                <FormInput
+                  label={t('contact.form.function')}
+                  name="function"
+                  type="text"
+                  placeholder={t('contact.form.functionPlaceholder')}
+                />
+                <FormInput
+                  label={t('contact.form.city')}
+                  name="city"
+                  type="text"
+                  placeholder={t('contact.form.cityPlaceholder')}
+                />
+              </div>
+
               <FormInput
                 label={t('contact.form.interest')}
                 name="interest"
@@ -205,51 +215,6 @@ export default function ContactPage() {
                 {t('contact.form.responseTime')}
               </p>
             </form>
-          </Card>
-        </div>
-      </Section>
-
-      {/* FAQ rapide */}
-      <Section
-        subtitle={t('contact.faq.subtitle')}
-        title={t('contact.faq.title')}
-        centered
-      >
-        <div className="max-w-3xl mx-auto space-y-6">
-          <Card padding="md">
-            <h4 className="font-semibold text-deep-blue mb-2">
-              {t('contact.faq.q1.question')}
-            </h4>
-            <p className="text-sm text-text-secondary">
-              {t('contact.faq.q1.answer')}
-            </p>
-          </Card>
-
-          <Card padding="md">
-            <h4 className="font-semibold text-deep-blue mb-2">
-              {t('contact.faq.q2.question')}
-            </h4>
-            <p className="text-sm text-text-secondary">
-              {t('contact.faq.q2.answer')}
-            </p>
-          </Card>
-
-          <Card padding="md">
-            <h4 className="font-semibold text-deep-blue mb-2">
-              {t('contact.faq.q3.question')}
-            </h4>
-            <p className="text-sm text-text-secondary">
-              {t('contact.faq.q3.answer')}
-            </p>
-          </Card>
-
-          <Card padding="md">
-            <h4 className="font-semibold text-deep-blue mb-2">
-              {t('contact.faq.q4.question')}
-            </h4>
-            <p className="text-sm text-text-secondary">
-              {t('contact.faq.q4.answer')}
-            </p>
           </Card>
         </div>
       </Section>

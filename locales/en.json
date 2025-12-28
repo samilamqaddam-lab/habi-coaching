@@ -473,21 +473,9 @@
     "methods": {
       "subtitle": "Contact Methods",
       "title": "Get in Touch",
-      "email": {
-        "title": "Email",
-        "address": "contact@habi-coaching.com",
-        "description": "I typically respond within 24-48 hours."
-      },
-      "phone": {
-        "title": "Phone",
-        "number": "+212 6 00 00 00 00",
-        "description": "WhatsApp available"
-      },
-      "location": {
-        "title": "Location",
-        "city": "Casablanca, Morocco",
-        "online": "(Online sessions available)",
-        "description": "In-person sessions in Casablanca. Online sessions worldwide."
+      "phone": "Phone",
+      "linkedin": {
+        "profile": "View my LinkedIn profile"
       }
     },
     "form": {
@@ -500,8 +488,13 @@
       "lastNamePlaceholder": "Your last name",
       "email": "Email",
       "emailPlaceholder": "your.email@example.com",
-      "phone": "Phone (optional)",
-      "phonePlaceholder": "+212 6 00 00 00 00",
+      "phone": "Phone",
+      "organization": "Organization",
+      "organizationPlaceholder": "Your organization name",
+      "function": "Role",
+      "functionPlaceholder": "Your position",
+      "city": "City",
+      "cityPlaceholder": "Your city",
       "interest": "I'm interested in",
       "interestOptions": {
         "0": "Individual coaching",
