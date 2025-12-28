@@ -66,18 +66,18 @@
       "corporate": {
         "title": "Expérience Corporate",
         "years": "20 ans",
-        "description": "Deux décennies en transformation organisationnelle auprès d'entreprises internationales."
+        "description": "Près de deux décennies en transformation organisationnelle et gestion RH auprès de cabinets de conseil, d'entreprises marocaines et internationales au Maroc et à l'étranger."
       },
       "coaching": {
         "title": "Coaching Professionnel",
-        "certification": "Coach & Team (EMCC)",
-        "description": "Certification professionnelle reconnue internationalement pour un accompagnement de qualité."
+        "certification": "Coach & Team – Transformance Pro",
+        "description": "Certification professionnelle supervisée par Vincent Lenhardt, reconnue internationalement pour un accompagnement de qualité des individus, des équipes et des organisations."
       },
       "yoga": {
-        "title": "Yoga Traditionnel",
-        "certification": "Isha Foundation",
+        "title": "Hatha Yoga Classique",
+        "certification": "Sadhguru Gurukulam",
         "hours": "1750h de formation",
-        "description": "Formation approfondie dans la lignée du Classical Hatha Yoga avec Sadhguru."
+        "description": "Formation approfondie permettant de transmettre des outils yogiques ancestraux et des technologies de bien-être éprouvées, afin d'affiner la perception et cultiver la clarté intérieure."
       }
     },
     "services": {
