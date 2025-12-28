@@ -37,7 +37,7 @@ export default function ExpertisePage() {
             <div className="lg:col-span-2">
               <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-xl">
                 <Image
-                  src="/images/Reel/Hajar.jpg"
+                  src="/images/Reel/hajar-professional.jpg"
                   alt="Hajar Habi - Coach & Professeure de Yoga"
                   fill
                   className="object-cover object-center"
@@ -49,7 +49,7 @@ export default function ExpertisePage() {
 
             {/* Text Column */}
             <div className="lg:col-span-3 space-y-6">
-              <p className="text-lg text-text-secondary leading-relaxed">
+              <p className="text-lg text-text-secondary leading-relaxed font-semibold">
                 {t('expertise.story.paragraph1')}
               </p>
               <p className="text-lg text-text-secondary leading-relaxed">
@@ -57,6 +57,15 @@ export default function ExpertisePage() {
               </p>
               <p className="text-lg text-text-secondary leading-relaxed">
                 {t('expertise.story.paragraph3')}
+              </p>
+              <p className="text-lg text-text-secondary leading-relaxed">
+                {t('expertise.story.paragraph4')}
+              </p>
+              <p className="text-lg text-text-secondary leading-relaxed">
+                {t('expertise.story.paragraph5')}
+              </p>
+              <p className="text-lg text-text-secondary leading-relaxed">
+                {t('expertise.story.paragraph6')}
               </p>
             </div>
           </div>
