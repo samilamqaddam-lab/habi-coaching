@@ -113,7 +113,7 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
-            <div className="flex space-x-2 mt-6">
+            <div className="flex space-x-4 mt-6">
               {/* Social Icons */}
               <a
                 href="https://open.spotify.com/show/3c1fH8hzdIRcFVwRGYQClR"
