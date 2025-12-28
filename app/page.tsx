@@ -15,19 +15,30 @@ export default function Home() {
       {/* Hero Section */}
       <Hero
         title={t('home.hero.title')}
+        titleLine2={t('home.hero.titleLine2')}
         titleSuffix={t('home.hero.titleSuffix')}
         description={t('home.hero.description')}
         primaryCTA={{
           text: t('home.hero.primaryCTA'),
-          href: '/contact',
+          href: '#services',
         }}
         secondaryCTA={{
           text: t('home.hero.secondaryCTA'),
-          href: '#services',
+          href: '/contact',
         }}
         minimal
         endWithWhite
-      />
+      >
+        {/* Sadhguru Quote */}
+        <div className="mt-10 pt-8 border-t border-deep-blue/10">
+          <blockquote className="text-lg md:text-xl italic text-text-secondary leading-relaxed">
+            {t('home.hero.sadhguruQuote')}
+          </blockquote>
+          <p className="mt-2 text-golden-orange font-medium">
+            {t('home.hero.sadhguruAttribution')}
+          </p>
+        </div>
+      </Hero>
 
       {/* Expertise Section */}
       <Section

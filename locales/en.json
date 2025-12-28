@@ -50,11 +50,14 @@
   },
   "home": {
     "hero": {
-      "title": "Conscious Growth & Transformation",
-      "titleSuffix": "For People & Organizations",
-      "description": "Holistic coaching and traditional yogic practices for sustainable balance. Certified support for individuals and organizations in Morocco.",
-      "primaryCTA": "Discover My Services",
-      "secondaryCTA": "Book a Session"
+      "title": "Conscious growth",
+      "titleLine2": "& sustainable transformation",
+      "titleSuffix": "For individuals and organizations",
+      "description": "Holistic coaching and traditional yogic practices for sustainable balance. Certified support for individuals and organizations.",
+      "primaryCTA": "Discover my services",
+      "secondaryCTA": "Contact me",
+      "sadhguruQuote": "\"Yoga is not a morning practice. It is a way of living.\"",
+      "sadhguruAttribution": "— Sadhguru"
     },
     "expertise": {
       "subtitle": "My Expertise",

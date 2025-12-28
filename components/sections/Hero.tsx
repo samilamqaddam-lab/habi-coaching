@@ -5,6 +5,7 @@ import Button from '../ui/Button';
 
 interface HeroProps {
   title: string;
+  titleLine2?: string; // Second line of title with same styling (e.g., "& transformation durable")
   titleSuffix?: string; // Displayed below title with different styling (e.g., "— Individus & Organisations")
   subtitle?: string;
   description: string;
@@ -31,6 +32,7 @@ interface HeroProps {
 
 export default function Hero({
   title,
+  titleLine2,
   titleSuffix,
   subtitle,
   description,
@@ -234,6 +236,12 @@ export default function Hero({
             }`}
           >
             {title}
+            {titleLine2 && (
+              <>
+                <br />
+                {titleLine2}
+              </>
+            )}
           </h1>
 
           {titleSuffix && (

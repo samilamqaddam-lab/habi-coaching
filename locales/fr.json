@@ -50,11 +50,14 @@
   },
   "home": {
     "hero": {
-      "title": "Croissance Consciente & Transformation",
-      "titleSuffix": "Individus & Organisations",
-      "description": "Coaching holistique et pratiques yogiques traditionnelles pour un équilibre durable. Accompagnement certifié pour individus et organisations au Maroc.",
-      "primaryCTA": "Réserver une session découverte",
-      "secondaryCTA": "Découvrir mes services"
+      "title": "Croissance consciente",
+      "titleLine2": "& transformation durable",
+      "titleSuffix": "Pour les individus et les organisations",
+      "description": "Coaching holistique et pratiques yogiques traditionnelles pour un équilibre durable. Accompagnement certifié pour les individus et les organisations.",
+      "primaryCTA": "Découvrir mes services",
+      "secondaryCTA": "Me contacter",
+      "sadhguruQuote": "« Le yoga n'est pas une pratique du matin. C'est une façon de vivre. »",
+      "sadhguruAttribution": "— Sadhguru"
     },
     "expertise": {
       "subtitle": "Mon Expertise",
