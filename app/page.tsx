@@ -148,7 +148,7 @@ export default function Home() {
             <div className="md:col-span-5 relative">
               <div className="relative aspect-[3/4] md:aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl transform md:-rotate-2 hover:rotate-0 transition-transform duration-500">
                 <Image
-                  src="/images/Reel/Hajar.jpg"
+                  src="/images/Reel/hajar-professional.jpg"
                   alt="Hajar Habi - Coach Holistique & Professeure de Yoga"
                   fill
                   className="object-cover"
@@ -172,9 +172,9 @@ export default function Home() {
                 </h2>
 
                 <p className="text-text-secondary text-base md:text-lg leading-relaxed mb-8">
-                  Plus de 20 ans d'expérience corporate, certifiée Coach & Team® et
-                  professeure de Yoga traditionnelle (Isha Foundation). Découvrez mon
-                  parcours et mes qualifications complètes.
+                  Près de 20 ans d'expérience corporate, certifiée Coach & Team® et
+                  professeure de Hatha Yoga classique. Découvrez mon parcours et mes
+                  qualifications complètes.
                 </p>
 
                 <Button
