@@ -229,7 +229,7 @@ export default function ContactPage() {
         </p>
         <div className="flex justify-center space-x-6">
           <a
-            href="https://open.spotify.com/show/hajar-habi"
+            href="https://open.spotify.com/show/3c1fH8hzdIRcFVwRGYQClR"
             target="_blank"
             rel="noopener noreferrer"
             className="w-12 h-12 bg-warm-white rounded-full flex items-center justify-center text-morocco-blue hover:bg-terracotta hover:text-warm-white transition-all"
