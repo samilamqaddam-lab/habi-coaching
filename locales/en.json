@@ -642,9 +642,12 @@
     "story": {
       "subtitle": "My Journey",
       "title": "From Business to Yoga: A Coherent Path",
-      "paragraph1": "I spent 20 years in the business world, leading organizational transformation projects for international companies. Strategy, change management, leadership development - I knew this universe inside out.",
-      "paragraph2": "But something was calling me beyond performance and results. A desire for depth, authenticity, meaning. This quest led me to traditional yoga and contemplative practices.",
-      "paragraph3": "Today, I no longer separate these two worlds. They nourish and enrich each other. It's this integration that I offer my clients - whether organizations or individuals."
+      "paragraph1": "My name is Hajar Habi.",
+      "paragraph2": "I am a graduate of the National School of Business and Management of Settat (2007), a Professional Coach certified by Transformance Pro, under the supervision of Vincent Lenhardt, in collaboration with UM6P – Africa Business School (2024), and a Classical Hatha Yoga Teacher certified by Sadhguru Gurukulam (2025).",
+      "paragraph3": "For nearly twenty years, I have supported companies in Morocco and internationally in their transformation projects as a skills development expert and then as an HR Manager in consulting firms, Moroccan and international companies.",
+      "paragraph4": "Trained in coaching individuals, teams and organizations, I now support you in transformation contexts whether cultural, operational or organizational, whether you are a leader or change agent, to develop clarity, discernment and the ability to act with precision, even in complex and demanding environments.",
+      "paragraph5": "I love designing customized and innovative support programs, which leave room for experimentation, collective intelligence and the emergence of new possibilities for collaboration and implementation.",
+      "paragraph6": "My practice of Classical Hatha Yoga, nurtured by an extended immersion in an ashram in India, complements the depth of my interventions. It offers powerful, accessible and scientifically validated yogic tools to develop awareness, vitality and inner balance."
     },
     "certifications": {
       "subtitle": "Certifications & Training",
@@ -725,8 +728,9 @@
     "cta": {
       "title": "Let's Work Together",
       "description": "Whether you're an organization or an individual, let's explore how my expertise can serve your transformation.",
-      "primaryCTA": "Book a Discovery Session",
-      "secondaryCTA": "Services for Organizations"
+      "cta1": "Services for Organizations",
+      "cta2": "Individual Coaching",
+      "cta3": "Classical Hatha Yoga"
     }
   }
 }

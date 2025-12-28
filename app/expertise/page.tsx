@@ -301,18 +301,24 @@ export default function ExpertisePage() {
           <p className="text-lg text-text-secondary mb-8">
             {t('expertise.cta.description')}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-full bg-terracotta text-warm-white hover:bg-terracotta-dark shadow-md hover:shadow-lg transition-all duration-300"
-            >
-              {t('expertise.cta.primaryCTA')}
-            </a>
+          <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">
             <a
               href="/organisations"
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-full bg-terracotta text-warm-white hover:bg-terracotta-dark shadow-md hover:shadow-lg transition-all duration-300"
+            >
+              {t('expertise.cta.cta1')}
+            </a>
+            <a
+              href="/coaching"
               className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-full border-2 border-terracotta text-terracotta hover:bg-terracotta hover:text-warm-white transition-all duration-300"
             >
-              {t('expertise.cta.secondaryCTA')}
+              {t('expertise.cta.cta2')}
+            </a>
+            <a
+              href="/programmes"
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-full border-2 border-terracotta text-terracotta hover:bg-terracotta hover:text-warm-white transition-all duration-300"
+            >
+              {t('expertise.cta.cta3')}
             </a>
           </div>
         </div>

@@ -724,8 +724,9 @@
     "cta": {
       "title": "Travaillons Ensemble",
       "description": "Que vous soyez une organisation ou un individu, explorons comment mon expertise peut servir votre transformation.",
-      "primaryCTA": "Réserver une session découverte",
-      "secondaryCTA": "Services pour organisations"
+      "cta1": "Services pour les organisations",
+      "cta2": "Coaching individuel",
+      "cta3": "Hatha Yoga Classique"
     }
   }
 }
