@@ -32,7 +32,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <h3 className="font-heading text-2xl font-bold mb-4">HABI</h3>
+            <h3 className="font-heading text-xl font-bold mb-4">Transcendence Work</h3>
             <p className="text-sage-light text-sm leading-relaxed">
               {t('common.footer.tagline')} - {t('common.footer.description')}
             </p>
@@ -98,10 +98,10 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-sage-light">
               <li>
                 <a
-                  href="mailto:contact@habi-coaching.com"
+                  href="mailto:contact@transcendencework.com"
                   className="hover:text-warm-white transition-colors duration-200"
                 >
-                  contact@habi-coaching.com
+                  contact@transcendencework.com
                 </a>
               </li>
               <li>
@@ -145,7 +145,7 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-morocco-blue">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-sage-light text-sm">
-              © {new Date().getFullYear()} HABI - Hajar Habi. {t('common.footer.copyright')}
+              © {new Date().getFullYear()} Transcendence Work - Hajar Habi. {t('common.footer.copyright')}
             </p>
             <div className="flex space-x-6">
               {navigation.legal.map((item) => (

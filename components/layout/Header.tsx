@@ -38,8 +38,8 @@ export default function Header() {
         <nav className="flex items-center justify-between py-6 md:py-6">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <div className="font-heading text-2xl md:text-3xl font-bold text-morocco-blue leading-none">
-              HABI
+            <div className="font-heading text-xl md:text-2xl font-bold text-morocco-blue leading-none tracking-tight">
+              Transcendence Work
             </div>
           </Link>
 

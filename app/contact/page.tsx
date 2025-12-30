@@ -46,10 +46,10 @@ export default function ContactPage() {
             </div>
             <h3 className="font-semibold text-deep-blue mb-3">Email</h3>
             <a
-              href="mailto:contact@habi-coaching.com"
+              href="mailto:contact@transcendencework.com"
               className="text-text-secondary hover:text-terracotta transition-colors"
             >
-              contact@habi-coaching.com
+              contact@transcendencework.com
             </a>
           </Card>
 

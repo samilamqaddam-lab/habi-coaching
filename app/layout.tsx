@@ -15,7 +15,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "HABI - Coaching Organisationnel & Yoga",
+  title: "Transcendence Work - Coaching Holistique & Yoga Traditionnel",
   description: "Hajar Habi - Experte en coaching organisationnel et pratiques yogiques traditionnelles. Transformation des organisations et accompagnement individuel.",
 };
 
