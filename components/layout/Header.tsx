@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Container from '../ui/Container';
-import Button from '../ui/Button';
 import LanguageToggle from './LanguageToggle';
 import { useTranslation } from '@/hooks/useTranslation';
 
@@ -56,12 +55,9 @@ export default function Header() {
             ))}
           </div>
 
-          {/* Language Toggle & CTA Button Desktop */}
-          <div className="hidden lg:flex items-center gap-4">
+          {/* Language Toggle Desktop */}
+          <div className="hidden lg:flex items-center">
             <LanguageToggle />
-            <Button variant="primary" size="md" href="/contact">
-              {t('common.buttons.bookSession')}
-            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -108,12 +104,9 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
-            <div className="flex justify-center pt-2 pb-4">
+            <div className="flex justify-center pt-4">
               <LanguageToggle />
             </div>
-            <Button variant="primary" size="md" href="/contact" fullWidth>
-              {t('common.buttons.bookSession')}
-            </Button>
           </div>
         )}
       </Container>
