@@ -44,3 +44,6 @@ next-env.d.ts
 Logo Yoga certification/
 Sadhguru picture/
 Hajar picture/
+
+# MCP generated
+.playwright-mcp/
