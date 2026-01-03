@@ -1,5 +1,3 @@
-'use client'
-
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
@@ -14,6 +12,8 @@ export default defineConfig({
 
   projectId,
   dataset,
+
+  basePath: '/studio',
 
   plugins: [
     structureTool(),
