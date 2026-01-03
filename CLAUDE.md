@@ -154,6 +154,100 @@ Location: `/public/images/Reel/`
 Location: `/locales/fr.json` and `/locales/en.json`
 Hook: `useTranslation()` from `@/hooks/useTranslation`
 
+**Translation Workflow:**
+- French content is managed manually in `/locales/fr.json`
+- English translations are handled automatically by the system
+- Team only proposes content in French via Notion
+- Developers implement FR changes; EN translation is automatic
+
+## Notion Documentation Workflow
+
+### Overview
+Notion workspace "Transcendence Work (HABI)" serves as Content Operations Hub for managing site development.
+
+**Full documentation:** See `docs/NOTION-STRUCTURE.md` for complete details.
+
+### Hierarchical Structure
+
+```
+Transcendence Work (HABI)
+└── 🌐 Site Web
+    ├── 📊 Planification & Suivi
+    │   ├── 🎯 Thèmes Stratégiques
+    │   ├── 🔄 Changements à Implémenter
+    │   ├── 💬 Observations & Feedback
+    │   └── 📝 Contenus à Réviser
+    │
+    ├── 📄 Documentation Pages
+    │   ├── 🏠 Homepage, 💼 Coaching, 🧘 Yoga
+    │   ├── 🏢 Organisations, 📞 Contact
+    │   └── 📚 Ressources, 🎓 Expertise
+    │
+    └── 📚 Guides & Références
+        ├── 📑 Sections de Pages - Référence
+        ├── 📋 Guide Workflow
+        └── 📋 Guide Création Vues
+```
+
+### Key URLs
+
+| Page | URL |
+|------|-----|
+| 🌐 Site Web | https://www.notion.so/2dd80303b08a8185a57cfe4ae7562fd2 |
+| 📊 Planification | https://www.notion.so/2dd80303b08a81bdbcc3f9881563d9f3 |
+| 📄 Documentation | https://www.notion.so/2dd80303b08a811bbd65f8d6d3df0d64 |
+| 📚 Guides | https://www.notion.so/2dd80303b08a81a188e9e147b398f971 |
+
+### Planning System
+
+**Calendar-based (no Sprints):**
+- Strategic organization via **🎯 Thèmes Stratégiques**
+- Temporal planning via **Deadline** properties
+- Full traceability: Observations → Changements → Contenus → Delivery
+
+**8 Strategic Themes:**
+SEO, UX & Conversion, Performance, Qualité Contenu, Nouvelles Features, Stabilité & Bugs, Dette Technique, Internationalisation
+
+### Databases Summary
+
+| Database | Columns | Key Relations |
+|----------|---------|---------------|
+| 🎯 Thèmes Stratégiques | 8 | Auto: Changements, Contenus |
+| 🔄 Changements | 13 | Thème, Origine, Contenus Liés, Section |
+| 💬 Observations | 10 | Changements Créés, Thème Suggéré, Section |
+| 📝 Contenus | 13 | Thème, Changements Liés, Section, Deadline |
+| 📑 Sections (Référence) | 5 | - |
+
+### Traceability Pipeline
+
+```
+💬 Observation
+   ↓ (Changements Créés)
+🔄 Changement
+   ↓ (Contenus Liés)
+📝 Contenu
+   ↓ (Statut tracking)
+✅ Livraison
+```
+
+### Recommended Views (to create in Notion)
+
+| View | Type | Configuration |
+|------|------|---------------|
+| 📅 Calendrier Deadlines | Calendar | By: Deadline |
+| 🗓️ Roadmap | Timeline | By: Deadline, Group: Thème |
+| 📥 Backlog par Thème | Board | Group: Thème |
+| 🎯 Cette Semaine | Table | Filter: Deadline = This week |
+| 📊 Ce Mois | Table | Filter: Deadline = This month |
+
+### Key Principles
+
+- **FR Content Only**: Team proposes only French content
+- **No Manual Translation**: EN is automatic, don't manage in Notion
+- **One Page per Entry**: Always select ONE page (prevents ambiguity)
+- **Use Thèmes**: All work should be linked to a strategic theme
+- **Use Deadlines**: Calendar-based planning, not sprints
+
 ## File Structure
 ```
 /app
