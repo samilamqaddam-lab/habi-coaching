@@ -222,6 +222,7 @@
       "description": "Des retraites, ateliers et formations qui allient pratiques yogiques traditionnelles et développement personnel dans des lieux inspirants au Maroc."
     },
     "type": {
+      "class": "cours",
       "retreat": "retraite",
       "workshop": "atelier",
       "training": "formation"
@@ -590,6 +591,13 @@
     "testimonials": {
       "subtitle": "Témoignages",
       "title": "Ce Que Disent Mes Clients",
+      "description": "Découvrez les retours d'expérience de personnes qui ont transformé leur vie professionnelle et personnelle.",
+      "serviceType": {
+        "yoga": "Yoga",
+        "coaching": "Coaching",
+        "retreat": "Retraite",
+        "corporate": "Organisation"
+      },
       "0": {
         "initial": "M",
         "name": "Marie L.",
@@ -721,6 +729,17 @@
       "cta1": "Services pour les organisations",
       "cta2": "Coaching individuel",
       "cta3": "Hatha Yoga Classique"
+    }
+  },
+  "testimonials": {
+    "subtitle": "Témoignages",
+    "title": "Ce Que Disent Mes Clients",
+    "description": "Découvrez les retours d'expérience de personnes qui ont transformé leur vie professionnelle et personnelle.",
+    "serviceType": {
+      "yoga": "Yoga",
+      "coaching": "Coaching",
+      "retreat": "Retraite",
+      "corporate": "Organisation"
     }
   }
 }

@@ -1,0 +1,132 @@
+{
+  "heroes": {
+    "coaching-path-hero.jpg": {
+      "_type": "image",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-c7973e23c1b115ab34967affdf210c20ffe1f7fa-1920x2880-jpg"
+      },
+      "alt": "Tunnel de feuillage vers la lumière - Coaching"
+    },
+    "organisations-meeting-room-hero.jpg": {
+      "_type": "image",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-3758aa4de1a9a666a0a7f6775a6ed9737e13a4d7-1200x1803-jpg"
+      },
+      "alt": "Salle de réunion moderne - Organisations"
+    },
+    "ressources-notebook-hero.jpg": {
+      "_type": "image",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-d25cc2af1a2f8456cf1ac0953b014359a9f807a2-1200x1800-jpg"
+      },
+      "alt": "Carnet avec bougie - Ressources"
+    },
+    "contact-coffee-cups-hero.jpg": {
+      "_type": "image",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-fd179b8b9feece0d1bd298f2449621fba80a698f-1200x1800-jpg"
+      },
+      "alt": "Deux tasses de café - Contact"
+    },
+    "sadhguru-hero.jpg": {
+      "_type": "image",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-d6782c91b287fadd3ecd97e67d4beb260fdf6e19-1200x800-jpg"
+      },
+      "alt": "Moine en méditation - Yoga"
+    }
+  },
+  "programmes": {
+    "atlas-mountains.jpg": {
+      "_type": "image",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-80f9eef6023905a261d0141d4b981b5b320b4f59-6240x4160-jpg"
+      },
+      "alt": "Montagnes de l'Atlas - Retraite"
+    },
+    "leadership-workshop.jpg": {
+      "_type": "image",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-5145ff7def0999a112380bcac667a78b2aa61299-8192x5465-jpg"
+      },
+      "alt": "Atelier Leadership"
+    },
+    "balance-yoga.jpg": {
+      "_type": "image",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-e5a4247828b7ec121c6a237ed44dcff7810d160c-4480x6720-jpg"
+      },
+      "alt": "Yoga équilibre"
+    },
+    "philosophy-training.jpg": {
+      "_type": "image",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-31266a56b924441a60864dabff8f13f59cb2bc7e-3840x5760-jpg"
+      },
+      "alt": "Formation philosophie"
+    },
+    "silence-retreat.jpg": {
+      "_type": "image",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-3c79bf3e333c0ba5f5cae9963fdf105a29570c1d-5040x3360-jpg"
+      },
+      "alt": "Retraite silence"
+    }
+  },
+  "Reel": {
+    "hajar-professional.jpg": {
+      "_type": "image",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-35b799bec9a448d6cbae3501e6e268b8b6b0fcc1-848x1264-jpg"
+      },
+      "alt": "Hajar Habi - Portrait professionnel"
+    },
+    "IMG_4078.jpeg": {
+      "_type": "image",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-64a34ad559c202f8658a59e25304a7369ff03bcd-2890x1626-jpg"
+      },
+      "alt": "Lieu de retraite"
+    }
+  },
+  "sadhguru": {
+    "sadhguru-portrait-1.jpg": {
+      "_type": "image",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-995ce000a64d60e5b64e8d19639426b366c76db1-1200x1046-jpg"
+      },
+      "alt": "Sadhguru en méditation"
+    },
+    "sadhguru-portrait-2.jpg": {
+      "_type": "image",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-78a74cc4e62f952c3221dea2d885ae00e090a2b2-1200x798-jpg"
+      },
+      "alt": "Sadhguru portrait"
+    }
+  },
+  "certifications": {
+    "isha-hatha-yoga-certified.png": {
+      "_type": "image",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-2c98d2f590918c57acdfbbc6ba9e9f2ee9f9e6b0-1920x507-png"
+      },
+      "alt": "Certification Isha Hatha Yoga"
+    }
+  }
+}

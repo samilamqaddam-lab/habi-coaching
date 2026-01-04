@@ -1,14 +1,93 @@
-'use client';
+'use client'
 
-import Hero from '@/components/sections/Hero';
-import Section from '@/components/sections/Section';
-import Card from '@/components/ui/Card';
-import Button from '@/components/ui/Button';
-import FormInput from '@/components/ui/FormInput';
-import { useTranslation } from '@/hooks/useTranslation';
+import { useState } from 'react'
+import Hero from '@/components/sections/Hero'
+import Section from '@/components/sections/Section'
+import Card from '@/components/ui/Card'
+import Button from '@/components/ui/Button'
+import FormInput from '@/components/ui/FormInput'
+import { useTranslation } from '@/hooks/useTranslation'
+
+interface FormData {
+  firstName: string
+  lastName: string
+  email: string
+  phone: string
+  organization: string
+  function: string
+  city: string
+  interest: string
+  message: string
+  consent: boolean
+}
 
 export default function ContactPage() {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
+
+  const [formData, setFormData] = useState<FormData>({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    organization: '',
+    function: '',
+    city: '',
+    interest: '',
+    message: '',
+    consent: false,
+  })
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value, type } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value,
+    }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+    setErrorMessage('')
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (response.ok && data.success) {
+        setSubmitStatus('success')
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          organization: '',
+          function: '',
+          city: '',
+          interest: '',
+          message: '',
+          consent: false,
+        })
+      } else {
+        setSubmitStatus('error')
+        setErrorMessage(data.error || 'Une erreur est survenue')
+      }
+    } catch {
+      setSubmitStatus('error')
+      setErrorMessage('Erreur de connexion. Veuillez réessayer.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   return (
     <>
@@ -117,104 +196,155 @@ export default function ContactPage() {
           </div>
 
           <Card padding="lg">
-            <form className="space-y-6">
-              <div className="grid lg:grid-cols-2 gap-6">
-                <FormInput
-                  label={t('contact.form.firstName')}
-                  name="firstName"
-                  type="text"
-                  placeholder={t('contact.form.firstNamePlaceholder')}
-                  required
-                />
-                <FormInput
-                  label={t('contact.form.lastName')}
-                  name="lastName"
-                  type="text"
-                  placeholder={t('contact.form.lastNamePlaceholder')}
-                  required
-                />
+            {submitStatus === 'success' ? (
+              <div className="text-center py-8">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg className="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h3 className="font-heading text-2xl font-bold text-deep-blue mb-4">
+                  Message envoyé !
+                </h3>
+                <p className="text-text-secondary mb-6">
+                  Merci pour votre message. Je vous répondrai dans les plus brefs délais.
+                </p>
+                <Button variant="outline" onClick={() => setSubmitStatus('idle')}>
+                  Envoyer un autre message
+                </Button>
               </div>
+            ) : (
+              <form className="space-y-6" onSubmit={handleSubmit}>
+                {submitStatus === 'error' && (
+                  <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+                    {errorMessage}
+                  </div>
+                )}
 
-              <FormInput
-                label="Email"
-                name="email"
-                type="email"
-                placeholder={t('contact.form.emailPlaceholder')}
-                required
-              />
+                <div className="grid lg:grid-cols-2 gap-6">
+                  <FormInput
+                    label={t('contact.form.firstName')}
+                    name="firstName"
+                    type="text"
+                    placeholder={t('contact.form.firstNamePlaceholder')}
+                    required
+                    value={formData.firstName}
+                    onChange={handleChange}
+                  />
+                  <FormInput
+                    label={t('contact.form.lastName')}
+                    name="lastName"
+                    type="text"
+                    placeholder={t('contact.form.lastNamePlaceholder')}
+                    required
+                    value={formData.lastName}
+                    onChange={handleChange}
+                  />
+                </div>
 
-              <FormInput
-                label={t('contact.form.phone')}
-                name="phone"
-                type="tel"
-                placeholder="+212 6 00 00 00 00"
-              />
-
-              <div className="grid lg:grid-cols-3 gap-6">
                 <FormInput
-                  label={t('contact.form.organization')}
-                  name="organization"
-                  type="text"
-                  placeholder={t('contact.form.organizationPlaceholder')}
-                />
-                <FormInput
-                  label={t('contact.form.function')}
-                  name="function"
-                  type="text"
-                  placeholder={t('contact.form.functionPlaceholder')}
-                />
-                <FormInput
-                  label={t('contact.form.city')}
-                  name="city"
-                  type="text"
-                  placeholder={t('contact.form.cityPlaceholder')}
-                />
-              </div>
-
-              <FormInput
-                label={t('contact.form.interest')}
-                name="interest"
-                type="select"
-                required
-                options={[
-                  { value: 'coaching', label: t('contact.form.interestOptions.0') },
-                  { value: 'yoga', label: t('contact.form.interestOptions.1') },
-                  { value: 'retraite', label: t('contact.form.interestOptions.2') },
-                  { value: 'organisation', label: t('contact.form.interestOptions.3') },
-                  { value: 'autre', label: t('contact.form.interestOptions.4') },
-                ]}
-              />
-
-              <FormInput
-                label={t('contact.form.message')}
-                name="message"
-                type="textarea"
-                placeholder={t('contact.form.messagePlaceholder')}
-                required
-                rows={6}
-              />
-
-              <div className="flex items-start">
-                <input
-                  type="checkbox"
-                  id="consent"
-                  name="consent"
+                  label="Email"
+                  name="email"
+                  type="email"
+                  placeholder={t('contact.form.emailPlaceholder')}
                   required
-                  className="mt-1 mr-3 w-4 h-4 text-terracotta border-soft-gray rounded focus:ring-terracotta"
+                  value={formData.email}
+                  onChange={handleChange}
                 />
-                <label htmlFor="consent" className="text-sm text-text-secondary">
-                  {t('contact.form.consent')}
-                </label>
-              </div>
 
-              <Button variant="primary" size="lg" fullWidth>
-                {t('contact.form.submit')}
-              </Button>
+                <FormInput
+                  label={t('contact.form.phone')}
+                  name="phone"
+                  type="tel"
+                  placeholder="+212 6 00 00 00 00"
+                  value={formData.phone}
+                  onChange={handleChange}
+                />
 
-              <p className="text-sm text-text-secondary text-center">
-                {t('contact.form.responseTime')}
-              </p>
-            </form>
+                <div className="grid lg:grid-cols-3 gap-6">
+                  <FormInput
+                    label={t('contact.form.organization')}
+                    name="organization"
+                    type="text"
+                    placeholder={t('contact.form.organizationPlaceholder')}
+                    value={formData.organization}
+                    onChange={handleChange}
+                  />
+                  <FormInput
+                    label={t('contact.form.function')}
+                    name="function"
+                    type="text"
+                    placeholder={t('contact.form.functionPlaceholder')}
+                    value={formData.function}
+                    onChange={handleChange}
+                  />
+                  <FormInput
+                    label={t('contact.form.city')}
+                    name="city"
+                    type="text"
+                    placeholder={t('contact.form.cityPlaceholder')}
+                    value={formData.city}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <FormInput
+                  label={t('contact.form.interest')}
+                  name="interest"
+                  type="select"
+                  required
+                  value={formData.interest}
+                  onChange={handleChange}
+                  options={[
+                    { value: 'coaching', label: t('contact.form.interestOptions.0') },
+                    { value: 'yoga', label: t('contact.form.interestOptions.1') },
+                    { value: 'retraite', label: t('contact.form.interestOptions.2') },
+                    { value: 'organisation', label: t('contact.form.interestOptions.3') },
+                    { value: 'autre', label: t('contact.form.interestOptions.4') },
+                  ]}
+                />
+
+                <FormInput
+                  label={t('contact.form.message')}
+                  name="message"
+                  type="textarea"
+                  placeholder={t('contact.form.messagePlaceholder')}
+                  required
+                  rows={6}
+                  value={formData.message}
+                  onChange={handleChange}
+                />
+
+                <div className="flex items-start">
+                  <input
+                    type="checkbox"
+                    id="consent"
+                    name="consent"
+                    required
+                    checked={formData.consent}
+                    onChange={handleChange}
+                    className="mt-1 mr-3 w-4 h-4 text-terracotta border-soft-gray rounded focus:ring-terracotta"
+                  />
+                  <label htmlFor="consent" className="text-sm text-text-secondary">
+                    {t('contact.form.consent')}
+                  </label>
+                </div>
+
+                <Button
+                  variant="primary"
+                  size="lg"
+                  fullWidth
+                  type="submit"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Envoi en cours...' : t('contact.form.submit')}
+                </Button>
+
+                <p className="text-sm text-text-secondary text-center">
+                  {t('contact.form.responseTime')}
+                </p>
+              </form>
+            )}
           </Card>
         </div>
       </Section>
@@ -253,5 +383,5 @@ export default function ContactPage() {
         </div>
       </Section>
     </>
-  );
+  )
 }

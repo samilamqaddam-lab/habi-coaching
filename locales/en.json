@@ -222,6 +222,7 @@
       "description": "Retreats, workshops and training that combine traditional yogic practices and personal transformation in inspiring Moroccan locations."
     },
     "type": {
+      "class": "class",
       "retreat": "retreat",
       "workshop": "workshop",
       "training": "training"
@@ -592,6 +593,13 @@
     "testimonials": {
       "subtitle": "Testimonials",
       "title": "What My Clients Say",
+      "description": "Discover the experiences of people who have transformed their professional and personal lives.",
+      "serviceType": {
+        "yoga": "Yoga",
+        "coaching": "Coaching",
+        "retreat": "Retreat",
+        "corporate": "Corporate"
+      },
       "0": {
         "initial": "M",
         "name": "Marie L.",
@@ -724,6 +732,17 @@
       "cta1": "Services for Organizations",
       "cta2": "Individual Coaching",
       "cta3": "Classical Hatha Yoga"
+    }
+  },
+  "testimonials": {
+    "subtitle": "Testimonials",
+    "title": "What My Clients Say",
+    "description": "Discover the experiences of people who have transformed their professional and personal lives.",
+    "serviceType": {
+      "yoga": "Yoga",
+      "coaching": "Coaching",
+      "retreat": "Retreat",
+      "corporate": "Corporate"
     }
   }
 }
