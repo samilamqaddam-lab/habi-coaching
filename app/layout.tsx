@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
+import { draftMode } from "next/headers";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -28,13 +29,16 @@ export const viewport: Viewport = {
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import PreviewBanner from "@/components/layout/PreviewBanner";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { isEnabled: isDraftMode } = await draftMode();
+
   return (
     <html lang="fr">
       <body
@@ -42,8 +46,9 @@ export default function RootLayout({
       >
         <LanguageProvider>
           <Header />
-          <main className="pt-20">{children}</main>
+          <main className={`pt-20 ${isDraftMode ? 'pb-16' : ''}`}>{children}</main>
           <Footer />
+          {isDraftMode && <PreviewBanner />}
         </LanguageProvider>
       </body>
     </html>
