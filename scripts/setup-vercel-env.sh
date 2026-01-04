@@ -18,32 +18,33 @@ echo ""
 add_env() {
     local key=$1
     local value=$2
-    local env_type=$3
 
     echo "📝 Ajout de $key..."
 
-    if [ "$env_type" = "all" ]; then
-        # Add to production, preview, and development
-        echo "$value" | vercel env add "$key" production preview development 2>&1 | grep -v "Overwrite" || true
-    else
-        echo "$value" | vercel env add "$key" "$env_type" 2>&1 | grep -v "Overwrite" || true
-    fi
+    # Add to production
+    echo "$value" | vercel env add "$key" production 2>&1 | grep -v "already exists" || true
+
+    # Add to preview
+    echo "$value" | vercel env add "$key" preview 2>&1 | grep -v "already exists" || true
+
+    # Add to development
+    echo "$value" | vercel env add "$key" development 2>&1 | grep -v "already exists" || true
 }
 
 echo "🔧 Ajout des variables Sanity..."
-add_env "NEXT_PUBLIC_SANITY_PROJECT_ID" "czmpe9zr" "all"
-add_env "NEXT_PUBLIC_SANITY_DATASET" "production" "all"
-add_env "NEXT_PUBLIC_SANITY_API_VERSION" "2024-01-01" "all"
-add_env "SANITY_API_TOKEN" "skNdIdlqmFmALzAOABlVR9CaMBwHoisRLJJ17FrpY5yX9tXCVFvR4zJC8HIt49oSAxyjGNxpuJzUQXyFl6oBFldvG22fJhhoQpJM8Fv8xA3mvzjwyyBFlBygi0lBRz8wwD4y62xDNhGl2O5OeYUzTLXyCzx6hufKOcGFNWtCJ9kH0PgzBdPw" "all"
+add_env "NEXT_PUBLIC_SANITY_PROJECT_ID" "czmpe9zr"
+add_env "NEXT_PUBLIC_SANITY_DATASET" "production"
+add_env "NEXT_PUBLIC_SANITY_API_VERSION" "2024-01-01"
+add_env "SANITY_API_TOKEN" "skNdIdlqmFmALzAOABlVR9CaMBwHoisRLJJ17FrpY5yX9tXCVFvR4zJC8HIt49oSAxyjGNxpuJzUQXyFl6oBFldvG22fJhhoQpJM8Fv8xA3mvzjwyyBFlBygi0lBRz8wwD4y62xDNhGl2O5OeYUzTLXyCzx6hufKOcGFNWtCJ9kH0PgzBdPw"
 
 echo ""
 echo "📧 Ajout des variables Resend..."
-add_env "RESEND_API_KEY" "re_SiBCYQ3p_KzL6s71KFWYLVovk6wF7CpbZ" "all"
+add_env "RESEND_API_KEY" "re_SiBCYQ3p_KzL6s71KFWYLVovk6wF7CpbZ"
 
 echo ""
 echo "🔐 Ajout des variables Preview & Webhooks..."
-add_env "SANITY_PREVIEW_SECRET" "transcendence-preview-2024" "all"
-add_env "SANITY_WEBHOOK_SECRET" "transcendence-webhook-2024" "all"
+add_env "SANITY_PREVIEW_SECRET" "transcendence-preview-2024"
+add_env "SANITY_WEBHOOK_SECRET" "transcendence-webhook-2024"
 
 echo ""
 echo "=================================================="
