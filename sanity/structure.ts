@@ -1,4 +1,4 @@
-import { StructureBuilder } from 'sanity/structure'
+import { StructureBuilder, StructureResolverContext } from 'sanity/structure'
 import {
   HomeIcon,
   UsersIcon,
@@ -9,13 +9,13 @@ import {
   BookIcon,
   CaseIcon,
   HeartIcon,
-  RobotIcon,
+  EditIcon,
   MobileDeviceIcon,
   SparklesIcon,
 } from '@sanity/icons'
 
 // Custom desk structure for better content organization
-export const structure = (S: StructureBuilder) =>
+export const structure = (S: StructureBuilder, context: StructureResolverContext) =>
   S.list()
     .title('Contenu')
     .items([
@@ -33,7 +33,7 @@ export const structure = (S: StructureBuilder) =>
                 .icon(HomeIcon)
                 .child(
                   S.list()
-                    .title('Contenu de l\'Accueil')
+                    .title('Contenu Accueil')
                     .items([
                       S.listItem()
                         .title('Section Hero')
@@ -44,7 +44,7 @@ export const structure = (S: StructureBuilder) =>
                             .filter('_type == "heroSection" && page == "home"')
                         ),
                       S.listItem()
-                        .title('Témoignages en vedette')
+                        .title('Témoignages vedettes')
                         .icon(StarIcon)
                         .child(
                           S.documentList()
@@ -54,7 +54,7 @@ export const structure = (S: StructureBuilder) =>
                     ])
                 ),
 
-              // Programmes/Yoga
+              // Yoga & Programmes
               S.listItem()
                 .title('Yoga & Programmes')
                 .icon(HeartIcon)
@@ -88,7 +88,7 @@ export const structure = (S: StructureBuilder) =>
                         ),
                       S.listItem()
                         .title('Ateliers')
-                        .icon(RobotIcon)
+                        .icon(EditIcon)
                         .child(
                           S.documentList()
                             .title('Ateliers')
@@ -96,7 +96,7 @@ export const structure = (S: StructureBuilder) =>
                         ),
                       S.listItem()
                         .title('Formations')
-                        .icon(RobotIcon)
+                        .icon(BookIcon)
                         .child(
                           S.documentList()
                             .title('Formations')
@@ -159,9 +159,9 @@ export const structure = (S: StructureBuilder) =>
                     ])
                 ),
 
-              // Ressources
+              // Ressources / Blog
               S.listItem()
-                .title('Ressources')
+                .title('Ressources & Blog')
                 .icon(BookIcon)
                 .child(
                   S.list()
@@ -176,7 +176,7 @@ export const structure = (S: StructureBuilder) =>
                             .filter('_type == "heroSection" && page == "ressources"')
                         ),
                       S.listItem()
-                        .title('Articles')
+                        .title('Articles de blog')
                         .icon(DocumentTextIcon)
                         .child(S.documentTypeList('article').title('Articles')),
                     ])
@@ -195,7 +195,7 @@ export const structure = (S: StructureBuilder) =>
               // Expertise
               S.listItem()
                 .title('Expertise')
-                .icon(RobotIcon)
+                .icon(StarIcon)
                 .child(
                   S.documentList()
                     .title('Hero Expertise')
@@ -206,7 +206,7 @@ export const structure = (S: StructureBuilder) =>
 
       S.divider(),
 
-      // All Content by Type
+      // Quick Access - All content by type
       S.listItem()
         .title('Tous les programmes')
         .icon(BookIcon)
