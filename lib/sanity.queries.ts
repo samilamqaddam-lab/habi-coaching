@@ -230,3 +230,75 @@ export const siteSettingsQuery = groq`
     calcomUsername
   }
 `
+
+// Homepage content query
+export const homepageContentQuery = groq`
+  *[_type == "homepageContent"][0] {
+    _id,
+    expertiseSection {
+      subtitle,
+      subtitleEn,
+      title,
+      titleEn,
+      description,
+      descriptionEn,
+      cards[] {
+        title,
+        titleEn,
+        highlight,
+        highlightEn,
+        description,
+        descriptionEn,
+        icon,
+        color
+      }
+    },
+    aboutSection {
+      badge,
+      badgeEn,
+      title,
+      titleEn,
+      description,
+      descriptionEn,
+      ctaText,
+      ctaTextEn,
+      image {
+        asset->,
+        alt
+      }
+    },
+    servicesSection {
+      subtitle,
+      subtitleEn,
+      title,
+      titleEn,
+      services[] {
+        title,
+        titleEn,
+        description,
+        descriptionEn,
+        ctaText,
+        ctaTextEn,
+        link,
+        icon,
+        color
+      }
+    },
+    ctaSection {
+      title,
+      titleEn,
+      description,
+      descriptionEn,
+      primaryCTA {
+        text,
+        textEn,
+        link
+      },
+      secondaryCTA {
+        text,
+        textEn,
+        link
+      }
+    }
+  }
+`

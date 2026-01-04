@@ -44,6 +44,15 @@ export const structure = (S: StructureBuilder, context: StructureResolverContext
                             .filter('_type == "heroSection" && page == "home"')
                         ),
                       S.listItem()
+                        .title('Sections de la page')
+                        .icon(DocumentTextIcon)
+                        .child(
+                          S.document()
+                            .schemaType('homepageContent')
+                            .documentId('homepageContent')
+                            .title('Contenu de la page')
+                        ),
+                      S.listItem()
                         .title('Témoignages vedettes')
                         .icon(StarIcon)
                         .child(

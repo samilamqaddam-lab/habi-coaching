@@ -10,6 +10,7 @@ import {
   articleBySlugQuery,
   featuredArticlesQuery,
   siteSettingsQuery,
+  homepageContentQuery,
 } from './sanity.queries'
 import type {
   Programme,
@@ -97,4 +98,9 @@ export async function getFeaturedArticles(): Promise<Article[]> {
 // Site Settings
 export async function getSiteSettings() {
   return client.fetch(siteSettingsQuery)
+}
+
+// Homepage Content
+export async function getHomepageContent() {
+  return client.fetch(homepageContentQuery)
 }
