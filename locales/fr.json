@@ -172,42 +172,121 @@
   },
   "programmes": {
     "hero": {
-      "subtitle": "Pratiques Yogiques & Programmes",
-      "title": "Transformez Votre Vie par le Yoga",
-      "description": "Le Classical Hatha Yoga enseigné par une professeure certifiée Isha Foundation, avec une compréhension approfondie des enjeux du monde contemporain. Cours, retraites et programmes pour une pratique qui s'intègre à votre vie.",
-      "primaryCTA": "Réserver un cours",
-      "secondaryCTA": "Voir les retraites"
+      "subtitle": "Hatha Yoga Classique & Retraites",
+      "title": "Accompagnez votre transformation intérieure par le Hatha Yoga Classique structuré par Sadhguru",
+      "description": "",
+      "paragraph1": {
+        "title": "Une Science Millénaire",
+        "text": "Le Hatha Yoga Classique est une science complète préservée dans sa forme la plus pure. C'est un processus profond d'alignement du corps, du mental et de l'énergie vers un potentiel supérieur, transmis avec précision à travers les siècles."
+      },
+      "paragraph2": {
+        "title": "L'Enseignement de Sadhguru",
+        "text": "Ces pratiques ancestrales ont été structurées et transmises par Sadhguru, maître spirituel contemporain et fondateur de la Isha Foundation, permettant leur accessibilité tout en préservant leur authenticité et leur puissance transformationnelle."
+      },
+      "paragraph3": {
+        "title": "Mon Approche",
+        "text": "Je partage ces enseignements avec gratitude et humilité, offrant un cadre fidèle à cette tradition millénaire pour que chacun puisse en faire l'expérience directe et découvrir son propre chemin vers l'équilibre intérieur."
+      },
+      "cta1": "Réserver un cours individuel",
+      "cta2": "Nous rejoindre sur le tapis (cours collectifs)",
+      "cta3": "Découvrir nos programmes & retraites"
     },
     "regularClasses": {
-      "subtitle": "Cours Réguliers",
+      "subtitle": "Cours Collectifs",
       "title": "Rejoignez-Nous sur le Tapis",
-      "description": "Des cours hebdomadaires en petits groupes pour une pratique approfondie et un accompagnement personnalisé."
+      "description": "Des cours en petits groupes pour une pratique approfondie et un accompagnement personnalisé.",
+      "autonomy": "Ces programmes, structurés par Sadhguru, sont conçus pour rendre chaque participant·e autonome : à l'issue de chaque programme, les pratiques peuvent être poursuivies de manière indépendante, chez soi, en toute autonomie."
     },
     "classes": {
-      "hatha": {
-        "title": "Hatha Yoga Traditionnel",
-        "description": "Pratique classique du yoga avec un focus sur les asanas (postures), pranayama (respiration) et méditation. Pour tous niveaux.",
-        "schedule": "Mardis & Jeudis 18h30",
-        "duration": "90 min",
-        "price": "20€/cours ou 70€/mois"
+      "upaYoga": {
+        "title": "Upa Yoga",
+        "subtitle": "Yoga de base pour le corps, l'énergie et la vitalité",
+        "description": "Upa Yoga est un ensemble simple mais puissant de 10 pratiques qui activent les articulations, les muscles et le système énergétique, apportant aisance et stabilité à l'ensemble du corps.",
+        "benefits": {
+          "0": "Aide à relâcher les tensions physiques et la fatigue",
+          "1": "Contribue au renforcement des articulations et des muscles",
+          "2": "Redonne vitalité et mobilité au corps après des périodes d'inactivité"
+        },
+        "schedule": "Dates à venir (février et mars 2026)",
+        "duration": "3 sessions d'1h",
+        "location": "Shido Mind Studio Casablanca",
+        "attendance": "La présence à toutes les sessions est obligatoire",
+        "price": "450 DH",
+        "image": "/images/programmes/upa-yoga.jpg"
       },
-      "restorative": {
-        "title": "Yoga Restauratif",
-        "description": "Pratique douce et profondément relaxante avec des postures tenues longuement. Idéal pour la récupération et la gestion du stress.",
-        "schedule": "Samedis 10h00",
-        "duration": "75 min",
-        "price": "25€/cours"
+      "suryaKriya": {
+        "title": "Surya Kriya",
+        "subtitle": "Pratique yogique complète pour la vitalité et la clarté intérieure",
+        "description": "Surya Kriya est une pratique yogique complète en 21 étapes, issue d'une tradition ancienne, conçue pour soutenir la santé et le bien-être intérieur.",
+        "benefits": {
+          "0": "Développe la clarté mentale et la capacité de concentration",
+          "1": "Soutient la vitalité du corps et l'équilibre hormonal",
+          "2": "Harmonise le corps, le mental et le système énergétique",
+          "3": "Favorise un état méditatif et soutient l'expérience de calme intérieur et de joie"
+        },
+        "schedule": "Dates à venir",
+        "duration": "3 sessions de 2h",
+        "location": "À définir",
+        "attendance": "La présence à toutes les sessions est obligatoire",
+        "price": "900 DH",
+        "image": "/images/programmes/surya-kriya.jpg"
       },
-      "meditation": {
-        "title": "Méditation & Pranayama",
-        "description": "Sessions dédiées aux techniques de respiration yogique et à la méditation guidée. Tous niveaux, débutants bienvenus.",
-        "schedule": "Dimanches 9h00",
-        "duration": "60 min",
-        "price": "15€/cours ou 50€/mois"
+      "suryaShakti": {
+        "title": "Surya Shakti",
+        "subtitle": "Pratique dynamique pour la force, l'endurance et l'énergie",
+        "description": "Surya Shakti est une pratique conçue pour activer et renforcer l'énergie du corps. Ce processus en 18 étapes contribue à renforcer les ligaments qui maintiennent la structure squelettique et musculaire.",
+        "benefits": {
+          "0": "Améliore la forme physique et le bien-être global",
+          "1": "Renforce les tendons et les ligaments",
+          "2": "Augmente la force physique et l'endurance",
+          "3": "Prépare le corps pour accéder à des niveaux d'énergie plus élevés"
+        },
+        "schedule": "Dates à venir",
+        "duration": "3 sessions d'1h30",
+        "location": "À définir",
+        "attendance": "La présence à toutes les sessions est obligatoire",
+        "price": "675 DH",
+        "image": "/images/programmes/surya-shakti.jpg"
+      },
+      "angamardana": {
+        "title": "Angamardana",
+        "subtitle": "Pratique dynamique pour la force, la mobilité et la condition physique",
+        "description": "Angamardana est une série de 31 processus dynamiques, issus du yoga, conçus pour revitaliser le corps et développer une condition physique optimale. Le terme Angamardana signifie acquérir une maîtrise complète des membres, des organes et des différentes parties du corps. Cette pratique ne nécessite aucun équipement de fitness.",
+        "benefits": {
+          "0": "Renforce la colonne vertébrale ainsi que les systèmes squelettique et musculaire",
+          "1": "Développe la force physique, la condition physique et la ténacité",
+          "2": "Revitalise le corps, apportant une sensation de légèreté et de liberté dans le mouvement",
+          "3": "Prépare le corps à la pratique du Hatha Yoga",
+          "4": "Revitalise l'ensemble du corps, notamment les muscles, la circulation sanguine ainsi que les systèmes squelettique et nerveux",
+          "5": "Peut aider avec la perte de poids"
+        },
+        "schedule": "Dates à venir",
+        "duration": "4 sessions de 2h45",
+        "location": "À définir",
+        "attendance": "La présence à toutes les sessions est obligatoire",
+        "price": "1650 DH",
+        "image": "/images/programmes/angamardana.jpg"
+      },
+      "yogasanas": {
+        "title": "Yogasanas",
+        "subtitle": "Postures de yoga pour l'alignement intérieur et l'harmonie",
+        "description": "Les yogasanas sont un ensemble de postures puissantes permettant d'élever la conscience et de manipuler les énergies du corps. Les yogasanas sont une manière d'aligner le système intérieur et de l'ajuster à la géométrie céleste, afin d'entrer en résonance avec l'existence.",
+        "benefits": {
+          "0": "Soutien dans le soulagement de certaines maladies chroniques",
+          "1": "Évolution du corps et du mental vers un potentiel plus élevé",
+          "2": "Stabilisation du corps, du mental et du système énergétique",
+          "3": "Ralentissement du processus de vieillissement"
+        },
+        "schedule": "Dates à venir",
+        "duration": "4 sessions de 2h30",
+        "location": "À définir",
+        "attendance": "La présence à toutes les sessions est obligatoire",
+        "price": "1500 DH",
+        "image": "/images/programmes/yogasanas.jpg"
       }
     },
     "buttons": {
-      "book": "Réserver",
+      "book": "Inscription",
       "bookSpot": "Réserver ma place",
       "moreInfo": "Plus d'informations"
     },

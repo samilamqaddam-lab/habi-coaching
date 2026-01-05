@@ -27,6 +27,7 @@ interface HeroProps {
   endWithWhite?: boolean; // Force le gradient à se terminer en blanc pour plus de contraste
   splitLayout?: boolean; // Active le layout split avec image à droite
   splitImage?: string; // Image pour le layout split
+  reducedTitle?: boolean; // Réduit la taille du titre principal
   children?: React.ReactNode; // Contenu additionnel après les CTAs
 }
 
@@ -48,6 +49,7 @@ export default function Hero({
   endWithWhite = false,
   splitLayout = false,
   splitImage,
+  reducedTitle = false,
   children,
 }: HeroProps) {
   // Theme-based gradients with smooth bottom transition to beige (or white if endWithWhite is true)
@@ -108,7 +110,9 @@ export default function Hero({
               )}
 
               <h1 className={`font-heading font-bold text-deep-blue leading-tight ${
-                compact
+                reducedTitle
+                  ? 'text-xl sm:text-2xl md:text-3xl lg:text-4xl'
+                  : compact
                   ? 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl'
                   : 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl'
               }`}>
@@ -139,6 +143,8 @@ export default function Hero({
                   )}
                 </div>
               )}
+
+              {children}
             </div>
 
             {/* Right Side - Image */}
@@ -171,24 +177,6 @@ export default function Hero({
           </div>
         </Container>
 
-        {/* Scroll indicator - centered under left text column on lg screens */}
-        <div className={`absolute ${
-          useVhSpacing
-            ? 'bottom-10'
-            : 'bottom-10 sm:bottom-12 md:bottom-14 lg:bottom-16'
-        } left-1/2 lg:left-1/4 transform -translate-x-1/2 animate-bounce`}>
-          <svg
-            className={`w-6 h-6 ${scrollColors[theme]}`}
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </div>
       </section>
     );
   }
@@ -231,8 +219,12 @@ export default function Hero({
           )}
 
           <h1
-            className={`font-heading text-4xl md:text-6xl lg:text-7xl font-bold ${titleSuffix ? 'mb-2' : 'mb-6'} ${
+            className={`font-heading font-bold ${titleSuffix ? 'mb-2' : 'mb-6'} ${
               backgroundImage ? 'text-warm-white' : 'text-deep-blue'
+            } ${
+              reducedTitle
+                ? 'text-xl sm:text-2xl md:text-3xl lg:text-4xl'
+                : 'text-4xl md:text-6xl lg:text-7xl'
             }`}
           >
             {title}
@@ -284,28 +276,6 @@ export default function Hero({
         </div>
       </Container>
 
-      {/* Scroll indicator - hidden in minimal mode */}
-      {!minimal && (
-        <div className={`absolute ${
-          useVhSpacing
-            ? 'bottom-10'
-            : compact
-            ? 'bottom-8 sm:bottom-10 md:bottom-12'
-            : 'bottom-10 sm:bottom-12 md:bottom-14 lg:bottom-16'
-        } left-1/2 transform -translate-x-1/2 animate-bounce`}>
-          <svg
-            className={`w-6 h-6 ${backgroundImage ? 'text-warm-white' : scrollColors[theme]}`}
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </div>
-      )}
     </section>
   );
 }
