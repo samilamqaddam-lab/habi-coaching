@@ -150,6 +150,107 @@ Location: `/public/images/Reel/`
 ### Security
 - React 19.2.2 and Next.js 16.0.10 (patched for CVE-2025-55182, CVE-2025-55183, CVE-2025-55184)
 
+## Sanity CMS Integration
+
+### Overview
+Full Sanity CMS integration completed January 2025 for managing dynamic content.
+
+**Sanity Project:** `czmpe9zr` (production dataset)
+**Studio URL:** https://transcendencework.com/studio
+
+### Content Managed via Sanity
+- **Homepage Content** (`homepageContent`):
+  - Section Expertise (3 cards)
+  - Section "Qui suis-je?" (About)
+  - Section Services (3 services)
+  - Section CTA finale
+- **Hero Sections** (`heroSection`) - Per-page hero configuration
+- **Blog Posts** (`post`) - Articles with rich text, images, SEO
+- **Testimonials** (`testimonial`) - Client testimonials with ratings
+- **Contact Forms** - Form submissions stored in Sanity
+
+### Migration from Translation Files
+Previously, all content was hardcoded in `/locales/fr.json` and `/locales/en.json`.
+Homepage content has been migrated to Sanity for easier content management.
+
+**Migration Pattern:**
+1. Create schema in `/sanity/schemas/[content-type].ts`
+2. Add schema to `/sanity/schemas/index.ts`
+3. Create GROQ query in `/lib/sanity.queries.ts`
+4. Add fetch function in `/lib/sanity.ts`
+5. Update page component to fetch from Sanity
+6. Create migration script to populate initial data
+
+**Example:** See `/scripts/migrate-homepage-to-sanity.mjs`
+
+### When to Update Sanity Schemas
+
+**✅ YES - Update schemas when:**
+- Adding new fields to existing content types
+- Renaming fields (requires data migration)
+- Adding new content types/pages
+- Changing data structure (array → object, etc.)
+
+**❌ NO - Don't update schemas for:**
+- Visual/CSS changes only
+- Layout reorganization without data changes
+- Adding animations or interactions
+- Responsive design adjustments
+
+**Rule:** Sanity schemas must **mirror the data structure** that your code consumes.
+
+### Vercel Environment Variables
+
+**Required Variables:**
+```bash
+NEXT_PUBLIC_SANITY_PROJECT_ID=czmpe9zr
+NEXT_PUBLIC_SANITY_DATASET=production
+NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
+SANITY_API_TOKEN=sk[...]  # Write token for preview/webhooks
+RESEND_API_KEY=re_[...]    # For contact form emails
+SANITY_PREVIEW_SECRET=transcendence-preview-2024
+SANITY_WEBHOOK_SECRET=transcendence-webhook-2024
+```
+
+**Configuration Method:**
+- ⚠️ **DO NOT use `vercel env add` via CLI** - causes `\n` character issues
+- ✅ **Use Vercel Web UI** for manual configuration:
+  1. Go to Vercel Dashboard → Project Settings → Environment Variables
+  2. Add each variable manually (no trailing newlines)
+  3. Select all environments: Production, Preview, Development
+
+**Common Pitfall - Newline Characters:**
+When using `echo` or `printf` with pipes in bash scripts, literal `\n` characters can be added to environment variable values, causing errors like:
+```
+Error: Configuration must contain projectId (only a-z, 0-9, and dashes)
+```
+
+**Scripts Available (Reference Only):**
+- `/scripts/clean-and-fix-vercel-env.sh` - Removes and re-adds all Sanity vars
+- `/scripts/fix-vercel-env.sh` - Attempts to fix `\n` issues
+
+These scripts are **not recommended** due to newline issues. Use Vercel Web UI instead.
+
+**Local Development:**
+Ensure `.env.local` has clean values without `\n`:
+```bash
+# ✅ Correct
+NEXT_PUBLIC_SANITY_PROJECT_ID=czmpe9zr
+
+# ❌ Wrong (literal \n at end)
+NEXT_PUBLIC_SANITY_PROJECT_ID="czmpe9zr\n"
+```
+
+**Verifying Setup:**
+```bash
+# Local build should succeed
+npm run build
+
+# Check deployed variables (will show if \n present)
+vercel env pull .env.vercel.check
+cat .env.vercel.check
+```
+
 ## Translation Files
 Location: `/locales/fr.json` and `/locales/en.json`
 Hook: `useTranslation()` from `@/hooks/useTranslation`
