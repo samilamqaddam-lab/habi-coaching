@@ -181,16 +181,11 @@ export default function ProgrammesContent({ classes, retreatsAndWorkshops }: Pro
         id="cours"
         subtitle={t('programmes.regularClasses.subtitle')}
         title={t('programmes.regularClasses.title')}
-        description={t('programmes.regularClasses.description')}
+        description={t('programmes.regularClasses.autonomy')}
         background="beige"
         accentColor="yoga"
         afterHero
-        centered
       >
-        {/* Paragraphe sur l'autonomie */}
-        <p className="text-center text-text-secondary max-w-3xl mx-auto mb-12 leading-relaxed">
-          {t('programmes.regularClasses.autonomy')}
-        </p>
 
         {/* 5 programmes en grille */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

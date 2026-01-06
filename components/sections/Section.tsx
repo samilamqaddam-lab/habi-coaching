@@ -80,7 +80,7 @@ export default function Section({
               </p>
             )}
             {title && (
-              <h2 className="font-heading text-3xl md:text-5xl font-bold text-deep-blue mb-6">
+              <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-deep-blue mb-3">
                 {title}
               </h2>
             )}
