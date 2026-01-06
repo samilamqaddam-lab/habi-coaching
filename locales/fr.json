@@ -294,10 +294,146 @@
       "description": "Nouveau·elle au yoga ? Venez essayer votre premier cours gratuitement, sans engagement.",
       "button": "Réserver mon cours d'essai"
     },
-    "experiences": {
-      "subtitle": "Retraites & Programmes",
-      "title": "Expériences Transformationnelles",
-      "description": "Des retraites, ateliers et formations qui allient pratiques yogiques traditionnelles et développement personnel dans des lieux inspirants au Maroc."
+    "otherPrograms": {
+      "subtitle": "Autres programmes",
+      "title": "Pour la santé et le bien-être",
+      "intro": "Des parcours guidés alliant yoga, pranayama, méditation et chants traditionnels, conçus pour accompagner votre santé et votre bien-être de manière holistique.",
+      "disclaimer": "Ces programmes s'inspirent des orientations de Sadhguru et de la tradition yogique Isha, mais sont dispensés par Hajar Habi de manière indépendante.",
+      "medicalWarning": "Ces programmes ne se substituent en aucun cas à un avis médical, un diagnostic ou un traitement. Ils constituent un soutien complémentaire au bien-être global.",
+
+      "health": {
+        "title": "Yoga pour la Santé",
+        "intro": "Ces programmes de yoga pour la santé proposent un accompagnement adapté et personnalisé pour soutenir votre bien-être face à diverses problématiques de santé, dans une approche complémentaire et respectueuse de votre parcours médical.",
+        "whatToExpect": {
+          "title": "À quoi ressemblent ces programmes",
+          "items": [
+            "Séances de yoga adaptées (mobilité, renforcement doux, relaxation)",
+            "Pranayama (respiration yogique adaptée)",
+            "Méditations guidées (stabilité, apaisement, récupération)",
+            "Chants traditionnels (ancrage, régulation)",
+            "Conseils de pratique à domicile (routines courtes et accessibles)"
+          ]
+        },
+        "formats": ["Individuel", "Petit groupe"],
+        "accordionTitle": "Pour quelles problématiques ?",
+        "categories": {
+          "cardioMetabolic": {
+            "title": "Système cardio-métabolique",
+            "items": ["Hypertension", "Troubles cardiaques", "Gestion du poids"]
+          },
+          "respiratory": {
+            "title": "Système respiratoire & sommeil",
+            "items": ["Apnée du sommeil", "Troubles du sommeil et insomnies"]
+          },
+          "spine": {
+            "title": "Colonne vertébrale, articulations & douleur",
+            "items": [
+              "Inconforts cervicaux",
+              "Inconforts lombaires",
+              "Inconforts articulaires",
+              "Accompagnement du bien-être face à la douleur"
+            ]
+          },
+          "digestive": {
+            "title": "Système digestif",
+            "items": [
+              "Inconforts gastro-intestinaux",
+              "Gastrite et brûlures d'estomac",
+              "Ballonnements"
+            ]
+          },
+          "hormonal": {
+            "title": "Système hormonal & reproducteur",
+            "items": [
+              "Déséquilibres menstruels",
+              "Maladies reliées aux organes reproducteurs"
+            ]
+          },
+          "immunity": {
+            "title": "Immunité & accompagnement de parcours de santé exigeants",
+            "items": [
+              "Maladies auto-immunes",
+              "Cancer – accompagnement adjuvant (bien-être, gestion du stress, énergie, sommeil)"
+            ]
+          },
+          "mental": {
+            "title": "Santé mentale & équilibre émotionnel",
+            "items": [
+              "Anxiété et stress post-traumatique (PTSD)",
+              "Troubles de l'humeur (dépression, instabilité émotionnelle, etc.)"
+            ]
+          }
+        },
+        "ctaButton": "Demander une orientation",
+        "ctaSubtext": "Un échange pour comprendre vos attentes et vous proposer un cadre adapté.",
+        "disclaimer": "Ces programmes s'inscrivent dans une démarche de soutien au bien-être global et ne remplacent en aucun cas un avis ou un traitement médical.",
+        "image": "/images/programmes/yoga-sante.jpg"
+      },
+
+      "wellbeing": {
+        "title": "Yoga pour le Bien-être",
+        "intro": "Ces programmes de yoga pour le bien-être sont conçus pour accompagner votre équilibre global, votre vitalité et votre épanouissement personnel à travers des pratiques yogiques adaptées à vos besoins et aspirations.",
+        "note": "Les programmes présentés ci-dessous constituent des orientations générales. Chaque parcours est ajusté en fonction de vos besoins, priorités et capacités lors d'une séance de prise de contact.",
+        "whatToExpect": {
+          "title": "À quoi ressemblent ces programmes",
+          "items": [
+            "Pratiques de yoga douces et équilibrantes (ancrage, ouverture, relaxation)",
+            "Pranayama adapté au système nerveux (apaisement, vitalité)",
+            "Méditations guidées (clarté mentale, présence, recul)",
+            "Chants traditionnels (soutien de l'équilibre émotionnel)",
+            "Routines simples pour le quotidien (gestion du stress, régulation)"
+          ]
+        },
+        "formats": ["Individuel", "Ateliers", "Petits groupes"],
+        "accordionTitle": "Thématiques accompagnées",
+        "categories": {
+          "presence": {
+            "title": "Présence, intériorité & dimension spirituelle",
+            "items": ["Présence et intériorité", "Dévotion"]
+          },
+          "energy": {
+            "title": "Énergie, vitalité & équilibre global",
+            "items": [
+              "Vitalité et bien-être général",
+              "Équilibre du corps et du mental",
+              "Gestion du poids"
+            ]
+          },
+          "body": {
+            "title": "Corps, force & stabilité physique",
+            "items": [
+              "Renforcement physique global",
+              "Soutien et renforcement de la colonne vertébrale"
+            ]
+          },
+          "specific": {
+            "title": "Programmes adaptés à des publics spécifiques",
+            "items": [
+              "Femmes enceintes",
+              "Personnes à mobilité réduite",
+              "Enfants et adolescents"
+            ]
+          },
+          "cardio": {
+            "title": "Soutien cardiovasculaire & récupération (approche bien-être)",
+            "items": [
+              "Soutien de la vitalité cardiaque",
+              "Accompagnement du bien-être après des événements de santé"
+            ]
+          },
+          "daily": {
+            "title": "Thématiques du quotidien & équilibre de vie",
+            "items": [
+              "Gestion du décalage horaire (jet lag)",
+              "Concentration, clarté mentale et mémoire"
+            ]
+          }
+        },
+        "ctaButton": "Discuter de mes besoins",
+        "ctaSubtext": "Un premier échange pour vous orienter, sans engagement.",
+        "durationNote": "La durée des programmes peut varier de quelques heures à plusieurs semaines. Les modalités, le rythme et les pratiques sont toujours discutés lors d'une séance de prise de contact, puis ajustés en fonction des besoins, des priorités et des capacités de chaque personne.",
+        "image": "/images/programmes/yoga-bien-etre.jpg"
+      }
     },
     "type": {
       "class": "cours",

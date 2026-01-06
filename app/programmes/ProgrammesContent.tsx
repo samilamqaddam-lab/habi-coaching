@@ -8,53 +8,7 @@ import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
 import { PrivateYogaRequestModal } from '@/components/forms'
 import { useTranslation } from '@/hooks/useTranslation'
-import type { Programme } from '@/lib/sanity.types'
-
-interface ProgrammesContentProps {
-  classes: Programme[]
-  retreatsAndWorkshops: Programme[]
-}
-
-// Format price for display
-function formatPrice(price: Programme['price']): string {
-  const amount = price.amount
-  const currency = price.currency === 'EUR' ? '€' : price.currency
-  const note = price.note ? ` ${price.note}` : ''
-  return `${amount}${currency}${note}`
-}
-
-// Format dates for display
-function formatDates(dates: Programme['dates']): string {
-  if (!dates?.start) return ''
-  const start = new Date(dates.start)
-  const end = dates.end ? new Date(dates.end) : null
-
-  const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' }
-  if (end) {
-    return `${start.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' })} - ${end.toLocaleDateString('fr-FR', options)}`
-  }
-  return start.toLocaleDateString('fr-FR', options)
-}
-
-// Map programme type to translation key
-function getTypeLabel(type: Programme['type'], t: (key: string) => string): string {
-  const typeMap: Record<Programme['type'], string> = {
-    class: t('programmes.type.class'),
-    retreat: t('programmes.type.retreat'),
-    workshop: t('programmes.type.workshop'),
-    training: t('programmes.type.training'),
-  }
-  return typeMap[type] || type
-}
-
-// Default images for programmes without Sanity images
-const defaultImages: Record<string, string> = {
-  'programme-retreat-atlas': '/images/Reel/IMG_4078.jpeg',
-  'programme-retreat-silence': '/images/programmes/silence-retreat.jpg',
-  'programme-workshop-leadership': '/images/programmes/leadership-workshop.jpg',
-  'programme-workshop-balance': '/images/programmes/balance-yoga.jpg',
-  'programme-training-philosophy': '/images/programmes/philosophy-training.jpg',
-}
+import Accordion from '@/components/ui/Accordion'
 
 // Composant Accordion pour les bénéfices
 function BenefitsAccordion({ programKey, t }: { programKey: string; t: (key: string) => string }) {
@@ -99,8 +53,168 @@ function BenefitsAccordion({ programKey, t }: { programKey: string; t: (key: str
   )
 }
 
-export default function ProgrammesContent({ classes, retreatsAndWorkshops }: ProgrammesContentProps) {
-  const { t, locale } = useTranslation()
+// Composant ProgramCard pour les programmes de santé et bien-être
+function ProgramCard({ type, t }: { type: 'health' | 'wellbeing'; t: (key: string) => any }) {
+  const programKey = `programmes.otherPrograms.${type}`
+
+  // Helper to get array items from translations
+  const getArrayItems = (baseKey: string, maxItems = 10): string[] => {
+    const items: string[] = []
+    for (let i = 0; i < maxItems; i++) {
+      const item = t(`${baseKey}.${i}`)
+      if (item && !item.startsWith('programmes.')) {
+        items.push(item)
+      } else {
+        break
+      }
+    }
+    return items
+  }
+
+  // Helper to get category object
+  const getCategories = () => {
+    const categoryKeys = type === 'health'
+      ? ['cardioMetabolic', 'respiratory', 'spine', 'digestive', 'hormonal', 'immunity', 'mental']
+      : ['presence', 'energy', 'body', 'specific', 'cardio', 'daily']
+
+    return categoryKeys.map(key => ({
+      key,
+      title: t(`${programKey}.categories.${key}.title`),
+      items: getArrayItems(`${programKey}.categories.${key}.items`),
+    })).filter(cat => cat.items.length > 0)
+  }
+
+  const data = {
+    title: t(`${programKey}.title`),
+    intro: t(`${programKey}.intro`),
+    note: type === 'wellbeing' ? t(`${programKey}.note`) : null,
+    whatToExpect: {
+      title: t(`${programKey}.whatToExpect.title`),
+      items: getArrayItems(`${programKey}.whatToExpect.items`, 10),
+    },
+    formats: getArrayItems(`${programKey}.formats`, 5),
+    accordionTitle: t(`${programKey}.accordionTitle`),
+    categories: getCategories(),
+    ctaButton: t(`${programKey}.ctaButton`),
+    ctaSubtext: t(`${programKey}.ctaSubtext`),
+    disclaimer: type === 'health' ? t(`${programKey}.disclaimer`) : null,
+    durationNote: type === 'wellbeing' ? t(`${programKey}.durationNote`) : null,
+    image: t(`${programKey}.image`),
+  }
+
+  return (
+    <Card padding="lg" className="group">
+      <div className="grid lg:grid-cols-3 gap-8">
+        {/* Colonne 1: Image (1/3) */}
+        <div className="lg:col-span-1">
+          <div className="relative aspect-[4/5] rounded-xl overflow-hidden">
+            <Image
+              src={data.image}
+              alt={data.title}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 1024px) 100vw, 33vw"
+            />
+          </div>
+        </div>
+
+        {/* Colonnes 2-3: Contenu (2/3) */}
+        <div className="lg:col-span-2 space-y-6">
+          {/* Titre */}
+          <h3 className="font-heading text-2xl md:text-3xl font-bold text-golden-orange">
+            {data.title}
+          </h3>
+
+          {/* Intro */}
+          <p className="text-text-secondary leading-relaxed">
+            {data.intro}
+          </p>
+
+          {/* Note optionnelle (seulement wellbeing) */}
+          {data.note && (
+            <p className="text-sm text-text-secondary italic">
+              {data.note}
+            </p>
+          )}
+
+          {/* À quoi ressemblent ces programmes */}
+          <div>
+            <h4 className="font-heading text-lg font-semibold text-deep-blue mb-3">
+              {data.whatToExpect.title}
+            </h4>
+            <ul className="space-y-2">
+              {data.whatToExpect.items.map((item: string, idx: number) => (
+                <li key={idx} className="flex gap-2 text-text-secondary">
+                  <span className="text-golden-orange mt-1">•</span>
+                  <span className="flex-1">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Formats (chips) */}
+          <div className="flex flex-wrap gap-2">
+            {data.formats.map((format: string) => (
+              <span
+                key={format}
+                className="px-3 py-1 bg-golden-orange/10 text-golden-orange text-sm font-medium rounded-full"
+              >
+                {format}
+              </span>
+            ))}
+          </div>
+
+          {/* Accordion: Problématiques/Thématiques */}
+          <Accordion title={data.accordionTitle} defaultOpen={false}>
+            <div className="space-y-4 pt-4">
+              {data.categories.map((category) => (
+                <div key={category.key}>
+                  <h5 className="font-semibold text-deep-blue mb-2">
+                    {category.title}
+                  </h5>
+                  <ul className="space-y-1 pl-4">
+                    {category.items.map((item: string, idx: number) => (
+                      <li key={idx} className="text-sm text-text-secondary">
+                        • {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </Accordion>
+
+          {/* Disclaimer (seulement health) */}
+          {data.disclaimer && (
+            <p className="text-xs text-text-secondary italic">
+              {data.disclaimer}
+            </p>
+          )}
+
+          {/* Duration note (seulement wellbeing) */}
+          {data.durationNote && (
+            <p className="text-xs text-text-secondary italic">
+              {data.durationNote}
+            </p>
+          )}
+
+          {/* CTA */}
+          <div className="space-y-2">
+            <Button variant="primary" size="lg" href="/contact">
+              {data.ctaButton}
+            </Button>
+            <p className="text-xs text-text-secondary italic">
+              {data.ctaSubtext}
+            </p>
+          </div>
+        </div>
+      </div>
+    </Card>
+  )
+}
+
+export default function ProgrammesContent() {
+  const { t } = useTranslation()
 
   return (
     <>
@@ -260,159 +374,32 @@ export default function ProgrammesContent({ classes, retreatsAndWorkshops }: Pro
         </div>
       </Section>
 
-      {/* Retraites & Programmes */}
+      {/* Autres programmes */}
       <Section
-        id="retraites"
-        subtitle={t('programmes.experiences.subtitle')}
-        title={t('programmes.experiences.title')}
-        description={t('programmes.experiences.description')}
+        id="autres-programmes"
+        subtitle={t('programmes.otherPrograms.subtitle')}
+        title={t('programmes.otherPrograms.title')}
         accentColor="yoga"
       >
-        <div className="grid gap-8">
-          {retreatsAndWorkshops.map((programme) => (
-            <Card key={programme._id} padding="lg" className="group">
-              <div className="grid lg:grid-cols-3 gap-6">
-                {/* Programme Image */}
-                <div className="md:col-span-1">
-                  <div className="aspect-[4/3] relative rounded-xl overflow-hidden group-hover:shadow-lg transition-all">
-                    <Image
-                      src={defaultImages[programme._id] || '/images/programmes/atlas-mountains.jpg'}
-                      alt={locale === 'en' && programme.titleEn ? programme.titleEn : programme.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
-                  </div>
-                </div>
+        {/* Intro + Disclaimers */}
+        <div className="max-w-4xl mx-auto mb-12 space-y-4">
+          <p className="text-lg text-text-secondary leading-relaxed">
+            {t('programmes.otherPrograms.intro')}
+          </p>
+          <p className="text-sm text-text-secondary italic">
+            {t('programmes.otherPrograms.disclaimer')}
+          </p>
+          <div className="bg-golden-orange/5 border-l-4 border-golden-orange p-4 rounded-r-lg">
+            <p className="text-sm text-text-secondary font-medium">
+              {t('programmes.otherPrograms.medicalWarning')}
+            </p>
+          </div>
+        </div>
 
-                {/* Contenu */}
-                <div className="md:col-span-2">
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <span className="inline-block px-3 py-1 bg-golden-orange/10 text-golden-orange text-xs font-medium rounded-full mb-3 uppercase">
-                        {getTypeLabel(programme.type, t)}
-                      </span>
-                      <h3 className="font-heading text-2xl font-bold text-deep-blue mb-2">
-                        {locale === 'en' && programme.titleEn ? programme.titleEn : programme.title}
-                      </h3>
-                      <div className="flex flex-wrap gap-4 text-sm text-text-secondary mb-4">
-                        {programme.location && (
-                          <div className="flex items-center">
-                            <svg
-                              className="w-4 h-4 mr-2 text-golden-orange"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                              />
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                              />
-                            </svg>
-                            {programme.location}
-                          </div>
-                        )}
-                        <div className="flex items-center">
-                          <svg
-                            className="w-4 h-4 mr-2 text-golden-orange"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                            />
-                          </svg>
-                          {programme.duration}
-                        </div>
-                        {programme.dates && (
-                          <div className="flex items-center">
-                            <svg
-                              className="w-4 h-4 mr-2 text-golden-orange"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                              />
-                            </svg>
-                            {formatDates(programme.dates)}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <p className="font-heading text-3xl font-bold text-golden-orange mb-1">
-                        {formatPrice(programme.price)}
-                      </p>
-                      <p className="text-xs text-text-secondary">
-                        {t('programmes.perPerson')}
-                      </p>
-                      {programme.spotsAvailable && programme.spotsAvailable <= 5 && (
-                        <p className="text-xs text-golden-orange font-medium mt-2">
-                          Plus que {programme.spotsAvailable} places
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  <p className="text-text-secondary leading-relaxed mb-6">
-                    {locale === 'en' && programme.descriptionEn ? programme.descriptionEn : programme.description}
-                  </p>
-
-                  {programme.highlights && programme.highlights.length > 0 && (
-                    <div className="mb-6">
-                      <h4 className="font-semibold text-deep-blue mb-3 text-sm">
-                        {t('programmes.programHighlights')}
-                      </h4>
-                      <ul className="grid grid-cols-1 min-[400px]:grid-cols-2 gap-2">
-                        {(locale === 'en' && programme.highlightsEn ? programme.highlightsEn : programme.highlights).map((highlight, index) => (
-                          <li key={index} className="flex items-start text-xs sm:text-sm">
-                            <svg
-                              className="w-4 h-4 text-golden-orange mr-2 mt-0.5 flex-shrink-0"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                            <span className="text-text-secondary">{highlight}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-
-                  <div className="flex flex-col sm:flex-row gap-3">
-                    <Button variant="primary" size="md" href="/contact">
-                      {t('programmes.buttons.bookSpot')}
-                    </Button>
-                    <Button variant="outline" size="md" href="/contact">
-                      {t('programmes.buttons.moreInfo')}
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </Card>
-          ))}
+        {/* Méga-cartes empilées verticalement */}
+        <div className="space-y-12">
+          <ProgramCard type="health" t={t} />
+          <ProgramCard type="wellbeing" t={t} />
         </div>
       </Section>
 
