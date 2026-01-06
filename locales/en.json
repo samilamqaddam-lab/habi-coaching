@@ -216,10 +216,146 @@
       "description": "New to yoga? Come try your first class for free, no commitment.",
       "button": "Book My Trial Class"
     },
-    "experiences": {
-      "subtitle": "Retreats & Programs",
-      "title": "Transformational Experiences",
-      "description": "Retreats, workshops and training that combine traditional yogic practices and personal transformation in inspiring Moroccan locations."
+    "otherPrograms": {
+      "subtitle": "Other Programs",
+      "title": "For Health and Wellbeing",
+      "intro": "Guided pathways combining yoga, pranayama, meditation and traditional chants, designed to support your health and wellbeing holistically.",
+      "disclaimer": "These programs are inspired by Sadhguru's guidance and the Isha yogic tradition, but are delivered independently by Hajar Habi.",
+      "medicalWarning": "These programs do not substitute medical advice, diagnosis or treatment. They provide complementary support for overall wellbeing.",
+
+      "health": {
+        "title": "Yoga for Health",
+        "intro": "These yoga for health programs offer adapted and personalized support for your wellbeing in relation to various health concerns, with a complementary approach that respects your medical journey.",
+        "whatToExpect": {
+          "title": "What these programs look like",
+          "items": [
+            "Adapted yoga sessions (mobility, gentle strengthening, relaxation)",
+            "Pranayama (adapted yogic breathing)",
+            "Guided meditations (stability, calm, recovery)",
+            "Traditional chants (grounding, regulation)",
+            "Home practice guidance (short and accessible routines)"
+          ]
+        },
+        "formats": ["Individual", "Small group"],
+        "accordionTitle": "Which health concerns?",
+        "categories": {
+          "cardioMetabolic": {
+            "title": "Cardio-metabolic system",
+            "items": ["Hypertension", "Cardiac disorders", "Weight management"]
+          },
+          "respiratory": {
+            "title": "Respiratory system & sleep",
+            "items": ["Sleep apnea", "Sleep disorders and insomnia"]
+          },
+          "spine": {
+            "title": "Spine, joints & pain",
+            "items": [
+              "Cervical discomfort",
+              "Lumbar discomfort",
+              "Joint discomfort",
+              "Wellbeing support for pain management"
+            ]
+          },
+          "digestive": {
+            "title": "Digestive system",
+            "items": [
+              "Gastro-intestinal discomfort",
+              "Gastritis and heartburn",
+              "Bloating"
+            ]
+          },
+          "hormonal": {
+            "title": "Hormonal & reproductive system",
+            "items": [
+              "Menstrual imbalances",
+              "Reproductive organ-related conditions"
+            ]
+          },
+          "immunity": {
+            "title": "Immunity & support for demanding health journeys",
+            "items": [
+              "Autoimmune conditions",
+              "Cancer – adjuvant support (wellbeing, stress management, energy, sleep)"
+            ]
+          },
+          "mental": {
+            "title": "Mental health & emotional balance",
+            "items": [
+              "Anxiety and post-traumatic stress (PTSD)",
+              "Mood disorders (depression, emotional instability, etc.)"
+            ]
+          }
+        },
+        "ctaButton": "Request guidance",
+        "ctaSubtext": "A conversation to understand your needs and suggest an adapted framework.",
+        "disclaimer": "These programs are part of a holistic wellbeing approach and do not replace medical advice or treatment.",
+        "image": "/images/programmes/yoga-sante.jpg"
+      },
+
+      "wellbeing": {
+        "title": "Yoga for Wellbeing",
+        "intro": "These yoga for wellbeing programs are designed to support your overall balance, vitality and personal fulfillment through yogic practices adapted to your needs and aspirations.",
+        "note": "The programs presented below are general orientations. Each journey is adjusted based on your needs, priorities and capacities during an initial consultation.",
+        "whatToExpect": {
+          "title": "What these programs look like",
+          "items": [
+            "Gentle and balancing yoga practices (grounding, opening, relaxation)",
+            "Pranayama adapted to the nervous system (calm, vitality)",
+            "Guided meditations (mental clarity, presence, perspective)",
+            "Traditional chants (emotional balance support)",
+            "Simple daily routines (stress management, regulation)"
+          ]
+        },
+        "formats": ["Individual", "Workshops", "Small groups"],
+        "accordionTitle": "Themes addressed",
+        "categories": {
+          "presence": {
+            "title": "Presence, interiority & spiritual dimension",
+            "items": ["Presence and interiority", "Devotion"]
+          },
+          "energy": {
+            "title": "Energy, vitality & overall balance",
+            "items": [
+              "Vitality and general wellbeing",
+              "Body and mind balance",
+              "Weight management"
+            ]
+          },
+          "body": {
+            "title": "Body, strength & physical stability",
+            "items": [
+              "Overall physical strengthening",
+              "Spinal support and strengthening"
+            ]
+          },
+          "specific": {
+            "title": "Programs for specific audiences",
+            "items": [
+              "Pregnant women",
+              "People with reduced mobility",
+              "Children and teenagers"
+            ]
+          },
+          "cardio": {
+            "title": "Cardiovascular support & recovery (wellbeing approach)",
+            "items": [
+              "Heart vitality support",
+              "Wellbeing support after health events"
+            ]
+          },
+          "daily": {
+            "title": "Daily life themes & life balance",
+            "items": [
+              "Jet lag management",
+              "Concentration, mental clarity and memory"
+            ]
+          }
+        },
+        "ctaButton": "Discuss my needs",
+        "ctaSubtext": "An initial conversation to guide you, without commitment.",
+        "durationNote": "Program duration can vary from a few hours to several weeks. Modalities, rhythm and practices are always discussed during an initial consultation, then adjusted based on individual needs, priorities and capacities.",
+        "image": "/images/programmes/yoga-bien-etre.jpg"
+      }
     },
     "type": {
       "class": "class",
