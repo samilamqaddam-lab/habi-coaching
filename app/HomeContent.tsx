@@ -159,7 +159,8 @@ export default function HomeContent({ testimonials, homepageContent, hero }: Hom
   const heroTitle = hero?.title || t('home.hero.title')
   const heroTitleLine2 = hero?.titleLine2 || t('home.hero.titleLine2')
   const heroTitleSuffix = hero?.titleSuffix || t('home.hero.titleSuffix')
-  const heroDescription = hero?.description || t('home.hero.description')
+  // Always use translation for description (prioritize fr.json over Sanity)
+  const heroDescription = t('home.hero.description')
 
   return (
     <>
@@ -168,7 +169,7 @@ export default function HomeContent({ testimonials, homepageContent, hero }: Hom
         title={getText(heroTitle, hero?.titleEn)}
         titleLine2={getText(heroTitleLine2, hero?.titleLine2En)}
         titleSuffix={getText(heroTitleSuffix, hero?.titleSuffixEn)}
-        description={getText(heroDescription, hero?.descriptionEn)}
+        description={heroDescription}
         primaryCTA={{
           text: hero?.primaryCTA?.text || t('home.hero.primaryCTA'),
           href: hero?.primaryCTA?.href || '#services',
