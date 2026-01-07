@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Container from '../ui/Container';
 import LanguageToggle from './LanguageToggle';
 import { useTranslation } from '@/hooks/useTranslation';
@@ -37,9 +38,14 @@ export default function Header() {
         <nav className="flex items-center justify-between py-6 md:py-6">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <div className="font-heading text-xl md:text-2xl font-bold text-morocco-blue leading-none tracking-tight">
-              Transcendence Work
-            </div>
+            <Image
+              src="/images/logo-light.png"
+              alt="Transcendence Work"
+              width={180}
+              height={60}
+              className="h-10 md:h-12 w-auto"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}
