@@ -63,7 +63,7 @@ export default function PrivateYogaRequestModal({
             </h3>
             <p className="text-xs sm:text-sm text-text-secondary mt-1.5 leading-relaxed">
               {isGroupClass
-                ? 'Programme Isha Foundation enseigné par Sadhguru au Shido Mind Studio Casablanca'
+                ? 'Programme Isha Foundation conçu par Sadhguru'
                 : 'Programme personnalisé avec une professeure certifiée Isha Foundation (Sadhguru)'}
             </p>
           </div>

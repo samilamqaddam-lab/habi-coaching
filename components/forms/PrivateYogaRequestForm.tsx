@@ -110,20 +110,13 @@ export default function PrivateYogaRequestForm({ onClose, defaultYogaType, isGro
         required
       />
 
-      <div>
-        <FormInput
-          label={isGroupClass ? "Ville" : "Ville / Quartier"}
-          name="location"
-          type="text"
-          placeholder={isGroupClass ? "Ex: Casablanca" : "Ex: Casablanca, Maarif"}
-          required
-        />
-        {isGroupClass && (
-          <p className="text-xs text-text-secondary mt-1 italic">
-            Les cours ont lieu au Shido Mind Studio à Casablanca
-          </p>
-        )}
-      </div>
+      <FormInput
+        label={isGroupClass ? "Ville" : "Ville / Quartier"}
+        name="location"
+        type="text"
+        placeholder={isGroupClass ? "Ex: Casablanca" : "Ex: Casablanca, Maarif"}
+        required
+      />
 
       {/* Type de yoga souhaité */}
       <FormInput
