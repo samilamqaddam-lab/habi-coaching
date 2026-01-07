@@ -187,9 +187,18 @@
         "title": "Mon Approche",
         "text": "Je partage ces enseignements avec gratitude et humilité, offrant un cadre fidèle à cette tradition millénaire pour que chacun puisse en faire l'expérience directe et découvrir son propre chemin vers l'équilibre intérieur."
       },
-      "cta1": "Réserver un cours individuel",
-      "cta2": "Nous rejoindre sur le tapis (cours collectifs)",
-      "cta3": "Découvrir nos programmes & retraites"
+      "cta1": {
+        "text": "Réserver un cours individuel",
+        "subtitle": null
+      },
+      "cta2": {
+        "text": "Nous rejoindre sur le tapis",
+        "subtitle": "(Cours collectifs)"
+      },
+      "cta3": {
+        "text": "Découvrir nos programmes santé et bien-être",
+        "subtitle": null
+      }
     },
     "regularClasses": {
       "subtitle": "Cours Collectifs",

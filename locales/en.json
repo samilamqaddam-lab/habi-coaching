@@ -187,9 +187,18 @@
         "title": "My Approach",
         "text": "I share these teachings with gratitude and humility, offering a framework faithful to this ancient tradition so that everyone can experience it directly and discover their own path to inner balance."
       },
-      "cta1": "Book a private session",
-      "cta2": "Join us on the mat (group classes)",
-      "cta3": "Discover our programs & retreats"
+      "cta1": {
+        "text": "Book a private session",
+        "subtitle": null
+      },
+      "cta2": {
+        "text": "Join us on the mat",
+        "subtitle": "(Group classes)"
+      },
+      "cta3": {
+        "text": "Discover our health and wellbeing programs",
+        "subtitle": null
+      }
     },
     "regularClasses": {
       "subtitle": "Group Classes",
