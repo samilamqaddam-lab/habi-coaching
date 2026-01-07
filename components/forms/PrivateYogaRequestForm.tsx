@@ -138,40 +138,41 @@ export default function PrivateYogaRequestForm({ onClose, defaultYogaType, isGro
         ]}
       />
 
-      {/* Objectifs - Seulement pour cours individuels */}
+      {/* Objectifs et Niveau - Seulement pour cours individuels */}
       {!isGroupClass && (
-        <FormInput
-          label="Votre objectif principal"
-          name="goals"
-          type="select"
-          required
-          options={[
-            { value: 'stress', label: 'Gestion du stress et relaxation' },
-            { value: 'wellbeing', label: 'Bien-être général (corps, mental, émotions)' },
-            { value: 'flexibility', label: 'Améliorer la flexibilité et la mobilité' },
-            { value: 'physical', label: 'Renforcement physique et tonus musculaire' },
-            { value: 'energy', label: 'Augmenter ma vitalité et mon énergie' },
-            { value: 'spiritual', label: 'Développement spirituel et méditation' },
-            { value: 'health', label: 'Améliorer ma santé globale' },
-            { value: 'sleep', label: 'Mieux dormir et récupérer' },
-            { value: 'other', label: 'Autre objectif' },
-          ]}
-        />
-      )}
+        <>
+          <FormInput
+            label="Votre objectif principal"
+            name="goals"
+            type="select"
+            required
+            options={[
+              { value: 'stress', label: 'Gestion du stress et relaxation' },
+              { value: 'wellbeing', label: 'Bien-être général (corps, mental, émotions)' },
+              { value: 'flexibility', label: 'Améliorer la flexibilité et la mobilité' },
+              { value: 'physical', label: 'Renforcement physique et tonus musculaire' },
+              { value: 'energy', label: 'Augmenter ma vitalité et mon énergie' },
+              { value: 'spiritual', label: 'Développement spirituel et méditation' },
+              { value: 'health', label: 'Améliorer ma santé globale' },
+              { value: 'sleep', label: 'Mieux dormir et récupérer' },
+              { value: 'other', label: 'Autre objectif' },
+            ]}
+          />
 
-      {/* Niveau d'expérience */}
-      <FormInput
-        label="Votre niveau de pratique"
-        name="level"
-        type="select"
-        required
-        options={[
-          { value: 'beginner', label: 'Débutant(e) - Jamais pratiqué' },
-          { value: 'some-experience', label: 'Quelques cours suivis' },
-          { value: 'intermediate', label: 'Intermédiaire - Pratique régulière' },
-          { value: 'advanced', label: 'Avancé(e)' },
-        ]}
-      />
+          <FormInput
+            label="Votre niveau de pratique"
+            name="level"
+            type="select"
+            required
+            options={[
+              { value: 'beginner', label: 'Débutant(e) - Jamais pratiqué' },
+              { value: 'some-experience', label: 'Quelques cours suivis' },
+              { value: 'intermediate', label: 'Intermédiaire - Pratique régulière' },
+              { value: 'advanced', label: 'Avancé(e)' },
+            ]}
+          />
+        </>
+      )}
 
       {/* Préférence lieu - Seulement pour cours individuels */}
       {!isGroupClass && (
