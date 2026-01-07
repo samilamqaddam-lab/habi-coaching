@@ -8,7 +8,6 @@ import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
 import { PrivateYogaRequestModal } from '@/components/forms'
 import { useTranslation } from '@/hooks/useTranslation'
-import Accordion from '@/components/ui/Accordion'
 
 // Composant Accordion pour les bénéfices
 function BenefitsAccordion({ programKey, t }: { programKey: string; t: (key: string) => string }) {
@@ -55,6 +54,7 @@ function BenefitsAccordion({ programKey, t }: { programKey: string; t: (key: str
 
 // Composant ProgramCard pour les programmes de santé et bien-être
 function ProgramCard({ type, t }: { type: 'health' | 'wellbeing'; t: (key: string) => any }) {
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const programKey = `programmes.otherPrograms.${type}`
 
   // Helper to get array items from translations
@@ -164,25 +164,54 @@ function ProgramCard({ type, t }: { type: 'health' | 'wellbeing'; t: (key: strin
             ))}
           </div>
 
-          {/* Accordion: Problématiques/Thématiques */}
-          <Accordion title={data.accordionTitle} defaultOpen={false}>
-            <div className="space-y-4 pt-4">
+          {/* Thématiques/Problématiques - Chips cliquables */}
+          <div className="space-y-4">
+            <h4 className="font-heading text-lg font-semibold text-deep-blue">
+              {data.accordionTitle}
+            </h4>
+
+            {/* Chips des catégories */}
+            <div className="flex flex-wrap gap-2">
               {data.categories.map((category) => (
-                <div key={category.key}>
-                  <h5 className="font-semibold text-deep-blue mb-2">
-                    {category.title}
-                  </h5>
-                  <ul className="space-y-1 pl-4">
-                    {category.items.map((item: string, idx: number) => (
-                      <li key={idx} className="text-sm text-text-secondary">
-                        • {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <button
+                  key={category.key}
+                  onClick={() => setSelectedCategory(
+                    selectedCategory === category.key ? null : category.key
+                  )}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                    selectedCategory === category.key
+                      ? 'bg-golden-orange text-white shadow-md'
+                      : 'bg-golden-orange/10 text-golden-orange hover:bg-golden-orange/20 hover:shadow-sm'
+                  }`}
+                >
+                  {category.title}
+                </button>
               ))}
             </div>
-          </Accordion>
+
+            {/* Items de la catégorie sélectionnée */}
+            {selectedCategory && (
+              <div className="bg-dune-beige/30 rounded-xl p-5 border border-golden-orange/20 transition-all duration-300 ease-in-out">
+                {data.categories
+                  .filter(cat => cat.key === selectedCategory)
+                  .map((category) => (
+                    <div key={category.key}>
+                      <h5 className="font-semibold text-deep-blue mb-3 text-base">
+                        {category.title}
+                      </h5>
+                      <ul className="space-y-2">
+                        {category.items.map((item: string, idx: number) => (
+                          <li key={idx} className="flex gap-2 text-text-secondary">
+                            <span className="text-golden-orange mt-1">•</span>
+                            <span className="flex-1">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+              </div>
+            )}
+          </div>
 
           {/* Disclaimer (seulement health) */}
           {data.disclaimer && (
