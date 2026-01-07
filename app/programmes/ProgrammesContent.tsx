@@ -297,50 +297,50 @@ export default function ProgrammesContent() {
         </div>
 
         {/* Boutons d'action */}
-        <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex flex-col sm:flex-row gap-4 max-w-full">
           {/* CTA 1: Réserver un cours individuel */}
-          <Button href="/contact" variant="primary" size="lg" className="flex items-center justify-center gap-3 py-5 px-8">
+          <Button href="/contact" variant="primary" size="lg" className="flex items-center justify-center gap-2 py-4 px-6 flex-shrink">
             {/* Icône calendrier avec + */}
-            <svg className="w-7 h-7 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <svg className="w-6 h-6 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               <circle cx="12" cy="13" r="4" fill="currentColor" opacity="0.2" />
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 11v4M10 13h4" />
             </svg>
-            <span className="font-semibold text-base whitespace-nowrap">{t('programmes.hero.cta1.text')}</span>
+            <span className="font-semibold text-sm whitespace-nowrap">{t('programmes.hero.cta1.text')}</span>
           </Button>
 
           {/* CTA 2: Nous rejoindre sur le tapis */}
-          <Button href="#cours" variant="primary" size="lg" className="flex flex-col items-center justify-center gap-1 py-4 px-8">
-            <div className="flex items-center gap-3">
+          <Button href="#cours" variant="primary" size="lg" className="flex flex-col items-center justify-center gap-1 py-3 px-6 flex-shrink">
+            <div className="flex items-center gap-2">
               {/* Icône personne en méditation */}
-              <svg className="w-7 h-7 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <svg className="w-6 h-6 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <circle cx="12" cy="7" r="2.5"/>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 10.5c-3 0-5 2-5 4.5v1.5c0 .5.5 1 1 1h8c.5 0 1-.5 1-1V15c0-2.5-2-4.5-5-4.5z"/>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M7 15.5l-2 3M17 15.5l2 3"/>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8 13l-2.5-1.5M16 13l2.5-1.5"/>
               </svg>
-              <span className="font-semibold text-base whitespace-nowrap">{t('programmes.hero.cta2.text')}</span>
+              <span className="font-semibold text-sm whitespace-nowrap">{t('programmes.hero.cta2.text')}</span>
             </div>
             {t('programmes.hero.cta2.subtitle') && (
-              <span className="text-sm italic opacity-90 whitespace-nowrap">{t('programmes.hero.cta2.subtitle')}</span>
+              <span className="text-xs italic opacity-90 whitespace-nowrap">{t('programmes.hero.cta2.subtitle')}</span>
             )}
           </Button>
         </div>
 
         {/* CTA 3: Découvrir programmes santé et bien-être */}
-        <div className="mt-4">
+        <div className="mt-4 max-w-full">
           <Button
             href="#autres-programmes"
             variant="secondary"
             size="lg"
-            className="w-full sm:w-auto flex items-center justify-center gap-3 py-5 px-8 bg-mystic-mauve/10 text-mystic-mauve hover:bg-mystic-mauve hover:text-white border-mystic-mauve/20"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 py-4 px-6 bg-mystic-mauve/10 text-mystic-mauve hover:bg-mystic-mauve hover:text-white border-mystic-mauve/20"
           >
             {/* Icône cœur dans des mains */}
-            <svg className="w-7 h-7 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <svg className="w-6 h-6 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 16c0 1.5.5 3 2 4M21 16c0 1.5-.5 3-2 4" />
             </svg>
-            <span className="font-semibold text-base whitespace-nowrap">{t('programmes.hero.cta3.text')}</span>
+            <span className="font-semibold text-sm whitespace-nowrap">{t('programmes.hero.cta3.text')}</span>
           </Button>
         </div>
       </Hero>
