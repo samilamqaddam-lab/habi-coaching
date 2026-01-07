@@ -47,3 +47,5 @@ Hajar picture/
 
 # MCP generated
 .playwright-mcp/
+# Asset source folders (copied to public/)
+Yoga bien etre/
