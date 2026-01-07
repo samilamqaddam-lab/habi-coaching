@@ -100,9 +100,9 @@ export default function Hero({
             ? 'py-12 sm:py-16 md:py-20'
             : 'py-16 sm:py-20 md:py-24 lg:py-28'
         }`}>
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center isolate">
             {/* Left Side - Text Content */}
-            <div className="order-2 lg:order-1 space-y-6 relative z-10">
+            <div className="order-2 lg:order-1 space-y-6">
               {subtitle && (
                 <p className={`${subtitleColors[theme]} text-sm md:text-base font-medium uppercase tracking-wider`}>
                   {subtitle}
