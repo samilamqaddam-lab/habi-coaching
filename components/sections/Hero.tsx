@@ -102,7 +102,7 @@ export default function Hero({
         }`}>
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left Side - Text Content */}
-            <div className="order-2 lg:order-1 space-y-6">
+            <div className="order-2 lg:order-1 space-y-6 relative z-10">
               {subtitle && (
                 <p className={`${subtitleColors[theme]} text-sm md:text-base font-medium uppercase tracking-wider`}>
                   {subtitle}
