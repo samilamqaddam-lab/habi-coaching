@@ -115,19 +115,18 @@ export default function PrivateYogaRequestForm({ onClose }: PrivateYogaRequestFo
 
       {/* Type de yoga souhaité */}
       <FormInput
-        label="Type de pratique souhaitée"
+        label={t('forms.yogaRequest.yogaTypeLabel')}
         name="yogaType"
         type="select"
         required
         options={[
-          { value: 'hatha', label: 'Hatha Yoga Traditionnel - Postures, respiration & méditation' },
-          { value: 'restorative', label: 'Yoga Restauratif - Relaxation profonde & récupération' },
-          { value: 'meditation-pranayama', label: 'Méditation & Pranayama - Techniques de respiration' },
-          { value: 'surya-kriya', label: 'Surya Kriya (Isha) - Alignement énergétique solaire' },
-          { value: 'angamardana', label: 'Yoga Dynamique (Angamardana) - Fitness sans équipement' },
-          { value: 'beginners', label: 'Pour Débutants (Upa Yoga) - Pratiques simples et accessibles' },
-          { value: 'custom', label: 'Programme sur-mesure - Combinaison personnalisée' },
-          { value: 'not-sure', label: 'Je ne sais pas - Besoin de conseil' },
+          { value: 'upa-yoga', label: t('forms.yogaRequest.yogaTypeOptions.0') },
+          { value: 'surya-kriya', label: t('forms.yogaRequest.yogaTypeOptions.1') },
+          { value: 'surya-shakti', label: t('forms.yogaRequest.yogaTypeOptions.2') },
+          { value: 'angamardana', label: t('forms.yogaRequest.yogaTypeOptions.3') },
+          { value: 'yogasanas', label: t('forms.yogaRequest.yogaTypeOptions.4') },
+          { value: 'custom', label: t('forms.yogaRequest.yogaTypeOptions.5') },
+          { value: 'not-sure', label: t('forms.yogaRequest.yogaTypeOptions.6') },
         ]}
       />
 

@@ -711,11 +711,9 @@
       "cityPlaceholder": "Votre ville",
       "interest": "Je m'intéresse à",
       "interestOptions": {
-        "0": "Coaching individuel",
-        "1": "Cours de yoga",
-        "2": "Retraite / Programme",
-        "3": "Accompagnement organisation",
-        "4": "Autre"
+        "0": "1. cours de yoga individuel",
+        "1": "2. coaching individuel",
+        "2": "3. Yoga et coaching individuel"
       },
       "message": "Votre message",
       "messagePlaceholder": "Parlez-moi de votre projet, vos besoins, vos questions...",
@@ -746,6 +744,20 @@
     "social": {
       "title": "Suivez-Moi sur les Réseaux",
       "description": "Inspirations quotidiennes, coulisses des retraites et pratiques guidées."
+    }
+  },
+  "forms": {
+    "yogaRequest": {
+      "yogaTypeLabel": "Type de pratique souhaitée",
+      "yogaTypeOptions": {
+        "0": "Upa Yoga - Pratiques simples et accessibles pour débutants",
+        "1": "Surya Kriya - Pratique yogique complète pour la vitalité",
+        "2": "Surya Shakti - Pratique dynamique pour la force et l'énergie",
+        "3": "Angamardana - Fitness yogique sans équipement",
+        "4": "Yogasanas - Pratique holistique pour le bien-être global",
+        "5": "Programme sur-mesure - Combinaison personnalisée",
+        "6": "Je ne sais pas - Besoin de conseil"
+      }
     }
   },
   "ressources": {

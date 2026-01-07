@@ -712,11 +712,9 @@
       "cityPlaceholder": "Your city",
       "interest": "I'm interested in",
       "interestOptions": {
-        "0": "Individual coaching",
-        "1": "Yoga classes",
-        "2": "Retreat / Program",
-        "3": "Organizational support",
-        "4": "Other"
+        "0": "1. individual yoga classes",
+        "1": "2. individual coaching",
+        "2": "3. Yoga and individual coaching"
       },
       "message": "Your Message",
       "messagePlaceholder": "Tell me about your project, your needs, your questions...",
@@ -747,6 +745,20 @@
     "social": {
       "title": "Follow Me on Social Media",
       "description": "Daily inspiration, retreat behind-the-scenes and guided practices."
+    }
+  },
+  "forms": {
+    "yogaRequest": {
+      "yogaTypeLabel": "Desired practice type",
+      "yogaTypeOptions": {
+        "0": "Upa Yoga - Simple and accessible practices for beginners",
+        "1": "Surya Kriya - Complete yogic practice for vitality",
+        "2": "Surya Shakti - Dynamic practice for strength and energy",
+        "3": "Angamardana - Yogic fitness without equipment",
+        "4": "Yogasanas - Holistic practice for overall wellbeing",
+        "5": "Custom program - Personalized combination",
+        "6": "I'm not sure - Need advice"
+      }
     }
   },
   "ressources": {

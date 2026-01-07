@@ -296,11 +296,9 @@ export default function ContactPage() {
                   value={formData.interest}
                   onChange={handleChange}
                   options={[
-                    { value: 'coaching', label: t('contact.form.interestOptions.0') },
-                    { value: 'yoga', label: t('contact.form.interestOptions.1') },
-                    { value: 'retraite', label: t('contact.form.interestOptions.2') },
-                    { value: 'organisation', label: t('contact.form.interestOptions.3') },
-                    { value: 'autre', label: t('contact.form.interestOptions.4') },
+                    { value: 'yoga-individuel', label: t('contact.form.interestOptions.0') },
+                    { value: 'coaching-individuel', label: t('contact.form.interestOptions.1') },
+                    { value: 'yoga-coaching', label: t('contact.form.interestOptions.2') },
                   ]}
                 />
 
