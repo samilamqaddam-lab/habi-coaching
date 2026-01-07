@@ -180,8 +180,8 @@ function ProgramCard({ type, t }: { type: 'health' | 'wellbeing'; t: (key: strin
                   )}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                     selectedCategory === category.key
-                      ? 'bg-golden-orange text-white shadow-md'
-                      : 'bg-golden-orange/10 text-golden-orange hover:bg-golden-orange/20 hover:shadow-sm'
+                      ? 'bg-deep-blue text-white shadow-md'
+                      : 'bg-deep-blue/10 text-deep-blue hover:bg-deep-blue/20 hover:shadow-sm'
                   }`}
                 >
                   {category.title}
@@ -191,7 +191,7 @@ function ProgramCard({ type, t }: { type: 'health' | 'wellbeing'; t: (key: strin
 
             {/* Items de la catégorie sélectionnée */}
             {selectedCategory && (
-              <div className="bg-dune-beige/30 rounded-xl p-5 border border-golden-orange/20 transition-all duration-300 ease-in-out">
+              <div className="bg-dune-beige/30 rounded-xl p-5 border border-deep-blue/20 transition-all duration-300 ease-in-out">
                 {data.categories
                   .filter(cat => cat.key === selectedCategory)
                   .map((category) => (
