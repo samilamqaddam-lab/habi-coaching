@@ -213,6 +213,15 @@ function ProgramCard({ type, t }: { type: 'health' | 'wellbeing'; t: (key: strin
   )
 }
 
+// Mapping des programKeys vers les values du formulaire
+const programKeyToFormValue: Record<string, string> = {
+  upaYoga: 'upa-yoga',
+  suryaKriya: 'surya-kriya',
+  suryaShakti: 'surya-shakti',
+  angamardana: 'angamardana',
+  yogasanas: 'yogasanas',
+}
+
 export default function ProgrammesContent() {
   const { t } = useTranslation()
 
@@ -367,6 +376,7 @@ export default function ProgrammesContent() {
                   triggerText={t('programmes.buttons.book')}
                   variant="outline"
                   fullWidth
+                  defaultYogaType={programKeyToFormValue[programKey]}
                 />
               </div>
             </Card>

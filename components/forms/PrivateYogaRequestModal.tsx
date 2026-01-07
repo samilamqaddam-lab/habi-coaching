@@ -11,6 +11,7 @@ interface PrivateYogaRequestModalProps {
   size?: 'sm' | 'md' | 'lg';
   fullWidth?: boolean;
   className?: string;
+  defaultYogaType?: string; // Pré-remplissage du type de yoga
 }
 
 export default function PrivateYogaRequestModal({
@@ -19,6 +20,7 @@ export default function PrivateYogaRequestModal({
   size = 'md',
   fullWidth = false,
   className = '',
+  defaultYogaType,
 }: PrivateYogaRequestModalProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -85,7 +87,7 @@ export default function PrivateYogaRequestModal({
 
         {/* Form */}
         <div className="p-6 max-h-[calc(100vh-200px)] overflow-y-auto">
-          <PrivateYogaRequestForm onClose={handleClose} />
+          <PrivateYogaRequestForm onClose={handleClose} defaultYogaType={defaultYogaType} />
         </div>
       </div>
     </div>

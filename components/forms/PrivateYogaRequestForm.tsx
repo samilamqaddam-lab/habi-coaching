@@ -7,12 +7,14 @@ import { useTranslation } from '@/hooks/useTranslation';
 
 interface PrivateYogaRequestFormProps {
   onClose?: () => void;
+  defaultYogaType?: string;
 }
 
-export default function PrivateYogaRequestForm({ onClose }: PrivateYogaRequestFormProps) {
+export default function PrivateYogaRequestForm({ onClose, defaultYogaType }: PrivateYogaRequestFormProps) {
   const { t } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [yogaType, setYogaType] = useState(defaultYogaType || '');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -119,6 +121,8 @@ export default function PrivateYogaRequestForm({ onClose }: PrivateYogaRequestFo
         name="yogaType"
         type="select"
         required
+        value={yogaType}
+        onChange={(e) => setYogaType(e.target.value)}
         options={[
           { value: 'upa-yoga', label: t('forms.yogaRequest.yogaTypeOptions.0') },
           { value: 'surya-kriya', label: t('forms.yogaRequest.yogaTypeOptions.1') },
