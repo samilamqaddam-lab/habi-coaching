@@ -12,6 +12,7 @@ interface PrivateYogaRequestModalProps {
   fullWidth?: boolean;
   className?: string;
   defaultYogaType?: string; // Pré-remplissage du type de yoga
+  isGroupClass?: boolean; // Si true, c'est un cours collectif
 }
 
 export default function PrivateYogaRequestModal({
@@ -21,6 +22,7 @@ export default function PrivateYogaRequestModal({
   fullWidth = false,
   className = '',
   defaultYogaType,
+  isGroupClass = false,
 }: PrivateYogaRequestModalProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -57,10 +59,12 @@ export default function PrivateYogaRequestModal({
         <div className="flex items-start justify-between p-4 sm:p-6 border-b border-gray-200 gap-3">
           <div className="flex-1 min-w-0">
             <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-deep-blue leading-snug break-words">
-              Demande de Cours Privé de Yoga
+              {isGroupClass ? 'Inscription au Programme Collectif' : 'Demande de Cours Privé de Yoga'}
             </h3>
             <p className="text-xs sm:text-sm text-text-secondary mt-1.5 leading-relaxed">
-              Programme personnalisé avec une professeure certifiée Isha Foundation (Sadhguru)
+              {isGroupClass
+                ? 'Programme Isha Foundation enseigné par Sadhguru au Shido Mind Studio Casablanca'
+                : 'Programme personnalisé avec une professeure certifiée Isha Foundation (Sadhguru)'}
             </p>
           </div>
           <button
@@ -87,7 +91,11 @@ export default function PrivateYogaRequestModal({
 
         {/* Form */}
         <div className="p-6 max-h-[calc(100vh-200px)] overflow-y-auto">
-          <PrivateYogaRequestForm onClose={handleClose} defaultYogaType={defaultYogaType} />
+          <PrivateYogaRequestForm
+            onClose={handleClose}
+            defaultYogaType={defaultYogaType}
+            isGroupClass={isGroupClass}
+          />
         </div>
       </div>
     </div>

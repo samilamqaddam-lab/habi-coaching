@@ -377,6 +377,7 @@ export default function ProgrammesContent() {
                   variant="outline"
                   fullWidth
                   defaultYogaType={programKeyToFormValue[programKey]}
+                  isGroupClass={true}
                 />
               </div>
             </Card>

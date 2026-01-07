@@ -8,9 +8,10 @@ import { useTranslation } from '@/hooks/useTranslation';
 interface PrivateYogaRequestFormProps {
   onClose?: () => void;
   defaultYogaType?: string;
+  isGroupClass?: boolean; // Si true, c'est un cours collectif (dates fixes, studio)
 }
 
-export default function PrivateYogaRequestForm({ onClose, defaultYogaType }: PrivateYogaRequestFormProps) {
+export default function PrivateYogaRequestForm({ onClose, defaultYogaType, isGroupClass = false }: PrivateYogaRequestFormProps) {
   const { t } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -62,10 +63,12 @@ export default function PrivateYogaRequestForm({ onClose, defaultYogaType }: Pri
           </svg>
         </div>
         <h3 className="font-heading text-2xl font-bold text-deep-blue mb-3">
-          Demande envoyée avec succès!
+          {isGroupClass ? 'Inscription envoyée avec succès!' : 'Demande envoyée avec succès!'}
         </h3>
         <p className="text-text-secondary">
-          Hajar vous contactera dans les 24-48h pour discuter de votre cours privé.
+          {isGroupClass
+            ? 'Vous recevrez une confirmation et les détails du programme dans les 24-48h.'
+            : 'Hajar vous contactera dans les 24-48h pour discuter de votre cours privé.'}
         </p>
       </div>
     );
@@ -107,22 +110,30 @@ export default function PrivateYogaRequestForm({ onClose, defaultYogaType }: Pri
         required
       />
 
-      <FormInput
-        label="Ville / Quartier"
-        name="location"
-        type="text"
-        placeholder="Ex: Casablanca, Maarif"
-        required
-      />
+      <div>
+        <FormInput
+          label={isGroupClass ? "Ville" : "Ville / Quartier"}
+          name="location"
+          type="text"
+          placeholder={isGroupClass ? "Ex: Casablanca" : "Ex: Casablanca, Maarif"}
+          required
+        />
+        {isGroupClass && (
+          <p className="text-xs text-text-secondary mt-1 italic">
+            Les cours ont lieu au Shido Mind Studio à Casablanca
+          </p>
+        )}
+      </div>
 
       {/* Type de yoga souhaité */}
       <FormInput
-        label={t('forms.yogaRequest.yogaTypeLabel')}
+        label={isGroupClass ? "Programme sélectionné" : t('forms.yogaRequest.yogaTypeLabel')}
         name="yogaType"
         type="select"
         required
         value={yogaType}
         onChange={(e) => setYogaType(e.target.value)}
+        disabled={isGroupClass && !!defaultYogaType} // Lecture seule si cours collectif avec programme pré-rempli
         options={[
           { value: 'upa-yoga', label: t('forms.yogaRequest.yogaTypeOptions.0') },
           { value: 'surya-kriya', label: t('forms.yogaRequest.yogaTypeOptions.1') },
@@ -134,24 +145,26 @@ export default function PrivateYogaRequestForm({ onClose, defaultYogaType }: Pri
         ]}
       />
 
-      {/* Objectifs */}
-      <FormInput
-        label="Votre objectif principal"
-        name="goals"
-        type="select"
-        required
-        options={[
-          { value: 'stress', label: 'Gestion du stress et relaxation' },
-          { value: 'wellbeing', label: 'Bien-être général (corps, mental, émotions)' },
-          { value: 'flexibility', label: 'Améliorer la flexibilité et la mobilité' },
-          { value: 'physical', label: 'Renforcement physique et tonus musculaire' },
-          { value: 'energy', label: 'Augmenter ma vitalité et mon énergie' },
-          { value: 'spiritual', label: 'Développement spirituel et méditation' },
-          { value: 'health', label: 'Améliorer ma santé globale' },
-          { value: 'sleep', label: 'Mieux dormir et récupérer' },
-          { value: 'other', label: 'Autre objectif' },
-        ]}
-      />
+      {/* Objectifs - Seulement pour cours individuels */}
+      {!isGroupClass && (
+        <FormInput
+          label="Votre objectif principal"
+          name="goals"
+          type="select"
+          required
+          options={[
+            { value: 'stress', label: 'Gestion du stress et relaxation' },
+            { value: 'wellbeing', label: 'Bien-être général (corps, mental, émotions)' },
+            { value: 'flexibility', label: 'Améliorer la flexibilité et la mobilité' },
+            { value: 'physical', label: 'Renforcement physique et tonus musculaire' },
+            { value: 'energy', label: 'Augmenter ma vitalité et mon énergie' },
+            { value: 'spiritual', label: 'Développement spirituel et méditation' },
+            { value: 'health', label: 'Améliorer ma santé globale' },
+            { value: 'sleep', label: 'Mieux dormir et récupérer' },
+            { value: 'other', label: 'Autre objectif' },
+          ]}
+        />
+      )}
 
       {/* Niveau d'expérience */}
       <FormInput
@@ -167,35 +180,44 @@ export default function PrivateYogaRequestForm({ onClose, defaultYogaType }: Pri
         ]}
       />
 
-      {/* Préférence lieu */}
-      <FormInput
-        label="Préférence de lieu"
-        name="locationPreference"
-        type="select"
-        required
-        options={[
-          { value: 'home', label: 'À mon domicile (Casablanca/Rabat)' },
-          { value: 'online', label: 'En ligne (Visio)' },
-          { value: 'flexible', label: 'Flexible / À discuter' },
-        ]}
-      />
+      {/* Préférence lieu - Seulement pour cours individuels */}
+      {!isGroupClass && (
+        <>
+          <FormInput
+            label="Préférence de lieu"
+            name="locationPreference"
+            type="select"
+            required
+            options={[
+              { value: 'home', label: 'À mon domicile (Casablanca/Rabat)' },
+              { value: 'online', label: 'En ligne (Visio)' },
+              { value: 'flexible', label: 'Flexible / À discuter' },
+            ]}
+          />
 
-      {/* Disponibilités générales */}
-      <FormInput
-        label="Vos disponibilités générales"
-        name="availability"
-        type="textarea"
-        placeholder="Ex: Lundis et mercredis en soirée, ou samedis matin..."
-        rows={3}
-      />
+          {/* Disponibilités générales */}
+          <FormInput
+            label="Vos disponibilités générales"
+            name="availability"
+            type="textarea"
+            placeholder="Ex: Lundis et mercredis en soirée, ou samedis matin..."
+            rows={3}
+          />
+        </>
+      )}
 
       {/* Message / Besoins spécifiques */}
       <FormInput
-        label="Besoins spécifiques ou informations complémentaires"
+        label={isGroupClass ? "Message (optionnel)" : "Besoins spécifiques ou informations complémentaires"}
         name="message"
         type="textarea"
-        placeholder="Partagez toute information qui pourrait aider Hajar à mieux comprendre vos besoins..."
+        placeholder={
+          isGroupClass
+            ? "Questions ou informations complémentaires..."
+            : "Partagez toute information qui pourrait aider Hajar à mieux comprendre vos besoins..."
+        }
         rows={4}
+        required={!isGroupClass}
       />
 
       {/* Bouton submit */}
@@ -206,16 +228,29 @@ export default function PrivateYogaRequestForm({ onClose, defaultYogaType }: Pri
         type="submit"
         disabled={isSubmitting}
       >
-        {isSubmitting ? 'Envoi en cours...' : 'Envoyer ma demande'}
+        {isSubmitting
+          ? 'Envoi en cours...'
+          : isGroupClass
+          ? "M'inscrire au programme"
+          : 'Envoyer ma demande'}
       </Button>
 
       <div className="mt-8 pt-6 border-t border-gray-200">
         <p className="text-sm text-text-secondary text-center mb-2">
-          Hajar vous contactera dans les <strong>24-48 heures</strong> pour discuter de votre
-          programme personnalisé.
+          {isGroupClass ? (
+            <>
+              Vous recevrez une <strong>confirmation et les détails</strong> du programme dans les 24-48h.
+            </>
+          ) : (
+            <>
+              Hajar vous contactera dans les <strong>24-48 heures</strong> pour discuter de votre
+              programme personnalisé.
+            </>
+          )}
         </p>
         <p className="text-xs text-text-secondary text-center italic">
-          💡 Tous les programmes sont inspirés du yoga traditionnel Isha Foundation et adaptés à vos besoins individuels.
+          💡 Tous les programmes sont inspirés du yoga traditionnel Isha Foundation{' '}
+          {isGroupClass ? 'et enseignés par Sadhguru.' : 'et adaptés à vos besoins individuels.'}
         </p>
       </div>
     </form>
