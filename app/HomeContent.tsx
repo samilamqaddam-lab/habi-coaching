@@ -192,54 +192,86 @@ export default function HomeContent({ testimonials, homepageContent, hero }: Hom
         </div>
       </Hero>
 
-      {/* Expertise Section */}
-      {homepageContent?.expertiseSection && (
-        <Section
-          id="expertise"
-          subtitle={getText(
-            homepageContent.expertiseSection.subtitle,
-            homepageContent.expertiseSection.subtitleEn
-          )}
-          title={getText(
-            homepageContent.expertiseSection.title,
-            homepageContent.expertiseSection.titleEn
-          )}
-          description={getText(
-            homepageContent.expertiseSection.description,
-            homepageContent.expertiseSection.descriptionEn
-          )}
-          background="beige"
-          centered
-        >
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 max-w-5xl mx-auto">
-            {homepageContent.expertiseSection.cards.map((card, index) => (
-              <Card key={index} padding="lg" className="text-center">
-                <div
-                  className={`w-16 h-16 bg-${card.color}/10 rounded-full flex items-center justify-center mx-auto mb-6`}
-                >
-                  <svg
-                    className={`w-8 h-8 text-${card.color}`}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    {icons[card.icon as keyof typeof icons]}
-                  </svg>
-                </div>
-                <h3 className="font-heading text-2xl font-bold text-deep-blue mb-3">
-                  {getText(card.title, card.titleEn)}
-                </h3>
-                <div className={`text-xl font-bold text-${card.color} mb-3`}>
-                  {getText(card.highlight, card.highlightEn)}
-                </div>
-                <p className="text-text-secondary text-sm leading-relaxed">
-                  {getText(card.description, card.descriptionEn)}
-                </p>
-              </Card>
-            ))}
-          </div>
-        </Section>
-      )}
+      {/* Expertise Section - Always use fr.json */}
+      <Section
+        id="expertise"
+        subtitle={t('home.expertise.subtitle')}
+        title={t('home.expertise.title')}
+        description={t('home.expertise.description')}
+        background="beige"
+        centered
+      >
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 max-w-5xl mx-auto">
+          {/* Corporate Card */}
+          <Card padding="lg" className="text-center">
+            <div className="w-16 h-16 bg-morocco-blue/10 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg
+                className="w-8 h-8 text-morocco-blue"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {icons.corporate}
+              </svg>
+            </div>
+            <h3 className="font-heading text-2xl font-bold text-deep-blue mb-3">
+              {t('home.expertise.corporate.title')}
+            </h3>
+            <div className="text-xl font-bold text-morocco-blue mb-3">
+              {t('home.expertise.corporate.years')}
+            </div>
+            <p className="text-text-secondary text-sm leading-relaxed">
+              {t('home.expertise.corporate.description')}
+            </p>
+          </Card>
+
+          {/* Coaching Card */}
+          <Card padding="lg" className="text-center">
+            <div className="w-16 h-16 bg-mystic-mauve/10 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg
+                className="w-8 h-8 text-mystic-mauve"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {icons.coaching}
+              </svg>
+            </div>
+            <h3 className="font-heading text-2xl font-bold text-deep-blue mb-3">
+              {t('home.expertise.coaching.title')}
+            </h3>
+            <div className="text-xl font-bold text-mystic-mauve mb-3">
+              {t('home.expertise.coaching.certification')}
+            </div>
+            <p className="text-text-secondary text-sm leading-relaxed">
+              {t('home.expertise.coaching.description')}
+            </p>
+          </Card>
+
+          {/* Yoga Card */}
+          <Card padding="lg" className="text-center">
+            <div className="w-16 h-16 bg-golden-orange/10 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg
+                className="w-8 h-8 text-golden-orange"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {icons.yoga}
+              </svg>
+            </div>
+            <h3 className="font-heading text-2xl font-bold text-deep-blue mb-3">
+              {t('home.expertise.yoga.title')}
+            </h3>
+            <div className="text-xl font-bold text-golden-orange mb-3">
+              {t('home.expertise.yoga.certification')}
+            </div>
+            <p className="text-text-secondary text-sm leading-relaxed">
+              {t('home.expertise.yoga.description')}
+            </p>
+          </Card>
+        </div>
+      </Section>
 
       {/* À Propos Section */}
       {homepageContent?.aboutSection && (
