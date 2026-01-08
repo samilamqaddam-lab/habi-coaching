@@ -180,15 +180,25 @@ export default function HomeContent({ testimonials, homepageContent, hero }: Hom
         }}
         minimal
         endWithWhite
+        splitLayout
+        splitImage="/images/heroes/mountain-tree-transcendence.jpg"
+        reducedTitle
       >
-        {/* Sadhguru Quote */}
-        <div className="mt-10 pt-8 border-t border-deep-blue/10">
-          <blockquote className="text-lg md:text-xl italic text-text-secondary leading-relaxed">
-            {t('home.hero.sadhguruQuote')}
-          </blockquote>
-          <p className="mt-2 text-golden-orange font-medium">
-            {t('home.hero.sadhguruAttribution')}
-          </p>
+        {/* Sadhguru Quote - Inline compact */}
+        <div className="mt-8 pt-6 border-t border-golden-orange/20">
+          <div className="flex items-start gap-3">
+            <svg className="w-8 h-8 text-golden-orange/30 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/>
+            </svg>
+            <div>
+              <p className="text-base md:text-lg italic text-text-secondary/90 leading-relaxed">
+                {t('home.hero.sadhguruQuote')}
+              </p>
+              <p className="mt-2 text-sm text-golden-orange font-medium">
+                {t('home.hero.sadhguruAttribution')}
+              </p>
+            </div>
+          </div>
         </div>
       </Hero>
 

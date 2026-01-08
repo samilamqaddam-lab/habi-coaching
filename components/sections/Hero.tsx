@@ -100,33 +100,45 @@ export default function Hero({
             ? 'py-12 sm:py-16 md:py-20'
             : 'py-16 sm:py-20 md:py-24 lg:py-28'
         }`}>
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center isolate">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-stretch isolate">
             {/* Left Side - Text Content */}
-            <div className="order-2 lg:order-1 space-y-6">
+            <div className="order-2 lg:order-1 space-y-6 flex flex-col justify-center">
               {subtitle && (
-                <p className={`${subtitleColors[theme]} text-sm md:text-base font-medium uppercase tracking-wider`}>
+                <p className={`${subtitleColors[theme]} text-sm md:text-base font-medium uppercase tracking-wider animate-[fade-in-up_0.6s_ease-out]`}>
                   {subtitle}
                 </p>
               )}
 
-              <h1 className={`font-heading font-bold text-deep-blue leading-tight ${
+              <h1 className={`font-heading font-bold text-deep-blue leading-tight ${titleSuffix ? 'mb-2' : 'mb-4'} ${
                 reducedTitle
-                  ? 'text-xl sm:text-2xl md:text-3xl lg:text-4xl'
+                  ? 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl'
                   : compact
                   ? 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl'
                   : 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl'
-              }`}>
+              } animate-[fade-in-up_0.6s_ease-out_0.1s_both]`}>
                 {title}
+                {titleLine2 && (
+                  <>
+                    <br />
+                    {titleLine2}
+                  </>
+                )}
               </h1>
+
+              {titleSuffix && (
+                <p className={`font-heading text-lg md:text-xl lg:text-2xl font-medium mb-4 text-text-secondary animate-[fade-in-up_0.6s_ease-out_0.15s_both]`}>
+                  — {titleSuffix} —
+                </p>
+              )}
 
               <p className={`leading-relaxed text-text-secondary ${
                 compact ? 'text-base md:text-lg' : 'text-lg md:text-xl'
-              }`}>
+              } animate-[fade-in-up_0.6s_ease-out_0.2s_both]`}>
                 {description}
               </p>
 
               {(primaryCTA || secondaryCTA) && (
-                <div className="flex flex-col sm:flex-row gap-4 pt-2">
+                <div className="flex flex-col sm:flex-row gap-4 pt-2 animate-[fade-in-up_0.6s_ease-out_0.3s_both]">
                   {primaryCTA && (
                     <Button variant="primary" size="lg" href={primaryCTA.href}>
                       {primaryCTA.text}
@@ -148,11 +160,11 @@ export default function Hero({
             </div>
 
             {/* Right Side - Image */}
-            <div className="order-1 lg:order-2 relative">
-              <div className="relative w-full aspect-[4/5] lg:aspect-[3/4]">
+            <div className="order-1 lg:order-2 relative animate-[fade-in-up_0.8s_ease-out_0.4s_both] h-full min-h-[500px]">
+              <div className="relative w-full h-full">
                 {/* Decorative background elements */}
-                <div className="absolute -top-6 -left-6 w-32 h-32 bg-golden-orange/15 rounded-full blur-3xl -z-10"></div>
-                <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-mystic-mauve/20 rounded-full blur-3xl -z-10"></div>
+                <div className="absolute -top-6 -left-6 w-32 h-32 bg-golden-orange/20 rounded-full blur-3xl -z-10"></div>
+                <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-mystic-mauve/25 rounded-full blur-3xl -z-10"></div>
 
                 {/* Image container with creative styling */}
                 <div className="relative h-full w-full rounded-3xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-500">
@@ -197,6 +209,20 @@ export default function Hero({
       }`}
       style={backgroundImage ? { backgroundImage: `url(${backgroundImage})` } : undefined}
     >
+      {/* Decorative elements - only on split layout (homepage) */}
+      {splitLayout && (
+        <>
+          {/* Large gradient circles */}
+          <div className="absolute -top-20 -left-20 w-[500px] h-[500px] bg-gradient-to-br from-golden-orange/15 to-golden-orange/5 rounded-full blur-3xl -z-10" />
+          <div className="absolute top-1/3 -right-32 w-[600px] h-[600px] bg-gradient-to-bl from-mystic-mauve/20 to-mystic-mauve/5 rounded-full blur-3xl -z-10" />
+
+          {/* Geometric shapes for visual interest */}
+          <div className="absolute top-1/4 left-10 w-32 h-32 border-2 border-golden-orange/20 rounded-lg rotate-12 -z-10" />
+          <div className="absolute bottom-1/4 right-20 w-24 h-24 bg-mystic-mauve/10 rounded-full -z-10" />
+          <div className="absolute bottom-10 left-1/3 w-16 h-16 border-2 border-morocco-blue/15 rotate-45 -z-10" />
+        </>
+      )}
+
       {/* Overlay */}
       {overlay && backgroundImage && (
         <div className="absolute inset-0 bg-deep-blue/40" />
@@ -206,7 +232,7 @@ export default function Hero({
         useVhSpacing
           ? 'py-20 -translate-y-6'
           : minimal
-          ? 'py-10 sm:py-12 md:py-16'
+          ? 'py-10 sm:py-12 md:py-16 -translate-y-2'
           : compact
           ? 'py-12 sm:py-16 md:py-20 lg:py-24'
           : 'py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32'
@@ -225,7 +251,7 @@ export default function Hero({
               reducedTitle
                 ? 'text-xl sm:text-2xl md:text-3xl lg:text-4xl'
                 : 'text-4xl md:text-6xl lg:text-7xl'
-            }`}
+            } ${minimal ? 'animate-[fade-in-up_0.6s_ease-out]' : ''}`}
           >
             {title}
             {titleLine2 && (
@@ -239,7 +265,7 @@ export default function Hero({
           {titleSuffix && (
             <p className={`font-heading text-xl md:text-2xl lg:text-3xl font-medium mb-6 ${
               backgroundImage ? 'text-warm-white/80' : 'text-text-secondary'
-            }`}>
+            } ${minimal ? 'animate-[fade-in-up_0.6s_ease-out]' : ''}`}>
               — {titleSuffix} —
             </p>
           )}
@@ -247,13 +273,13 @@ export default function Hero({
           <p
             className={`text-lg md:text-xl mb-10 leading-relaxed ${
               backgroundImage ? 'text-sage-light' : 'text-text-secondary'
-            }`}
+            } ${minimal ? 'animate-[fade-in-up_0.6s_ease-out_0.1s_both]' : ''}`}
           >
             {description}
           </p>
 
           {(primaryCTA || secondaryCTA) && (
-            <div className={`flex flex-col sm:flex-row gap-4 ${centered ? 'justify-center' : ''} ${compact ? 'mb-8' : ''}`}>
+            <div className={`flex flex-col sm:flex-row gap-4 ${centered ? 'justify-center' : ''} ${compact ? 'mb-8' : ''} ${minimal ? 'animate-[fade-in-up_0.6s_ease-out_0.2s_both]' : ''}`}>
               {primaryCTA && (
                 <Button variant="primary" size="lg" href={primaryCTA.href}>
                   {primaryCTA.text}
