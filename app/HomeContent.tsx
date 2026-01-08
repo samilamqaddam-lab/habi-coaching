@@ -344,50 +344,91 @@ export default function HomeContent({ testimonials, homepageContent, hero }: Hom
         </Section>
       )}
 
-      {/* Services Section */}
-      {homepageContent?.servicesSection && (
-        <Section
-          id="services"
-          subtitle={getText(
-            homepageContent.servicesSection.subtitle,
-            homepageContent.servicesSection.subtitleEn
-          )}
-          title={getText(
-            homepageContent.servicesSection.title,
-            homepageContent.servicesSection.titleEn
-          )}
-          background="beige"
-          centered
-        >
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-            {homepageContent.servicesSection.services.map((service, index) => (
-              <Card key={index} hover padding="lg" className="flex flex-col">
-                <div className="flex-grow">
-                  <div className={`w-16 h-16 bg-${service.color}/10 rounded-2xl flex items-center justify-center mb-6`}>
-                    <svg
-                      className={`w-8 h-8 text-${service.color}`}
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      {icons[service.icon as keyof typeof icons]}
-                    </svg>
-                  </div>
-                  <h3 className="font-heading text-2xl font-bold text-deep-blue mb-4">
-                    {getText(service.title, service.titleEn)}
-                  </h3>
-                  <p className="text-text-secondary leading-relaxed mb-6">
-                    {getText(service.description, service.descriptionEn)}
-                  </p>
-                </div>
-                <Button variant="outline" href={service.link} fullWidth>
-                  {getText(service.ctaText, service.ctaTextEn)}
-                </Button>
-              </Card>
-            ))}
-          </div>
-        </Section>
-      )}
+      {/* Services Section - Always use fr.json */}
+      <Section
+        id="services"
+        subtitle={t('home.services.subtitle')}
+        title={t('home.services.title')}
+        background="beige"
+        centered
+      >
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+          {/* Organisations Card */}
+          <Card hover padding="lg" className="flex flex-col">
+            <div className="flex-grow">
+              <div className="w-16 h-16 bg-morocco-blue/10 rounded-2xl flex items-center justify-center mb-6">
+                <svg
+                  className="w-8 h-8 text-morocco-blue"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  {icons.organisations}
+                </svg>
+              </div>
+              <h3 className="font-heading text-2xl font-bold text-deep-blue mb-4">
+                {t('home.services.organisations.title')}
+              </h3>
+              <p className="text-text-secondary leading-relaxed mb-6">
+                {t('home.services.organisations.description')}
+              </p>
+            </div>
+            <Button variant="outline" href="/organisations" fullWidth>
+              {t('home.services.organisations.cta')}
+            </Button>
+          </Card>
+
+          {/* Coaching Card */}
+          <Card hover padding="lg" className="flex flex-col">
+            <div className="flex-grow">
+              <div className="w-16 h-16 bg-mystic-mauve/10 rounded-2xl flex items-center justify-center mb-6">
+                <svg
+                  className="w-8 h-8 text-mystic-mauve"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  {icons.coaching}
+                </svg>
+              </div>
+              <h3 className="font-heading text-2xl font-bold text-deep-blue mb-4">
+                {t('home.services.coaching.title')}
+              </h3>
+              <p className="text-text-secondary leading-relaxed mb-6">
+                {t('home.services.coaching.description')}
+              </p>
+            </div>
+            <Button variant="outline" href="/coaching" fullWidth>
+              {t('home.services.coaching.cta')}
+            </Button>
+          </Card>
+
+          {/* Yoga Card */}
+          <Card hover padding="lg" className="flex flex-col">
+            <div className="flex-grow">
+              <div className="w-16 h-16 bg-golden-orange/10 rounded-2xl flex items-center justify-center mb-6">
+                <svg
+                  className="w-8 h-8 text-golden-orange"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  {icons.yoga}
+                </svg>
+              </div>
+              <h3 className="font-heading text-2xl font-bold text-deep-blue mb-4">
+                {t('home.services.yoga.title')}
+              </h3>
+              <p className="text-text-secondary leading-relaxed mb-6">
+                {t('home.services.yoga.description')}
+              </p>
+            </div>
+            <Button variant="outline" href="/programmes" fullWidth>
+              {t('home.services.yoga.cta')}
+            </Button>
+          </Card>
+        </div>
+      </Section>
 
       {/* Testimonials Section */}
       <TestimonialsSection testimonials={testimonials} />
