@@ -50,4 +50,5 @@ Hajar picture/
 # Asset source folders (copied to public/)
 Yoga bien etre/
 icons/
+!public/images/icons/
 Branding/
