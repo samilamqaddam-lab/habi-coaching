@@ -148,7 +148,7 @@ export default function SessionDatePicker({
             {/* Session header */}
             <div className="bg-gradient-to-r from-golden-orange/10 to-golden-orange/5 px-4 py-3 border-b border-gray-100">
               <h4 className="font-medium text-deep-blue">
-                {locale === 'fr' ? session.title : session.title_en || session.title}
+                Session {session.session_number}
               </h4>
             </div>
 
