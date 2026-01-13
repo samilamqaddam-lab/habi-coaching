@@ -14,12 +14,8 @@ export default function AdminRootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr" className="dark">
-      <body className={`${inter.className} bg-slate-900 text-slate-100 antialiased`}>
-        <div className="min-h-screen">
-          {children}
-        </div>
-      </body>
-    </html>
+    <div className={`${inter.className} dark min-h-screen bg-slate-900 text-slate-100 antialiased`}>
+      {children}
+    </div>
   );
 }
