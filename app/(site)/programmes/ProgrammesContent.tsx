@@ -104,7 +104,7 @@ function ProgramCard({ type, t }: { type: 'health' | 'wellbeing'; t: (key: strin
   }
 
   return (
-    <Card padding="lg" className="group bg-dune-beige/40">
+    <Card padding="lg" className="group !bg-dune-beige/50">
       <div className="grid lg:grid-cols-3 gap-8">
         {/* Colonne 1: Image (1/3) */}
         <div className="lg:col-span-1">
@@ -542,15 +542,15 @@ export default function ProgrammesContent() {
         title={t('programmes.otherPrograms.title')}
         accentColor="yoga"
       >
-        {/* Intro + Disclaimers - Centered */}
-        <div className="max-w-3xl mx-auto mb-12 space-y-4 text-center">
+        {/* Intro + Disclaimers */}
+        <div className="max-w-3xl mx-auto mb-12 space-y-4">
           <p className="text-lg text-text-secondary leading-relaxed">
             {t('programmes.otherPrograms.intro')}
           </p>
           <p className="text-sm text-text-secondary italic">
             {t('programmes.otherPrograms.disclaimer')}
           </p>
-          <div className="bg-golden-orange/5 border-l-4 border-golden-orange p-4 rounded-r-lg text-left">
+          <div className="bg-golden-orange/5 border-l-4 border-golden-orange p-4 rounded-r-lg">
             <p className="text-sm text-text-secondary font-medium">
               {t('programmes.otherPrograms.medicalWarning')}
             </p>
