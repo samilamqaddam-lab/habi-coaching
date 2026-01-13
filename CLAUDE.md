@@ -411,4 +411,30 @@ SEO, UX & Conversion, Performance, Qualité Contenu, Nouvelles Features, Stabili
 /locales
   /fr.json              - French translations
   /en.json              - English translations
+
+/docs
+  /COMMON-CSS-ISSUES.md - CSS troubleshooting guide (IMPORTANT!)
 ```
+
+## Common Issues & Troubleshooting
+
+### ⚠️ Vertical Text Rendering (Recurring Issue)
+**Problem:** Text displays vertically (one letter per line) instead of horizontally.
+
+**Cause:** Missing `globals.css` import in layout files.
+
+**Solution:** Always import `globals.css` in any new layout that creates `<html>` tags:
+```typescript
+import '../globals.css'; // or './globals.css' depending on location
+```
+
+**Full Documentation:** See `/docs/COMMON-CSS-ISSUES.md` for:
+- Root cause analysis
+- Prevention checklist
+- Best practices for layouts
+- Historical occurrences
+
+**Rule:** When creating a new layout file, ALWAYS:
+1. Check if it creates `<html>` and `<body>` tags
+2. If yes, import `globals.css` at the top (after font imports)
+3. Test with a simple component before committing
