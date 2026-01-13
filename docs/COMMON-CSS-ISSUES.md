@@ -35,7 +35,9 @@ k
 
 Au lieu de: `TranscendenceWork`
 
-### Cause Racine
+### Causes Racines
+
+#### 1. Fichier `globals.css` non importé
 **Le fichier `globals.css` n'est pas importé** dans le layout ou le composant.
 
 Dans Next.js App Router, chaque layout peut définir ses propres styles. Si vous créez un nouveau layout sans importer `globals.css`, vous perdez:
@@ -43,6 +45,29 @@ Dans Next.js App Router, chaque layout peut définir ses propres styles. Si vous
 - Les variables CSS custom (`:root`)
 - Les styles de base et de réinitialisation
 - Les classes utility Tailwind
+
+#### 2. Conflit de spacing scale Tailwind CSS 4 ⚠️ (PLUS FRÉQUENT)
+Dans Tailwind CSS 4, les valeurs de spacing personnalisées définies dans le bloc `@theme` **écrasent l'échelle de spacing par défaut** de Tailwind. Si vous définissez:
+
+```css
+@theme inline {
+  --spacing-md: 2rem;  /* ❌ MAUVAIS: conflit avec la taille 'md' de Tailwind */
+}
+```
+
+Cela provoque la compilation de `.max-w-md` en `max-width: 2rem` (32px) au lieu de `max-width: 28rem` (448px), résultant en un texte vertical car le conteneur est trop étroit.
+
+**Solution:** Toujours préfixer les variables de spacing personnalisées avec un namespace:
+
+```css
+@theme inline {
+  --spacing-custom-md: 2rem;  /* ✅ BON: pas de conflit */
+  --spacing-custom-lg: 4rem;
+  --spacing-custom-xl: 6rem;
+}
+```
+
+**Règle:** Ne jamais utiliser `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, etc. comme noms de variables dans `@theme` - ils sont réservés par Tailwind.
 
 ### Solution
 
@@ -85,10 +110,11 @@ import './relative/path/to/globals.css';
 
 ### Occurrences Historiques
 
-| Date | Composant/Page | Commit Fix |
-|------|----------------|------------|
-| 2026-01-13 | `/app/admin/layout.tsx` | `95bb924` |
-| [À remplir lors de futurs incidents] | | |
+| Date | Composant/Page | Cause | Commit Fix |
+|------|----------------|-------|------------|
+| 2026-01-13 | `/app/admin/layout.tsx` | Conflit spacing Tailwind CSS 4 (`--spacing-md` → 2rem) | `d8bd97e` |
+| 2026-01-13 | Route Groups structure | HTML nesting (duplicate `<html>` tags) | `135e683` |
+| [À remplir lors de futurs incidents] | | | |
 
 ### Checklist de Prévention
 
