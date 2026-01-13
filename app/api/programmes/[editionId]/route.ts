@@ -7,15 +7,8 @@ export async function GET(
 ) {
   const { editionId } = await params;
 
-  // Debug logging
-  console.log('[API] Checking Supabase configuration...');
-  console.log('[API] isSupabaseConfigured:', isSupabaseConfigured());
-  console.log('[API] supabaseAdmin exists:', !!supabase);
-  console.log('[API] Querying for editionId:', editionId);
-
   // Check if Supabase is configured
   if (!isSupabaseConfigured() || !supabase) {
-    console.log('[API] Supabase not configured properly');
     return NextResponse.json(
       { error: 'Service non disponible' },
       { status: 503 }
@@ -40,10 +33,7 @@ export async function GET(
 
     const { data: edition, error: editionError } = await query.single();
 
-    console.log('[API] Query result:', { edition, editionError });
-
     if (editionError || !edition) {
-      console.log('[API] Edition not found. Error:', editionError);
       return NextResponse.json(
         { error: 'Édition non trouvée' },
         { status: 404 }

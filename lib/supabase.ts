@@ -111,12 +111,6 @@ export const supabaseAdmin = supabaseUrl && supabaseServiceKey
 
 // Helper to check if Supabase is configured
 export const isSupabaseConfigured = () => {
-  console.log('[Supabase Config Check]', {
-    hasUrl: !!supabaseUrl,
-    hasAnonKey: !!supabaseAnonKey,
-    hasServiceKey: !!supabaseServiceKey,
-    urlValue: supabaseUrl ? `${supabaseUrl.substring(0, 30)}...` : 'missing',
-  });
   return !!supabaseUrl && !!supabaseAnonKey;
 };
 
