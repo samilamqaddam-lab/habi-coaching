@@ -339,7 +339,7 @@ export default function ProgrammesContent() {
         </div>
 
         {/* CTA 3: Découvrir programmes santé et bien-être */}
-        <div className="mt-2 max-w-full">
+        <div className="mt-1 max-w-full">
           <Button
             href="#autres-programmes"
             variant="secondary"
