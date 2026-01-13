@@ -431,18 +431,18 @@ export default function ProgrammesContent() {
 
                   {/* Active edition block - Only for Upa Yoga when active edition exists */}
                   {programKey === 'upaYoga' && upaYogaEdition && upaYogaSessions.length > 0 && (
-                    <div className="mt-3 pt-3 border-t border-golden-orange/20">
-                      {/* Badge "Inscriptions ouvertes" */}
-                      <div className="inline-flex items-center gap-1.5 bg-golden-orange text-white text-xs font-semibold px-2.5 py-1 rounded-full mb-2">
+                    <div className="mt-3 pt-3 border-t border-soft-gray">
+                      {/* Badge "Inscriptions ouvertes" - Green for "open" status */}
+                      <div className="inline-flex items-center gap-1.5 bg-emerald-500 text-white text-xs font-semibold px-2.5 py-1 rounded-full mb-2">
                         <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
                         {locale === 'fr' ? 'Inscriptions ouvertes' : 'Registration open'}
                       </div>
 
-                      {/* Date range */}
+                      {/* Date range - Neutral gray icons */}
                       <div className="flex items-center text-deep-blue font-medium">
-                        <svg className="w-4 h-4 mr-2 text-golden-orange flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-4 h-4 mr-2 text-text-secondary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
                         <span>
@@ -478,7 +478,7 @@ export default function ProgrammesContent() {
                         </span>
                       </div>
 
-                      {/* Places disponibles */}
+                      {/* Places disponibles - Neutral gray */}
                       {(() => {
                         // Calculate remaining spots (minimum across all date options)
                         const minAvailable = Math.min(
@@ -491,7 +491,7 @@ export default function ProgrammesContent() {
 
                         if (minAvailable > 0 && minAvailable <= 10) {
                           return (
-                            <p className="text-xs text-golden-orange mt-1 flex items-center gap-1">
+                            <p className="text-xs text-text-secondary mt-1 flex items-center gap-1">
                               <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
                               </svg>
@@ -507,7 +507,12 @@ export default function ProgrammesContent() {
                     </div>
                   )}
 
-                  <p className="font-semibold text-golden-orange mt-4">
+                  {/* Price - Standard text for active edition, golden-orange for others */}
+                  <p className={`font-semibold mt-4 ${
+                    programKey === 'upaYoga' && upaYogaEdition && upaYogaSessions.length > 0
+                      ? 'text-deep-blue'
+                      : 'text-golden-orange'
+                  }`}>
                     {t(`programmes.classes.${programKey}.price`)}
                   </p>
                 </div>
