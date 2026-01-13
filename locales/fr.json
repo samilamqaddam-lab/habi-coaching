@@ -767,6 +767,40 @@
         "5": "Programme sur-mesure - Combinaison personnalisée",
         "6": "Je ne sais pas - Besoin de conseil"
       }
+    },
+    "individualYoga": {
+      "triggerButton": "Réserver un cours individuel",
+      "modalTitle": "Réservation de Cours Individuel",
+      "modalSubtitle": "Programme personnalisé avec une professeure certifiée Isha Foundation (Sadhguru)",
+      "firstName": "Prénom",
+      "firstNamePlaceholder": "Votre prénom",
+      "lastName": "Nom",
+      "lastNamePlaceholder": "Votre nom",
+      "email": "Email",
+      "emailPlaceholder": "votre@email.com",
+      "phone": "Téléphone",
+      "phonePlaceholder": "+212 6 00 00 00 00",
+      "whatsapp": "Téléphone WhatsApp (si différent)",
+      "whatsappPlaceholder": "+212 6 00 00 00 00",
+      "locationPreference": "Lieu préféré pour le cours individuel",
+      "locationOptions": {
+        "studio": "Au studio de yoga",
+        "home": "À domicile"
+      },
+      "interest": "Je m'intéresse à",
+      "interestOptions": {
+        "yogaOnly": "Cours de yoga individuel",
+        "yogaCoaching": "Cours de yoga individuel et coaching professionnel"
+      },
+      "message": "Message (optionnel)",
+      "messagePlaceholder": "Partagez toute information qui pourrait aider à préparer votre cours...",
+      "consent": "J'accepte que mes données personnelles soient utilisées pour me recontacter concernant ma demande. Elles ne seront jamais partagées avec des tiers.",
+      "consentRequired": "Veuillez accepter les conditions d'utilisation des données.",
+      "submit": "Envoyer ma demande",
+      "submitting": "Envoi en cours...",
+      "successTitle": "Demande envoyée avec succès !",
+      "successMessage": "Hajar vous contactera dans les 24-48h pour organiser votre cours individuel.",
+      "responseTime": "Vous recevrez une réponse sous 24-48h."
     }
   },
   "ressources": {

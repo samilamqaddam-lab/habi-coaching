@@ -6,7 +6,7 @@ import Hero from '@/components/sections/Hero'
 import Section from '@/components/sections/Section'
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
-import { PrivateYogaRequestModal } from '@/components/forms'
+import { PrivateYogaRequestModal, IndividualYogaBookingModal } from '@/components/forms'
 import { useTranslation } from '@/hooks/useTranslation'
 
 // Composant Accordion pour les bénéfices
@@ -298,18 +298,12 @@ export default function ProgrammesContent() {
 
         {/* Boutons d'action */}
         <div className="flex flex-col sm:flex-row gap-4 max-w-full">
-          {/* CTA 1: Réserver un cours individuel */}
-          <Button href="/contact" variant="primary" size="lg" className="flex items-center justify-center gap-2 py-4 px-6 flex-shrink">
-            {/* Icône calendrier avec + */}
-            <Image
-              src="/images/icons/calendar-plus.png"
-              alt="Calendar"
-              width={24}
-              height={24}
-              className="flex-shrink-0"
-            />
-            <span className="font-semibold text-sm whitespace-nowrap">{t('programmes.hero.cta1.text')}</span>
-          </Button>
+          {/* CTA 1: Réserver un cours individuel - opens modal */}
+          <IndividualYogaBookingModal
+            variant="primary"
+            size="lg"
+            className="flex items-center justify-center gap-2 py-4 px-6 flex-shrink"
+          />
 
           {/* CTA 2: Nous rejoindre sur le tapis */}
           <Button href="#cours" variant="primary" size="lg" className="flex flex-col items-center justify-center gap-1 py-3 px-6 flex-shrink">

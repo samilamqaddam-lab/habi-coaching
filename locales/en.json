@@ -768,6 +768,40 @@
         "5": "Custom program - Personalized combination",
         "6": "I'm not sure - Need advice"
       }
+    },
+    "individualYoga": {
+      "triggerButton": "Book an Individual Class",
+      "modalTitle": "Individual Class Booking",
+      "modalSubtitle": "Personalized program with an Isha Foundation certified teacher (Sadhguru)",
+      "firstName": "First Name",
+      "firstNamePlaceholder": "Your first name",
+      "lastName": "Last Name",
+      "lastNamePlaceholder": "Your last name",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "phone": "Phone",
+      "phonePlaceholder": "+212 6XX XXX XXX",
+      "whatsapp": "WhatsApp Phone (if different)",
+      "whatsappPlaceholder": "+212 6XX XXX XXX",
+      "locationPreference": "Preferred location for the individual class",
+      "locationOptions": {
+        "studio": "At the yoga studio",
+        "home": "At home"
+      },
+      "interest": "I'm interested in",
+      "interestOptions": {
+        "yogaOnly": "Individual yoga class",
+        "yogaCoaching": "Individual yoga class and professional coaching"
+      },
+      "message": "Message (optional)",
+      "messagePlaceholder": "Any additional information or questions...",
+      "consent": "I agree that my personal data may be used to contact me regarding my request. They will never be shared with third parties.",
+      "consentRequired": "You must accept the terms to continue.",
+      "submitting": "Sending...",
+      "submit": "Send my request",
+      "successTitle": "Request Sent!",
+      "successMessage": "I will contact you very soon to discuss your personalized program.",
+      "responseTime": "I typically respond within 24-48 hours."
     }
   },
   "ressources": {
