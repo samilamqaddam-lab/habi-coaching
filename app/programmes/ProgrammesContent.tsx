@@ -6,8 +6,7 @@ import Hero from '@/components/sections/Hero'
 import Section from '@/components/sections/Section'
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
-import { PrivateYogaRequestModal, IndividualYogaBookingModal, EditionRegistrationModal } from '@/components/forms'
-import UpaYogaEditionCard from '@/components/programmes/UpaYogaEditionCard'
+import { PrivateYogaRequestModal, IndividualYogaBookingModal } from '@/components/forms'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useEditionData } from '@/hooks/useEditionData'
 
@@ -255,7 +254,6 @@ const programKeyToFormValue: Record<string, string> = {
 
 export default function ProgrammesContent() {
   const { t, locale } = useTranslation()
-  const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false)
 
   // Fetch active Upa Yoga edition for hybrid integration
   const { edition: upaYogaEdition, sessions: upaYogaSessions } = useEditionData('upa-yoga')
@@ -371,13 +369,6 @@ export default function ProgrammesContent() {
         accentColor="yoga"
         afterHero
       >
-        {/* Prochaine Edition Card - Dynamic from Supabase */}
-        <div className="mb-12">
-          <UpaYogaEditionCard
-            onRegisterClick={() => setIsRegistrationModalOpen(true)}
-          />
-        </div>
-
         {/* 5 programmes en grille */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {['upaYoga', 'suryaKriya', 'suryaShakti', 'angamardana', 'yogasanas'].map((programKey) => (
@@ -791,13 +782,6 @@ export default function ProgrammesContent() {
           </div>
         </div>
       </Section>
-
-      {/* Registration Modal for Editions */}
-      <EditionRegistrationModal
-        programmeKey="upa-yoga"
-        isOpen={isRegistrationModalOpen}
-        onClose={() => setIsRegistrationModalOpen(false)}
-      />
     </>
   )
 }
