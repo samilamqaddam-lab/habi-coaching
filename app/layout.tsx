@@ -1,6 +1,5 @@
-import type { Metadata, Viewport } from "next";
+import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
-import { draftMode } from "next/headers";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -16,40 +15,19 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Transcendence Work - Coaching Holistique & Yoga Traditionnel",
-  description: "Hajar Habi - Experte en coaching organisationnel et pratiques yogiques traditionnelles. Transformation des organisations et accompagnement individuel.",
+  title: "Transcendence Work",
+  description: "Coaching Holistique & Yoga Traditionnel",
 };
 
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  maximumScale: 5,
-  userScalable: true,
-};
-
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import PreviewBanner from "@/components/layout/PreviewBanner";
-import { LanguageProvider } from "@/contexts/LanguageContext";
-
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { isEnabled: isDraftMode } = await draftMode();
-
   return (
     <html lang="fr">
-      <body
-        className={`${playfair.variable} ${inter.variable} antialiased`}
-      >
-        <LanguageProvider>
-          <Header />
-          <main className={`pt-20 ${isDraftMode ? 'pb-16' : ''}`}>{children}</main>
-          <Footer />
-          {isDraftMode && <PreviewBanner />}
-        </LanguageProvider>
+      <body className={`${playfair.variable} ${inter.variable} antialiased`}>
+        {children}
       </body>
     </html>
   );
