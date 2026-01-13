@@ -4,10 +4,23 @@
  * Ce script crée/met à jour le document homepageContent avec tout le contenu
  * des sections de la page d'accueil.
  *
- * IMPORTANT: Tous les items d'array DOIVENT avoir une propriété _key unique
+ * IMPORTANT:
+ * - Tous les items d'array DOIVENT avoir une propriété _key unique
+ * - Le contenu est lu DYNAMIQUEMENT depuis fr.json et en.json (source of truth)
+ * - La section "about" n'est pas dans fr.json, elle est gérée manuellement
  */
 
 import { createClient } from '@sanity/client'
+import { readFileSync } from 'fs'
+import { fileURLToPath } from 'url'
+import { dirname, join } from 'path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+
+// Lire les fichiers de traduction (SOURCE OF TRUTH)
+const frContent = JSON.parse(readFileSync(join(__dirname, '../locales/fr.json'), 'utf-8'))
+const enContent = JSON.parse(readFileSync(join(__dirname, '../locales/en.json'), 'utf-8'))
 
 const client = createClient({
   projectId: 'czmpe9zr',
@@ -17,54 +30,56 @@ const client = createClient({
   useCdn: false,
 })
 
+// Construire le contenu depuis les fichiers de traduction
 const homepageContent = {
   _id: 'homepageContent',
   _type: 'homepageContent',
 
   // ============================================
-  // SECTION EXPERTISE
+  // SECTION EXPERTISE (depuis home.expertise)
+  // Structure: home.expertise.corporate, .coaching, .yoga (pas .cards)
   // ============================================
   expertiseSection: {
-    subtitle: 'Mon Expertise',
-    subtitleEn: 'My Expertise',
-    title: "L'Alliance Unique de Trois Mondes",
-    titleEn: 'The Unique Alliance of Three Worlds',
-    description: 'Une approche rare qui allie excellence professionnelle, rigueur du coaching certifié et profondeur des pratiques yogiques traditionnelles.',
-    descriptionEn: 'A rare approach that combines professional excellence, rigor of certified coaching, and depth of traditional yogic practices.',
+    subtitle: frContent.home.expertise.subtitle,
+    subtitleEn: enContent.home.expertise.subtitle,
+    title: frContent.home.expertise.title,
+    titleEn: enContent.home.expertise.title,
+    description: frContent.home.expertise.description,
+    descriptionEn: enContent.home.expertise.description,
     cards: [
       {
         _key: 'card-corporate',
         _type: 'expertiseCard',
-        title: 'Expérience Corporate & Conseil',
-        titleEn: 'Corporate & Consulting Experience',
-        highlight: '≃20 ans',
-        highlightEn: '≃20 years',
-        description: 'Parcours en entreprises marocaines et internationales et en cabinets de conseil, au service de la transformation RH, managériale et organisationnelle dans des contextes multiculturels et exigeants.',
-        descriptionEn: 'Career in Moroccan and international companies and consulting firms, serving HR, managerial and organizational transformation in multicultural and demanding contexts.',
+        title: frContent.home.expertise.corporate.title,
+        titleEn: enContent.home.expertise.corporate.title,
+        highlight: frContent.home.expertise.corporate.years,
+        highlightEn: enContent.home.expertise.corporate.years,
+        description: frContent.home.expertise.corporate.description,
+        descriptionEn: enContent.home.expertise.corporate.description,
         icon: 'corporate',
         color: 'morocco-blue',
       },
       {
         _key: 'card-coaching',
         _type: 'expertiseCard',
-        title: 'Coaching Professionnel',
-        titleEn: 'Professional Coaching',
-        highlight: 'Coach & Team – Transformance Pro',
-        highlightEn: 'Coach & Team – Transformance Pro',
-        description: 'Certification professionnelle supervisée par Vincent Lenhardt, référence européenne du coaching, pour un accompagnement rigoureux des individus, des équipes et des organisations.',
-        descriptionEn: 'Professional certification supervised by Vincent Lenhardt, European coaching reference, for rigorous support of individuals, teams and organizations.',
+        title: frContent.home.expertise.coaching.title,
+        titleEn: enContent.home.expertise.coaching.title,
+        highlight: frContent.home.expertise.coaching.certification,
+        highlightEn: enContent.home.expertise.coaching.certification,
+        description: frContent.home.expertise.coaching.description,
+        descriptionEn: enContent.home.expertise.coaching.description,
         icon: 'coaching',
         color: 'mystic-mauve',
       },
       {
         _key: 'card-yoga',
         _type: 'expertiseCard',
-        title: 'Hatha Yoga Classique',
-        titleEn: 'Classical Hatha Yoga',
-        highlight: 'Sadhguru Gurukulam',
-        highlightEn: 'Sadhguru Gurukulam',
-        description: 'Formation approfondie (1750h) à des outils yogiques ancestraux et à des technologies de bien-être éprouvées, permettant d\'affiner la perception, de développer la stabilité intérieure et de soutenir des processus de transformation durables.',
-        descriptionEn: 'In-depth training (1750h) in ancestral yogic tools and proven wellbeing technologies, enabling refined perception, inner stability development and support for lasting transformation processes.',
+        title: frContent.home.expertise.yoga.title,
+        titleEn: enContent.home.expertise.yoga.title,
+        highlight: frContent.home.expertise.yoga.certification,
+        highlightEn: enContent.home.expertise.yoga.certification,
+        description: frContent.home.expertise.yoga.description,
+        descriptionEn: enContent.home.expertise.yoga.description,
         icon: 'yoga',
         color: 'golden-orange',
       },
@@ -73,36 +88,39 @@ const homepageContent = {
 
   // ============================================
   // SECTION À PROPOS
+  // Note: Cette section n'existe pas dans fr.json
+  // Le contenu est géré directement dans Sanity Studio
   // ============================================
   aboutSection: {
     badge: 'Mon Parcours',
     badgeEn: 'My Journey',
     title: 'Qui suis-je ?',
     titleEn: 'Who am I?',
-    description: 'Près de 20 ans d\'expérience dans des directions RH de grands groupes internationaux, certifiée Coach & Team® (EMCC) et professeure de Hatha Yoga classique formée par Sadhguru. Je mets cette triple expertise au service de votre transformation.',
+    description: "Près de 20 ans d'expérience dans des directions RH de grands groupes internationaux, certifiée Coach & Team® (EMCC) et professeure de Hatha Yoga classique formée par Sadhguru. Je mets cette triple expertise au service de votre transformation.",
     descriptionEn: 'Nearly 20 years of experience in HR management for major international groups, certified Coach & Team® (EMCC) and classical Hatha Yoga teacher trained by Sadhguru. I put this triple expertise at the service of your transformation.',
     ctaText: 'Découvrir mon parcours complet',
     ctaTextEn: 'Discover my full journey',
   },
 
   // ============================================
-  // SECTION SERVICES
+  // SECTION SERVICES (depuis home.services)
+  // Structure: home.services.organisations, .coaching, .yoga avec .cta
   // ============================================
   servicesSection: {
-    subtitle: 'Mes Services',
-    subtitleEn: 'My Services',
-    title: 'Comment Je Peux Vous Accompagner',
-    titleEn: 'How I Can Support You',
+    subtitle: frContent.home.services.subtitle,
+    subtitleEn: enContent.home.services.subtitle,
+    title: frContent.home.services.title,
+    titleEn: enContent.home.services.title,
     services: [
       {
         _key: 'service-orgs',
         _type: 'serviceCard',
-        title: 'Pour les Organisations',
-        titleEn: 'For Organizations',
-        description: 'Accompagnement des transformations culturelles et managériales, développement du leadership et conception de programmes sur mesure pour des organisations en évolution.',
-        descriptionEn: 'Support for cultural and managerial transformations, leadership development and design of customized programs for evolving organizations.',
-        ctaText: 'Découvrir',
-        ctaTextEn: 'Discover',
+        title: frContent.home.services.organisations.title,
+        titleEn: enContent.home.services.organisations.title,
+        description: frContent.home.services.organisations.description,
+        descriptionEn: enContent.home.services.organisations.description,
+        ctaText: frContent.home.services.organisations.cta,
+        ctaTextEn: enContent.home.services.organisations.cta,
         link: '/organisations',
         icon: 'organisations',
         color: 'morocco-blue',
@@ -110,12 +128,12 @@ const homepageContent = {
       {
         _key: 'service-coaching',
         _type: 'serviceCard',
-        title: 'Coaching Individuel',
-        titleEn: 'Individual Coaching',
-        description: 'Accompagnement individuel pour clarifier vos objectifs professionnels, traverser des périodes de transition, dépasser les obstacles et renforcer votre posture.',
-        descriptionEn: 'Individual support to clarify your professional goals, navigate transition periods, overcome obstacles and strengthen your posture.',
-        ctaText: 'Découvrir',
-        ctaTextEn: 'Discover',
+        title: frContent.home.services.coaching.title,
+        titleEn: enContent.home.services.coaching.title,
+        description: frContent.home.services.coaching.description,
+        descriptionEn: enContent.home.services.coaching.description,
+        ctaText: frContent.home.services.coaching.cta,
+        ctaTextEn: enContent.home.services.coaching.cta,
         link: '/coaching',
         icon: 'coaching',
         color: 'mystic-mauve',
@@ -123,12 +141,12 @@ const homepageContent = {
       {
         _key: 'service-yoga',
         _type: 'serviceCard',
-        title: 'Yoga Classique & Programmes',
-        titleEn: 'Classical Yoga & Programs',
-        description: 'Programmes de Hatha Yoga classique, avec des formats adaptés aux entreprises, pour affiner la perception, renforcer la stabilité intérieure et soutenir des transformations individuelles et collectives.',
-        descriptionEn: 'Classical Hatha Yoga programs, with formats adapted to businesses, to refine perception, strengthen inner stability and support individual and collective transformations.',
-        ctaText: 'Découvrir',
-        ctaTextEn: 'Discover',
+        title: frContent.home.services.yoga.title,
+        titleEn: enContent.home.services.yoga.title,
+        description: frContent.home.services.yoga.description,
+        descriptionEn: enContent.home.services.yoga.description,
+        ctaText: frContent.home.services.yoga.cta,
+        ctaTextEn: enContent.home.services.yoga.cta,
         link: '/programmes',
         icon: 'yoga',
         color: 'golden-orange',
@@ -137,21 +155,22 @@ const homepageContent = {
   },
 
   // ============================================
-  // SECTION CTA
+  // SECTION CTA (depuis home.cta)
+  // Structure: home.cta.primaryCTA et secondaryCTA sont des strings
   // ============================================
   ctaSection: {
-    title: 'Prêt·e à Commencer Votre Transformation ?',
-    titleEn: 'Ready to Start Your Transformation?',
-    description: 'Que ce soit pour accompagner votre organisation ou pour votre besoin personnel (Coaching ou Yoga), réservons un moment d\'échange pour explorer comment nous pouvons travailler ensemble.',
-    descriptionEn: 'Whether to support your organization or for your personal needs (Coaching or Yoga), let\'s book a moment to explore how we can work together.',
+    title: frContent.home.cta.title,
+    titleEn: enContent.home.cta.title,
+    description: frContent.home.cta.description,
+    descriptionEn: enContent.home.cta.description,
     primaryCTA: {
-      text: 'Me contacter',
-      textEn: 'Contact me',
+      text: frContent.home.cta.primaryCTA,
+      textEn: enContent.home.cta.primaryCTA,
       link: '/contact',
     },
     secondaryCTA: {
-      text: 'Voir les programmes',
-      textEn: 'View programs',
+      text: frContent.home.cta.secondaryCTA,
+      textEn: enContent.home.cta.secondaryCTA,
       link: '/programmes',
     },
   },
@@ -162,6 +181,11 @@ async function migrateHomepage() {
     console.log('╔════════════════════════════════════════════════════════════╗')
     console.log('║       MIGRATION HOMEPAGE VERS SANITY                       ║')
     console.log('╚════════════════════════════════════════════════════════════╝\n')
+
+    console.log('📖 Contenu lu dynamiquement depuis:')
+    console.log('   - locales/fr.json (expertise, services, cta)')
+    console.log('   - locales/en.json (traductions)')
+    console.log('   - Section "about" gérée dans Sanity Studio\n')
 
     // Check if already exists
     const existing = await client.fetch('*[_id == "homepageContent"][0]')
@@ -180,13 +204,15 @@ async function migrateHomepage() {
     console.log('\n📊 Résumé:')
     console.log('  ┌─────────────────────────────────────────┐')
     console.log('  │ Section Expertise: 3 cartes            │')
-    console.log('  │ Section À propos: ✓                    │')
+    console.log('  │ Section À propos: ✓ (depuis Sanity)    │')
     console.log('  │ Section Services: 3 services           │')
     console.log('  │ Section CTA: 2 boutons                 │')
     console.log('  └─────────────────────────────────────────┘')
     console.log('\n✨ Migration terminée!')
-    console.log('\n💡 Note: Tous les items ont des _key uniques pour éviter')
-    console.log('   l\'erreur "Missing keys" dans Sanity Studio.')
+    console.log('\n💡 Workflow recommandé:')
+    console.log('   1. Modifier le contenu dans locales/fr.json')
+    console.log('   2. Lancer: npm run migrate:homepage')
+    console.log('   3. Le contenu Sanity est automatiquement synchronisé')
   } catch (error) {
     console.error('❌ Erreur lors de la migration:', error)
     process.exit(1)
