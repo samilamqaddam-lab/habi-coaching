@@ -61,6 +61,7 @@ export default function SessionDatePicker({
       weekday: 'long',
       day: 'numeric',
       month: 'long',
+      timeZone: 'Africa/Casablanca', // Fuseau horaire marocain
     });
   };
 
@@ -69,6 +70,7 @@ export default function SessionDatePicker({
     return date.toLocaleTimeString(locale === 'fr' ? 'fr-FR' : 'en-US', {
       hour: '2-digit',
       minute: '2-digit',
+      timeZone: 'Africa/Casablanca', // Fuseau horaire marocain
     });
   };
 

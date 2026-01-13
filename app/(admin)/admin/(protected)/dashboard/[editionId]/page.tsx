@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import AdminNav from '@/components/admin/AdminNav';
+import RegistrationCard from '@/components/admin/RegistrationCard';
 import { supabaseAdmin, isSupabaseConfigured } from '@/lib/supabase';
 
 interface Registration {
@@ -94,28 +95,6 @@ async function getEditionWithRegistrations(editionId: string) {
     console.error('Error in getEditionWithRegistrations:', error);
     return null;
   }
-}
-
-function formatDate(dateString: string) {
-  const date = new Date(dateString);
-  return new Intl.DateTimeFormat('fr-FR', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-    hour: '2-digit',
-    minute: '2-digit',
-  }).format(date);
-}
-
-function formatRegistrationDate(dateString: string) {
-  const date = new Date(dateString);
-  return new Intl.DateTimeFormat('fr-FR', {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  }).format(date);
 }
 
 export default async function EditionRegistrationsPage({
@@ -235,87 +214,9 @@ export default async function EditionRegistrationsPage({
                 <p className="text-slate-500">Les inscriptions apparaîtront ici</p>
               </div>
             ) : (
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {registrations.map((registration) => (
-                  <div
-                    key={registration.id}
-                    className="bg-slate-800 rounded-xl border border-slate-700 p-6 hover:border-slate-600 transition-colors"
-                  >
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-2">
-                          <h3 className="text-lg font-semibold text-slate-100">
-                            {registration.first_name} {registration.last_name}
-                          </h3>
-                          <span
-                            className={`px-2 py-1 rounded-full text-xs font-medium ${
-                              registration.status === 'confirmed'
-                                ? 'bg-green-400/10 text-green-400'
-                                : registration.status === 'pending'
-                                ? 'bg-yellow-400/10 text-yellow-400'
-                                : 'bg-red-400/10 text-red-400'
-                            }`}
-                          >
-                            {registration.status === 'confirmed'
-                              ? 'Confirmée'
-                              : registration.status === 'pending'
-                              ? 'En attente'
-                              : 'Annulée'}
-                          </span>
-                        </div>
-                        <div className="space-y-1 text-sm text-slate-400">
-                          <p className="flex items-center gap-2">
-                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                            {registration.email}
-                          </p>
-                          <p className="flex items-center gap-2">
-                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                            </svg>
-                            {registration.phone}
-                            {registration.whatsapp && registration.whatsapp !== registration.phone && (
-                              <span className="text-xs text-slate-500">(WhatsApp: {registration.whatsapp})</span>
-                            )}
-                          </p>
-                          <p className="flex items-center gap-2">
-                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
-                            Inscrit le {formatRegistrationDate(registration.created_at)}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Selected Dates */}
-                    {registration.date_choices.length > 0 && (
-                      <div className="border-t border-slate-700 pt-4 mt-4">
-                        <h4 className="text-sm font-medium text-slate-300 mb-3">Dates choisies:</h4>
-                        <div className="space-y-2">
-                          {registration.date_choices.map((choice, index) => (
-                            <div key={index} className="flex items-center gap-3 text-sm">
-                              <span className="bg-orange-400/10 text-orange-400 px-2 py-1 rounded font-medium min-w-[80px] text-center">
-                                Session {choice.session_number}
-                              </span>
-                              <span className="text-slate-300">
-                                {formatDate(choice.date_time)}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Message */}
-                    {registration.message && (
-                      <div className="border-t border-slate-700 pt-4 mt-4">
-                        <h4 className="text-sm font-medium text-slate-300 mb-2">Message:</h4>
-                        <p className="text-sm text-slate-400 italic">{registration.message}</p>
-                      </div>
-                    )}
-                  </div>
+                  <RegistrationCard key={registration.id} registration={registration} />
                 ))}
               </div>
             )}

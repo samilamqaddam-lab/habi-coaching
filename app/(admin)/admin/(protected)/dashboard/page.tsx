@@ -38,7 +38,7 @@ async function getEditionsWithStats() {
           .eq('edition_id', edition.id)
           .neq('status', 'cancelled');
 
-        // Get total capacity (sum of all date options max_capacity)
+        // Get max inscriptions (capacity per date since each participant chooses 1 date per session)
         const { data: sessions } = await supabaseAdmin!
           .from('edition_sessions')
           .select(`
@@ -49,30 +49,35 @@ async function getEditionsWithStats() {
           `)
           .eq('edition_id', edition.id);
 
-        // Calculate total capacity and remaining spots
-        let totalCapacity = 0;
-        if (sessions) {
+        // Calculate max inscriptions possible
+        // Each person chooses 1 date per session, so max = min capacity across all dates
+        let maxInscriptions = edition.max_capacity || 20; // Default 20 for Upa Yoga
+        if (sessions && sessions.length > 0) {
+          // Get the smallest capacity among all date options (bottleneck)
+          let minDateCapacity = Infinity;
           sessions.forEach((session: any) => {
             if (session.session_date_options) {
               const dateOptions = Array.isArray(session.session_date_options)
                 ? session.session_date_options
                 : [session.session_date_options];
               dateOptions.forEach((option: any) => {
-                totalCapacity += option.max_capacity || 0;
+                minDateCapacity = Math.min(minDateCapacity, option.max_capacity || 10);
               });
             }
           });
+          // Use the minimum date capacity as theoretical max (conservative estimate)
+          maxInscriptions = minDateCapacity !== Infinity ? minDateCapacity : 20;
         }
 
         const registrations = registrationCount || 0;
-        const remaining = Math.max(0, totalCapacity - registrations);
-        const fillRate = totalCapacity > 0 ? (registrations / totalCapacity) * 100 : 0;
+        const remaining = Math.max(0, maxInscriptions - registrations);
+        const fillRate = maxInscriptions > 0 ? (registrations / maxInscriptions) * 100 : 0;
 
         return {
           ...edition,
           stats: {
             registrations,
-            totalCapacity,
+            maxInscriptions, // Changed from totalCapacity
             remaining,
             fillRate: Math.round(fillRate),
           },
@@ -92,9 +97,9 @@ export default async function AdminDashboardPage() {
 
   // Calculate global stats
   const totalRegistrations = editions.reduce((sum, e) => sum + e.stats.registrations, 0);
-  const totalCapacity = editions.reduce((sum, e) => sum + e.stats.totalCapacity, 0);
+  const totalMaxInscriptions = editions.reduce((sum, e) => sum + e.stats.maxInscriptions, 0);
   const totalRemaining = editions.reduce((sum, e) => sum + e.stats.remaining, 0);
-  const globalFillRate = totalCapacity > 0 ? Math.round((totalRegistrations / totalCapacity) * 100) : 0;
+  const globalFillRate = totalMaxInscriptions > 0 ? Math.round((totalRegistrations / totalMaxInscriptions) * 100) : 0;
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -130,12 +135,12 @@ export default async function AdminDashboardPage() {
 
             <div className="bg-slate-800 rounded-xl border border-slate-700 p-6">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-slate-400 text-sm font-medium">Capacité Totale</span>
+                <span className="text-slate-400 text-sm font-medium">Max Participants</span>
                 <svg className="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clipRule="evenodd" />
                 </svg>
               </div>
-              <p className="text-3xl font-bold text-slate-100">{totalCapacity}</p>
+              <p className="text-3xl font-bold text-slate-100">{totalMaxInscriptions}</p>
             </div>
 
             <div className="bg-slate-800 rounded-xl border border-slate-700 p-6">
@@ -202,12 +207,12 @@ export default async function AdminDashboardPage() {
                   {/* Stats Grid */}
                   <div className="grid grid-cols-4 gap-4 mb-4">
                     <div>
-                      <p className="text-xs text-slate-500 mb-1">Inscriptions</p>
+                      <p className="text-xs text-slate-500 mb-1">Inscrits</p>
                       <p className="text-2xl font-bold text-slate-100">{edition.stats.registrations}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-slate-500 mb-1">Capacité</p>
-                      <p className="text-2xl font-bold text-slate-100">{edition.stats.totalCapacity}</p>
+                      <p className="text-xs text-slate-500 mb-1">Max</p>
+                      <p className="text-2xl font-bold text-slate-100">{edition.stats.maxInscriptions}</p>
                     </div>
                     <div>
                       <p className="text-xs text-slate-500 mb-1">Restantes</p>
