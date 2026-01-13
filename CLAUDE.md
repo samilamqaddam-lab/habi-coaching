@@ -26,7 +26,30 @@ Professional coaching website for Hajar Habi - Holistic Coach & Traditional Yoga
 - Split layout (text left, image right) for internal pages
 - Centered layout for Homepage with minimal height
 - Images should be situational, symbolic - avoid showing faces unless it's Hajar herself
-- Sadhguru presence on yoga page to honor the Isha Foundation lineage
+- Sadhguru presence on yoga page to honor the Sadhguru Gurukulam lineage
+
+## Nomenclatures Officielles des Expertises
+
+Ces nomenclatures DOIVENT être utilisées de manière cohérente sur tout le site:
+
+### 1. Corporate
+- **Titre:** Expérience Corporate & Conseil
+- **Durée:** ≃20 ans (avec symbole ≃ pour "environ")
+- **Contexte:** Entreprises marocaines et internationales + cabinets de conseil
+- **NE PAS utiliser:** "20 ans en entreprise" (trop vague)
+
+### 2. Coaching
+- **Certification:** Coach & Team – Transformance Pro
+- **Référence:** Vincent Lenhardt (référence européenne du coaching)
+- **Note:** EMCC peut compléter mais pas remplacer le nom complet
+- **NE PAS utiliser:** "Coach & Team (EMCC)" seul
+
+### 3. Yoga
+- **Certification:** Sadhguru Gurukulam
+- **Titre:** Hatha Yoga Classique
+- **Formation:** 1750h (21 semaines résidentielles)
+- **NE PAS utiliser:** "Isha Foundation" seul, "formée par Sadhguru"
+- **Utiliser:** "certifiée par Sadhguru Gurukulam"
 
 ## Hero Component Modes
 
@@ -108,13 +131,13 @@ interface HeroProps {
 
 ### /expertise
 - Detailed credentials page
-- Coach & Team (EMCC), Isha Foundation, 20 years corporate
+- Coach & Team – Transformance Pro (EMCC), Sadhguru Gurukulam, ≃20 ans Corporate & Conseil
 
-## Sadhguru / Isha Foundation Integration
+## Sadhguru Gurukulam Integration
 
 ### Yoga Page Lineage Section
 Added December 2024 - honors the source of Hajar's yoga training:
-- Sadhguru info card with role "Fondateur de Isha Foundation"
+- Sadhguru info card with role "Fondateur de Sadhguru Gurukulam / Isha Foundation"
 - Training details: 21-week residential, 1750+ hours
 - Global community: 150+ countries
 - External link to official Isha Foundation website
@@ -138,9 +161,9 @@ Location: `/public/images/Reel/`
 ## Important Notes
 
 ### Hajar's Credentials
-- 20+ years corporate experience (not 10)
-- Certification: Coach & Team with EMCC accreditation
-- Isha Foundation Hatha Yoga Teacher (1750h training with Sadhguru)
+- ≃20 ans Expérience Corporate & Conseil (entreprises + cabinets de conseil)
+- Certification: Coach & Team – Transformance Pro (EMCC)
+- Hatha Yoga Classique – Sadhguru Gurukulam (1750h, 21 semaines résidentielles)
 
 ### Design Rules
 - Avoid duplicating Hajar's photo on same page
@@ -182,6 +205,19 @@ Homepage content has been migrated to Sanity for easier content management.
 6. Create migration script to populate initial data
 
 **Example:** See `/scripts/migrate-homepage-to-sanity.mjs`
+
+**Documentation complète:** See `/docs/SANITY-TECHNICAL-GUIDE.md` (aussi dans Notion: 📚 Guides & Références)
+
+### Priorité des Sources de Contenu
+
+| Section | Source Principale | Modifiable via Sanity? |
+|---------|-------------------|------------------------|
+| Hero | `locales/*.json` | ❌ Non |
+| Qui suis-je? | `locales/*.json` | ❌ Non (texte) / ✅ Oui (image) |
+| Expertise, Services, CTA | `locales/*.json` via migration | ⚠️ Écrasé par migration |
+| Testimonials | Sanity | ✅ Oui |
+
+**Règle d'or:** Les fichiers `locales/*.json` sont la source de vérité. Modifier le JSON → push → déploiement auto.
 
 ### When to Update Sanity Schemas
 

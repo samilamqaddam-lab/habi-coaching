@@ -6,7 +6,8 @@ import Hero from '@/components/sections/Hero'
 import Section from '@/components/sections/Section'
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
-import { PrivateYogaRequestModal, IndividualYogaBookingModal } from '@/components/forms'
+import { PrivateYogaRequestModal, IndividualYogaBookingModal, EditionRegistrationModal } from '@/components/forms'
+import UpaYogaEditionCard from '@/components/programmes/UpaYogaEditionCard'
 import { useTranslation } from '@/hooks/useTranslation'
 
 // Composant Accordion pour les bénéfices
@@ -253,6 +254,7 @@ const programKeyToFormValue: Record<string, string> = {
 
 export default function ProgrammesContent() {
   const { t } = useTranslation()
+  const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false)
 
   return (
     <>
@@ -365,6 +367,12 @@ export default function ProgrammesContent() {
         accentColor="yoga"
         afterHero
       >
+        {/* Prochaine Edition Card - Dynamic from Supabase */}
+        <div className="mb-12 max-w-lg mx-auto lg:mx-0">
+          <UpaYogaEditionCard
+            onRegisterClick={() => setIsRegistrationModalOpen(true)}
+          />
+        </div>
 
         {/* 5 programmes en grille */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -756,6 +764,13 @@ export default function ProgrammesContent() {
           </div>
         </div>
       </Section>
+
+      {/* Registration Modal for Editions */}
+      <EditionRegistrationModal
+        programmeKey="upa-yoga"
+        isOpen={isRegistrationModalOpen}
+        onClose={() => setIsRegistrationModalOpen(false)}
+      />
     </>
   )
 }

@@ -43,9 +43,9 @@
       "yogaClasses": "Cours de yoga",
       "retreats": "Retraites",
       "expertise": "Expertise",
-      "coachTeamEMCC": "Coach & Team (EMCC)",
-      "ishaFoundation": "Isha Foundation",
-      "corporateExperience": "20 ans en entreprise"
+      "coachTeamEMCC": "Coach & Team – Transformance Pro",
+      "ishaFoundation": "Sadhguru Gurukulam",
+      "corporateExperience": "≃20 ans Corporate & Conseil"
     }
   },
   "home": {
@@ -58,6 +58,12 @@
       "secondaryCTA": "Me contacter",
       "sadhguruQuote": "« Sustainable performance comes not from pressure, but from clarity and involvement. »",
       "sadhguruAttribution": "— Sadhguru"
+    },
+    "about": {
+      "badge": "Mon Parcours",
+      "title": "Qui suis-je ?",
+      "description": "Près de 20 ans d'expérience en entreprises et cabinets de conseil, certifiée Coach & Team – Transformance Pro et professeure de Hatha Yoga Classique certifiée par Sadhguru Gurukulam. Je mets cette triple expertise au service de votre transformation.",
+      "cta": "Découvrir mon parcours complet"
     },
     "expertise": {
       "subtitle": "Mon Expertise",
@@ -114,7 +120,7 @@
     "hero": {
       "subtitle": "Coaching Individuel",
       "title": "Définissez le Succès Selon Vos Termes",
-      "description": "Un accompagnement certifié Coach & Team (accréditation EMCC) qui allie rigueur du coaching professionnel et profondeur des pratiques contemplatives. Pour une transformation qui respecte votre rythme et vos limites.",
+      "description": "Un accompagnement certifié Coach & Team – Transformance Pro qui allie rigueur du coaching professionnel et profondeur des pratiques contemplatives. Pour une transformation qui respecte votre rythme et vos limites.",
       "primaryCTA": "Réserver une session découverte",
       "secondaryCTA": "En savoir plus"
     },

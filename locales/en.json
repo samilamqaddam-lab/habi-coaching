@@ -43,9 +43,9 @@
       "yogaClasses": "Yoga Classes",
       "retreats": "Retreats",
       "expertise": "Expertise",
-      "coachTeamEMCC": "Coach & Team (EMCC)",
-      "ishaFoundation": "Isha Foundation",
-      "corporateExperience": "20 years in business"
+      "coachTeamEMCC": "Coach & Team – Transformance Pro",
+      "ishaFoundation": "Sadhguru Gurukulam",
+      "corporateExperience": "≃20 yrs Corporate & Consulting"
     }
   },
   "home": {
@@ -58,6 +58,12 @@
       "secondaryCTA": "Contact me",
       "sadhguruQuote": "\"Yoga is not a morning practice. It is a way of living.\"",
       "sadhguruAttribution": "— Sadhguru"
+    },
+    "about": {
+      "badge": "My Journey",
+      "title": "Who am I?",
+      "description": "Nearly 20 years of experience in companies and consulting firms, certified Coach & Team – Transformance Pro and Classical Hatha Yoga teacher certified by Sadhguru Gurukulam. I put this triple expertise at the service of your transformation.",
+      "cta": "Discover my full journey"
     },
     "expertise": {
       "subtitle": "My Expertise",
@@ -114,7 +120,7 @@
     "hero": {
       "subtitle": "Individual Coaching",
       "title": "Define Success on Your Own Terms",
-      "description": "Certified Coach & Team (EMCC accreditation) support that combines the rigor of professional coaching with the depth of contemplative practices. For transformation that respects your rhythm and boundaries.",
+      "description": "Certified Coach & Team – Transformance Pro support that combines the rigor of professional coaching with the depth of contemplative practices. For transformation that respects your rhythm and boundaries.",
       "primaryCTA": "Book a Discovery Session",
       "secondaryCTA": "Learn More"
     },
@@ -946,7 +952,7 @@
       },
       "yoga": {
         "title": "Traditional Yoga",
-        "subtitle": "Isha Foundation (Sadhguru)",
+        "subtitle": "Sadhguru Gurukulam",
         "training": {
           "title": "Training & Certifications",
           "items": {

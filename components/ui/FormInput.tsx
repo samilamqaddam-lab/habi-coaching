@@ -14,6 +14,7 @@ interface FormInputProps {
   ) => void
   disabled?: boolean
   requiredMessage?: string
+  error?: string
 }
 
 export default function FormInput({
@@ -28,19 +29,44 @@ export default function FormInput({
   onChange,
   disabled = false,
   requiredMessage = 'Veuillez remplir ce champ.',
+  error,
 }: FormInputProps) {
-  const baseInputStyles =
-    'w-full px-4 py-3 text-base rounded-lg border-2 border-soft-gray focus:border-terracotta focus:outline-none transition-colors bg-warm-white text-text-primary disabled:bg-gray-100 disabled:cursor-not-allowed'
+  const baseInputStyles = `w-full px-4 py-3 text-base rounded-lg border-2 focus:outline-none transition-colors bg-warm-white text-text-primary disabled:bg-gray-100 disabled:cursor-not-allowed ${
+    error ? 'border-red-500 focus:border-red-500' : 'border-soft-gray focus:border-terracotta'
+  }`
 
-  const handleInvalid = (e: React.InvalidEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    if (e.target.validity.valueMissing) {
-      e.target.setCustomValidity(requiredMessage)
-    } else if (e.target.validity.typeMismatch && type === 'email') {
-      e.target.setCustomValidity('Veuillez entrer une adresse email valide.')
+  const handleInvalidTextarea = (e: React.FormEvent<HTMLTextAreaElement>) => {
+    const target = e.target as HTMLTextAreaElement
+    if (target.validity.valueMissing) {
+      target.setCustomValidity(requiredMessage)
     }
   }
 
-  const handleInput = (e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInvalidSelect = (e: React.FormEvent<HTMLSelectElement>) => {
+    const target = e.target as HTMLSelectElement
+    if (target.validity.valueMissing) {
+      target.setCustomValidity(requiredMessage)
+    }
+  }
+
+  const handleInvalidInput = (e: React.FormEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement
+    if (target.validity.valueMissing) {
+      target.setCustomValidity(requiredMessage)
+    } else if (target.validity.typeMismatch && type === 'email') {
+      target.setCustomValidity('Veuillez entrer une adresse email valide.')
+    }
+  }
+
+  const handleInputTextarea = (e: React.FormEvent<HTMLTextAreaElement>) => {
+    e.currentTarget.setCustomValidity('')
+  }
+
+  const handleInputSelect = (e: React.FormEvent<HTMLSelectElement>) => {
+    e.currentTarget.setCustomValidity('')
+  }
+
+  const handleInputInput = (e: React.FormEvent<HTMLInputElement>) => {
     e.currentTarget.setCustomValidity('')
   }
 
@@ -59,8 +85,8 @@ export default function FormInput({
           required={required}
           value={value}
           onChange={onChange}
-          onInvalid={handleInvalid}
-          onInput={handleInput}
+          onInvalid={handleInvalidTextarea}
+          onInput={handleInputTextarea}
           disabled={disabled}
           className={`${baseInputStyles} resize-none`}
         />
@@ -71,8 +97,8 @@ export default function FormInput({
           required={required}
           value={value}
           onChange={onChange}
-          onInvalid={handleInvalid}
-          onInput={handleInput}
+          onInvalid={handleInvalidSelect}
+          onInput={handleInputSelect}
           disabled={disabled}
           className={baseInputStyles}
         >
@@ -92,11 +118,14 @@ export default function FormInput({
           required={required}
           value={value}
           onChange={onChange}
-          onInvalid={handleInvalid}
-          onInput={handleInput}
+          onInvalid={handleInvalidInput}
+          onInput={handleInputInput}
           disabled={disabled}
           className={baseInputStyles}
         />
+      )}
+      {error && (
+        <p className="mt-1 text-sm text-red-600">{error}</p>
       )}
     </div>
   )

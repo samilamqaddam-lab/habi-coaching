@@ -16,6 +16,7 @@ export default function PrivateYogaRequestForm({ onClose, defaultYogaType, isGro
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [yogaType, setYogaType] = useState(defaultYogaType || '');
+  const [consentChecked, setConsentChecked] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -110,13 +111,26 @@ export default function PrivateYogaRequestForm({ onClose, defaultYogaType, isGro
         required
       />
 
-      <FormInput
-        label={isGroupClass ? "Ville" : "Ville / Quartier"}
-        name="location"
-        type="text"
-        placeholder={isGroupClass ? "Ex: Casablanca" : "Ex: Casablanca, Maarif"}
-        required
-      />
+      {/* WhatsApp si différent - Cours collectifs uniquement */}
+      {isGroupClass && (
+        <FormInput
+          label="WhatsApp (si différent du téléphone)"
+          name="whatsapp"
+          type="tel"
+          placeholder="+212 6 00 00 00 00"
+        />
+      )}
+
+      {/* Ville - Seulement pour cours individuels */}
+      {!isGroupClass && (
+        <FormInput
+          label="Ville / Quartier"
+          name="location"
+          type="text"
+          placeholder="Ex: Casablanca, Maarif"
+          required
+        />
+      )}
 
       {/* Type de yoga souhaité */}
       <FormInput
@@ -214,13 +228,30 @@ export default function PrivateYogaRequestForm({ onClose, defaultYogaType, isGro
         required={!isGroupClass}
       />
 
+      {/* Consentement RGPD */}
+      <div className="flex items-start gap-3">
+        <input
+          type="checkbox"
+          id="consent"
+          name="consent"
+          checked={consentChecked}
+          onChange={(e) => setConsentChecked(e.target.checked)}
+          required
+          className="mt-1 h-4 w-4 rounded border-gray-300 text-golden-orange focus:ring-golden-orange"
+        />
+        <label htmlFor="consent" className="text-sm text-text-secondary leading-relaxed">
+          J'accepte que mes données personnelles soient utilisées pour me recontacter concernant ma demande.
+          Elles ne seront jamais partagées avec des tiers.
+        </label>
+      </div>
+
       {/* Bouton submit */}
       <Button
         variant="primary"
         size="lg"
         fullWidth
         type="submit"
-        disabled={isSubmitting}
+        disabled={isSubmitting || !consentChecked}
       >
         {isSubmitting
           ? 'Envoi en cours...'
@@ -243,8 +274,9 @@ export default function PrivateYogaRequestForm({ onClose, defaultYogaType, isGro
           )}
         </p>
         <p className="text-xs text-text-secondary text-center italic">
-          💡 Tous les programmes sont inspirés du yoga traditionnel Isha Foundation{' '}
-          {isGroupClass ? 'et enseignés par Sadhguru.' : 'et adaptés à vos besoins individuels.'}
+          {isGroupClass
+            ? '💡 Vous serez contacté·e par la Professeure de Hatha Yoga pour un échange préalable.'
+            : '💡 Tous les programmes sont basés sur le Hatha Yoga Classique et adaptés à vos besoins individuels.'}
         </p>
       </div>
     </form>

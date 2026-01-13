@@ -2,29 +2,23 @@
 
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import Button from '@/components/ui/Button';
-import PrivateYogaRequestForm from './PrivateYogaRequestForm';
+import EditionRegistrationForm from './EditionRegistrationForm';
+import { useTranslation } from '@/hooks/useTranslation';
 
-interface PrivateYogaRequestModalProps {
-  triggerText?: string;
-  variant?: 'primary' | 'outline' | 'secondary';
-  size?: 'sm' | 'md' | 'lg';
-  fullWidth?: boolean;
-  className?: string;
-  defaultYogaType?: string; // Pré-remplissage du type de yoga
-  isGroupClass?: boolean; // Si true, c'est un cours collectif
+interface EditionRegistrationModalProps {
+  editionId?: string;
+  programmeKey?: string;
+  isOpen: boolean;
+  onClose: () => void;
 }
 
-export default function PrivateYogaRequestModal({
-  triggerText = 'Demander un cours privé',
-  variant = 'outline',
-  size = 'md',
-  fullWidth = false,
-  className = '',
-  defaultYogaType,
-  isGroupClass = false,
-}: PrivateYogaRequestModalProps) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function EditionRegistrationModal({
+  editionId,
+  programmeKey = 'upa-yoga',
+  isOpen,
+  onClose,
+}: EditionRegistrationModalProps) {
+  const { locale } = useTranslation();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -32,14 +26,27 @@ export default function PrivateYogaRequestModal({
     return () => setMounted(false);
   }, []);
 
-  const handleOpen = (e?: React.MouseEvent) => {
-    e?.preventDefault();
-    e?.stopPropagation();
-    setIsOpen(true);
-  };
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
 
   const handleClose = () => {
-    setIsOpen(false);
+    onClose();
+  };
+
+  const handleSuccess = () => {
+    // Close modal after showing success message
+    setTimeout(() => {
+      onClose();
+    }, 3000);
   };
 
   const modalContent = isOpen && mounted ? (
@@ -59,19 +66,19 @@ export default function PrivateYogaRequestModal({
         <div className="flex items-start justify-between p-4 sm:p-6 border-b border-gray-200 gap-3">
           <div className="flex-1 min-w-0">
             <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-deep-blue leading-snug break-words">
-              {isGroupClass ? 'Inscription au Programme Collectif' : 'Demande de Cours Privé de Yoga'}
+              {locale === 'fr' ? 'Inscription au Programme' : 'Program Registration'}
             </h3>
             <p className="text-xs sm:text-sm text-text-secondary mt-1.5 leading-relaxed">
-              {isGroupClass
-                ? 'Programme Sadhguru Gurukulam'
-                : 'Programme personnalisé avec une professeure certifiée Sadhguru Gurukulam'}
+              {locale === 'fr'
+                ? 'Choisissez vos dates pour chaque session'
+                : 'Choose your dates for each session'}
             </p>
           </div>
           <button
             onClick={handleClose}
             type="button"
             className="w-11 h-11 rounded-full flex items-center justify-center hover:bg-gray-100 active:bg-gray-200 transition-colors flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-golden-orange focus:ring-offset-2"
-            aria-label="Fermer"
+            aria-label={locale === 'fr' ? 'Fermer' : 'Close'}
           >
             <svg
               className="w-6 h-6 text-text-secondary"
@@ -91,32 +98,16 @@ export default function PrivateYogaRequestModal({
 
         {/* Form */}
         <div className="p-6 max-h-[calc(100vh-200px)] overflow-y-auto">
-          <PrivateYogaRequestForm
+          <EditionRegistrationForm
+            editionId={editionId}
+            programmeKey={programmeKey}
             onClose={handleClose}
-            defaultYogaType={defaultYogaType}
-            isGroupClass={isGroupClass}
+            onSuccess={handleSuccess}
           />
         </div>
       </div>
     </div>
   ) : null;
 
-  return (
-    <>
-      {/* Bouton déclencheur */}
-      <Button
-        variant={variant}
-        size={size}
-        fullWidth={fullWidth}
-        onClick={handleOpen}
-        type="button"
-        className={className}
-      >
-        {triggerText}
-      </Button>
-
-      {/* Modal via Portal */}
-      {mounted && modalContent && createPortal(modalContent, document.body)}
-    </>
-  );
+  return mounted && modalContent ? createPortal(modalContent, document.body) : null;
 }

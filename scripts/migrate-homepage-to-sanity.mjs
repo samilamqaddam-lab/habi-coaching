@@ -90,14 +90,15 @@ const homepageContent = {
   // SECTION À PROPOS
   // Note: Cette section n'existe pas dans fr.json
   // Le contenu est géré directement dans Sanity Studio
+  // Nomenclatures officielles: Coach & Team – Transformance Pro, Sadhguru Gurukulam
   // ============================================
   aboutSection: {
     badge: 'Mon Parcours',
     badgeEn: 'My Journey',
     title: 'Qui suis-je ?',
     titleEn: 'Who am I?',
-    description: "Près de 20 ans d'expérience dans des directions RH de grands groupes internationaux, certifiée Coach & Team® (EMCC) et professeure de Hatha Yoga classique formée par Sadhguru. Je mets cette triple expertise au service de votre transformation.",
-    descriptionEn: 'Nearly 20 years of experience in HR management for major international groups, certified Coach & Team® (EMCC) and classical Hatha Yoga teacher trained by Sadhguru. I put this triple expertise at the service of your transformation.',
+    description: "Près de 20 ans d'expérience en entreprises et cabinets de conseil, certifiée Coach & Team – Transformance Pro et professeure de Hatha Yoga Classique certifiée par Sadhguru Gurukulam. Je mets cette triple expertise au service de votre transformation.",
+    descriptionEn: 'Nearly 20 years of experience in companies and consulting firms, certified Coach & Team – Transformance Pro and Classical Hatha Yoga teacher certified by Sadhguru Gurukulam. I put this triple expertise at the service of your transformation.',
     ctaText: 'Découvrir mon parcours complet',
     ctaTextEn: 'Discover my full journey',
   },
