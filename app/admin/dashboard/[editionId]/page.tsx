@@ -26,7 +26,7 @@ async function getEditionWithRegistrations(editionId: string) {
 
   try {
     // Get edition details
-    const { data: edition, error: editionError } = await supabaseAdmin
+    const { data: edition, error: editionError } = await supabaseAdmin!
       .from('programme_editions')
       .select('id, programme_key, title, title_en, start_date, is_active')
       .eq('id', editionId)
@@ -37,7 +37,7 @@ async function getEditionWithRegistrations(editionId: string) {
     }
 
     // Get all registrations for this edition
-    const { data: registrations, error: registrationsError } = await supabaseAdmin
+    const { data: registrations, error: registrationsError } = await supabaseAdmin!
       .from('registrations')
       .select(`
         id,
@@ -61,7 +61,7 @@ async function getEditionWithRegistrations(editionId: string) {
     // For each registration, get the selected dates
     const registrationsWithDates = await Promise.all(
       (registrations || []).map(async (registration) => {
-        const { data: dateChoices } = await supabaseAdmin
+        const { data: dateChoices } = await supabaseAdmin!
           .from('registration_date_choices')
           .select(`
             date_option_id,

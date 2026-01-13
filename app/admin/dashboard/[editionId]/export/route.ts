@@ -38,7 +38,7 @@ export async function GET(request: NextRequest, context: RouteContext) {
     const { editionId } = await context.params;
 
     // Get edition details
-    const { data: edition, error: editionError } = await supabaseAdmin
+    const { data: edition, error: editionError } = await supabaseAdmin!
       .from('programme_editions')
       .select('title, programme_key')
       .eq('id', editionId)
@@ -49,7 +49,7 @@ export async function GET(request: NextRequest, context: RouteContext) {
     }
 
     // Get all registrations
-    const { data: registrations, error: registrationsError } = await supabaseAdmin
+    const { data: registrations, error: registrationsError } = await supabaseAdmin!
       .from('registrations')
       .select(`
         id,
@@ -72,7 +72,7 @@ export async function GET(request: NextRequest, context: RouteContext) {
     // For each registration, get selected dates
     const registrationsWithDates = await Promise.all(
       (registrations || []).map(async (registration) => {
-        const { data: dateChoices } = await supabaseAdmin
+        const { data: dateChoices } = await supabaseAdmin!
           .from('registration_date_choices')
           .select(`
             date_option_id,

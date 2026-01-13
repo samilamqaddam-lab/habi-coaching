@@ -5,7 +5,7 @@ import Button from '@/components/ui/Button';
 import FormInput from '@/components/ui/FormInput';
 import SessionDatePicker from '@/components/programmes/SessionDatePicker';
 import { useTranslation } from '@/hooks/useTranslation';
-import type { ProgrammeEdition, EditionSession } from '@/lib/supabase';
+import type { ProgrammeEdition, EditionSessionWithAvailability } from '@/lib/supabase';
 
 interface PrivateYogaRequestFormProps {
   onClose?: () => void;
@@ -13,7 +13,7 @@ interface PrivateYogaRequestFormProps {
   isGroupClass?: boolean; // Si true, c'est un cours collectif (dates fixes, studio)
   // Hybrid integration: edition data for multi-session registration
   edition?: ProgrammeEdition | null;
-  sessions?: EditionSession[];
+  sessions?: EditionSessionWithAvailability[];
 }
 
 export default function PrivateYogaRequestForm({
@@ -31,7 +31,7 @@ export default function PrivateYogaRequestForm({
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   // Edition mode: when edition and sessions are provided
-  const isEditionMode = edition && sessions && sessions.length > 0;
+  const isEditionMode = !!(edition && sessions && sessions.length > 0);
   const [selectedDates, setSelectedDates] = useState<Record<string, string>>({});
   const [availability, setAvailability] = useState<any>(null);
 
@@ -385,7 +385,7 @@ export default function PrivateYogaRequestForm({
         size="lg"
         fullWidth
         type="submit"
-        disabled={isSubmitting || !consentChecked || (isEditionMode && Object.keys(selectedDates).length < (sessions?.length || 0))}
+        disabled={isSubmitting || consentChecked !== true || (isEditionMode && Object.keys(selectedDates).length < (sessions?.length || 0))}
       >
         {isSubmitting
           ? (locale === 'fr' ? 'Envoi en cours...' : 'Sending...')

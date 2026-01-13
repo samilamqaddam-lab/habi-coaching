@@ -9,7 +9,7 @@ async function getEditionsWithStats() {
 
   try {
     // Get all editions with their sessions and registration counts
-    const { data: editions, error } = await supabaseAdmin
+    const { data: editions, error } = await supabaseAdmin!
       .from('programme_editions')
       .select(`
         id,
@@ -32,14 +32,14 @@ async function getEditionsWithStats() {
     const editionsWithStats = await Promise.all(
       (editions || []).map(async (edition) => {
         // Count total registrations (not cancelled)
-        const { count: registrationCount } = await supabaseAdmin
+        const { count: registrationCount } = await supabaseAdmin!
           .from('registrations')
           .select('*', { count: 'exact', head: true })
           .eq('edition_id', edition.id)
           .neq('status', 'cancelled');
 
         // Get total capacity (sum of all date options max_capacity)
-        const { data: sessions } = await supabaseAdmin
+        const { data: sessions } = await supabaseAdmin!
           .from('edition_sessions')
           .select(`
             id,

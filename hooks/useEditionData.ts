@@ -1,11 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import type { ProgrammeEdition, EditionSession } from '@/lib/supabase';
+import type { ProgrammeEdition, EditionSessionWithAvailability } from '@/lib/supabase';
 
 interface UseEditionDataReturn {
   edition: ProgrammeEdition | null;
-  sessions: EditionSession[];
+  sessions: EditionSessionWithAvailability[];
   isLoading: boolean;
   error: string | null;
 }
@@ -17,7 +17,7 @@ interface UseEditionDataReturn {
  */
 export function useEditionData(programmeKey: string): UseEditionDataReturn {
   const [edition, setEdition] = useState<ProgrammeEdition | null>(null);
-  const [sessions, setSessions] = useState<EditionSession[]>([]);
+  const [sessions, setSessions] = useState<EditionSessionWithAvailability[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 

@@ -30,6 +30,25 @@ export interface SessionDateOption {
   created_at: string;
 }
 
+// Extended type with availability info (from date_availability view)
+export interface SessionDateOptionWithAvailability extends SessionDateOption {
+  current_count: number;
+  remaining_spots: number;
+  is_full: boolean;
+}
+
+// Extended type with date options included (from API joins)
+export interface EditionSessionWithDates extends EditionSession {
+  session_date_options: SessionDateOption[];
+}
+
+// Extended type with date options and availability (from API /programmes/[editionId] endpoint)
+// Note: API transforms session_date_options to date_options with availability
+export interface EditionSessionWithAvailability extends Omit<EditionSession, 'created_at'> {
+  edition_id: string;
+  date_options: SessionDateOptionWithAvailability[];
+}
+
 export interface Registration {
   id: string;
   edition_id: string;
