@@ -80,12 +80,12 @@
   --font-body: var(--font-inter);
 
   /* Espacements personnalisés pour respiration */
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 2rem;
-  --spacing-lg: 4rem;
-  --spacing-xl: 6rem;
-  --spacing-2xl: 8rem;
+  --spacing-custom-xs: 0.5rem;
+  --spacing-custom-sm: 1rem;
+  --spacing-custom-md: 2rem;
+  --spacing-custom-lg: 4rem;
+  --spacing-custom-xl: 6rem;
+  --spacing-custom-2xl: 8rem;
 
   /* Animations Hero */
   --ease-smooth: cubic-bezier(0.4, 0.0, 0.2, 1);
