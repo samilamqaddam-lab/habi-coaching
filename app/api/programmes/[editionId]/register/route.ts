@@ -219,6 +219,14 @@ export async function POST(
             <h3>Vos dates sélectionnées</h3>
             <pre>${datesList}</pre>
 
+            <div style="background-color: #FFF7ED; border-left: 4px solid #FB923C; padding: 12px; margin: 20px 0;">
+              <p style="margin: 0; font-weight: bold;">⚠️ Important</p>
+              <p style="margin: 5px 0 0 0;">La participation aux 3 sessions est obligatoire.</p>
+            </div>
+
+            <p><strong>Lieu:</strong> <a href="https://www.google.com/maps/place/36+Boulevard+d'Anfa,+Casablanca" target="_blank" style="color: #E0904D; text-decoration: underline;">Shidomind</a><br>
+            36 B boulevard d'Anfa, 5ème étage, Appartement 54, Casablanca</p>
+
             <p>Je vous contacterai dans les <strong>24-48 heures</strong> pour confirmer votre inscription et vous donner toutes les informations pratiques.</p>
 
             <hr>

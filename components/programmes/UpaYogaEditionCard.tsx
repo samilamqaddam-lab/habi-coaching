@@ -1,10 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import { useTranslation } from '@/hooks/useTranslation';
-import { isSupabaseConfigured } from '@/lib/supabase';
 
 interface DateOption {
   id: string;
@@ -44,16 +42,11 @@ export default function UpaYogaEditionCard({ onRegisterClick }: UpaYogaEditionCa
   // Fetch edition data
   useEffect(() => {
     async function fetchEdition() {
-      if (!isSupabaseConfigured()) {
-        setIsLoading(false);
-        return;
-      }
-
       try {
         const response = await fetch('/api/programmes/upa-yoga');
         if (!response.ok) {
-          if (response.status === 404) {
-            // No active edition - that's okay
+          if (response.status === 404 || response.status === 503) {
+            // No active edition or service unavailable - don't show the card
             setIsLoading(false);
             return;
           }
@@ -191,13 +184,9 @@ export default function UpaYogaEditionCard({ onRegisterClick }: UpaYogaEditionCa
         {/* Info */}
         <div className="flex items-start gap-3 bg-dune-beige/30 rounded-lg p-4 mb-6">
           <div className="w-10 h-10 rounded-full bg-golden-orange/20 flex items-center justify-center flex-shrink-0">
-            <Image
-              src="/images/icons/by-sadhguru.png"
-              alt="By Sadhguru"
-              width={24}
-              height={24}
-              className="opacity-80"
-            />
+            <svg className="w-6 h-6 text-golden-orange" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
           </div>
           <div>
             <p className="text-sm font-medium text-deep-blue">
