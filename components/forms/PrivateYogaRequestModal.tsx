@@ -62,7 +62,7 @@ export default function PrivateYogaRequestModal({
 
   const modalContent = isOpen && mounted ? (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-hidden"
+      className="fixed inset-0 z-50 flex items-start justify-center p-4 pt-8 sm:pt-12 overflow-hidden"
       onClick={handleClose}
     >
       {/* Overlay */}
@@ -70,7 +70,7 @@ export default function PrivateYogaRequestModal({
 
       {/* Modal Content */}
       <div
-        className="relative bg-white rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] flex flex-col"
+        className="relative bg-white rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] flex flex-col my-0"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header - Fixed */}
