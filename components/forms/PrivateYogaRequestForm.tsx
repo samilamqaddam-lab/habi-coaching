@@ -3,43 +3,102 @@
 import { useState } from 'react';
 import Button from '@/components/ui/Button';
 import FormInput from '@/components/ui/FormInput';
+import SessionDatePicker from '@/components/programmes/SessionDatePicker';
 import { useTranslation } from '@/hooks/useTranslation';
+import type { ProgrammeEdition, EditionSession } from '@/lib/supabase';
 
 interface PrivateYogaRequestFormProps {
   onClose?: () => void;
   defaultYogaType?: string;
   isGroupClass?: boolean; // Si true, c'est un cours collectif (dates fixes, studio)
+  // Hybrid integration: edition data for multi-session registration
+  edition?: ProgrammeEdition | null;
+  sessions?: EditionSession[];
 }
 
-export default function PrivateYogaRequestForm({ onClose, defaultYogaType, isGroupClass = false }: PrivateYogaRequestFormProps) {
-  const { t } = useTranslation();
+export default function PrivateYogaRequestForm({
+  onClose,
+  defaultYogaType,
+  isGroupClass = false,
+  edition,
+  sessions
+}: PrivateYogaRequestFormProps) {
+  const { t, locale } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [yogaType, setYogaType] = useState(defaultYogaType || '');
   const [consentChecked, setConsentChecked] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  // Edition mode: when edition and sessions are provided
+  const isEditionMode = edition && sessions && sessions.length > 0;
+  const [selectedDates, setSelectedDates] = useState<Record<string, string>>({});
+  const [availability, setAvailability] = useState<any>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitError(null);
 
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData.entries());
 
     try {
-      // TODO: Implémenter l'envoi via API Resend
-      // Pour l'instant, juste simulation
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      if (isEditionMode && edition) {
+        // **EDITION MODE**: Multi-session registration via Supabase
 
-      console.log('Demande de cours privé:', data);
-      setIsSuccess(true);
+        // Validate all sessions have dates selected
+        const allSessionsSelected = sessions!.every(session => selectedDates[session.id]);
+        if (!allSessionsSelected) {
+          setSubmitError(locale === 'fr'
+            ? 'Veuillez sélectionner une date pour chaque session'
+            : 'Please select a date for each session'
+          );
+          setIsSubmitting(false);
+          return;
+        }
 
-      // Réinitialiser après 3 secondes
+        const response = await fetch(`/api/programmes/${edition.id}/register`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            firstName: data.firstName,
+            lastName: data.lastName,
+            email: data.email,
+            phone: data.phone,
+            whatsapp: data.whatsapp || null,
+            message: data.message || null,
+            consent: true,
+            dateChoices: Object.values(selectedDates),
+          }),
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.error || 'Registration failed');
+        }
+
+        setIsSuccess(true);
+      } else {
+        // **SIMPLE MODE**: Traditional email via Resend (existing behavior)
+        // TODO: Implement actual Resend API call
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        console.log('Demande de cours privé:', data);
+        setIsSuccess(true);
+      }
+
+      // Reset after 3 seconds
       setTimeout(() => {
         setIsSuccess(false);
         if (onClose) onClose();
       }, 3000);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Erreur lors de l\'envoi:', error);
+      setSubmitError(error.message || (locale === 'fr'
+        ? 'Une erreur est survenue. Veuillez réessayer.'
+        : 'An error occurred. Please try again.'
+      ));
     } finally {
       setIsSubmitting(false);
     }
@@ -64,12 +123,24 @@ export default function PrivateYogaRequestForm({ onClose, defaultYogaType, isGro
           </svg>
         </div>
         <h3 className="font-heading text-2xl font-bold text-deep-blue mb-3">
-          {isGroupClass ? 'Inscription envoyée avec succès!' : 'Demande envoyée avec succès!'}
+          {isEditionMode
+            ? (locale === 'fr' ? 'Inscription confirmée avec succès!' : 'Registration confirmed successfully!')
+            : isGroupClass
+            ? (locale === 'fr' ? 'Inscription envoyée avec succès!' : 'Registration sent successfully!')
+            : (locale === 'fr' ? 'Demande envoyée avec succès!' : 'Request sent successfully!')}
         </h3>
         <p className="text-text-secondary">
-          {isGroupClass
-            ? 'Vous recevrez une confirmation et les détails du programme dans les 24-48h.'
-            : 'Hajar vous contactera dans les 24-48h pour discuter de votre cours privé.'}
+          {isEditionMode
+            ? (locale === 'fr'
+              ? 'Vous recevrez un email de confirmation avec le récapitulatif de vos sessions sélectionnées dans quelques instants.'
+              : 'You will receive a confirmation email with a summary of your selected sessions shortly.')
+            : isGroupClass
+            ? (locale === 'fr'
+              ? 'Vous recevrez une confirmation et les détails du programme dans les 24-48h.'
+              : 'You will receive confirmation and program details within 24-48h.')
+            : (locale === 'fr'
+              ? 'Hajar vous contactera dans les 24-48h pour discuter de votre cours privé.'
+              : 'Hajar will contact you within 24-48h to discuss your private class.')}
         </p>
       </div>
     );
@@ -132,25 +203,61 @@ export default function PrivateYogaRequestForm({ onClose, defaultYogaType, isGro
         />
       )}
 
-      {/* Type de yoga souhaité */}
-      <FormInput
-        label={isGroupClass ? "Programme sélectionné" : t('forms.yogaRequest.yogaTypeLabel')}
-        name="yogaType"
-        type="select"
-        required
-        value={yogaType}
-        onChange={(e) => setYogaType(e.target.value)}
-        disabled={isGroupClass && !!defaultYogaType} // Lecture seule si cours collectif avec programme pré-rempli
-        options={[
-          { value: 'upa-yoga', label: t('forms.yogaRequest.yogaTypeOptions.0') },
-          { value: 'surya-kriya', label: t('forms.yogaRequest.yogaTypeOptions.1') },
-          { value: 'surya-shakti', label: t('forms.yogaRequest.yogaTypeOptions.2') },
-          { value: 'angamardana', label: t('forms.yogaRequest.yogaTypeOptions.3') },
-          { value: 'yogasanas', label: t('forms.yogaRequest.yogaTypeOptions.4') },
-          { value: 'custom', label: t('forms.yogaRequest.yogaTypeOptions.5') },
-          { value: 'not-sure', label: t('forms.yogaRequest.yogaTypeOptions.6') },
-        ]}
-      />
+      {/* HYBRID INTEGRATION: Session Date Picker in Edition Mode */}
+      {isEditionMode && edition && sessions ? (
+        <div className="space-y-4">
+          <div className="bg-golden-orange/10 rounded-lg p-4 border border-golden-orange/20">
+            <h4 className="font-heading font-semibold text-deep-blue mb-2">
+              {locale === 'fr' ? 'Sélectionnez vos dates' : 'Select your dates'}
+            </h4>
+            <p className="text-sm text-text-secondary mb-4">
+              {locale === 'fr'
+                ? `Choisissez une date pour chacune des ${sessions.length} sessions`
+                : `Choose one date for each of the ${sessions.length} sessions`
+              }
+            </p>
+            <SessionDatePicker
+              editionId={edition.id}
+              sessions={sessions}
+              selectedDates={selectedDates}
+              onDateChange={(sessionId, dateOptionId) => {
+                setSelectedDates(prev => ({ ...prev, [sessionId]: dateOptionId }));
+              }}
+              onRefreshAvailability={() => {
+                // Optionally refresh availability
+              }}
+            />
+          </div>
+
+          {submitError && (
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+              <p className="text-sm text-red-700">{submitError}</p>
+            </div>
+          )}
+        </div>
+      ) : (
+        <>
+          {/* Type de yoga souhaité - Simple Mode */}
+          <FormInput
+            label={isGroupClass ? "Programme sélectionné" : t('forms.yogaRequest.yogaTypeLabel')}
+            name="yogaType"
+            type="select"
+            required
+            value={yogaType}
+            onChange={(e) => setYogaType(e.target.value)}
+            disabled={isGroupClass && !!defaultYogaType}
+            options={[
+              { value: 'upa-yoga', label: t('forms.yogaRequest.yogaTypeOptions.0') },
+              { value: 'surya-kriya', label: t('forms.yogaRequest.yogaTypeOptions.1') },
+              { value: 'surya-shakti', label: t('forms.yogaRequest.yogaTypeOptions.2') },
+              { value: 'angamardana', label: t('forms.yogaRequest.yogaTypeOptions.3') },
+              { value: 'yogasanas', label: t('forms.yogaRequest.yogaTypeOptions.4') },
+              { value: 'custom', label: t('forms.yogaRequest.yogaTypeOptions.5') },
+              { value: 'not-sure', label: t('forms.yogaRequest.yogaTypeOptions.6') },
+            ]}
+          />
+        </>
+      )}
 
       {/* Objectifs et Niveau - Seulement pour cours individuels */}
       {!isGroupClass && (
@@ -228,6 +335,13 @@ export default function PrivateYogaRequestForm({ onClose, defaultYogaType, isGro
         required={!isGroupClass}
       />
 
+      {/* Error display for non-edition errors */}
+      {!isEditionMode && submitError && (
+        <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+          <p className="text-sm text-red-700">{submitError}</p>
+        </div>
+      )}
+
       {/* Consentement RGPD */}
       <div className="flex items-start gap-3">
         <input
@@ -245,19 +359,21 @@ export default function PrivateYogaRequestForm({ onClose, defaultYogaType, isGro
         </label>
       </div>
 
-      {/* Bouton submit */}
+      {/* Bouton submit - Adaptatif selon mode */}
       <Button
         variant="primary"
         size="lg"
         fullWidth
         type="submit"
-        disabled={isSubmitting || !consentChecked}
+        disabled={isSubmitting || !consentChecked || (isEditionMode && Object.keys(selectedDates).length < (sessions?.length || 0))}
       >
         {isSubmitting
-          ? 'Envoi en cours...'
+          ? (locale === 'fr' ? 'Envoi en cours...' : 'Sending...')
+          : isEditionMode
+          ? (locale === 'fr' ? "Confirmer mon inscription" : 'Confirm registration')
           : isGroupClass
-          ? "M'inscrire au programme"
-          : 'Envoyer ma demande'}
+          ? (locale === 'fr' ? "M'inscrire au programme" : 'Register for program')
+          : (locale === 'fr' ? 'Envoyer ma demande' : 'Send my request')}
       </Button>
 
       <div className="mt-8 pt-6 border-t border-gray-200">

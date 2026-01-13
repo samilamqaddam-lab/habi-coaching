@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import Button from '@/components/ui/Button';
 import PrivateYogaRequestForm from './PrivateYogaRequestForm';
+import type { ProgrammeEdition, EditionSession } from '@/lib/supabase';
 
 interface PrivateYogaRequestModalProps {
   triggerText?: string;
@@ -13,6 +14,9 @@ interface PrivateYogaRequestModalProps {
   className?: string;
   defaultYogaType?: string; // Pré-remplissage du type de yoga
   isGroupClass?: boolean; // Si true, c'est un cours collectif
+  // Hybrid integration: edition data for multi-session registration
+  edition?: ProgrammeEdition | null;
+  sessions?: EditionSession[];
 }
 
 export default function PrivateYogaRequestModal({
@@ -23,6 +27,8 @@ export default function PrivateYogaRequestModal({
   className = '',
   defaultYogaType,
   isGroupClass = false,
+  edition,
+  sessions,
 }: PrivateYogaRequestModalProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -95,6 +101,8 @@ export default function PrivateYogaRequestModal({
             onClose={handleClose}
             defaultYogaType={defaultYogaType}
             isGroupClass={isGroupClass}
+            edition={edition}
+            sessions={sessions}
           />
         </div>
       </div>

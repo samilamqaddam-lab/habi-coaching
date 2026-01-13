@@ -9,6 +9,7 @@ import Button from '@/components/ui/Button'
 import { PrivateYogaRequestModal, IndividualYogaBookingModal, EditionRegistrationModal } from '@/components/forms'
 import UpaYogaEditionCard from '@/components/programmes/UpaYogaEditionCard'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useEditionData } from '@/hooks/useEditionData'
 
 // Composant Accordion pour les bénéfices
 function BenefitsAccordion({ programKey, t }: { programKey: string; t: (key: string) => string }) {
@@ -253,8 +254,11 @@ const programKeyToFormValue: Record<string, string> = {
 }
 
 export default function ProgrammesContent() {
-  const { t } = useTranslation()
+  const { t, locale } = useTranslation()
   const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false)
+
+  // Fetch active Upa Yoga edition for hybrid integration
+  const { edition: upaYogaEdition, sessions: upaYogaSessions } = useEditionData('upa-yoga')
 
   return (
     <>
@@ -368,7 +372,7 @@ export default function ProgrammesContent() {
         afterHero
       >
         {/* Prochaine Edition Card - Dynamic from Supabase */}
-        <div className="mb-12 max-w-lg mx-auto lg:mx-0">
+        <div className="mb-12">
           <UpaYogaEditionCard
             onRegisterClick={() => setIsRegistrationModalOpen(true)}
           />
@@ -430,6 +434,24 @@ export default function ProgrammesContent() {
                     </svg>
                     <span>{t(`programmes.classes.${programKey}.location`)}</span>
                   </div>
+
+                  {/* Edition Badge - Only for Upa Yoga when active edition exists */}
+                  {programKey === 'upaYoga' && upaYogaEdition && upaYogaSessions.length > 0 && (
+                    <div className="mt-3 pt-3 border-t border-golden-orange/20">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="bg-golden-orange/20 text-golden-orange text-xs px-2 py-1 rounded-full font-medium flex items-center gap-1">
+                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
+                          </svg>
+                          {locale === 'fr' ? 'Prochaine édition' : 'Next edition'}
+                        </span>
+                      </div>
+                      <p className="text-xs text-text-secondary">
+                        {locale === 'fr' ? upaYogaEdition.title : upaYogaEdition.title_en || upaYogaEdition.title} • {upaYogaSessions.length} {locale === 'fr' ? 'sessions disponibles' : 'sessions available'}
+                      </p>
+                    </div>
+                  )}
+
                   <p className="font-semibold text-golden-orange mt-4">
                     {t(`programmes.classes.${programKey}.price`)}
                   </p>
@@ -442,6 +464,11 @@ export default function ProgrammesContent() {
                   fullWidth
                   defaultYogaType={programKeyToFormValue[programKey]}
                   isGroupClass={true}
+                  // Pass edition data only for Upa Yoga
+                  {...(programKey === 'upaYoga' && {
+                    edition: upaYogaEdition,
+                    sessions: upaYogaSessions
+                  })}
                 />
               </div>
             </Card>
