@@ -126,6 +126,12 @@ body {
   -ms-hyphens: none;
 }
 
+/* Dark mode for admin interface */
+html.dark body {
+  background: #0f172a; /* slate-900 */
+  color: #f1f5f9; /* slate-100 */
+}
+
 /* Transitions sélectives (pas sur tous les éléments) */
 a, button, [role="button"] {
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
