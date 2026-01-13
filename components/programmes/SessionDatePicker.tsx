@@ -173,6 +173,12 @@ export default function SessionDatePicker({
                         : 'border-gray-200 hover:border-golden-orange/50 hover:bg-golden-orange/5'
                       }
                     `}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (!option.is_full) {
+                        onDateChange(session.id, option.id);
+                      }
+                    }}
                   >
                     <input
                       type="radio"
@@ -180,8 +186,10 @@ export default function SessionDatePicker({
                       value={option.id}
                       checked={isSelected}
                       disabled={option.is_full}
-                      onChange={() => onDateChange(session.id, option.id)}
+                      onChange={() => {}}
+                      onFocus={(e) => e.preventDefault()}
                       className="sr-only"
+                      tabIndex={-1}
                     />
 
                     {/* Radio indicator */}
