@@ -270,16 +270,19 @@ export default function SessionDatePicker({
               <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
             </svg>
             <div className="flex-1">
-              <p className="text-sm font-semibold text-deep-blue mb-1">
-                {locale === 'fr' ? 'Lieu' : 'Location'}
+              <p className="text-sm font-medium text-deep-blue mb-2">
+                {locale === 'fr' ? 'Toutes les sessions auront lieu à :' : 'All sessions will take place at:'}
               </p>
               <a
                 href="https://www.google.com/maps/place/36+Boulevard+d'Anfa,+Casablanca"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-golden-orange hover:text-golden-orange/80 underline font-medium"
+                className="text-sm text-golden-orange hover:text-golden-orange/80 underline font-medium flex items-center gap-1"
               >
                 Shidomind
+                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
               </a>
               <p className="text-xs text-text-secondary mt-1">
                 36 B boulevard d'Anfa, 5ème étage, Appartement 54, Casablanca
