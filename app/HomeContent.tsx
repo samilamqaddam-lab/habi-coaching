@@ -11,6 +11,7 @@ import { imagePresets } from '@/lib/sanity.image'
 import type { Testimonial } from '@/lib/sanity.types'
 
 interface ExpertiseCard {
+  _key?: string
   title: string
   titleEn?: string
   highlight: string
@@ -22,6 +23,7 @@ interface ExpertiseCard {
 }
 
 interface Service {
+  _key?: string
   title: string
   titleEn?: string
   description: string
@@ -202,84 +204,133 @@ export default function HomeContent({ testimonials, homepageContent, hero }: Hom
         </div>
       </Hero>
 
-      {/* Expertise Section - Always use fr.json */}
+      {/* Expertise Section - Sanity with fallback to translations */}
       <Section
         id="expertise"
-        subtitle={t('home.expertise.subtitle')}
-        title={t('home.expertise.title')}
-        description={t('home.expertise.description')}
+        subtitle={getText(
+          homepageContent?.expertiseSection?.subtitle || t('home.expertise.subtitle'),
+          homepageContent?.expertiseSection?.subtitleEn
+        )}
+        title={getText(
+          homepageContent?.expertiseSection?.title || t('home.expertise.title'),
+          homepageContent?.expertiseSection?.titleEn
+        )}
+        description={getText(
+          homepageContent?.expertiseSection?.description || t('home.expertise.description'),
+          homepageContent?.expertiseSection?.descriptionEn
+        )}
         background="beige"
         centered
       >
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 max-w-5xl mx-auto">
-          {/* Corporate Card */}
-          <Card padding="lg" className="text-center">
-            <div className="w-16 h-16 bg-morocco-blue/10 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg
-                className="w-8 h-8 text-morocco-blue"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                {icons.corporate}
-              </svg>
-            </div>
-            <h3 className="font-heading text-2xl font-bold text-deep-blue mb-3">
-              {t('home.expertise.corporate.title')}
-            </h3>
-            <div className="text-xl font-bold text-morocco-blue mb-3">
-              {t('home.expertise.corporate.years')}
-            </div>
-            <p className="text-text-secondary text-sm leading-relaxed">
-              {t('home.expertise.corporate.description')}
-            </p>
-          </Card>
+          {homepageContent?.expertiseSection?.cards && homepageContent.expertiseSection.cards.length > 0 ? (
+            // Render cards from Sanity
+            homepageContent.expertiseSection.cards.map((card) => {
+              const colorMap: Record<string, { bg: string; text: string }> = {
+                'morocco-blue': { bg: 'bg-morocco-blue/10', text: 'text-morocco-blue' },
+                'mystic-mauve': { bg: 'bg-mystic-mauve/10', text: 'text-mystic-mauve' },
+                'golden-orange': { bg: 'bg-golden-orange/10', text: 'text-golden-orange' },
+              }
+              const colors = colorMap[card.color] || colorMap['morocco-blue']
+              const iconKey = card.icon as keyof typeof icons
 
-          {/* Coaching Card */}
-          <Card padding="lg" className="text-center">
-            <div className="w-16 h-16 bg-mystic-mauve/10 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg
-                className="w-8 h-8 text-mystic-mauve"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                {icons.coaching}
-              </svg>
-            </div>
-            <h3 className="font-heading text-2xl font-bold text-deep-blue mb-3">
-              {t('home.expertise.coaching.title')}
-            </h3>
-            <div className="text-xl font-bold text-mystic-mauve mb-3">
-              {t('home.expertise.coaching.certification')}
-            </div>
-            <p className="text-text-secondary text-sm leading-relaxed">
-              {t('home.expertise.coaching.description')}
-            </p>
-          </Card>
+              return (
+                <Card key={card._key || card.title} padding="lg" className="text-center">
+                  <div className={`w-16 h-16 ${colors.bg} rounded-full flex items-center justify-center mx-auto mb-6`}>
+                    <svg
+                      className={`w-8 h-8 ${colors.text}`}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      {icons[iconKey] || icons.corporate}
+                    </svg>
+                  </div>
+                  <h3 className="font-heading text-2xl font-bold text-deep-blue mb-3">
+                    {getText(card.title, card.titleEn)}
+                  </h3>
+                  <div className={`text-xl font-bold ${colors.text} mb-3`}>
+                    {getText(card.highlight, card.highlightEn)}
+                  </div>
+                  <p className="text-text-secondary text-sm leading-relaxed">
+                    {getText(card.description, card.descriptionEn)}
+                  </p>
+                </Card>
+              )
+            })
+          ) : (
+            // Fallback to translation keys
+            <>
+              {/* Corporate Card */}
+              <Card padding="lg" className="text-center">
+                <div className="w-16 h-16 bg-morocco-blue/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg
+                    className="w-8 h-8 text-morocco-blue"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    {icons.corporate}
+                  </svg>
+                </div>
+                <h3 className="font-heading text-2xl font-bold text-deep-blue mb-3">
+                  {t('home.expertise.corporate.title')}
+                </h3>
+                <div className="text-xl font-bold text-morocco-blue mb-3">
+                  {t('home.expertise.corporate.years')}
+                </div>
+                <p className="text-text-secondary text-sm leading-relaxed">
+                  {t('home.expertise.corporate.description')}
+                </p>
+              </Card>
 
-          {/* Yoga Card */}
-          <Card padding="lg" className="text-center">
-            <div className="w-16 h-16 bg-golden-orange/10 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg
-                className="w-8 h-8 text-golden-orange"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                {icons.yoga}
-              </svg>
-            </div>
-            <h3 className="font-heading text-2xl font-bold text-deep-blue mb-3">
-              {t('home.expertise.yoga.title')}
-            </h3>
-            <div className="text-xl font-bold text-golden-orange mb-3">
-              {t('home.expertise.yoga.certification')}
-            </div>
-            <p className="text-text-secondary text-sm leading-relaxed">
-              {t('home.expertise.yoga.description')}
-            </p>
-          </Card>
+              {/* Coaching Card */}
+              <Card padding="lg" className="text-center">
+                <div className="w-16 h-16 bg-mystic-mauve/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg
+                    className="w-8 h-8 text-mystic-mauve"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    {icons.coaching}
+                  </svg>
+                </div>
+                <h3 className="font-heading text-2xl font-bold text-deep-blue mb-3">
+                  {t('home.expertise.coaching.title')}
+                </h3>
+                <div className="text-xl font-bold text-mystic-mauve mb-3">
+                  {t('home.expertise.coaching.certification')}
+                </div>
+                <p className="text-text-secondary text-sm leading-relaxed">
+                  {t('home.expertise.coaching.description')}
+                </p>
+              </Card>
+
+              {/* Yoga Card */}
+              <Card padding="lg" className="text-center">
+                <div className="w-16 h-16 bg-golden-orange/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg
+                    className="w-8 h-8 text-golden-orange"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    {icons.yoga}
+                  </svg>
+                </div>
+                <h3 className="font-heading text-2xl font-bold text-deep-blue mb-3">
+                  {t('home.expertise.yoga.title')}
+                </h3>
+                <div className="text-xl font-bold text-golden-orange mb-3">
+                  {t('home.expertise.yoga.certification')}
+                </div>
+                <p className="text-text-secondary text-sm leading-relaxed">
+                  {t('home.expertise.yoga.description')}
+                </p>
+              </Card>
+            </>
+          )}
         </div>
       </Section>
 
@@ -354,89 +405,137 @@ export default function HomeContent({ testimonials, homepageContent, hero }: Hom
         </Section>
       )}
 
-      {/* Services Section - Always use fr.json */}
+      {/* Services Section - Sanity with fallback to translations */}
       <Section
         id="services"
-        subtitle={t('home.services.subtitle')}
-        title={t('home.services.title')}
+        subtitle={getText(
+          homepageContent?.servicesSection?.subtitle || t('home.services.subtitle'),
+          homepageContent?.servicesSection?.subtitleEn
+        )}
+        title={getText(
+          homepageContent?.servicesSection?.title || t('home.services.title'),
+          homepageContent?.servicesSection?.titleEn
+        )}
         background="beige"
         centered
       >
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-          {/* Organisations Card */}
-          <Card hover padding="lg" className="flex flex-col">
-            <div className="flex-grow">
-              <div className="w-16 h-16 bg-morocco-blue/10 rounded-2xl flex items-center justify-center mb-6">
-                <svg
-                  className="w-8 h-8 text-morocco-blue"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  {icons.organisations}
-                </svg>
-              </div>
-              <h3 className="font-heading text-2xl font-bold text-deep-blue mb-4">
-                {t('home.services.organisations.title')}
-              </h3>
-              <p className="text-text-secondary leading-relaxed mb-6">
-                {t('home.services.organisations.description')}
-              </p>
-            </div>
-            <Button variant="outline" href="/organisations" fullWidth>
-              {t('home.services.organisations.cta')}
-            </Button>
-          </Card>
+          {homepageContent?.servicesSection?.services && homepageContent.servicesSection.services.length > 0 ? (
+            // Render services from Sanity
+            homepageContent.servicesSection.services.map((service) => {
+              const colorMap: Record<string, { bg: string; text: string }> = {
+                'morocco-blue': { bg: 'bg-morocco-blue/10', text: 'text-morocco-blue' },
+                'mystic-mauve': { bg: 'bg-mystic-mauve/10', text: 'text-mystic-mauve' },
+                'golden-orange': { bg: 'bg-golden-orange/10', text: 'text-golden-orange' },
+              }
+              const colors = colorMap[service.color] || colorMap['morocco-blue']
+              const iconKey = service.icon as keyof typeof icons
 
-          {/* Coaching Card */}
-          <Card hover padding="lg" className="flex flex-col">
-            <div className="flex-grow">
-              <div className="w-16 h-16 bg-mystic-mauve/10 rounded-2xl flex items-center justify-center mb-6">
-                <svg
-                  className="w-8 h-8 text-mystic-mauve"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  {icons.coaching}
-                </svg>
-              </div>
-              <h3 className="font-heading text-2xl font-bold text-deep-blue mb-4">
-                {t('home.services.coaching.title')}
-              </h3>
-              <p className="text-text-secondary leading-relaxed mb-6">
-                {t('home.services.coaching.description')}
-              </p>
-            </div>
-            <Button variant="outline" href="/coaching" fullWidth>
-              {t('home.services.coaching.cta')}
-            </Button>
-          </Card>
+              return (
+                <Card key={service._key || service.title} hover padding="lg" className="flex flex-col">
+                  <div className="flex-grow">
+                    <div className={`w-16 h-16 ${colors.bg} rounded-2xl flex items-center justify-center mb-6`}>
+                      <svg
+                        className={`w-8 h-8 ${colors.text}`}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        {icons[iconKey] || icons.coaching}
+                      </svg>
+                    </div>
+                    <h3 className="font-heading text-2xl font-bold text-deep-blue mb-4">
+                      {getText(service.title, service.titleEn)}
+                    </h3>
+                    <p className="text-text-secondary leading-relaxed mb-6">
+                      {getText(service.description, service.descriptionEn)}
+                    </p>
+                  </div>
+                  <Button variant="outline" href={service.link} fullWidth>
+                    {getText(service.ctaText, service.ctaTextEn)}
+                  </Button>
+                </Card>
+              )
+            })
+          ) : (
+            // Fallback to translation keys
+            <>
+              {/* Organisations Card */}
+              <Card hover padding="lg" className="flex flex-col">
+                <div className="flex-grow">
+                  <div className="w-16 h-16 bg-morocco-blue/10 rounded-2xl flex items-center justify-center mb-6">
+                    <svg
+                      className="w-8 h-8 text-morocco-blue"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      {icons.organisations}
+                    </svg>
+                  </div>
+                  <h3 className="font-heading text-2xl font-bold text-deep-blue mb-4">
+                    {t('home.services.organisations.title')}
+                  </h3>
+                  <p className="text-text-secondary leading-relaxed mb-6">
+                    {t('home.services.organisations.description')}
+                  </p>
+                </div>
+                <Button variant="outline" href="/organisations" fullWidth>
+                  {t('home.services.organisations.cta')}
+                </Button>
+              </Card>
 
-          {/* Yoga Card */}
-          <Card hover padding="lg" className="flex flex-col">
-            <div className="flex-grow">
-              <div className="w-16 h-16 bg-golden-orange/10 rounded-2xl flex items-center justify-center mb-6">
-                <svg
-                  className="w-8 h-8 text-golden-orange"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  {icons.yoga}
-                </svg>
-              </div>
-              <h3 className="font-heading text-2xl font-bold text-deep-blue mb-4">
-                {t('home.services.yoga.title')}
-              </h3>
-              <p className="text-text-secondary leading-relaxed mb-6">
-                {t('home.services.yoga.description')}
-              </p>
-            </div>
-            <Button variant="outline" href="/programmes" fullWidth>
-              {t('home.services.yoga.cta')}
-            </Button>
-          </Card>
+              {/* Coaching Card */}
+              <Card hover padding="lg" className="flex flex-col">
+                <div className="flex-grow">
+                  <div className="w-16 h-16 bg-mystic-mauve/10 rounded-2xl flex items-center justify-center mb-6">
+                    <svg
+                      className="w-8 h-8 text-mystic-mauve"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      {icons.coaching}
+                    </svg>
+                  </div>
+                  <h3 className="font-heading text-2xl font-bold text-deep-blue mb-4">
+                    {t('home.services.coaching.title')}
+                  </h3>
+                  <p className="text-text-secondary leading-relaxed mb-6">
+                    {t('home.services.coaching.description')}
+                  </p>
+                </div>
+                <Button variant="outline" href="/coaching" fullWidth>
+                  {t('home.services.coaching.cta')}
+                </Button>
+              </Card>
+
+              {/* Yoga Card */}
+              <Card hover padding="lg" className="flex flex-col">
+                <div className="flex-grow">
+                  <div className="w-16 h-16 bg-golden-orange/10 rounded-2xl flex items-center justify-center mb-6">
+                    <svg
+                      className="w-8 h-8 text-golden-orange"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      {icons.yoga}
+                    </svg>
+                  </div>
+                  <h3 className="font-heading text-2xl font-bold text-deep-blue mb-4">
+                    {t('home.services.yoga.title')}
+                  </h3>
+                  <p className="text-text-secondary leading-relaxed mb-6">
+                    {t('home.services.yoga.description')}
+                  </p>
+                </div>
+                <Button variant="outline" href="/programmes" fullWidth>
+                  {t('home.services.yoga.cta')}
+                </Button>
+              </Card>
+            </>
+          )}
         </div>
       </Section>
 

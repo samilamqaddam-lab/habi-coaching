@@ -1,3 +1,12 @@
+/**
+ * Script de migration du contenu Homepage vers Sanity
+ *
+ * Ce script crée/met à jour le document homepageContent avec tout le contenu
+ * des sections de la page d'accueil.
+ *
+ * IMPORTANT: Tous les items d'array DOIVENT avoir une propriété _key unique
+ */
+
 import { createClient } from '@sanity/client'
 
 const client = createClient({
@@ -12,16 +21,20 @@ const homepageContent = {
   _id: 'homepageContent',
   _type: 'homepageContent',
 
-  // Expertise Section
+  // ============================================
+  // SECTION EXPERTISE
+  // ============================================
   expertiseSection: {
     subtitle: 'Mon Expertise',
     subtitleEn: 'My Expertise',
-    title: 'Un parcours unique au service de votre transformation',
-    titleEn: 'A unique journey to serve your transformation',
-    description: 'Trois domaines d\'excellence complémentaires pour un accompagnement holistique.',
-    descriptionEn: 'Three complementary areas of excellence for holistic support.',
+    title: "L'alliance unique de trois mondes",
+    titleEn: 'The unique alliance of three worlds',
+    description: 'Un parcours atypique au croisement du monde corporate, du développement personnel et des pratiques ancestrales de transformation.',
+    descriptionEn: 'An atypical journey at the crossroads of the corporate world, personal development and ancestral transformation practices.',
     cards: [
       {
+        _key: 'card-corporate',
+        _type: 'expertiseCard',
         title: 'Expérience Corporate',
         titleEn: 'Corporate Experience',
         highlight: '20+ ans',
@@ -32,74 +45,88 @@ const homepageContent = {
         color: 'morocco-blue',
       },
       {
+        _key: 'card-coaching',
+        _type: 'expertiseCard',
         title: 'Coach Certifiée',
         titleEn: 'Certified Coach',
         highlight: 'Coach & Team® EMCC',
         highlightEn: 'Coach & Team® EMCC',
-        description: 'Accompagnement individuel et collectif avec certification européenne reconnue.',
-        descriptionEn: 'Individual and team coaching with recognized European certification.',
+        description: 'Accompagnement individuel et collectif avec certification européenne reconnue (EMCC).',
+        descriptionEn: 'Individual and team coaching with recognized European certification (EMCC).',
         icon: 'coaching',
         color: 'mystic-mauve',
       },
       {
+        _key: 'card-yoga',
+        _type: 'expertiseCard',
         title: 'Yoga Traditionnel',
         titleEn: 'Traditional Yoga',
         highlight: 'Isha Foundation',
         highlightEn: 'Isha Foundation',
-        description: 'Professeure de Hatha Yoga classique formée par Sadhguru (1750h).',
-        descriptionEn: 'Classical Hatha Yoga teacher trained by Sadhguru (1750h).',
+        description: 'Professeure de Hatha Yoga classique formée par Sadhguru (1750h de formation intensive).',
+        descriptionEn: 'Classical Hatha Yoga teacher trained by Sadhguru (1750h intensive training).',
         icon: 'yoga',
         color: 'golden-orange',
       },
     ],
   },
 
-  // About Section
+  // ============================================
+  // SECTION À PROPOS
+  // ============================================
   aboutSection: {
     badge: 'Mon Parcours',
     badgeEn: 'My Journey',
     title: 'Qui suis-je ?',
     titleEn: 'Who am I?',
-    description: 'Près de 20 ans d\'expérience corporate, certifiée Coach & Team® et professeure de Hatha Yoga classique. Découvrez mon parcours et mes qualifications complètes.',
-    descriptionEn: 'Nearly 20 years of corporate experience, certified Coach & Team® and classical Hatha Yoga teacher. Discover my complete journey and qualifications.',
-    ctaText: 'Découvrir mon parcours',
-    ctaTextEn: 'Discover my journey',
+    description: 'Près de 20 ans d\'expérience dans des directions RH de grands groupes internationaux, certifiée Coach & Team® (EMCC) et professeure de Hatha Yoga classique formée par Sadhguru. Je mets cette triple expertise au service de votre transformation.',
+    descriptionEn: 'Nearly 20 years of experience in HR management for major international groups, certified Coach & Team® (EMCC) and classical Hatha Yoga teacher trained by Sadhguru. I put this triple expertise at the service of your transformation.',
+    ctaText: 'Découvrir mon parcours complet',
+    ctaTextEn: 'Discover my full journey',
   },
 
-  // Services Section
+  // ============================================
+  // SECTION SERVICES
+  // ============================================
   servicesSection: {
     subtitle: 'Mes Services',
     subtitleEn: 'My Services',
-    title: 'Des solutions adaptées à vos besoins',
-    titleEn: 'Solutions adapted to your needs',
+    title: 'Des solutions sur mesure pour chaque besoin',
+    titleEn: 'Tailored solutions for every need',
     services: [
       {
+        _key: 'service-orgs',
+        _type: 'serviceCard',
         title: 'Pour les Organisations',
         titleEn: 'For Organizations',
-        description: 'Transformation culturelle, développement du leadership et bien-être au travail. Des programmes sur mesure pour vos équipes.',
-        descriptionEn: 'Cultural transformation, leadership development and workplace wellness. Customized programs for your teams.',
-        ctaText: 'En savoir plus',
-        ctaTextEn: 'Learn more',
+        description: 'Transformation culturelle, développement du leadership, cohésion d\'équipe et bien-être au travail. Des programmes sur mesure pour faire évoluer vos équipes et votre culture.',
+        descriptionEn: 'Cultural transformation, leadership development, team cohesion and workplace wellness. Customized programs to evolve your teams and culture.',
+        ctaText: 'Découvrir',
+        ctaTextEn: 'Discover',
         link: '/organisations',
         icon: 'organisations',
         color: 'morocco-blue',
       },
       {
+        _key: 'service-coaching',
+        _type: 'serviceCard',
         title: 'Coaching Individuel',
         titleEn: 'Individual Coaching',
-        description: 'Accompagnement personnalisé pour clarifier vos objectifs, surmonter les obstacles et libérer votre potentiel.',
-        descriptionEn: 'Personalized support to clarify your goals, overcome obstacles and unleash your potential.',
-        ctaText: 'Découvrir',
-        ctaTextEn: 'Discover',
+        description: 'Accompagnement personnalisé pour clarifier vos objectifs, traverser des transitions, dépasser vos blocages et libérer votre plein potentiel.',
+        descriptionEn: 'Personalized support to clarify your goals, navigate transitions, overcome blocks and unleash your full potential.',
+        ctaText: 'En savoir plus',
+        ctaTextEn: 'Learn more',
         link: '/coaching',
         icon: 'coaching',
         color: 'mystic-mauve',
       },
       {
+        _key: 'service-yoga',
+        _type: 'serviceCard',
         title: 'Yoga & Programmes',
         titleEn: 'Yoga & Programs',
-        description: 'Hatha Yoga classique, retraites et ateliers pour approfondir votre pratique et transformer votre énergie.',
-        descriptionEn: 'Classical Hatha Yoga, retreats and workshops to deepen your practice and transform your energy.',
+        description: 'Hatha Yoga classique par Sadhguru, retraites et ateliers pour approfondir votre pratique, transformer votre énergie et révéler votre potentiel intérieur.',
+        descriptionEn: 'Classical Hatha Yoga by Sadhguru, retreats and workshops to deepen your practice, transform your energy and reveal your inner potential.',
         ctaText: 'Voir les programmes',
         ctaTextEn: 'View programs',
         link: '/programmes',
@@ -109,12 +136,14 @@ const homepageContent = {
     ],
   },
 
-  // CTA Section
+  // ============================================
+  // SECTION CTA
+  // ============================================
   ctaSection: {
     title: 'Prêt·e à commencer votre transformation ?',
     titleEn: 'Ready to start your transformation?',
-    description: 'Que vous cherchiez un accompagnement pour vous-même ou votre organisation, je suis là pour vous guider.',
-    descriptionEn: 'Whether you are looking for support for yourself or your organization, I am here to guide you.',
+    description: 'Que vous cherchiez un accompagnement pour vous-même ou pour votre organisation, je suis là pour vous guider vers une transformation durable et authentique.',
+    descriptionEn: 'Whether you are looking for support for yourself or your organization, I am here to guide you towards a lasting and authentic transformation.',
     primaryCTA: {
       text: 'Prendre rendez-vous',
       textEn: 'Book an appointment',
@@ -130,7 +159,9 @@ const homepageContent = {
 
 async function migrateHomepage() {
   try {
-    console.log('🏠 Migration du contenu de la homepage vers Sanity...')
+    console.log('╔════════════════════════════════════════════════════════════╗')
+    console.log('║       MIGRATION HOMEPAGE VERS SANITY                       ║')
+    console.log('╚════════════════════════════════════════════════════════════╝\n')
 
     // Check if already exists
     const existing = await client.fetch('*[_id == "homepageContent"][0]')
@@ -147,11 +178,15 @@ async function migrateHomepage() {
     }
 
     console.log('\n📊 Résumé:')
-    console.log('  - Section Expertise: 3 cartes')
-    console.log('  - Section À propos: 1 section')
-    console.log('  - Section Services: 3 services')
-    console.log('  - Section CTA: 1 CTA finale')
+    console.log('  ┌─────────────────────────────────────────┐')
+    console.log('  │ Section Expertise: 3 cartes            │')
+    console.log('  │ Section À propos: ✓                    │')
+    console.log('  │ Section Services: 3 services           │')
+    console.log('  │ Section CTA: 2 boutons                 │')
+    console.log('  └─────────────────────────────────────────┘')
     console.log('\n✨ Migration terminée!')
+    console.log('\n💡 Note: Tous les items ont des _key uniques pour éviter')
+    console.log('   l\'erreur "Missing keys" dans Sanity Studio.')
   } catch (error) {
     console.error('❌ Erreur lors de la migration:', error)
     process.exit(1)
