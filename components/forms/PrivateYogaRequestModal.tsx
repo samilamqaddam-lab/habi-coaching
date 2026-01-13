@@ -38,6 +38,18 @@ export default function PrivateYogaRequestModal({
     return () => setMounted(false);
   }, []);
 
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
   const handleOpen = (e?: React.MouseEvent) => {
     e?.preventDefault();
     e?.stopPropagation();
@@ -50,7 +62,7 @@ export default function PrivateYogaRequestModal({
 
   const modalContent = isOpen && mounted ? (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-hidden"
       onClick={handleClose}
     >
       {/* Overlay */}
@@ -58,11 +70,11 @@ export default function PrivateYogaRequestModal({
 
       {/* Modal Content */}
       <div
-        className="relative bg-white rounded-2xl shadow-2xl max-w-3xl w-full my-8"
+        className="relative bg-white rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
-        <div className="flex items-start justify-between p-4 sm:p-6 border-b border-gray-200 gap-3">
+        {/* Header - Fixed */}
+        <div className="flex items-start justify-between p-4 sm:p-6 border-b border-gray-200 gap-3 flex-shrink-0">
           <div className="flex-1 min-w-0">
             <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-deep-blue leading-snug break-words">
               {isGroupClass ? 'Inscription au Programme Collectif' : 'Demande de Cours Privé de Yoga'}
@@ -95,8 +107,8 @@ export default function PrivateYogaRequestModal({
           </button>
         </div>
 
-        {/* Form */}
-        <div className="p-6 max-h-[calc(100vh-200px)] overflow-y-auto">
+        {/* Form - Scrollable */}
+        <div className="flex-1 overflow-y-auto p-6">
           <PrivateYogaRequestForm
             onClose={handleClose}
             defaultYogaType={defaultYogaType}
