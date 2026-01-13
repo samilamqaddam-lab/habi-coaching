@@ -213,7 +213,7 @@ export default function SessionDatePicker({
                         {formatDate(option.date_time)}
                       </div>
                       <div className="text-sm text-text-secondary">
-                        {formatTime(option.date_time)} • {option.location}
+                        {formatTime(option.date_time)}
                       </div>
                     </div>
 
@@ -261,6 +261,25 @@ export default function SessionDatePicker({
           </div>
         ))}
       </div>
+
+      {/* Location Note - Displayed once for all sessions */}
+      {sessions.length > 0 && sessions[0].date_options.length > 0 && (
+        <div className="mt-4 rounded-lg border border-golden-orange/20 bg-golden-orange/5 p-3">
+          <div className="flex items-start gap-2">
+            <svg className="w-4 h-4 text-golden-orange mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+            </svg>
+            <div className="flex-1">
+              <p className="text-xs font-medium text-deep-blue">
+                {locale === 'fr' ? 'Toutes les sessions ont lieu à :' : 'All sessions take place at:'}
+              </p>
+              <p className="text-xs text-text-secondary mt-0.5">
+                {sessions[0].date_options[0].location}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Loading overlay */}
       {isLoading && (
