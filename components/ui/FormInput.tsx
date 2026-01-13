@@ -13,6 +13,7 @@ interface FormInputProps {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => void
   disabled?: boolean
+  requiredMessage?: string
 }
 
 export default function FormInput({
@@ -26,9 +27,22 @@ export default function FormInput({
   value,
   onChange,
   disabled = false,
+  requiredMessage = 'Veuillez remplir ce champ.',
 }: FormInputProps) {
   const baseInputStyles =
     'w-full px-4 py-3 text-base rounded-lg border-2 border-soft-gray focus:border-terracotta focus:outline-none transition-colors bg-warm-white text-text-primary disabled:bg-gray-100 disabled:cursor-not-allowed'
+
+  const handleInvalid = (e: React.InvalidEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    if (e.target.validity.valueMissing) {
+      e.target.setCustomValidity(requiredMessage)
+    } else if (e.target.validity.typeMismatch && type === 'email') {
+      e.target.setCustomValidity('Veuillez entrer une adresse email valide.')
+    }
+  }
+
+  const handleInput = (e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    e.currentTarget.setCustomValidity('')
+  }
 
   return (
     <div>
@@ -45,6 +59,8 @@ export default function FormInput({
           required={required}
           value={value}
           onChange={onChange}
+          onInvalid={handleInvalid}
+          onInput={handleInput}
           disabled={disabled}
           className={`${baseInputStyles} resize-none`}
         />
@@ -55,6 +71,8 @@ export default function FormInput({
           required={required}
           value={value}
           onChange={onChange}
+          onInvalid={handleInvalid}
+          onInput={handleInput}
           disabled={disabled}
           className={baseInputStyles}
         >
@@ -74,6 +92,8 @@ export default function FormInput({
           required={required}
           value={value}
           onChange={onChange}
+          onInvalid={handleInvalid}
+          onInput={handleInput}
           disabled={disabled}
           className={baseInputStyles}
         />

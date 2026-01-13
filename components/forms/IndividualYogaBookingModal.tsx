@@ -12,6 +12,7 @@ interface IndividualYogaBookingModalProps {
   size?: 'sm' | 'md' | 'lg';
   fullWidth?: boolean;
   className?: string;
+  children?: React.ReactNode;
 }
 
 export default function IndividualYogaBookingModal({
@@ -20,12 +21,13 @@ export default function IndividualYogaBookingModal({
   size = 'md',
   fullWidth = false,
   className = '',
+  children,
 }: IndividualYogaBookingModalProps) {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  const buttonText = triggerText || t('forms.individualYoga.triggerButton');
+  const buttonContent = children || triggerText || t('forms.individualYoga.triggerButton');
 
   useEffect(() => {
     setMounted(true);
@@ -45,6 +47,7 @@ export default function IndividualYogaBookingModal({
   const modalContent = isOpen && mounted ? (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto"
+      style={{ width: '100vw', height: '100vh', left: 0, top: 0 }}
       onClick={handleClose}
     >
       {/* Overlay */}
@@ -52,7 +55,8 @@ export default function IndividualYogaBookingModal({
 
       {/* Modal Content */}
       <div
-        className="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full my-8"
+        className="relative bg-white rounded-2xl shadow-2xl w-full my-8"
+        style={{ maxWidth: '42rem', minWidth: 'min(90vw, 42rem)' }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
@@ -106,7 +110,7 @@ export default function IndividualYogaBookingModal({
         type="button"
         className={className}
       >
-        {buttonText}
+        {buttonContent}
       </Button>
 
       {/* Modal via Portal */}

@@ -303,7 +303,17 @@ export default function ProgrammesContent() {
             variant="primary"
             size="lg"
             className="flex items-center justify-center gap-2 py-4 px-6 flex-shrink"
-          />
+          >
+            {/* Icône calendrier avec + */}
+            <Image
+              src="/images/icons/calendar-plus.png"
+              alt="Calendar"
+              width={24}
+              height={24}
+              className="flex-shrink-0"
+            />
+            <span className="font-semibold text-sm whitespace-nowrap">{t('programmes.hero.cta1.text')}</span>
+          </IndividualYogaBookingModal>
 
           {/* CTA 2: Nous rejoindre sur le tapis */}
           <Button href="#cours" variant="primary" size="lg" className="flex flex-col items-center justify-center gap-1 py-3 px-6 flex-shrink">
