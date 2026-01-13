@@ -542,8 +542,8 @@ export default function ProgrammesContent() {
         title={t('programmes.otherPrograms.title')}
         accentColor="yoga"
       >
-        {/* Intro + Disclaimers */}
-        <div className="max-w-3xl mx-auto mb-12 space-y-4">
+        {/* Intro + Disclaimers - Aligned with title */}
+        <div className="mb-12 space-y-4 max-w-4xl">
           <p className="text-lg text-text-secondary leading-relaxed">
             {t('programmes.otherPrograms.intro')}
           </p>
