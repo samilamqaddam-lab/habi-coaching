@@ -13,8 +13,8 @@ const registrationSchema = z.object({
   lastName: z.string().min(2, 'Nom requis'),
   email: z.string().email('Email invalide'),
   phone: z.string().min(8, 'Téléphone requis'),
-  whatsapp: z.string().optional(),
-  message: z.string().optional(),
+  whatsapp: z.string().nullable().optional(),
+  message: z.string().nullable().optional(),
   consent: z.boolean().refine(val => val === true, 'Consentement requis'),
   dateChoices: z.array(z.string().uuid()).min(1, 'Au moins une date requise'),
 });
@@ -153,93 +153,223 @@ export async function POST(
       .in('id', dateChoices)
       .order('date_time');
 
-    // Send confirmation emails
+    // Send emails
     if (resend) {
-      // Format date choices for email
-      const datesList = chosenDates?.map(d => {
-        // edition_sessions comes as an object from the join, not an array
+      const programTitle = editionDetails?.title || 'Programme Yoga';
+
+      // Format date choices for email - with Morocco timezone
+      const formattedSessions = chosenDates?.map(d => {
         const session = d.edition_sessions as unknown as { session_number: number; title: string } | null;
         const date = new Date(d.date_time);
-        const formattedDate = date.toLocaleDateString('fr-FR', {
-          weekday: 'long',
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric',
-        });
-        const formattedTime = date.toLocaleTimeString('fr-FR', {
-          hour: '2-digit',
-          minute: '2-digit',
-        });
-        return `• ${session?.title || `Session ${session?.session_number}`}: ${formattedDate} à ${formattedTime} - ${d.location}`;
-      }).join('\n') || '';
+        return {
+          sessionNumber: session?.session_number || 0,
+          sessionTitle: session?.title || `Session ${session?.session_number}`,
+          dateTime: date.toLocaleDateString('fr-FR', {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            timeZone: 'Africa/Casablanca',
+          }),
+          location: d.location || 'Studio, Casablanca',
+        };
+      }).sort((a, b) => a.sessionNumber - b.sessionNumber) || [];
 
-      // Email to admin
+      // Build sessions HTML table (only "Session X" without names)
+      const sessionsHtml = formattedSessions.map(session => `
+        <tr>
+          <td style="padding: 12px; border-bottom: 1px solid #eee;">
+            <strong>Session ${session.sessionNumber}</strong>
+          </td>
+          <td style="padding: 12px; border-bottom: 1px solid #eee;">
+            ${session.dateTime}
+          </td>
+          <td style="padding: 12px; border-bottom: 1px solid #eee; color: #666;">
+            ${session.location}
+          </td>
+        </tr>
+      `).join('');
+
+      // Email to admin (notification)
+      const adminHtml = `
+        <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto;">
+          <div style="background: linear-gradient(135deg, #E8A54B 0%, #d4943c 100%); padding: 30px; text-align: center; border-radius: 12px 12px 0 0;">
+            <h1 style="color: white; margin: 0; font-size: 24px;">🧘 Nouvelle Inscription</h1>
+          </div>
+
+          <div style="background: #f8f9fa; padding: 30px; border-radius: 0 0 12px 12px;">
+            <div style="background: white; padding: 24px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+              <h2 style="color: #E8A54B; margin-top: 0; font-size: 18px; border-bottom: 2px solid #E8A54B; padding-bottom: 10px;">
+                Programme
+              </h2>
+              <p style="font-size: 20px; font-weight: bold; color: #1a365d; margin: 15px 0;">
+                ${programTitle}
+              </p>
+            </div>
+
+            <div style="background: white; padding: 24px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+              <h2 style="color: #E8A54B; margin-top: 0; font-size: 18px; border-bottom: 2px solid #E8A54B; padding-bottom: 10px;">
+                Informations du participant
+              </h2>
+              <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 8px 0; color: #666; width: 120px;">Nom:</td>
+                  <td style="padding: 8px 0; font-weight: 500;">${firstName} ${lastName}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 8px 0; color: #666;">Email:</td>
+                  <td style="padding: 8px 0;">
+                    <a href="mailto:${email}" style="color: #E8A54B; text-decoration: none;">${email}</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 8px 0; color: #666;">Téléphone:</td>
+                  <td style="padding: 8px 0;">
+                    <a href="tel:${phone}" style="color: #E8A54B; text-decoration: none;">${phone}</a>
+                  </td>
+                </tr>
+                ${whatsapp ? `
+                <tr>
+                  <td style="padding: 8px 0; color: #666;">WhatsApp:</td>
+                  <td style="padding: 8px 0;">
+                    <a href="https://wa.me/${whatsapp.replace(/[^0-9]/g, '')}" style="color: #25D366; text-decoration: none;">${whatsapp}</a>
+                  </td>
+                </tr>
+                ` : ''}
+              </table>
+            </div>
+
+            <div style="background: white; padding: 24px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+              <h2 style="color: #E8A54B; margin-top: 0; font-size: 18px; border-bottom: 2px solid #E8A54B; padding-bottom: 10px;">
+                📅 Dates sélectionnées
+              </h2>
+              <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                  <tr style="background: #f8f9fa;">
+                    <th style="padding: 12px; text-align: left; font-size: 14px; color: #666;">Session</th>
+                    <th style="padding: 12px; text-align: left; font-size: 14px; color: #666;">Date & Heure</th>
+                    <th style="padding: 12px; text-align: left; font-size: 14px; color: #666;">Lieu</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${sessionsHtml}
+                </tbody>
+              </table>
+            </div>
+
+            ${message ? `
+            <div style="background: white; padding: 24px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+              <h2 style="color: #E8A54B; margin-top: 0; font-size: 18px; border-bottom: 2px solid #E8A54B; padding-bottom: 10px;">
+                Message
+              </h2>
+              <p style="line-height: 1.6; color: #333; white-space: pre-wrap;">${message}</p>
+            </div>
+            ` : ''}
+
+            <div style="text-align: center; margin-top: 25px; padding: 15px; background: #fef3c7; border-radius: 8px; border: 1px solid #f59e0b33;">
+              <p style="color: #92400e; margin: 0; font-size: 14px;">
+                ⏳ <strong>Statut: En attente de confirmation</strong><br>
+                <span style="font-size: 12px;">Rendez-vous sur le dashboard admin pour confirmer cette inscription</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      `;
+
       try {
         await resend.emails.send({
-          from: 'Transcendence Work <noreply@transcendencework.com>',
-          to: ['contact@transcendencework.com'],
+          from: 'Transcendence Work <hajar@transcendencework.com>',
+          to: ['hajar@transcendencework.com'],
           replyTo: email,
-          subject: `Nouvelle inscription - ${editionDetails?.title || 'Programme Yoga'}`,
-          html: `
-            <h2>Nouvelle inscription au programme</h2>
-            <p><strong>Programme:</strong> ${editionDetails?.title || 'Programme Yoga'}</p>
-
-            <h3>Informations du participant</h3>
-            <ul>
-              <li><strong>Nom:</strong> ${firstName} ${lastName}</li>
-              <li><strong>Email:</strong> ${email}</li>
-              <li><strong>Téléphone:</strong> ${phone}</li>
-              ${whatsapp ? `<li><strong>WhatsApp:</strong> ${whatsapp}</li>` : ''}
-            </ul>
-
-            <h3>Dates choisies</h3>
-            <pre>${datesList}</pre>
-
-            ${message ? `<h3>Message</h3><p>${message}</p>` : ''}
-
-            <hr>
-            <p><em>Inscription reçue le ${new Date().toLocaleDateString('fr-FR')} à ${new Date().toLocaleTimeString('fr-FR')}</em></p>
-          `,
+          subject: `🧘 Nouvelle inscription - ${programTitle} - ${firstName} ${lastName}`,
+          html: adminHtml,
         });
       } catch (emailError) {
         console.error('Admin email error:', emailError);
       }
 
-      // Confirmation email to participant
-      try {
-        await resend.emails.send({
-          from: 'Hajar Habi - Transcendence Work <noreply@transcendencework.com>',
-          to: [email],
-          subject: `Confirmation d'inscription - ${editionDetails?.title || 'Programme Yoga'}`,
-          html: `
-            <h2>Merci pour votre inscription, ${firstName} !</h2>
+      // Email to participant (inscription reçue - pas encore confirmée)
+      const participantHtml = `
+        <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto;">
+          <div style="background: linear-gradient(135deg, #E8A54B 0%, #d4943c 100%); padding: 30px; text-align: center; border-radius: 12px 12px 0 0;">
+            <h1 style="color: white; margin: 0; font-size: 24px;">🙏 Inscription Reçue</h1>
+          </div>
 
-            <p>Votre demande d'inscription au programme <strong>${editionDetails?.title || 'Yoga'}</strong> a bien été reçue.</p>
+          <div style="background: #f8f9fa; padding: 30px; border-radius: 0 0 12px 12px;">
+            <p style="font-size: 16px; line-height: 1.6; color: #333;">
+              Bonjour <strong>${firstName}</strong>,
+            </p>
 
-            <h3>Vos dates sélectionnées</h3>
-            <pre>${datesList}</pre>
+            <p style="font-size: 16px; line-height: 1.6; color: #333;">
+              Merci pour votre inscription au programme <strong>${programTitle}</strong>. Votre demande a bien été reçue!
+            </p>
 
-            <div style="background-color: #FFF7ED; border-left: 4px solid #FB923C; padding: 12px; margin: 20px 0;">
-              <p style="margin: 0; font-weight: bold;">⚠️ Important</p>
-              <p style="margin: 5px 0 0 0;">La participation aux 3 sessions est obligatoire.</p>
+            <div style="background: white; padding: 24px; border-radius: 8px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+              <h2 style="color: #E8A54B; margin-top: 0; font-size: 18px;">📅 Vos dates sélectionnées</h2>
+              <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                  <tr style="background: #f8f9fa;">
+                    <th style="padding: 12px; text-align: left; font-size: 14px; color: #666;">Session</th>
+                    <th style="padding: 12px; text-align: left; font-size: 14px; color: #666;">Date & Heure</th>
+                    <th style="padding: 12px; text-align: left; font-size: 14px; color: #666;">Lieu</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${sessionsHtml}
+                </tbody>
+              </table>
             </div>
 
-            <p><strong>Lieu:</strong> <a href="https://www.google.com/maps/place/36+Boulevard+d'Anfa,+Casablanca" target="_blank" style="color: #E0904D; text-decoration: underline;">Shidomind</a><br>
-            36 B boulevard d'Anfa, 5ème étage, Appartement 54, Casablanca</p>
+            <div style="background: #fef3c7; padding: 20px; border-radius: 8px; border-left: 4px solid #f59e0b; margin: 20px 0;">
+              <p style="margin: 0; color: #92400e; line-height: 1.6;">
+                <strong>⏳ Prochaine étape</strong><br>
+                Je vais examiner votre inscription et vous enverrai un <strong>email de confirmation</strong> dans les 24-48 heures avec toutes les informations pratiques.
+              </p>
+            </div>
 
-            <p>Je vous contacterai dans les <strong>24-48 heures</strong> pour confirmer votre inscription et vous donner toutes les informations pratiques.</p>
+            <div style="background: #fff8f0; padding: 20px; border-radius: 8px; border-left: 4px solid #E8A54B; margin: 20px 0;">
+              <p style="margin: 0; color: #333; line-height: 1.6;">
+                <strong>📍 Lieu des sessions</strong><br>
+                <a href="https://www.google.com/maps/place/36+Boulevard+d'Anfa,+Casablanca" target="_blank" style="color: #E8A54B; text-decoration: underline;">Shidomind</a><br>
+                36 B boulevard d'Anfa, 5ème étage, Appartement 54, Casablanca
+              </p>
+            </div>
 
-            <hr>
+            <div style="background: #fef2f2; padding: 20px; border-radius: 8px; border-left: 4px solid #ef4444; margin: 20px 0;">
+              <p style="margin: 0; color: #991b1b; line-height: 1.6;">
+                <strong>⚠️ Important</strong><br>
+                La participation aux 3 sessions est obligatoire pour bénéficier pleinement du programme.
+              </p>
+            </div>
 
-            <p>À très bientôt,</p>
-            <p><strong>Hajar Habi</strong><br>
-            Professeure de Hatha Yoga Classique<br>
-            Certifiée Sadhguru Gurukulam</p>
-
-            <p style="color: #666; font-size: 12px;">
-              Cet email est envoyé automatiquement suite à votre inscription sur transcendencework.com
+            <p style="font-size: 16px; line-height: 1.6; color: #333;">
+              Si vous avez des questions en attendant, n'hésitez pas à me contacter.
             </p>
-          `,
+
+            <p style="font-size: 16px; line-height: 1.6; color: #333; margin-top: 30px;">
+              Namaste 🙏<br>
+              <strong>Hajar Habi</strong><br>
+              <span style="color: #666; font-size: 14px;">Professeure de Hatha Yoga Classique</span><br>
+              <span style="color: #666; font-size: 14px;">Certifiée Sadhguru Gurukulam</span>
+            </p>
+
+            <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
+
+            <p style="font-size: 12px; color: #999; text-align: center;">
+              Ce message a été envoyé suite à votre inscription sur transcendencework.com
+            </p>
+          </div>
+        </div>
+      `;
+
+      try {
+        await resend.emails.send({
+          from: 'Hajar Habi <hajar@transcendencework.com>',
+          to: [email],
+          subject: `🙏 Inscription reçue - ${programTitle}`,
+          html: participantHtml,
         });
       } catch (emailError) {
         console.error('Confirmation email error:', emailError);

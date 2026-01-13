@@ -81,10 +81,62 @@ export default function PrivateYogaRequestForm({
 
         setIsSuccess(true);
       } else {
-        // **SIMPLE MODE**: Traditional email via Resend (existing behavior)
-        // TODO: Implement actual Resend API call
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        console.log('Demande de cours privé:', data);
+        // **SIMPLE MODE**: Spontaneous registration for group classes
+        // or private class request
+
+        if (isGroupClass) {
+          // Group class interest - send to /api/programmes/interest
+          const response = await fetch('/api/programmes/interest', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              firstName: data.firstName,
+              lastName: data.lastName,
+              email: data.email,
+              phone: data.phone,
+              whatsapp: data.whatsapp || null,
+              yogaType: data.yogaType || yogaType,
+              message: data.message || null,
+              consent: true,
+            }),
+          });
+
+          const result = await response.json();
+
+          if (!response.ok) {
+            throw new Error(result.error || 'Registration failed');
+          }
+        } else {
+          // Private class request - send to /api/contact with yoga context
+          const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name: `${data.firstName} ${data.lastName}`,
+              email: data.email,
+              phone: data.phone,
+              subject: `Demande de cours privé - ${data.yogaType || yogaType}`,
+              message: `
+Type de yoga: ${data.yogaType || yogaType}
+Ville: ${data.location}
+Objectif: ${data.goals}
+Niveau: ${data.level}
+Préférence de lieu: ${data.locationPreference}
+Disponibilités: ${data.availability || 'Non précisées'}
+
+Message:
+${data.message || 'Aucun message supplémentaire'}
+              `.trim(),
+            }),
+          });
+
+          const result = await response.json();
+
+          if (!response.ok) {
+            throw new Error(result.error || 'Request failed');
+          }
+        }
+
         setIsSuccess(true);
       }
 

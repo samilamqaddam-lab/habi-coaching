@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface DateChoice {
   session_number: number;
@@ -47,6 +48,57 @@ function formatShortDate(dateString: string) {
 
 export default function RegistrationCard({ registration }: RegistrationCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const router = useRouter();
+
+  const handleStatusChange = async (newStatus: 'pending' | 'confirmed' | 'cancelled') => {
+    if (isUpdating || newStatus === registration.status) return;
+
+    setIsUpdating(true);
+    try {
+      const response = await fetch(`/api/registrations/${registration.id}/status`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update status');
+      }
+
+      // Refresh the page to show updated data
+      router.refresh();
+    } catch (error) {
+      console.error('Error updating status:', error);
+      alert('Erreur lors de la mise à jour du statut');
+    } finally {
+      setIsUpdating(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    setIsDeleting(true);
+    try {
+      const response = await fetch(`/api/registrations/${registration.id}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete registration');
+      }
+
+      // Refresh the page to show updated data
+      router.refresh();
+    } catch (error) {
+      console.error('Error deleting registration:', error);
+      alert('Erreur lors de la suppression');
+    } finally {
+      setIsDeleting(false);
+      setShowDeleteConfirm(false);
+    }
+  };
 
   const statusConfig = {
     confirmed: { bg: 'bg-green-400/10', text: 'text-green-400', label: 'Confirmée' },
@@ -165,6 +217,164 @@ export default function RegistrationCard({ registration }: RegistrationCardProps
               </p>
             </div>
           )}
+
+          {/* Status Management Actions */}
+          <div>
+            <h4 className="text-sm font-medium text-slate-300 mb-3">Gérer le statut</h4>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => handleStatusChange('confirmed')}
+                disabled={isUpdating || registration.status === 'confirmed'}
+                className={`
+                  flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all
+                  ${registration.status === 'confirmed'
+                    ? 'bg-green-400/20 text-green-400 border-2 border-green-400/50'
+                    : 'bg-slate-700 text-slate-300 hover:bg-green-400/10 hover:text-green-400 hover:border-green-400/30 border-2 border-transparent'
+                  }
+                  ${isUpdating ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
+                `}
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                Confirmer
+              </button>
+
+              <button
+                onClick={() => handleStatusChange('pending')}
+                disabled={isUpdating || registration.status === 'pending'}
+                className={`
+                  flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all
+                  ${registration.status === 'pending'
+                    ? 'bg-yellow-400/20 text-yellow-400 border-2 border-yellow-400/50'
+                    : 'bg-slate-700 text-slate-300 hover:bg-yellow-400/10 hover:text-yellow-400 hover:border-yellow-400/30 border-2 border-transparent'
+                  }
+                  ${isUpdating ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
+                `}
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                </svg>
+                En attente
+              </button>
+
+              <button
+                onClick={() => handleStatusChange('cancelled')}
+                disabled={isUpdating || registration.status === 'cancelled'}
+                className={`
+                  flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all
+                  ${registration.status === 'cancelled'
+                    ? 'bg-red-400/20 text-red-400 border-2 border-red-400/50'
+                    : 'bg-slate-700 text-slate-300 hover:bg-red-400/10 hover:text-red-400 hover:border-red-400/30 border-2 border-transparent'
+                  }
+                  ${isUpdating ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
+                `}
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                </svg>
+                Annuler
+              </button>
+            </div>
+
+            {isUpdating && (
+              <p className="text-xs text-slate-400 mt-2 flex items-center gap-2">
+                <svg className="w-3 h-3 animate-spin" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Mise à jour en cours...
+              </p>
+            )}
+          </div>
+
+          {/* Delete Section */}
+          <div className="pt-4 border-t border-slate-700">
+            <button
+              onClick={() => setShowDeleteConfirm(true)}
+              className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-slate-900 text-red-400 hover:bg-red-400/10 hover:border-red-400/30 border-2 border-transparent transition-all"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg>
+              Supprimer définitivement
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Confirmation Modal */}
+      {showDeleteConfirm && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-slate-800 rounded-xl border border-slate-700 max-w-md w-full p-6 shadow-2xl">
+            {/* Warning Icon */}
+            <div className="w-16 h-16 bg-red-400/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg className="w-8 h-8 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+
+            {/* Title */}
+            <h3 className="text-xl font-bold text-slate-100 text-center mb-2">
+              Supprimer cette inscription ?
+            </h3>
+
+            {/* Warning Message */}
+            <p className="text-slate-400 text-center mb-2">
+              Vous êtes sur le point de supprimer l'inscription de :
+            </p>
+            <p className="text-orange-400 font-semibold text-center mb-4">
+              {registration.first_name} {registration.last_name}
+            </p>
+
+            {/* Alert Box */}
+            <div className="bg-red-400/10 border border-red-400/30 rounded-lg p-4 mb-6">
+              <div className="flex items-start gap-3">
+                <svg className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                </svg>
+                <div>
+                  <p className="text-red-400 font-medium text-sm">Action irréversible</p>
+                  <p className="text-red-300/80 text-sm mt-1">
+                    Cette action supprimera définitivement l'inscription et toutes les données associées. Cette opération ne peut pas être annulée.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Buttons */}
+            <div className="flex gap-3">
+              <button
+                onClick={() => setShowDeleteConfirm(false)}
+                disabled={isDeleting}
+                className="flex-1 px-4 py-3 rounded-lg text-sm font-medium bg-slate-700 text-slate-300 hover:bg-slate-600 transition-colors disabled:opacity-50"
+              >
+                Annuler
+              </button>
+              <button
+                onClick={handleDelete}
+                disabled={isDeleting}
+                className="flex-1 px-4 py-3 rounded-lg text-sm font-medium bg-red-500 text-white hover:bg-red-600 transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+              >
+                {isDeleting ? (
+                  <>
+                    <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Suppression...
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                    Supprimer
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

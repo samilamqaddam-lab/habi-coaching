@@ -406,12 +406,15 @@ export default function ProgrammesContent() {
 
                 {/* Infos pratiques */}
                 <div className="space-y-2 mb-4 text-sm flex-grow">
-                  <div className="flex items-start text-text-secondary">
-                    <svg className="w-4 h-4 mr-2 text-golden-orange mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                    <span>{t(`programmes.classes.${programKey}.schedule`)}</span>
-                  </div>
+                  {/* Schedule info - Hidden for Upa Yoga with active edition (dates shown in badge instead) */}
+                  {!(programKey === 'upaYoga' && upaYogaEdition && upaYogaSessions.length > 0) && (
+                    <div className="flex items-start text-text-secondary">
+                      <svg className="w-4 h-4 mr-2 text-golden-orange mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      <span>{t(`programmes.classes.${programKey}.schedule`)}</span>
+                    </div>
+                  )}
                   <div className="flex items-start text-text-secondary">
                     <svg className="w-4 h-4 mr-2 text-golden-orange mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -426,20 +429,81 @@ export default function ProgrammesContent() {
                     <span>{t(`programmes.classes.${programKey}.location`)}</span>
                   </div>
 
-                  {/* Edition Badge - Only for Upa Yoga when active edition exists */}
+                  {/* Active edition block - Only for Upa Yoga when active edition exists */}
                   {programKey === 'upaYoga' && upaYogaEdition && upaYogaSessions.length > 0 && (
                     <div className="mt-3 pt-3 border-t border-golden-orange/20">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="bg-golden-orange/20 text-golden-orange text-xs px-2 py-1 rounded-full font-medium flex items-center gap-1">
-                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
-                          </svg>
-                          {locale === 'fr' ? 'Prochaine édition' : 'Next edition'}
+                      {/* Badge "Inscriptions ouvertes" */}
+                      <div className="inline-flex items-center gap-1.5 bg-golden-orange text-white text-xs font-semibold px-2.5 py-1 rounded-full mb-2">
+                        <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        {locale === 'fr' ? 'Inscriptions ouvertes' : 'Registration open'}
+                      </div>
+
+                      {/* Date range */}
+                      <div className="flex items-center text-deep-blue font-medium">
+                        <svg className="w-4 h-4 mr-2 text-golden-orange flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <span>
+                          {(() => {
+                            const allDates = upaYogaSessions.flatMap(session =>
+                              session.date_options.map(option => new Date(option.date_time))
+                            ).sort((a, b) => a.getTime() - b.getTime());
+
+                            if (allDates.length === 0) return null;
+
+                            const firstDate = allDates[0];
+                            const lastDate = allDates[allDates.length - 1];
+
+                            const formatDate = (date: Date) => {
+                              return date.toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US', {
+                                day: 'numeric',
+                                month: 'short',
+                                year: firstDate.getFullYear() !== lastDate.getFullYear() ? 'numeric' : undefined,
+                                timeZone: 'Africa/Casablanca',
+                              });
+                            };
+
+                            const startDateStr = formatDate(firstDate);
+                            const endDateStr = lastDate.toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US', {
+                              day: 'numeric',
+                              month: 'short',
+                              year: 'numeric',
+                              timeZone: 'Africa/Casablanca',
+                            });
+
+                            return `${startDateStr} - ${endDateStr}`;
+                          })()}
                         </span>
                       </div>
-                      <p className="text-xs text-text-secondary">
-                        {locale === 'fr' ? upaYogaEdition.title : upaYogaEdition.title_en || upaYogaEdition.title} • {upaYogaSessions.length} {locale === 'fr' ? 'sessions disponibles' : 'sessions available'}
-                      </p>
+
+                      {/* Places disponibles */}
+                      {(() => {
+                        // Calculate remaining spots (minimum across all date options)
+                        const minAvailable = Math.min(
+                          ...upaYogaSessions.flatMap(session =>
+                            session.date_options.map(option =>
+                              option.remaining_spots
+                            )
+                          )
+                        );
+
+                        if (minAvailable > 0 && minAvailable <= 10) {
+                          return (
+                            <p className="text-xs text-golden-orange mt-1 flex items-center gap-1">
+                              <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+                              </svg>
+                              {locale === 'fr'
+                                ? `${minAvailable} place${minAvailable > 1 ? 's' : ''} restante${minAvailable > 1 ? 's' : ''}`
+                                : `${minAvailable} spot${minAvailable > 1 ? 's' : ''} left`
+                              }
+                            </p>
+                          );
+                        }
+                        return null;
+                      })()}
                     </div>
                   )}
 
@@ -448,10 +512,14 @@ export default function ProgrammesContent() {
                   </p>
                 </div>
 
-                {/* Bouton */}
+                {/* Bouton - Primary style for active edition, outline for others */}
                 <PrivateYogaRequestModal
-                  triggerText={t('programmes.buttons.book')}
-                  variant="outline"
+                  triggerText={
+                    programKey === 'upaYoga' && upaYogaEdition && upaYogaSessions.length > 0
+                      ? (locale === 'fr' ? "S'inscrire maintenant" : 'Register now')
+                      : t('programmes.buttons.book')
+                  }
+                  variant={programKey === 'upaYoga' && upaYogaEdition && upaYogaSessions.length > 0 ? 'primary' : 'outline'}
                   fullWidth
                   defaultYogaType={programKeyToFormValue[programKey]}
                   isGroupClass={true}

@@ -51,8 +51,8 @@ export async function POST(request: NextRequest) {
 
     // Send email to Hajar
     const { error: sendError } = await resend.emails.send({
-      from: 'Transcendence Work <noreply@transcendencework.com>',
-      to: ['contact@transcendencework.com'],
+      from: 'Transcendence Work <hajar@transcendencework.com>',
+      to: ['hajar@transcendencework.com'],
       replyTo: validatedData.email,
       subject: `🏢 Demande de devis - ${validatedData.organization} - ${serviceTypeLabels[validatedData.serviceType]}`,
       html: `
@@ -137,7 +137,7 @@ export async function POST(request: NextRequest) {
 
     // Send confirmation email to the organization
     await resend.emails.send({
-      from: 'Hajar Habi - Transcendence Work <noreply@transcendencework.com>',
+      from: 'Hajar Habi <hajar@transcendencework.com>',
       to: [validatedData.email],
       subject: 'Votre demande de devis - Transcendence Work',
       html: `
