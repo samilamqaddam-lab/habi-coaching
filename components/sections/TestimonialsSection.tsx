@@ -1,6 +1,7 @@
 'use client'
 
 import Card from '@/components/ui/Card'
+import Container from '@/components/ui/Container'
 import { useTranslation } from '@/hooks/useTranslation'
 import type { Testimonial } from '@/lib/sanity.types'
 
@@ -17,16 +18,16 @@ export default function TestimonialsSection({ testimonials }: TestimonialsSectio
 
   return (
     <section className="py-16 md:py-24 bg-warm-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <Container size="lg">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 max-w-3xl mx-auto">
           <span className="inline-block px-4 py-1.5 bg-golden-orange/10 text-golden-orange text-xs font-semibold rounded-full mb-4 uppercase tracking-wide">
             {t('testimonials.subtitle')}
           </span>
           <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-deep-blue mb-4">
             {t('testimonials.title')}
           </h2>
-          <p className="text-text-secondary max-w-2xl mx-auto">
+          <p className="text-lg text-text-secondary leading-relaxed">
             {t('testimonials.description')}
           </p>
         </div>
@@ -94,7 +95,7 @@ export default function TestimonialsSection({ testimonials }: TestimonialsSectio
             </Card>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   )
 }
