@@ -264,17 +264,25 @@ export default function SessionDatePicker({
 
       {/* Location Note - Displayed once for all sessions */}
       {sessions.length > 0 && sessions[0].date_options.length > 0 && (
-        <div className="mt-4 rounded-lg border border-golden-orange/20 bg-golden-orange/5 p-3">
-          <div className="flex items-start gap-2">
-            <svg className="w-4 h-4 text-golden-orange mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+        <div className="mt-4 rounded-lg border border-golden-orange/20 bg-golden-orange/5 p-4">
+          <div className="flex items-start gap-3">
+            <svg className="w-5 h-5 text-golden-orange mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
             </svg>
             <div className="flex-1">
-              <p className="text-xs font-medium text-deep-blue">
-                {locale === 'fr' ? 'Toutes les sessions ont lieu à :' : 'All sessions take place at:'}
+              <p className="text-sm font-semibold text-deep-blue mb-1">
+                {locale === 'fr' ? 'Lieu' : 'Location'}
               </p>
-              <p className="text-xs text-text-secondary mt-0.5">
-                {sessions[0].date_options[0].location}
+              <a
+                href="https://www.google.com/maps/place/36+Boulevard+d'Anfa,+Casablanca"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-golden-orange hover:text-golden-orange/80 underline font-medium"
+              >
+                Shidomind
+              </a>
+              <p className="text-xs text-text-secondary mt-1">
+                36 B boulevard d'Anfa, 5ème étage, Appartement 54, Casablanca
               </p>
             </div>
           </div>
