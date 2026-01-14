@@ -96,14 +96,21 @@ interface HeroProps {
 - **NO scroll arrow**
 - Hajar's photo appears in "Qui suis-je?" section below
 
-### /programmes (Yoga)
+### /yoga (Programmes Yoga)
+- **URL:** `/yoga` (anciennement `/programmes`, redirect 301 en place)
 - **Image:** `/images/heroes/sadhguru-hero.jpg`
 - **Source:** Pexels - Traditional monk in meditation (orange robes)
 - **Theme:** yoga (golden-orange accents)
 - **Special Features:**
-  - "By Sadhguru" badges on all yoga class cards
   - Isha Foundation lineage section with Sadhguru info
   - Link to isha.sadhguru.org
+  - Icône "ouvrir dans nouvel onglet" sur les cartes (hover)
+
+### /[programmeKey] (Pages Dédiées Programmes)
+- **URLs:** `/upa-yoga`, `/surya-kriya`, `/angamardana`, `/yogasanas`, `/surya-shakti`
+- **Layout:** Two columns (info left, form right)
+- **Components:** Instructor card, details with icons, registration form
+- **Data:** Dynamique via `useEditionData` hook (Supabase)
 
 ### /coaching
 - **Image:** `/images/heroes/coaching-path-hero.jpg`
@@ -135,16 +142,20 @@ interface HeroProps {
 
 ## Sadhguru Gurukulam Integration
 
-### Yoga Page Lineage Section
-Added December 2024 - honors the source of Hajar's yoga training:
+### Yoga Page (`/yoga`) - Lineage Section
+Honors the source of Hajar's yoga training:
 - Sadhguru info card with role "Fondateur de Sadhguru Gurukulam / Isha Foundation"
 - Training details: 21-week residential, 1750+ hours
 - Global community: 150+ countries
 - External link to official Isha Foundation website
 
+### Dedicated Programme Pages (`/[programmeKey]`)
+- **Instructor Component:** Hajar's photo + credentials (not Sadhguru)
+- **Certification display:** "Certifiée Sadhguru Gurukulam • 1750 heures de formation"
+- **Design rule:** Badges "Par Sadhguru" supprimés pour éviter confusion avec l'instructrice
+
 ### Translation Keys
 ```
-programmes.designedBy: "Par Sadhguru" / "By Sadhguru"
 programmes.lineage.subtitle/title/intro
 programmes.lineage.sadhguru.title/role/description/link
 programmes.lineage.training.title/description
@@ -287,6 +298,52 @@ vercel env pull .env.vercel.check
 cat .env.vercel.check
 ```
 
+## Programme Editions System (Supabase)
+
+### Overview
+Dynamic registration system for yoga programmes using Supabase as backend.
+
+**Database:** Supabase project linked to Vercel
+
+### Tables Structure
+```
+programme_editions     - Éditions (ex: "Upa Yoga - Janvier 2025")
+  ├── id, programme_key, title, status (draft/active/completed/cancelled)
+  └── created_at, updated_at
+
+edition_sessions       - Sessions de chaque édition
+  ├── id, edition_id, session_number, title
+  └── date_options[] (JSONB: date_time, max_spots, remaining_spots)
+
+registrations          - Inscriptions des participants
+  ├── id, edition_id, session_id, selected_date_option_index
+  ├── first_name, last_name, email, phone
+  └── status (pending/confirmed/cancelled), notes, created_at
+```
+
+### Key Hooks
+- `useEditionData(programmeKey)` - Fetch active edition + sessions for one programme
+- `useMultipleEditionsData()` - Fetch all active editions (for /yoga page badges)
+
+### API Routes
+| Route | Method | Purpose |
+|-------|--------|---------|
+| `/api/yoga/[editionId]` | GET | Get edition details |
+| `/api/yoga/[editionId]/register` | POST | Register participant |
+| `/api/yoga/[editionId]/availability` | GET | Check spots availability |
+
+### Registration Flow
+1. User visits `/yoga` or `/[programmeKey]`
+2. `useEditionData` fetches active edition from Supabase
+3. Form displays available date options with remaining spots
+4. On submit → POST to `/api/yoga/[editionId]/register`
+5. Email confirmation sent via Resend
+
+### Admin Dashboard
+- **URL:** `/admin` (protected)
+- **Features:** View registrations, manage editions, update status
+- **Components:** `RegistrationCard`, `EditionManager`
+
 ## Translation Files
 Location: `/locales/fr.json` and `/locales/en.json`
 Hook: `useTranslation()` from `@/hooks/useTranslation`
@@ -388,20 +445,36 @@ SEO, UX & Conversion, Performance, Qualité Contenu, Nouvelles Features, Stabili
 ## File Structure
 ```
 /app
-  /page.tsx              - Homepage (centered, minimal hero)
-  /coaching/page.tsx     - Coaching (split layout)
-  /programmes/page.tsx   - Yoga + Sadhguru section (split layout)
-  /contact/page.tsx      - Contact (split layout)
-  /organisations/page.tsx - B2B services (split layout)
-  /ressources/page.tsx   - Resources (split layout)
-  /expertise/page.tsx    - Credentials page
+  /(site)
+    /page.tsx              - Homepage (centered, minimal hero)
+    /coaching/page.tsx     - Coaching (split layout)
+    /yoga/page.tsx         - Yoga programmes list + Sadhguru lineage
+    /[programmeKey]/page.tsx - Pages dédiées programmes (dynamic)
+    /contact/page.tsx      - Contact (split layout)
+    /organisations/page.tsx - B2B services (split layout)
+    /ressources/page.tsx   - Resources (split layout)
+    /expertise/page.tsx    - Credentials page
+  /(admin)
+    /admin/...             - Dashboard admin (registrations, editions)
+  /api
+    /yoga/[editionId]/     - API programmes (register, availability)
+    /registrations/        - API gestion inscriptions
 
 /components
   /sections/Hero.tsx     - Hero with split/centered/minimal modes
   /sections/Section.tsx
   /ui/Button.tsx
   /ui/Card.tsx
-  /forms/               - Contact forms, modals
+  /forms/                - Contact forms, registration forms
+  /admin/                - Admin dashboard components
+
+/hooks
+  /useEditionData.ts     - Fetch edition + sessions pour un programme
+  /useMultipleEditionsData.ts - Fetch toutes les éditions actives
+
+/lib
+  /programmes-config.ts  - Configuration des 5 programmes yoga
+  /supabase.ts           - Client Supabase
 
 /public/images
   /heroes/              - Hero section images
