@@ -10,6 +10,7 @@ export interface ProgrammeEdition {
   max_capacity: number;
   is_active: boolean;
   created_at: string;
+  sessions_mandatory?: boolean;
 }
 
 export interface EditionSession {

@@ -104,6 +104,7 @@ export async function GET(
         title_en: edition.title_en,
         start_date: edition.start_date,
         max_capacity: edition.max_capacity,
+        sessions_mandatory: edition.sessions_mandatory ?? true,
       },
       sessions: sessionsWithAvailability,
     });
