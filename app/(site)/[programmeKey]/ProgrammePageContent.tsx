@@ -92,7 +92,7 @@ export default function ProgrammePageContent({
   const minAvailable = getMinRemainingSpots();
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Hero Section - Compact */}
       <section className="relative bg-gradient-to-br from-golden-orange/10 via-white to-deep-blue/5 pt-24 pb-12">
         <Container>
