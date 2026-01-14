@@ -1016,5 +1016,45 @@
       "retreat": "Retraite",
       "corporate": "Organisation"
     }
+  },
+  "brandKit": {
+    "badge": "Identité Visuelle",
+    "title": "Brand Kit",
+    "subtitle": "Transcendence Work — Guide de style et ressources visuelles",
+    "logos": {
+      "title": "Logos",
+      "description": "Nos logos sont disponibles en plusieurs versions pour s'adapter à tous les contextes et supports de communication.",
+      "download": "Télécharger",
+      "primary": "Logo Principal",
+      "icon": "Logo avec Icône",
+      "wordmark": "Wordmark",
+      "white": "Logo Blanc",
+      "safeZone": "Zone de sécurité :",
+      "safeZoneDesc": "Maintenir un espace minimum autour du logo équivalent à la hauteur du symbole pour garantir sa lisibilité."
+    },
+    "colors": {
+      "title": "Palette de Couleurs",
+      "description": "Notre palette reflète les trois piliers de notre expertise : le yoga, le coaching et le monde corporate. Cliquez sur une couleur pour copier son code hex.",
+      "mixed": "Couleurs Principales",
+      "mixedDesc": "Accents principaux pour le site web et fond de page.",
+      "yoga": "Thème Yoga",
+      "coaching": "Thème Coaching",
+      "corporate": "Thème Corporate",
+      "neutral": "Couleurs Neutres"
+    },
+    "typography": {
+      "title": "Typographie",
+      "description": "Notre système typographique combine l'élégance de Playfair Display pour les titres avec la lisibilité d'Inter pour le contenu.",
+      "heading": "Police Titres",
+      "body": "Police Corps",
+      "scale": "Échelle Typographique"
+    },
+    "spacing": {
+      "title": "Espacement & Layout",
+      "description": "Un système d'espacement cohérent pour créer une hiérarchie visuelle claire et une respiration harmonieuse.",
+      "scale": "Échelle d'Espacement",
+      "radius": "Rayons de Bordure"
+    },
+    "footer": "© Transcendence Work. Ces éléments sont protégés. Pour toute utilisation, veuillez nous contacter."
   }
 }

@@ -1019,5 +1019,45 @@
       "retreat": "Retreat",
       "corporate": "Corporate"
     }
+  },
+  "brandKit": {
+    "badge": "Visual Identity",
+    "title": "Brand Kit",
+    "subtitle": "Transcendence Work — Style guide and visual resources",
+    "logos": {
+      "title": "Logos",
+      "description": "Our logos are available in multiple versions to adapt to all contexts and communication materials.",
+      "download": "Download",
+      "primary": "Primary Logo",
+      "icon": "Logo with Icon",
+      "wordmark": "Wordmark",
+      "white": "White Logo",
+      "safeZone": "Safe zone:",
+      "safeZoneDesc": "Maintain a minimum space around the logo equivalent to the symbol height to ensure readability."
+    },
+    "colors": {
+      "title": "Color Palette",
+      "description": "Our palette reflects the three pillars of our expertise: yoga, coaching, and corporate. Click on a color to copy its hex code.",
+      "mixed": "Main Colors",
+      "mixedDesc": "Primary accents for the website and page background.",
+      "yoga": "Yoga Theme",
+      "coaching": "Coaching Theme",
+      "corporate": "Corporate Theme",
+      "neutral": "Neutral Colors"
+    },
+    "typography": {
+      "title": "Typography",
+      "description": "Our typographic system combines the elegance of Playfair Display for headings with the readability of Inter for content.",
+      "heading": "Heading Font",
+      "body": "Body Font",
+      "scale": "Type Scale"
+    },
+    "spacing": {
+      "title": "Spacing & Layout",
+      "description": "A consistent spacing system to create clear visual hierarchy and harmonious breathing room.",
+      "scale": "Spacing Scale",
+      "radius": "Border Radius"
+    },
+    "footer": "© Transcendence Work. These assets are protected. For any use, please contact us."
   }
 }
