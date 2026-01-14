@@ -8,7 +8,7 @@ import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
 import { PrivateYogaRequestModal, IndividualYogaBookingModal } from '@/components/forms'
 import { useTranslation } from '@/hooks/useTranslation'
-import { useEditionData } from '@/hooks/useEditionData'
+import { useMultipleEditionsData } from '@/hooks/useMultipleEditionsData'
 
 // Composant Accordion pour les bénéfices
 function BenefitsAccordion({ programKey, t }: { programKey: string; t: (key: string) => string }) {
@@ -255,8 +255,10 @@ const programKeyToFormValue: Record<string, string> = {
 export default function ProgrammesContent() {
   const { t, locale } = useTranslation()
 
-  // Fetch active Upa Yoga edition for hybrid integration
-  const { edition: upaYogaEdition, sessions: upaYogaSessions } = useEditionData('upa-yoga')
+  // Fetch active editions for all programmes in parallel
+  const editionsData = useMultipleEditionsData([
+    'upa-yoga', 'surya-kriya', 'surya-shakti', 'angamardana', 'yogasanas'
+  ])
 
   return (
     <>
@@ -371,7 +373,15 @@ export default function ProgrammesContent() {
       >
         {/* 5 programmes en grille */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {['upaYoga', 'suryaKriya', 'suryaShakti', 'angamardana', 'yogasanas'].map((programKey) => (
+          {['upaYoga', 'suryaKriya', 'suryaShakti', 'angamardana', 'yogasanas'].map((programKey) => {
+            // Get edition data for this programme
+            const apiKey = programKeyToFormValue[programKey]
+            const editionInfo = editionsData[apiKey]
+            const hasActiveEdition = editionInfo?.edition && editionInfo?.sessions?.length > 0
+            const edition = editionInfo?.edition
+            const sessions = editionInfo?.sessions || []
+
+            return (
             <Card key={programKey} hover padding="lg" className="flex flex-col">
               {/* Image du programme */}
               <div className="mb-6">
@@ -406,8 +416,8 @@ export default function ProgrammesContent() {
 
                 {/* Infos pratiques */}
                 <div className="space-y-2 mb-4 text-sm flex-grow">
-                  {/* Schedule info - Hidden for Upa Yoga with active edition (dates shown in badge instead) */}
-                  {!(programKey === 'upaYoga' && upaYogaEdition && upaYogaSessions.length > 0) && (
+                  {/* Schedule info - Hidden when active edition exists (dates shown in badge instead) */}
+                  {!hasActiveEdition && (
                     <div className="flex items-start text-text-secondary">
                       <svg className="w-4 h-4 mr-2 text-golden-orange mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -429,8 +439,8 @@ export default function ProgrammesContent() {
                     <span>{t(`programmes.classes.${programKey}.location`)}</span>
                   </div>
 
-                  {/* Active edition block - Only for Upa Yoga when active edition exists */}
-                  {programKey === 'upaYoga' && upaYogaEdition && upaYogaSessions.length > 0 && (
+                  {/* Active edition block - Shown when active edition exists for any programme */}
+                  {hasActiveEdition && (
                     <div className="mt-3 pt-3 border-t border-golden-orange/20">
                       {/* Badge "Inscriptions ouvertes" - Morocco blue from palette */}
                       <div className="inline-flex items-center gap-1.5 bg-morocco-blue text-white text-xs font-semibold px-2.5 py-1 rounded-full mb-2">
@@ -447,7 +457,7 @@ export default function ProgrammesContent() {
                         </svg>
                         <span>
                           {(() => {
-                            const allDates = upaYogaSessions.flatMap(session =>
+                            const allDates = sessions.flatMap(session =>
                               session.date_options.map(option => new Date(option.date_time))
                             ).sort((a, b) => a.getTime() - b.getTime());
 
@@ -482,7 +492,7 @@ export default function ProgrammesContent() {
                       {(() => {
                         // Calculate remaining spots (minimum across all date options)
                         const minAvailable = Math.min(
-                          ...upaYogaSessions.flatMap(session =>
+                          ...sessions.flatMap(session =>
                             session.date_options.map(option =>
                               option.remaining_spots
                             )
@@ -515,23 +525,24 @@ export default function ProgrammesContent() {
                 {/* Bouton - Primary style for active edition, outline for others */}
                 <PrivateYogaRequestModal
                   triggerText={
-                    programKey === 'upaYoga' && upaYogaEdition && upaYogaSessions.length > 0
+                    hasActiveEdition
                       ? (locale === 'fr' ? "S'inscrire maintenant" : 'Register now')
                       : t('programmes.buttons.book')
                   }
-                  variant={programKey === 'upaYoga' && upaYogaEdition && upaYogaSessions.length > 0 ? 'primary' : 'outline'}
+                  variant={hasActiveEdition ? 'primary' : 'outline'}
                   fullWidth
                   defaultYogaType={programKeyToFormValue[programKey]}
                   isGroupClass={true}
-                  // Pass edition data only for Upa Yoga
-                  {...(programKey === 'upaYoga' && {
-                    edition: upaYogaEdition,
-                    sessions: upaYogaSessions
+                  // Pass edition data when active edition exists
+                  {...(hasActiveEdition && {
+                    edition: edition,
+                    sessions: sessions
                   })}
                 />
               </div>
             </Card>
-          ))}
+            )
+          })}
         </div>
       </Section>
 
