@@ -121,7 +121,7 @@ export default function SessionDatePicker({
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between">
         <h3 className="font-heading text-lg font-semibold text-deep-blue">
@@ -228,9 +228,9 @@ export default function SessionDatePicker({
                       </div>
 
                       {/* Date info */}
-                      <div className="flex-1 min-w-0">
+                      <div className="flex-1 min-w-0 overflow-hidden">
                         <div className="flex items-center justify-between gap-2">
-                          <div className="font-medium text-deep-blue capitalize truncate">
+                          <div className="font-medium text-deep-blue capitalize truncate min-w-0">
                             {formatDate(option.date_time)}
                           </div>
                           {/* Selected checkmark - desktop */}
@@ -257,12 +257,12 @@ export default function SessionDatePicker({
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
-                          className="text-xs text-golden-orange hover:text-golden-orange/80 inline-flex items-center gap-1 mt-1 max-w-full"
+                          className="text-xs text-golden-orange hover:text-golden-orange/80 flex items-center gap-1 mt-1 overflow-hidden"
                         >
                           <svg className="w-3 h-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                           </svg>
-                          <span className="truncate">{option.location}</span>
+                          <span className="truncate min-w-0">{option.location}</span>
                         </a>
 
                         {/* Availability badge - mobile: below location */}

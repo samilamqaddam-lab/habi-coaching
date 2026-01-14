@@ -199,7 +199,7 @@ ${data.message || 'Aucun message supplémentaire'}
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6 overflow-hidden">
       {/* Informations personnelles */}
       <div className="grid md:grid-cols-2 gap-6">
         <FormInput
@@ -450,8 +450,8 @@ ${data.message || 'Aucun message supplémentaire'}
           : (locale === 'fr' ? 'Envoyer ma demande' : 'Send my request')}
       </Button>
 
-      <div className="mt-8 pt-6 border-t border-gray-200">
-        <p className="text-sm text-text-secondary text-center mb-2">
+      <div className="mt-8 pt-6 border-t border-gray-200 overflow-hidden">
+        <p className="text-sm text-text-secondary text-center mb-2 break-words">
           {isGroupClass ? (
             <>
               Vous recevrez une <strong>confirmation et les détails</strong> du programme dans les 24-48h.
@@ -463,7 +463,7 @@ ${data.message || 'Aucun message supplémentaire'}
             </>
           )}
         </p>
-        <p className="text-xs text-text-secondary text-center italic">
+        <p className="text-xs text-text-secondary text-center italic break-words">
           {isGroupClass
             ? '💡 Vous serez contacté·e par la Professeure de Hatha Yoga pour un échange préalable.'
             : '💡 Tous les programmes sont basés sur le Hatha Yoga Classique et adaptés à vos besoins individuels.'}

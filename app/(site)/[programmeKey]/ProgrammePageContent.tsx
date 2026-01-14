@@ -143,7 +143,7 @@ export default function ProgrammePageContent({
         <Container>
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
             {/* Left Column - Programme Info */}
-            <div className="space-y-8">
+            <div className="space-y-8 min-w-0">
               {/* Image */}
               {image && !image.includes('programmes.classes') && (
                 <div className="relative aspect-video rounded-2xl overflow-hidden shadow-lg">
@@ -158,18 +158,18 @@ export default function ProgrammePageContent({
               )}
 
               {/* Description */}
-              <div>
+              <div className="overflow-hidden">
                 <h2 className="font-heading text-2xl font-semibold text-deep-blue mb-4">
                   {locale === 'fr' ? 'À propos de ce programme' : 'About this programme'}
                 </h2>
-                <p className="text-text-secondary leading-relaxed text-lg">
+                <p className="text-text-secondary leading-relaxed text-lg break-words">
                   {description}
                 </p>
               </div>
 
               {/* Benefits */}
               {benefits.length > 0 && (
-                <div>
+                <div className="overflow-hidden">
                   <h2 className="font-heading text-2xl font-semibold text-deep-blue mb-4">
                     {locale === 'fr' ? 'Ce que cette pratique peut vous apporter' : 'What this practice can bring you'}
                   </h2>
@@ -181,7 +181,7 @@ export default function ProgrammePageContent({
                             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                           </svg>
                         </span>
-                        <span className="text-text-secondary">{benefit}</span>
+                        <span className="text-text-secondary break-words">{benefit}</span>
                       </li>
                     ))}
                   </ul>
@@ -303,7 +303,7 @@ export default function ProgrammePageContent({
             </div>
 
             {/* Right Column - Registration Form */}
-            <div className="lg:sticky lg:top-24 lg:self-start">
+            <div className="lg:sticky lg:top-24 lg:self-start min-w-0">
               <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
                 {/* Form Header */}
                 <div className="bg-gradient-to-r from-golden-orange to-golden-orange/80 px-6 py-5">
