@@ -395,20 +395,7 @@ export async function DELETE(
     }
 
     if (hardDelete) {
-      // Check if there are registrations
-      const { count: registrationCount } = await supabaseAdmin
-        .from('registrations')
-        .select('*', { count: 'exact', head: true })
-        .eq('edition_id', id);
-
-      if (registrationCount && registrationCount > 0) {
-        return NextResponse.json(
-          { error: 'Impossible de supprimer une édition avec des inscriptions. Utilisez l\'archivage.' },
-          { status: 400 }
-        );
-      }
-
-      // Get sessions to delete their date options
+      // Get sessions to find date options
       const { data: sessions } = await supabaseAdmin
         .from('edition_sessions')
         .select('id')
@@ -416,7 +403,31 @@ export async function DELETE(
 
       const sessionIds = sessions?.map(s => s.id) || [];
 
-      // Delete date options
+      // Get all date option IDs for this edition
+      let dateOptionIds: string[] = [];
+      if (sessionIds.length > 0) {
+        const { data: dateOptions } = await supabaseAdmin
+          .from('session_date_options')
+          .select('id')
+          .in('session_id', sessionIds);
+        dateOptionIds = dateOptions?.map(d => d.id) || [];
+      }
+
+      // 1. Delete registration_date_choices (references date_options)
+      if (dateOptionIds.length > 0) {
+        await supabaseAdmin
+          .from('registration_date_choices')
+          .delete()
+          .in('date_option_id', dateOptionIds);
+      }
+
+      // 2. Delete registrations for this edition
+      await supabaseAdmin
+        .from('registrations')
+        .delete()
+        .eq('edition_id', id);
+
+      // 3. Delete date options
       if (sessionIds.length > 0) {
         await supabaseAdmin
           .from('session_date_options')
@@ -424,13 +435,13 @@ export async function DELETE(
           .in('session_id', sessionIds);
       }
 
-      // Delete sessions
+      // 4. Delete sessions
       await supabaseAdmin
         .from('edition_sessions')
         .delete()
         .eq('edition_id', id);
 
-      // Delete edition
+      // 5. Delete edition
       const { error: deleteError } = await supabaseAdmin
         .from('programme_editions')
         .delete()

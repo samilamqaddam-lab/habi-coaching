@@ -2,13 +2,38 @@ import Link from 'next/link';
 import AdminNav from '@/components/admin/AdminNav';
 import { supabaseAdmin, isSupabaseConfigured } from '@/lib/supabase';
 
-async function getEditionsWithStats() {
+interface DashboardData {
+  editions: Array<{
+    id: string;
+    programme_key: string;
+    title: string;
+    title_en: string | null;
+    start_date: string;
+    max_capacity: number;
+    is_active: boolean;
+    created_at: string;
+    stats: {
+      registrations: number;
+      maxInscriptions: number;
+      remaining: number;
+      fillRate: number;
+    };
+  }>;
+  globalStats: {
+    totalRegistrations: number;
+    activeEvents: number;
+    pendingConfirmations: number;
+    thisWeekRegistrations: number;
+  };
+}
+
+async function getDashboardData(): Promise<DashboardData> {
   if (!isSupabaseConfigured() || !supabaseAdmin) {
-    return [];
+    return { editions: [], globalStats: { totalRegistrations: 0, activeEvents: 0, pendingConfirmations: 0, thisWeekRegistrations: 0 } };
   }
 
   try {
-    // Get all editions with their sessions and registration counts
+    // Get all editions
     const { data: editions, error } = await supabaseAdmin!
       .from('programme_editions')
       .select(`
@@ -25,20 +50,40 @@ async function getEditionsWithStats() {
 
     if (error) {
       console.error('Error fetching editions:', error);
-      return [];
+      return { editions: [], globalStats: { totalRegistrations: 0, activeEvents: 0, pendingConfirmations: 0, thisWeekRegistrations: 0 } };
     }
+
+    // Get global stats
+    const { count: totalRegistrations } = await supabaseAdmin!
+      .from('registrations')
+      .select('*', { count: 'exact', head: true })
+      .neq('status', 'cancelled');
+
+    const { count: pendingConfirmations } = await supabaseAdmin!
+      .from('registrations')
+      .select('*', { count: 'exact', head: true })
+      .eq('status', 'pending');
+
+    // Get registrations from last 7 days
+    const oneWeekAgo = new Date();
+    oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+    const { count: thisWeekRegistrations } = await supabaseAdmin!
+      .from('registrations')
+      .select('*', { count: 'exact', head: true })
+      .neq('status', 'cancelled')
+      .gte('created_at', oneWeekAgo.toISOString());
+
+    const activeEvents = (editions || []).filter(e => e.is_active).length;
 
     // Get registration counts for each edition
     const editionsWithStats = await Promise.all(
       (editions || []).map(async (edition) => {
-        // Count total registrations (not cancelled)
         const { count: registrationCount } = await supabaseAdmin!
           .from('registrations')
           .select('*', { count: 'exact', head: true })
           .eq('edition_id', edition.id)
           .neq('status', 'cancelled');
 
-        // Get max inscriptions (capacity per date since each participant chooses 1 date per session)
         const { data: sessions } = await supabaseAdmin!
           .from('edition_sessions')
           .select(`
@@ -49,11 +94,8 @@ async function getEditionsWithStats() {
           `)
           .eq('edition_id', edition.id);
 
-        // Calculate max inscriptions possible
-        // Each person chooses 1 date per session, so max = min capacity across all dates
-        let maxInscriptions = edition.max_capacity || 20; // Default 20 for Upa Yoga
+        let maxInscriptions = edition.max_capacity || 20;
         if (sessions && sessions.length > 0) {
-          // Get the smallest capacity among all date options (bottleneck)
           let minDateCapacity = Infinity;
           sessions.forEach((session: any) => {
             if (session.session_date_options) {
@@ -65,7 +107,6 @@ async function getEditionsWithStats() {
               });
             }
           });
-          // Use the minimum date capacity as theoretical max (conservative estimate)
           maxInscriptions = minDateCapacity !== Infinity ? minDateCapacity : 20;
         }
 
@@ -77,7 +118,7 @@ async function getEditionsWithStats() {
           ...edition,
           stats: {
             registrations,
-            maxInscriptions, // Changed from totalCapacity
+            maxInscriptions,
             remaining,
             fillRate: Math.round(fillRate),
           },
@@ -85,21 +126,23 @@ async function getEditionsWithStats() {
       })
     );
 
-    return editionsWithStats;
+    return {
+      editions: editionsWithStats,
+      globalStats: {
+        totalRegistrations: totalRegistrations || 0,
+        activeEvents,
+        pendingConfirmations: pendingConfirmations || 0,
+        thisWeekRegistrations: thisWeekRegistrations || 0,
+      },
+    };
   } catch (error) {
-    console.error('Error in getEditionsWithStats:', error);
-    return [];
+    console.error('Error in getDashboardData:', error);
+    return { editions: [], globalStats: { totalRegistrations: 0, activeEvents: 0, pendingConfirmations: 0, thisWeekRegistrations: 0 } };
   }
 }
 
 export default async function AdminDashboardPage() {
-  const editions = await getEditionsWithStats();
-
-  // Calculate global stats
-  const totalRegistrations = editions.reduce((sum, e) => sum + e.stats.registrations, 0);
-  const totalMaxInscriptions = editions.reduce((sum, e) => sum + e.stats.maxInscriptions, 0);
-  const totalRemaining = editions.reduce((sum, e) => sum + e.stats.remaining, 0);
-  const globalFillRate = totalMaxInscriptions > 0 ? Math.round((totalRegistrations / totalMaxInscriptions) * 100) : 0;
+  const { editions, globalStats } = await getDashboardData();
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -114,10 +157,10 @@ export default async function AdminDashboardPage() {
           {/* Header */}
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-slate-100 mb-2">
-              Dashboard Événements
+              Gestion des Participations
             </h1>
             <p className="text-slate-400">
-              Gérez les inscriptions de vos cours collectifs
+              Suivez les inscriptions et gérez les participants de vos événements
             </p>
           </div>
 
@@ -125,42 +168,42 @@ export default async function AdminDashboardPage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
             <div className="bg-slate-800 rounded-xl border border-slate-700 p-6">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-slate-400 text-sm font-medium">Inscriptions</span>
+                <span className="text-slate-400 text-sm font-medium">Inscriptions totales</span>
                 <svg className="w-5 h-5 text-orange-400" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
                 </svg>
               </div>
-              <p className="text-3xl font-bold text-slate-100">{totalRegistrations}</p>
+              <p className="text-3xl font-bold text-slate-100">{globalStats.totalRegistrations}</p>
             </div>
 
             <div className="bg-slate-800 rounded-xl border border-slate-700 p-6">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-slate-400 text-sm font-medium">Max Participants</span>
+                <span className="text-slate-400 text-sm font-medium">Événements actifs</span>
                 <svg className="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clipRule="evenodd" />
+                  <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
                 </svg>
               </div>
-              <p className="text-3xl font-bold text-slate-100">{totalMaxInscriptions}</p>
+              <p className="text-3xl font-bold text-slate-100">{globalStats.activeEvents}</p>
             </div>
 
             <div className="bg-slate-800 rounded-xl border border-slate-700 p-6">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-slate-400 text-sm font-medium">Places Restantes</span>
+                <span className="text-slate-400 text-sm font-medium">À confirmer</span>
+                <svg className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <p className="text-3xl font-bold text-slate-100">{globalStats.pendingConfirmations}</p>
+            </div>
+
+            <div className="bg-slate-800 rounded-xl border border-slate-700 p-6">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-slate-400 text-sm font-medium">Cette semaine</span>
                 <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  <path fillRule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clipRule="evenodd" />
                 </svg>
               </div>
-              <p className="text-3xl font-bold text-slate-100">{totalRemaining}</p>
-            </div>
-
-            <div className="bg-slate-800 rounded-xl border border-slate-700 p-6">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-slate-400 text-sm font-medium">Taux Remplissage</span>
-                <svg className="w-5 h-5 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
-                </svg>
-              </div>
-              <p className="text-3xl font-bold text-slate-100">{globalFillRate}%</p>
+              <p className="text-3xl font-bold text-slate-100">{globalStats.thisWeekRegistrations}</p>
             </div>
           </div>
 

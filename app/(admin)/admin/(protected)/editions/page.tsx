@@ -129,10 +129,10 @@ export default function EditionsListPage() {
           <div className="flex items-center justify-between mb-8">
             <div>
               <h1 className="text-3xl font-bold text-slate-100 mb-2">
-                Gestion des Éditions
+                Événements Planifiés
               </h1>
               <p className="text-slate-400">
-                Créez et gérez les éditions de vos programmes
+                Créez et gérez vos événements et éditions de programmes
               </p>
             </div>
             <Link
@@ -280,30 +280,29 @@ export default function EditionsListPage() {
                           </span>
                         </td>
                         <td className="px-6 py-4">
-                          <div className="flex items-center justify-end gap-2">
+                          <div className="flex items-center justify-end gap-4">
                             <Link
                               href={`/admin/editions/${edition.id}`}
-                              className="p-2 text-slate-400 hover:text-orange-400 transition-colors"
-                              title="Modifier"
+                              className="flex flex-col items-center gap-1 text-slate-400 hover:text-orange-400 transition-colors"
                             >
                               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                               </svg>
+                              <span className="text-[10px]">Modifier</span>
                             </Link>
                             <Link
                               href={`/admin/dashboard/${edition.id}`}
-                              className="p-2 text-slate-400 hover:text-blue-400 transition-colors"
-                              title="Voir inscriptions"
+                              className="flex flex-col items-center gap-1 text-slate-400 hover:text-blue-400 transition-colors"
                             >
                               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                               </svg>
+                              <span className="text-[10px]">Inscrits</span>
                             </Link>
                             <button
                               onClick={() => handleArchive(edition.id, edition.is_active)}
                               disabled={actionLoading === edition.id}
-                              className="p-2 text-slate-400 hover:text-yellow-400 transition-colors disabled:opacity-50"
-                              title={edition.is_active ? 'Archiver' : 'Réactiver'}
+                              className="flex flex-col items-center gap-1 text-slate-400 hover:text-yellow-400 transition-colors disabled:opacity-50"
                             >
                               {edition.is_active ? (
                                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -314,16 +313,17 @@ export default function EditionsListPage() {
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                                 </svg>
                               )}
+                              <span className="text-[10px]">{edition.is_active ? 'Archiver' : 'Activer'}</span>
                             </button>
                             <button
                               onClick={() => handleDelete(edition.id, edition.stats.registrations)}
                               disabled={actionLoading === edition.id}
-                              className="p-2 text-slate-400 hover:text-red-400 transition-colors disabled:opacity-50"
-                              title="Supprimer"
+                              className="flex flex-col items-center gap-1 text-slate-400 hover:text-red-400 transition-colors disabled:opacity-50"
                             >
                               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                               </svg>
+                              <span className="text-[10px]">Supprimer</span>
                             </button>
                           </div>
                         </td>
