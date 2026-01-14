@@ -74,6 +74,22 @@ export default function SessionDatePicker({
     });
   };
 
+  const formatTimeRange = (dateString: string, durationMinutes: number = 90) => {
+    const startDate = new Date(dateString);
+    const endDate = new Date(startDate.getTime() + durationMinutes * 60 * 1000);
+
+    const formatOptions: Intl.DateTimeFormatOptions = {
+      hour: '2-digit',
+      minute: '2-digit',
+      timeZone: 'Africa/Casablanca',
+    };
+
+    const startTime = startDate.toLocaleTimeString(locale === 'fr' ? 'fr-FR' : 'en-US', formatOptions);
+    const endTime = endDate.toLocaleTimeString(locale === 'fr' ? 'fr-FR' : 'en-US', formatOptions);
+
+    return `${startTime} - ${endTime}`;
+  };
+
   const getAvailabilityColor = (remainingSpots: number, maxCapacity: number) => {
     const percentage = remainingSpots / maxCapacity;
     if (percentage === 0) return 'text-red-600 bg-red-50';
@@ -215,7 +231,7 @@ export default function SessionDatePicker({
                         {formatDate(option.date_time)}
                       </div>
                       <div className="text-sm text-text-secondary">
-                        {formatTime(option.date_time)}
+                        {formatTimeRange(option.date_time)}
                       </div>
                     </div>
 
