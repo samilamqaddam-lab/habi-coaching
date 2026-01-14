@@ -329,14 +329,6 @@ export async function POST(
               </p>
             </div>
 
-            <div style="background: #fff8f0; padding: 20px; border-radius: 8px; border-left: 4px solid #E8A54B; margin: 20px 0;">
-              <p style="margin: 0; color: #333; line-height: 1.6;">
-                <strong>📍 Lieu des sessions</strong><br>
-                <a href="https://www.google.com/maps/place/36+Boulevard+d'Anfa,+Casablanca" target="_blank" style="color: #E8A54B; text-decoration: underline;">Shidomind</a><br>
-                36 B boulevard d'Anfa, 5ème étage, Appartement 54, Casablanca
-              </p>
-            </div>
-
             <div style="background: #fef2f2; padding: 20px; border-radius: 8px; border-left: 4px solid #ef4444; margin: 20px 0;">
               <p style="margin: 0; color: #991b1b; line-height: 1.6;">
                 <strong>⚠️ Important</strong><br>
