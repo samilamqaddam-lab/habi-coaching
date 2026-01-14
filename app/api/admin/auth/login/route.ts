@@ -7,7 +7,8 @@ export async function POST(request: NextRequest) {
     const { password } = body;
 
     // Check password against environment variable
-    const adminPassword = process.env.ADMIN_PASSWORD || 'admin123'; // Default for development
+    // Trim to handle any trailing newlines from environment variable issues
+    const adminPassword = (process.env.ADMIN_PASSWORD || 'admin123').trim();
 
     if (password === adminPassword) {
       // Set authentication cookie
