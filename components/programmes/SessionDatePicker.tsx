@@ -74,7 +74,7 @@ export default function SessionDatePicker({
     });
   };
 
-  const formatTimeRange = (dateString: string, durationMinutes: number = 90) => {
+  const formatTimeRange = (dateString: string, durationMinutes: number = 60) => {
     const startDate = new Date(dateString);
     const endDate = new Date(startDate.getTime() + durationMinutes * 60 * 1000);
 
