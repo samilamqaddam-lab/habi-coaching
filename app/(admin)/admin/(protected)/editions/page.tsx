@@ -80,13 +80,14 @@ export default function EditionsListPage() {
     }
   };
 
-  const handleDelete = async (editionId: string, hasRegistrations: boolean) => {
-    if (hasRegistrations) {
-      alert('Cette édition a des inscriptions. Vous ne pouvez que l\'archiver.');
-      return;
+  const handleDelete = async (editionId: string, registrationCount: number) => {
+    let confirmMessage = 'Supprimer définitivement cette édition ? Cette action est irréversible.';
+
+    if (registrationCount > 0) {
+      confirmMessage = `⚠️ ATTENTION: Cette édition a ${registrationCount} inscription(s).\n\nSupprimer cette édition supprimera également TOUTES les inscriptions associées.\n\nÊtes-vous sûr de vouloir continuer ?`;
     }
 
-    if (!confirm('Supprimer définitivement cette édition ? Cette action est irréversible.')) return;
+    if (!confirm(confirmMessage)) return;
 
     setActionLoading(editionId);
     try {
@@ -315,10 +316,10 @@ export default function EditionsListPage() {
                               )}
                             </button>
                             <button
-                              onClick={() => handleDelete(edition.id, edition.stats.registrations > 0)}
-                              disabled={actionLoading === edition.id || edition.stats.registrations > 0}
-                              className="p-2 text-slate-400 hover:text-red-400 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-                              title={edition.stats.registrations > 0 ? 'Impossible de supprimer (inscriptions)' : 'Supprimer'}
+                              onClick={() => handleDelete(edition.id, edition.stats.registrations)}
+                              disabled={actionLoading === edition.id}
+                              className="p-2 text-slate-400 hover:text-red-400 transition-colors disabled:opacity-50"
+                              title="Supprimer"
                             >
                               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
