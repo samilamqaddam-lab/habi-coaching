@@ -81,7 +81,7 @@ export default function PrivateYogaRequestModal({
             </h3>
             <p className="text-xs sm:text-sm text-text-secondary mt-1.5 leading-relaxed">
               {isGroupClass
-                ? 'Programme Sadhguru Gurukulam'
+                ? (edition?.title || 'Cours collectif')
                 : 'Programme personnalisé avec une professeure certifiée Sadhguru Gurukulam'}
             </p>
           </div>
