@@ -233,6 +233,22 @@ export default function SessionDatePicker({
                       <div className="text-sm text-text-secondary">
                         {formatTimeRange(option.date_time)}
                       </div>
+                      {/* Location with Google Maps link */}
+                      <a
+                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(option.location)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="text-xs text-golden-orange hover:text-golden-orange/80 flex items-center gap-1 mt-1"
+                      >
+                        <svg className="w-3 h-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                        </svg>
+                        <span className="truncate">{option.location}</span>
+                        <svg className="w-2.5 h-2.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
                     </div>
 
                     {/* Availability badge */}
@@ -279,33 +295,6 @@ export default function SessionDatePicker({
           </div>
         ))}
       </div>
-
-      {/* Location Note - Displayed once for all sessions, using data from first date option */}
-      {sessions.length > 0 && sessions[0].date_options.length > 0 && (
-        <div className="mt-4 rounded-lg border border-golden-orange/20 bg-golden-orange/5 p-4">
-          <div className="flex items-start gap-3">
-            <svg className="w-5 h-5 text-golden-orange mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-            </svg>
-            <div className="flex-1">
-              <p className="text-sm font-medium text-deep-blue mb-2">
-                {locale === 'fr' ? 'Toutes les sessions auront lieu à :' : 'All sessions will take place at:'}
-              </p>
-              <a
-                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(sessions[0].date_options[0].location)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-golden-orange hover:text-golden-orange/80 underline font-medium flex items-center gap-1"
-              >
-                {sessions[0].date_options[0].location}
-                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Loading overlay */}
       {isLoading && (
