@@ -45,7 +45,7 @@ export function useMultipleEditionsData(programmeKeys: string[]): EditionsDataMa
       await Promise.all(
         programmeKeys.map(async (key) => {
           try {
-            const response = await fetch(`/api/programmes/${key}`);
+            const response = await fetch(`/api/yoga/${key}`);
 
             if (response.ok) {
               const json = await response.json();

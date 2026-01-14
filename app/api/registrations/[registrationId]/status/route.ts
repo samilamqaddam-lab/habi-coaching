@@ -251,7 +251,7 @@ export async function PATCH(
               <div style="background: #fff8f0; padding: 20px; border-radius: 8px; border-left: 4px solid #E8A54B; margin: 20px 0;">
                 <p style="margin: 0; color: #333; line-height: 1.6;">
                   <strong>Vous souhaitez participer à une prochaine session?</strong><br>
-                  Visitez <a href="https://transcendencework.com/programmes" style="color: #E8A54B;">transcendencework.com/programmes</a> pour découvrir les prochaines dates disponibles.
+                  Visitez <a href="https://transcendencework.com/yoga" style="color: #E8A54B;">transcendencework.com/yoga</a> pour découvrir les prochaines dates disponibles.
                 </p>
               </div>
 

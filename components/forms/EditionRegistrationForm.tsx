@@ -78,7 +78,7 @@ export default function EditionRegistrationForm({
 
     try {
       setIsLoadingEdition(true);
-      const response = await fetch(`/api/programmes/${resolvedId}`);
+      const response = await fetch(`/api/yoga/${resolvedId}`);
 
       if (!response.ok) {
         throw new Error('Failed to fetch edition');
@@ -118,7 +118,7 @@ export default function EditionRegistrationForm({
     if (!isSupabaseConfigured()) return;
 
     try {
-      const response = await fetch(`/api/programmes/${resolvedId}/availability`);
+      const response = await fetch(`/api/yoga/${resolvedId}/availability`);
       if (response.ok) {
         const data = await response.json();
 
@@ -193,7 +193,7 @@ export default function EditionRegistrationForm({
     setFormErrors({});
 
     try {
-      const response = await fetch(`/api/programmes/${resolvedId}/register`, {
+      const response = await fetch(`/api/yoga/${resolvedId}/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

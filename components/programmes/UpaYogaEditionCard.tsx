@@ -43,7 +43,7 @@ export default function UpaYogaEditionCard({ onRegisterClick }: UpaYogaEditionCa
   useEffect(() => {
     async function fetchEdition() {
       try {
-        const response = await fetch('/api/programmes/upa-yoga');
+        const response = await fetch('/api/yoga/upa-yoga');
         if (!response.ok) {
           if (response.status === 404 || response.status === 503) {
             // No active edition or service unavailable - don't show the card

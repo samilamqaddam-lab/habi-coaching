@@ -516,7 +516,7 @@ export default function HomeContent({ testimonials, homepageContent, hero }: Hom
                     {t('home.services.yoga.description')}
                   </p>
                 </div>
-                <Button variant="outline" href="/programmes" fullWidth>
+                <Button variant="outline" href="/yoga" fullWidth>
                   {t('home.services.yoga.cta')}
                 </Button>
               </Card>

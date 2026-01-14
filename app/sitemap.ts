@@ -29,7 +29,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/programmes`,
+      url: `${BASE_URL}/yoga`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
@@ -82,7 +82,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Programme pages (if we have individual programme pages in the future)
   const programmePages: MetadataRoute.Sitemap = programmes.map((programme) => ({
-    url: `${BASE_URL}/programmes#${programme.slug.current}`,
+    url: `${BASE_URL}/yoga#${programme.slug.current}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.5,

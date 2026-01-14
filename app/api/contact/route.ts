@@ -167,7 +167,7 @@ export async function POST(request: NextRequest) {
               <h2>Merci pour votre message, ${validatedData.firstName} !</h2>
               <p>J'ai bien reçu votre demande concernant <strong>${interestLabels[validatedData.interest].toLowerCase()}</strong>.</p>
               <p>Je vous répondrai dans les plus brefs délais, généralement sous 24 à 48 heures.</p>
-              <p>En attendant, n'hésitez pas à explorer mes <a href="https://transcendencework.com/programmes">programmes</a> ou à consulter mes <a href="https://transcendencework.com/ressources">ressources</a>.</p>
+              <p>En attendant, n'hésitez pas à explorer mes <a href="https://transcendencework.com/yoga">programmes</a> ou à consulter mes <a href="https://transcendencework.com/ressources">ressources</a>.</p>
               <p style="margin-top: 30px;">
                 À très bientôt,<br>
                 <strong>Hajar Habi</strong><br>

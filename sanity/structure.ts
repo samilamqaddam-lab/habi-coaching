@@ -77,7 +77,7 @@ export const structure = (S: StructureBuilder, context: StructureResolverContext
                         .child(
                           S.documentList()
                             .title('Hero Yoga')
-                            .filter('_type == "heroSection" && page == "programmes"')
+                            .filter('_type == "heroSection" && page == "yoga"')
                         ),
                       S.listItem()
                         .title('Cours réguliers')

@@ -13,7 +13,7 @@ export const heroSection = defineType({
         list: [
           { title: 'Accueil', value: 'home' },
           { title: 'Coaching', value: 'coaching' },
-          { title: 'Programmes (Yoga)', value: 'programmes' },
+          { title: 'Yoga', value: 'yoga' },
           { title: 'Organisations', value: 'organisations' },
           { title: 'Contact', value: 'contact' },
           { title: 'Ressources', value: 'ressources' },
@@ -162,7 +162,7 @@ export const heroSection = defineType({
       const pageLabels: Record<string, string> = {
         home: 'Accueil',
         coaching: 'Coaching',
-        programmes: 'Programmes',
+        yoga: 'Yoga',
         organisations: 'Organisations',
         contact: 'Contact',
         ressources: 'Ressources',

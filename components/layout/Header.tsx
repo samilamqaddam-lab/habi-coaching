@@ -14,7 +14,7 @@ export default function Header() {
 
   const navigation = [
     { name: t('common.nav.organisations'), href: '/organisations' },
-    { name: t('common.nav.programmes'), href: '/programmes' },
+    { name: t('common.nav.programmes'), href: '/yoga' },
     { name: t('common.nav.coaching'), href: '/coaching' },
     { name: t('common.nav.ressources'), href: '/ressources' },
     { name: t('common.nav.contact'), href: '/contact' },

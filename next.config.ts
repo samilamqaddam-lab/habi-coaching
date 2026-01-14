@@ -17,6 +17,21 @@ const nextConfig: NextConfig = {
   },
   // Transpile Sanity packages for Next.js
   transpilePackages: ['sanity', '@sanity/ui', '@sanity/icons'],
+  // 301 redirects for URL migration
+  async redirects() {
+    return [
+      {
+        source: '/programmes',
+        destination: '/yoga',
+        permanent: true,
+      },
+      {
+        source: '/programmes/:path*',
+        destination: '/yoga/:path*',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

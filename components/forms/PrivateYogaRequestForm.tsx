@@ -58,7 +58,7 @@ export default function PrivateYogaRequestForm({
           return;
         }
 
-        const response = await fetch(`/api/programmes/${edition.id}/register`, {
+        const response = await fetch(`/api/yoga/${edition.id}/register`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -85,8 +85,8 @@ export default function PrivateYogaRequestForm({
         // or private class request
 
         if (isGroupClass) {
-          // Group class interest - send to /api/programmes/interest
-          const response = await fetch('/api/programmes/interest', {
+          // Group class interest - send to /api/yoga/interest
+          const response = await fetch('/api/yoga/interest', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

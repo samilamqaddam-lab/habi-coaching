@@ -12,7 +12,7 @@ export default function Footer() {
   const navigation = {
     services: [
       { name: t('common.footer.organisations'), href: '/organisations' },
-      { name: t('common.nav.programmes'), href: '/programmes' },
+      { name: t('common.nav.programmes'), href: '/yoga' },
       { name: t('common.footer.individualCoaching'), href: '/coaching' },
       { name: t('common.footer.expertise'), href: '/expertise' },
     ],

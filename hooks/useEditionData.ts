@@ -24,7 +24,7 @@ export function useEditionData(programmeKey: string): UseEditionDataReturn {
   useEffect(() => {
     async function fetchEdition() {
       try {
-        const response = await fetch(`/api/programmes/${programmeKey}`);
+        const response = await fetch(`/api/yoga/${programmeKey}`);
 
         if (!response.ok) {
           // 404 or 503 means no active edition - this is expected, not an error

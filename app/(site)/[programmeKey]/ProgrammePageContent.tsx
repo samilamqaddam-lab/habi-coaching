@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useTranslation } from '@/hooks/useTranslation';
 import { useEditionData } from '@/hooks/useEditionData';
 import PrivateYogaRequestForm from '@/components/forms/PrivateYogaRequestForm';
+import Container from '@/components/ui/Container';
 
 interface ProgrammePageContentProps {
   programmeKey: string;
@@ -94,7 +95,7 @@ export default function ProgrammePageContent({
     <div className="min-h-screen bg-white">
       {/* Hero Section - Compact */}
       <section className="relative bg-gradient-to-br from-golden-orange/10 via-white to-deep-blue/5 pt-24 pb-12">
-        <div className="container-custom">
+        <Container>
           {/* Breadcrumb */}
           <nav className="mb-6">
             <ol className="flex items-center gap-2 text-sm text-text-secondary">
@@ -105,7 +106,7 @@ export default function ProgrammePageContent({
               </li>
               <li>/</li>
               <li>
-                <Link href="/programmes" className="hover:text-golden-orange transition-colors">
+                <Link href="/yoga" className="hover:text-golden-orange transition-colors">
                   {locale === 'fr' ? 'Yoga' : 'Yoga'}
                 </Link>
               </li>
@@ -134,24 +135,12 @@ export default function ProgrammePageContent({
             {subtitle}
           </p>
 
-          {/* Date range if edition active */}
-          {hasActiveEdition && dateRange && (
-            <p className="text-text-secondary">
-              <span className="font-medium">{locale === 'fr' ? 'Prochaines dates:' : 'Next dates:'}</span>{' '}
-              {dateRange}
-              {minAvailable !== null && minAvailable > 0 && minAvailable <= 10 && (
-                <span className="ml-2 text-golden-orange font-medium">
-                  ({minAvailable} {locale === 'fr' ? 'places restantes' : 'spots left'})
-                </span>
-              )}
-            </p>
-          )}
-        </div>
+        </Container>
       </section>
 
       {/* Main Content - Two Columns */}
       <section className="py-12 md:py-16">
-        <div className="container-custom">
+        <Container>
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
             {/* Left Column - Programme Info */}
             <div className="space-y-8">
@@ -165,12 +154,6 @@ export default function ProgrammePageContent({
                     className="object-cover"
                     priority
                   />
-                  {/* Sadhguru Badge */}
-                  <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-full px-3 py-1.5 flex items-center gap-2 shadow-md">
-                    <span className="text-xs font-medium text-deep-blue">
-                      {locale === 'fr' ? 'Par Sadhguru' : 'By Sadhguru'}
-                    </span>
-                  </div>
                 </div>
               )}
 
@@ -225,24 +208,91 @@ export default function ProgrammePageContent({
 
               {/* Programme Details */}
               <div className="bg-gradient-to-br from-golden-orange/10 to-golden-orange/5 rounded-2xl p-6 border border-golden-orange/20">
-                <h3 className="font-heading text-lg font-semibold text-deep-blue mb-4">
-                  {locale === 'fr' ? 'Détails du programme' : 'Programme details'}
-                </h3>
-                <dl className="grid grid-cols-2 gap-4">
-                  <div>
-                    <dt className="text-sm text-text-secondary">{locale === 'fr' ? 'Durée' : 'Duration'}</dt>
-                    <dd className="font-medium text-deep-blue">{duration}</dd>
+                <dl className="space-y-4">
+                  {/* Dates */}
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-golden-orange/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <svg className="w-4 h-4 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <dt className="text-sm text-text-secondary">{locale === 'fr' ? 'Dates' : 'Dates'}</dt>
+                      <dd className="font-medium text-deep-blue">
+                        {hasActiveEdition && dateRange ? (
+                          <>
+                            {dateRange}
+                            {minAvailable !== null && minAvailable > 0 && minAvailable <= 10 && (
+                              <span className="ml-2 text-golden-orange text-sm">
+                                ({minAvailable} {locale === 'fr' ? 'places' : 'spots'})
+                              </span>
+                            )}
+                          </>
+                        ) : (
+                          <span className="text-text-secondary italic">
+                            {t(`programmes.classes.${translationKey}.schedule`)}
+                          </span>
+                        )}
+                      </dd>
+                    </div>
                   </div>
-                  <div>
-                    <dt className="text-sm text-text-secondary">{locale === 'fr' ? 'Tarif' : 'Price'}</dt>
-                    <dd className="font-bold text-golden-orange text-lg">{price}</dd>
+
+                  {/* Duration */}
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-golden-orange/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <svg className="w-4 h-4 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <dt className="text-sm text-text-secondary">{locale === 'fr' ? 'Durée' : 'Duration'}</dt>
+                      <dd className="font-medium text-deep-blue">{duration}</dd>
+                    </div>
+                  </div>
+
+                  {/* Price */}
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-golden-orange/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <svg className="w-4 h-4 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <dt className="text-sm text-text-secondary">{locale === 'fr' ? 'Tarif' : 'Price'}</dt>
+                      <dd className="font-bold text-golden-orange text-lg">{price}</dd>
+                    </div>
                   </div>
                 </dl>
               </div>
 
+              {/* Instructor */}
+              <div className="flex items-center gap-4 p-4 bg-white rounded-xl border border-gray-100 shadow-sm">
+                <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-golden-orange/20">
+                  <Image
+                    src="/images/Reel/Hajar.jpg"
+                    alt="Hajar Habi"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div>
+                  <p className="font-heading font-semibold text-deep-blue">Hajar Habi</p>
+                  <p className="text-sm text-text-secondary">
+                    {locale === 'fr'
+                      ? 'Professeure de Hatha Yoga Classique'
+                      : 'Classical Hatha Yoga Teacher'}
+                  </p>
+                  <p className="text-xs text-golden-orange font-medium">
+                    {locale === 'fr'
+                      ? 'Certifiée Sadhguru Gurukulam • 1750 heures de formation'
+                      : 'Sadhguru Gurukulam Certified • 1750 hours of training'}
+                  </p>
+                </div>
+              </div>
+
               {/* Back to programmes link */}
               <Link
-                href="/programmes"
+                href="/yoga"
                 className="inline-flex items-center gap-2 text-text-secondary hover:text-golden-orange transition-colors"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -285,7 +335,7 @@ export default function ProgrammePageContent({
               </div>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
     </div>
   );
