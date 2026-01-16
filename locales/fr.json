@@ -23,7 +23,7 @@
       "bookCall": "Réserver un appel",
       "requestQuote": "Demander un devis",
       "requestCustomProgram": "Demander un programme sur-mesure",
-      "bookFreeTrial": "Cours d'essai gratuit",
+      "bookFreeTrial": "Découvrir nos cours",
       "requestInfo": "Demander des informations",
       "seePrograms": "Voir les programmes",
       "ourPrograms": "Nos programmes"
@@ -305,9 +305,9 @@
       "moreInfo": "Plus d'informations"
     },
     "trialClass": {
-      "title": "Cours d'essai gratuit",
-      "description": "Nouveau·elle au yoga ? Venez essayer votre premier cours gratuitement, sans engagement.",
-      "button": "Réserver mon cours d'essai"
+      "title": "Nouveau·elle au yoga ?",
+      "description": "Nos cours sont accessibles à tous les niveaux. Contactez-nous pour discuter de vos objectifs et trouver le programme qui vous convient.",
+      "button": "Nous contacter"
     },
     "otherPrograms": {
       "subtitle": "Autres programmes",
@@ -606,9 +606,9 @@
     },
     "cta": {
       "title": "Prêt·e à Commencer ?",
-      "description": "Réservez votre cours d'essai gratuit ou contactez-nous pour toute question sur nos cours et programmes.",
-      "primaryCTA": "Cours d'essai gratuit",
-      "secondaryCTA": "Demander des informations"
+      "description": "Contactez-nous pour toute question sur nos cours et programmes, ou pour vous inscrire à une prochaine session.",
+      "primaryCTA": "Me contacter",
+      "secondaryCTA": "Voir les programmes"
     }
   },
   "organisations": {
@@ -749,7 +749,7 @@
       },
       "2": {
         "question": "Dois-je avoir de l'expérience en yoga pour participer aux cours ?",
-        "answer": "Pas du tout ! Mes cours sont ouverts à tous les niveaux, des débutants complets aux pratiquants expérimentés. Je propose même un cours d'essai gratuit pour les nouveaux au yoga."
+        "answer": "Pas du tout ! Mes cours sont ouverts à tous les niveaux, des débutants complets aux pratiquants expérimentés. Chaque pratique est adaptée pour que chacun puisse progresser à son rythme."
       },
       "3": {
         "question": "Comment se passe la première session découverte ?",

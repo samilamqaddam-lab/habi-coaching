@@ -23,7 +23,7 @@
       "bookCall": "Book a Call",
       "requestQuote": "Request a Quote",
       "requestCustomProgram": "Request a Custom Program",
-      "bookFreeTrial": "Free Trial Class",
+      "bookFreeTrial": "Discover Our Classes",
       "requestInfo": "Request Information",
       "seePrograms": "See Programs",
       "ourPrograms": "Our Programs"
@@ -305,9 +305,9 @@
       "moreInfo": "More Information"
     },
     "trialClass": {
-      "title": "Free Trial Class",
-      "description": "New to yoga? Come try your first class for free, no commitment.",
-      "button": "Book My Trial Class"
+      "title": "New to Yoga?",
+      "description": "Our classes are accessible to all levels. Contact us to discuss your goals and find the program that suits you.",
+      "button": "Contact Us"
     },
     "otherPrograms": {
       "subtitle": "Other Programs",
@@ -606,9 +606,9 @@
     },
     "cta": {
       "title": "Ready to Begin?",
-      "description": "Book your free trial class or contact us for any questions about our classes and programs.",
-      "primaryCTA": "Free Trial Class",
-      "secondaryCTA": "Request Information"
+      "description": "Contact us for any questions about our classes and programs, or to register for an upcoming session.",
+      "primaryCTA": "Contact Me",
+      "secondaryCTA": "View Programs"
     }
   },
   "organisations": {
@@ -750,7 +750,7 @@
       },
       "2": {
         "question": "Do I need yoga experience to join classes?",
-        "answer": "Not at all! My classes are open to all levels, from complete beginners to experienced practitioners. I even offer a free trial class for those new to yoga."
+        "answer": "Not at all! My classes are open to all levels, from complete beginners to experienced practitioners. Each practice is adapted so everyone can progress at their own pace."
       },
       "3": {
         "question": "How does the first discovery session work?",
