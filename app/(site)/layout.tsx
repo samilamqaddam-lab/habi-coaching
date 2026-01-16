@@ -15,7 +15,7 @@ const inter = Inter({
   display: "swap",
 });
 
-const siteUrl = "https://transcendencework.com";
+const siteUrl = "https://www.transcendencework.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
