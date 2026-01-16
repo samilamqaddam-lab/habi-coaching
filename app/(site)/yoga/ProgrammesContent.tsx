@@ -867,7 +867,7 @@ export default function ProgrammesContent() {
             <Button variant="primary" size="lg" href="/contact">
               {t('programmes.cta.primaryCTA')}
             </Button>
-            <Button variant="outline" size="lg" href="/contact">
+            <Button variant="outline" size="lg" href="#cours">
               {t('programmes.cta.secondaryCTA')}
             </Button>
           </div>
