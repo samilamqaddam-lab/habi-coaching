@@ -61,6 +61,7 @@ import PreviewBanner from "@/components/layout/PreviewBanner";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { Analytics } from "@vercel/analytics/react";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export default async function RootLayout({
   children,
@@ -82,6 +83,9 @@ export default async function RootLayout({
           <WhatsAppButton />
           <Analytics />
         </LanguageProvider>
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        )}
       </body>
     </html>
   );

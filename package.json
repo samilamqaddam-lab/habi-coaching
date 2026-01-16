@@ -10,6 +10,7 @@
     "migrate:homepage": "node scripts/migrate-homepage-to-sanity.mjs"
   },
   "dependencies": {
+    "@next/third-parties": "^16.1.2",
     "@portabletext/react": "^6.0.2",
     "@sanity/client": "^7.13.2",
     "@sanity/image-url": "^2.0.2",
