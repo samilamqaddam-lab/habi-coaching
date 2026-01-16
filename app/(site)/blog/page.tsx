@@ -8,8 +8,20 @@ import { articlesQuery, heroByPageQuery } from '@/lib/sanity.queries'
 export const revalidate = 60 // Revalidate every minute
 
 export const metadata: Metadata = {
-  title: 'Blog | Transcendence Work',
+  title: 'Blog - Articles & Inspirations',
   description: 'Articles sur le yoga, le coaching, le leadership et le bien-être au travail.',
+  openGraph: {
+    title: 'Blog - Articles & Inspirations | Transcendence Work',
+    description: 'Articles sur le yoga, le coaching, le leadership et le bien-être au travail.',
+    images: [
+      {
+        url: '/images/heroes/ressources-notebook-hero.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Blog - Transcendence Work',
+      },
+    ],
+  },
 }
 
 interface Article {
