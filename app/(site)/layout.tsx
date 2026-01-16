@@ -30,6 +30,7 @@ export const viewport: Viewport = {
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import PreviewBanner from "@/components/layout/PreviewBanner";
+import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 
 export default async function RootLayout({
@@ -49,6 +50,7 @@ export default async function RootLayout({
           <main className={`pt-20 ${isDraftMode ? 'pb-16' : ''}`}>{children}</main>
           <Footer />
           {isDraftMode && <PreviewBanner />}
+          <WhatsAppButton />
         </LanguageProvider>
       </body>
     </html>
