@@ -2,10 +2,10 @@ import { Metadata } from 'next'
 import ProgrammesContent from './ProgrammesContent'
 
 export const metadata: Metadata = {
-  title: 'Yoga Traditionnel - Hatha Yoga Classique par Sadhguru',
+  title: 'Programmes de Hatha Yoga Classique',
   description: 'Découvrez le Hatha Yoga Classique structuré par Sadhguru. Cours collectifs, programmes santé et bien-être avec Hajar Habi, certifiée Sadhguru Gurukulam.',
   openGraph: {
-    title: 'Yoga Traditionnel - Hatha Yoga Classique par Sadhguru',
+    title: 'Programmes de Hatha Yoga Classique',
     description: 'Découvrez le Hatha Yoga Classique structuré par Sadhguru. Cours collectifs, programmes santé et bien-être.',
     images: [
       {
