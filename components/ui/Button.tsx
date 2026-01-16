@@ -5,6 +5,8 @@ interface ButtonProps {
   variant?: 'primary' | 'secondary' | 'outline' | 'text' | 'corporate';
   size?: 'sm' | 'md' | 'lg';
   href?: string;
+  target?: string;
+  rel?: string;
   onClick?: (e?: React.MouseEvent) => void;
   className?: string;
   fullWidth?: boolean;
@@ -17,6 +19,8 @@ export default function Button({
   variant = 'primary',
   size = 'md',
   href,
+  target,
+  rel,
   onClick,
   className = '',
   fullWidth = false,
@@ -45,7 +49,7 @@ export default function Button({
 
   if (href) {
     return (
-      <a href={href} className={classes}>
+      <a href={href} target={target} rel={rel} className={classes}>
         {children}
       </a>
     );

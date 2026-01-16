@@ -53,10 +53,25 @@ function BenefitsAccordion({ programKey, t }: { programKey: string; t: (key: str
   )
 }
 
+// WhatsApp configuration
+const WHATSAPP_NUMBER = '212663096857';
+
 // Composant ProgramCard pour les programmes de santé et bien-être
-function ProgramCard({ type, t }: { type: 'health' | 'wellbeing'; t: (key: string) => any }) {
+function ProgramCard({ type, t, locale }: { type: 'health' | 'wellbeing'; t: (key: string) => any; locale: string }) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const programKey = `programmes.otherPrograms.${type}`
+
+  // WhatsApp pre-filled messages based on program type
+  const whatsappMessages = {
+    health: locale === 'fr'
+      ? "Bonjour, je souhaite avoir une orientation concernant le programme Yoga pour la Santé. Pouvez-vous m'aider à trouver un accompagnement adapté à ma situation ?"
+      : "Hello, I would like guidance about the Yoga for Health program. Can you help me find support adapted to my situation?",
+    wellbeing: locale === 'fr'
+      ? "Bonjour, je souhaite discuter de mes besoins concernant le programme Yoga pour le Bien-être. Pouvez-vous m'aider à trouver ce qui me convient ?"
+      : "Hello, I would like to discuss my needs regarding the Yoga for Wellbeing program. Can you help me find what suits me?",
+  };
+
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessages[type])}`;
 
   // Helper to get array items from translations
   const getArrayItems = (baseKey: string, maxItems = 10): string[] => {
@@ -228,9 +243,15 @@ function ProgramCard({ type, t }: { type: 'health' | 'wellbeing'; t: (key: strin
             </p>
           )}
 
-          {/* CTA */}
+          {/* CTA - WhatsApp redirect */}
           <div className="space-y-2">
-            <Button variant="primary" size="lg" href="/contact">
+            <Button
+              variant="primary"
+              size="lg"
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {data.ctaButton}
             </Button>
             <p className="text-xs text-text-secondary italic">
@@ -582,8 +603,8 @@ export default function ProgrammesContent() {
 
         {/* Méga-cartes empilées verticalement */}
         <div className="space-y-12">
-          <ProgramCard type="health" t={t} />
-          <ProgramCard type="wellbeing" t={t} />
+          <ProgramCard type="health" t={t} locale={locale} />
+          <ProgramCard type="wellbeing" t={t} locale={locale} />
         </div>
       </Section>
 
