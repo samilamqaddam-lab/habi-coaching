@@ -60,6 +60,7 @@ import Footer from "@/components/layout/Footer";
 import PreviewBanner from "@/components/layout/PreviewBanner";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { Analytics } from "@vercel/analytics/react";
 
 export default async function RootLayout({
   children,
@@ -79,6 +80,7 @@ export default async function RootLayout({
           <Footer />
           {isDraftMode && <PreviewBanner />}
           <WhatsAppButton />
+          <Analytics />
         </LanguageProvider>
       </body>
     </html>
