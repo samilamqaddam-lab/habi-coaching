@@ -18,6 +18,7 @@ interface RegistrationCardProps {
     whatsapp: string | null;
     message: string | null;
     status: 'pending' | 'confirmed' | 'cancelled';
+    payment_request_sent: boolean;
     created_at: string;
     date_choices: DateChoice[];
   };
@@ -52,7 +53,8 @@ export default function RegistrationCard({ registration }: RegistrationCardProps
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isSendingPaymentRequest, setIsSendingPaymentRequest] = useState(false);
-  const [paymentRequestSent, setPaymentRequestSent] = useState(false);
+  // Initialize with DB value, can be updated after sending
+  const [paymentRequestSent, setPaymentRequestSent] = useState(registration.payment_request_sent || false);
   const router = useRouter();
 
   const handleStatusChange = async (newStatus: 'pending' | 'confirmed' | 'cancelled') => {
@@ -116,9 +118,8 @@ export default function RegistrationCard({ registration }: RegistrationCardProps
         throw new Error('Failed to send payment request');
       }
 
+      // Mark as sent (persistent - stays green)
       setPaymentRequestSent(true);
-      // Reset the "sent" state after 5 seconds
-      setTimeout(() => setPaymentRequestSent(false), 5000);
     } catch (error) {
       console.error('Error sending payment request:', error);
       alert('Erreur lors de l\'envoi de la demande de paiement');
@@ -306,15 +307,16 @@ export default function RegistrationCard({ registration }: RegistrationCardProps
               {/* Payment Request Button */}
               <button
                 onClick={handlePaymentRequest}
-                disabled={isSendingPaymentRequest || paymentRequestSent}
+                disabled={isSendingPaymentRequest}
                 className={`
                   flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all
                   ${paymentRequestSent
-                    ? 'bg-emerald-400/20 text-emerald-400 border-2 border-emerald-400/50'
+                    ? 'bg-emerald-400/20 text-emerald-400 border-2 border-emerald-400/50 hover:bg-emerald-400/30'
                     : 'bg-slate-700 text-slate-300 hover:bg-orange-400/10 hover:text-orange-400 hover:border-orange-400/30 border-2 border-transparent'
                   }
                   ${isSendingPaymentRequest ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
                 `}
+                title={paymentRequestSent ? 'Renvoyer la demande de paiement' : 'Envoyer une demande de paiement'}
               >
                 {isSendingPaymentRequest ? (
                   <>
@@ -329,7 +331,7 @@ export default function RegistrationCard({ registration }: RegistrationCardProps
                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    Envoyé ✓
+                    Paiement demandé ✓
                   </>
                 ) : (
                   <>

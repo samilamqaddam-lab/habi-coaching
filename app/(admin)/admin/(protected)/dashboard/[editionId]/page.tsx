@@ -13,6 +13,7 @@ interface Registration {
   whatsapp: string | null;
   message: string | null;
   status: 'pending' | 'confirmed' | 'cancelled';
+  payment_request_sent: boolean;
   created_at: string;
   date_choices: Array<{
     session_number: number;
@@ -49,6 +50,7 @@ async function getEditionWithRegistrations(editionId: string) {
         whatsapp,
         message,
         status,
+        payment_request_sent,
         created_at
       `)
       .eq('edition_id', editionId)

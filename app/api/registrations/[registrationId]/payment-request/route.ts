@@ -147,13 +147,13 @@ export async function POST(
           </p>
 
           <p style="font-size: 16px; line-height: 1.6; color: #333;">
-            Pour finaliser votre place, merci de procéder au paiement selon l'une des options suivantes :
+            Pour finaliser votre place, merci de procéder au paiement par virement bancaire :
           </p>
 
           ${sessionsHtml}
 
           <div style="background: white; padding: 24px; border-radius: 8px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-            <h2 style="color: #E8A54B; margin-top: 0; font-size: 18px;">💳 Option 1 : Virement bancaire</h2>
+            <h2 style="color: #E8A54B; margin-top: 0; font-size: 18px;">💳 Virement bancaire</h2>
             <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
               <tr>
                 <td style="padding: 8px 0; color: #666; width: 150px;"><strong>Titulaire :</strong></td>
@@ -170,10 +170,10 @@ export async function POST(
             </table>
           </div>
 
-          <div style="background: white; padding: 24px; border-radius: 8px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-            <h2 style="color: #E8A54B; margin-top: 0; font-size: 18px;">💵 Option 2 : Espèces</h2>
-            <p style="margin: 10px 0; color: #333; line-height: 1.6;">
-              Paiement en espèces possible lors du premier cours au studio <strong>Shido Mind</strong>, Casablanca.
+          <div style="background: #f0f4f8; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <p style="margin: 0; color: #333; line-height: 1.6;">
+              <strong>💬 Besoin d'aide ou autre moyen de paiement ?</strong><br>
+              N'hésitez pas à me contacter directement en répondant à cet email ou via WhatsApp au <a href="https://wa.me/212663096857" style="color: #25D366; font-weight: 500;">+212 6 63 09 68 57</a>
             </p>
           </div>
 
@@ -216,9 +216,16 @@ export async function POST(
 
     console.log('Payment request email sent to:', registration.email);
 
+    // Update the payment_request_sent flag in the database
+    await supabaseAdmin
+      .from('registrations')
+      .update({ payment_request_sent: true })
+      .eq('id', registrationId);
+
     return NextResponse.json({
       success: true,
       message: 'Email de demande de paiement envoyé avec succès',
+      payment_request_sent: true,
     });
 
   } catch (error) {
