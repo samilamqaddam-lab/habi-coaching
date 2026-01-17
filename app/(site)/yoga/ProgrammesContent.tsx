@@ -810,12 +810,9 @@ export default function ProgrammesContent() {
                   />
                 </svg>
               </div>
-              <h4 className="font-semibold text-deep-blue mb-2">
+              <h4 className="font-semibold text-deep-blue">
                 {t('programmes.custom.features.groups.title')}
               </h4>
-              <p className="text-sm text-text-secondary">
-                {t('programmes.custom.features.groups.description')}
-              </p>
             </div>
 
             <div className="text-center">
@@ -834,12 +831,9 @@ export default function ProgrammesContent() {
                   />
                 </svg>
               </div>
-              <h4 className="font-semibold text-deep-blue mb-2">
+              <h4 className="font-semibold text-deep-blue">
                 {t('programmes.custom.features.locations.title')}
               </h4>
-              <p className="text-sm text-text-secondary">
-                {t('programmes.custom.features.locations.description')}
-              </p>
             </div>
 
             <div className="text-center">
@@ -858,17 +852,20 @@ export default function ProgrammesContent() {
                   />
                 </svg>
               </div>
-              <h4 className="font-semibold text-deep-blue mb-2">
+              <h4 className="font-semibold text-deep-blue">
                 {t('programmes.custom.features.personalized.title')}
               </h4>
-              <p className="text-sm text-text-secondary">
-                {t('programmes.custom.features.personalized.description')}
-              </p>
             </div>
           </div>
 
           <div className="text-center">
-            <Button variant="primary" size="lg" href="/contact">
+            <Button
+              variant="primary"
+              size="lg"
+              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Bonjour, je souhaite avoir plus d\'informations sur les programmes yoga personnalisés.')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {t('programmes.custom.button')}
             </Button>
           </div>
@@ -885,10 +882,16 @@ export default function ProgrammesContent() {
             {t('programmes.cta.description')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="primary" size="lg" href="/contact">
+            <Button variant="primary" size="lg" href="#cours">
               {t('programmes.cta.primaryCTA')}
             </Button>
-            <Button variant="outline" size="lg" href="#cours">
+            <Button
+              variant="outline"
+              size="lg"
+              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Bonjour, je souhaite avoir plus d\'informations sur les programmes yoga.')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {t('programmes.cta.secondaryCTA')}
             </Button>
           </div>

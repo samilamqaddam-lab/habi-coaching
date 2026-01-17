@@ -20,17 +20,17 @@ const siteUrl = "https://www.transcendencework.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Transcendence Work - Coaching Holistique & Yoga Traditionnel",
+    default: "Transcendence Work - Coaching Professionnel et Yoga Classique",
     template: "%s | Transcendence Work",
   },
-  description: "Hajar Habi - Experte en coaching organisationnel et pratiques yogiques traditionnelles. Transformation des organisations et accompagnement individuel.",
+  description: "Hajar Habi - Coaching professionnel et Yoga classique. Accompagnement des individus et des organisations.",
   openGraph: {
     type: "website",
     locale: "fr_FR",
     url: siteUrl,
     siteName: "Transcendence Work",
-    title: "Transcendence Work - Coaching Holistique & Yoga Traditionnel",
-    description: "Hajar Habi - Experte en coaching organisationnel et pratiques yogiques traditionnelles. Transformation des organisations et accompagnement individuel.",
+    title: "Transcendence Work - Coaching Professionnel et Yoga Classique",
+    description: "Hajar Habi - Coaching professionnel et Yoga classique. Accompagnement des individus et des organisations.",
     images: [
       {
         url: "/images/Reel/hajar-professional.jpg",
@@ -42,8 +42,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Transcendence Work - Coaching Holistique & Yoga Traditionnel",
-    description: "Hajar Habi - Experte en coaching organisationnel et pratiques yogiques traditionnelles.",
+    title: "Transcendence Work - Coaching Professionnel et Yoga Classique",
+    description: "Hajar Habi - Coaching professionnel et Yoga classique. Accompagnement des individus et des organisations.",
     images: ["/images/Reel/hajar-professional.jpg"],
   },
 };

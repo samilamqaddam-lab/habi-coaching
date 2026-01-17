@@ -29,8 +29,8 @@
       "ourPrograms": "Nos programmes"
     },
     "footer": {
-      "tagline": "Coaching holistique & Yoga traditionnel",
-      "description": "Accompagnement professionnel et transformation personnelle au Maroc",
+      "tagline": "Coaching professionnel et Yoga classique",
+      "description": "Accompagnement des individus et des organisations",
       "quickLinks": "Liens Rapides",
       "services": "Services",
       "about": "À propos",
@@ -216,7 +216,7 @@
     "regularClasses": {
       "subtitle": "Cours Collectifs",
       "title": "Rejoignez-Nous sur le Tapis",
-      "autonomy": "Ces programmes, structurés par Sadhguru, sont conçus pour rendre chaque participant·e autonome : à l'issue de chaque programme, les pratiques peuvent être poursuivies de manière indépendante, chez soi, en toute autonomie."
+      "autonomy": "Ces programmes, structurés par Sadhguru, sont conçus pour rendre chaque participant·e autonome : à l'issue de chaque programme, les pratiques peuvent être poursuivies de manière indépendante chez soi, en toute autonomie."
     },
     "classes": {
       "upaYoga": {
@@ -320,7 +320,7 @@
       "subtitle": "Autres programmes",
       "title": "Pour la santé et le bien-être",
       "intro": "Des parcours guidés alliant yoga, pranayama, méditation et chants traditionnels, conçus pour accompagner votre santé et votre bien-être de manière holistique.",
-      "disclaimer": "Ces programmes s'inspirent des orientations de Sadhguru et de la tradition yogique Isha, mais sont dispensés par Hajar Habi de manière indépendante.",
+      "disclaimer": "Les programmes proposés ici s'inspirent des orientations de Sadhguru concernant certaines pratiques yogiques susceptibles de soutenir le bien-être global dans le cadre de certaines problématiques de santé.",
       "medicalWarning": "Ces programmes ne se substituent en aucun cas à un avis médical, un diagnostic ou un traitement. Ils constituent un soutien complémentaire au bien-être global.",
 
       "health": {
@@ -587,8 +587,8 @@
         "description": "Nous explorons les dimensions subtiles du yoga : pranayama, méditation, philosophie yogique et pratiques contemplatives."
       },
       "smallGroups": {
-        "title": "Petits Groupes",
-        "description": "Maximum 12 personnes par cours pour garantir un accompagnement personnalisé et créer une vraie communauté de pratique."
+        "title": "Cours individuels & en groupe",
+        "description": "Je propose des cours individuels ou en groupes au sein de studios de yoga, d'entreprises, associations, écoles et universités."
       }
     },
     "custom": {
@@ -597,25 +597,23 @@
       "description": "Vous souhaitez un programme sur-mesure pour votre groupe, votre équipe ou une occasion spéciale ? Nous concevons des expériences uniques adaptées à vos besoins.",
       "features": {
         "groups": {
-          "title": "Groupes privés",
-          "description": "À partir de 6 personnes"
+          "title": "Groupes privés"
         },
         "locations": {
-          "title": "Lieux uniques",
-          "description": "Riads, désert, montagnes, océan"
+          "title": "Lieux flexibles"
         },
         "personalized": {
-          "title": "100% personnalisé",
-          "description": "Contenu adapté à vos besoins"
+          "title": "100% personnalisé"
         }
       },
-      "button": "Demander un programme sur-mesure"
+      "secondaryButton": "Réserve un cours",
+      "button": "Demander des infos"
     },
     "cta": {
       "title": "Prêt·e à Commencer ?",
       "description": "Contactez-nous pour toute question sur nos cours et programmes, ou pour vous inscrire à une prochaine session.",
-      "primaryCTA": "Me contacter",
-      "secondaryCTA": "Voir les programmes"
+      "primaryCTA": "Réserve un cours",
+      "secondaryCTA": "Demander des infos"
     }
   },
   "organisations": {
@@ -1161,7 +1159,7 @@
         },
         "cancellation": {
           "title": "Annulation et remboursement",
-          "content": "• Annulation plus de 7 jours avant : remboursement intégral ou report\n• Annulation entre 3 et 7 jours : remboursement de 50% ou report\n• Annulation moins de 3 jours : aucun remboursement\n\nEn cas d'annulation de notre part, un remboursement intégral ou un report sera proposé."
+          "content": "• Annulation dans les 7 jours précédant le début du programme : aucun remboursement\n• Annulation entre 7 et 14 jours avant le début : remboursement de 50% du montant total, moins 10% de frais administratifs\n• Annulation plus de 14 jours avant le début : remboursement intégral, moins 10% de frais administratifs\n\nEn cas de circonstances exceptionnelles empêchant la participation, l'inscription peut être reportée à un programme ultérieur. Merci de nous contacter par email avec une explication détaillée.\n\nEn cas d'annulation de notre part, un remboursement intégral ou un report sera proposé."
         },
         "responsibility": {
           "title": "Responsabilité",

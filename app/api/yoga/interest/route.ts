@@ -169,9 +169,13 @@ export async function POST(request: NextRequest) {
           </p>
 
           <p style="font-size: 16px; line-height: 1.6; color: #333; margin-top: 30px;">
-            Namaste 🙏<br>
+            Namaskaram,<br>
+            <em>In Love, Light & Laughter</em><br><br>
+            🙏<br><br>
             <strong>Hajar Habi</strong><br>
-            <span style="color: #666; font-size: 14px;">Coach Holistique & Enseignante de Yoga Traditionnel</span>
+            <span style="color: #666; font-size: 14px;">Professeure de Hatha Yoga Classique</span><br>
+            <span style="color: #666; font-size: 14px;">Certifiée par Sadhguru Gurukulam</span><br>
+            <a href="https://www.transcendencework.com/yoga" style="color: #EC8C44; font-size: 14px;">www.transcendencework.com/yoga</a>
           </p>
 
           <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">

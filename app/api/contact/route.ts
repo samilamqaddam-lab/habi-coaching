@@ -169,13 +169,17 @@ export async function POST(request: NextRequest) {
               <p>Je vous répondrai dans les plus brefs délais, généralement sous 24 à 48 heures.</p>
               <p>En attendant, n'hésitez pas à explorer mes <a href="https://transcendencework.com/yoga">programmes</a> ou à consulter mes <a href="https://transcendencework.com/ressources">ressources</a>.</p>
               <p style="margin-top: 30px;">
-                À très bientôt,<br>
+                Namaskaram,<br>
+                <em>In Love, Light & Laughter</em><br><br>
+                🙏<br><br>
                 <strong>Hajar Habi</strong><br>
-                <em>Coach Holistique & Professeure de Yoga</em>
+                Professeure de Hatha Yoga Classique<br>
+                Certifiée par Sadhguru Gurukulam<br>
+                <a href="https://www.transcendencework.com/yoga">www.transcendencework.com/yoga</a>
               </p>
             </div>
             <div class="footer">
-              <p>Transcendence Work - Coaching Holistique & Yoga Traditionnel</p>
+              <p>Transcendence Work - Coaching Professionnel et Yoga Classique</p>
               <p><a href="https://transcendencework.com">transcendencework.com</a></p>
             </div>
           </div>

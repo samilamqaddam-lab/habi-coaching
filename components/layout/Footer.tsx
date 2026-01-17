@@ -85,8 +85,6 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-sage-light">
               <li>
                 <strong className="text-warm-white">{t('common.footer.coachTeamEMCC')}</strong>
-                <br />
-                <span className="text-xs">(EMCC)</span>
               </li>
               <li className="pt-3">
                 <strong className="text-warm-white">{t('common.footer.ishaFoundation')}</strong>
@@ -105,10 +103,10 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-sage-light">
               <li>
                 <a
-                  href="mailto:contact@transcendencework.com"
+                  href="mailto:hajar@transcendencework.com"
                   className="hover:text-warm-white transition-colors duration-200"
                 >
-                  contact@transcendencework.com
+                  hajar@transcendencework.com
                 </a>
               </li>
               <li>
@@ -116,7 +114,7 @@ export default function Footer() {
                   href="tel:+212663096857"
                   className="hover:text-warm-white transition-colors duration-200"
                 >
-                  +212 663 096 857
+                  +212 6 63 09 68 57
                 </a>
               </li>
             </ul>

@@ -177,13 +177,17 @@ export async function POST(request: NextRequest) {
               <p>En attendant, vous pouvez découvrir mes <a href="https://transcendencework.com/organisations">solutions entreprise</a> ou me contacter directement si vous avez des questions.</p>
 
               <p style="margin-top: 30px;">
-                Cordialement,<br>
+                Namaskaram,<br>
+                <em>In Love, Light & Laughter</em><br><br>
+                🙏<br><br>
                 <strong>Hajar Habi</strong><br>
-                <em>Coach Holistique & Consultante Bien-être en Entreprise</em>
+                Professeure de Hatha Yoga Classique<br>
+                Certifiée par Sadhguru Gurukulam<br>
+                <a href="https://www.transcendencework.com/yoga">www.transcendencework.com/yoga</a>
               </p>
             </div>
             <div class="footer">
-              <p>Transcendence Work - Solutions Entreprise</p>
+              <p>Transcendence Work - Coaching Professionnel et Yoga Classique</p>
               <p><a href="https://transcendencework.com">transcendencework.com</a></p>
             </div>
           </div>

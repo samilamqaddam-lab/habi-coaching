@@ -29,8 +29,8 @@
       "ourPrograms": "Our Programs"
     },
     "footer": {
-      "tagline": "Holistic Coaching & Traditional Yoga",
-      "description": "Professional guidance and personal transformation in Morocco",
+      "tagline": "Professional Coaching and Classical Yoga",
+      "description": "Supporting individuals and organizations",
       "quickLinks": "Quick Links",
       "services": "Services",
       "about": "About",
@@ -320,7 +320,7 @@
       "subtitle": "Other Programs",
       "title": "For Health and Wellbeing",
       "intro": "Guided pathways combining yoga, pranayama, meditation and traditional chants, designed to support your health and wellbeing holistically.",
-      "disclaimer": "These programs are inspired by Sadhguru's guidance and the Isha yogic tradition, but are delivered independently by Hajar Habi.",
+      "disclaimer": "The programs offered here are inspired by Sadhguru's guidance on certain yogic practices that may support overall wellbeing in the context of certain health issues.",
       "medicalWarning": "These programs do not substitute medical advice, diagnosis or treatment. They provide complementary support for overall wellbeing.",
 
       "health": {
@@ -587,8 +587,8 @@
         "description": "The yoga I teach goes beyond postures. We explore breathing, meditation and yogic philosophy."
       },
       "smallGroups": {
-        "title": "Small Groups",
-        "description": "I teach in small groups (max 12 people) to maintain quality of teaching and individual attention."
+        "title": "Individual & Group Classes",
+        "description": "I offer individual or group classes in yoga studios, companies, associations, schools and universities."
       }
     },
     "custom": {
@@ -597,25 +597,23 @@
       "description": "Would you like a custom program for your group, your team or a special occasion? We design unique experiences adapted to your needs.",
       "features": {
         "groups": {
-          "title": "Private groups",
-          "description": "From 6 people"
+          "title": "Private groups"
         },
         "locations": {
-          "title": "Unique locations",
-          "description": "Riads, desert, mountains, ocean"
+          "title": "Flexible locations"
         },
         "personalized": {
-          "title": "100% personalized",
-          "description": "Content adapted to your needs"
+          "title": "100% personalized"
         }
       },
-      "button": "Request a Custom Program"
+      "secondaryButton": "Book a class",
+      "button": "Request info"
     },
     "cta": {
       "title": "Ready to Begin?",
       "description": "Contact us for any questions about our classes and programs, or to register for an upcoming session.",
-      "primaryCTA": "Contact Me",
-      "secondaryCTA": "View Programs"
+      "primaryCTA": "Book a class",
+      "secondaryCTA": "Request info"
     }
   },
   "organisations": {
@@ -1164,7 +1162,7 @@
         },
         "cancellation": {
           "title": "Cancellation and Refund",
-          "content": "• Cancellation more than 7 days before: full refund or rescheduling\n• Cancellation between 3 and 7 days: 50% refund or rescheduling\n• Cancellation less than 3 days: no refund\n\nIn case of cancellation on our part, a full refund or rescheduling will be offered."
+          "content": "• Cancellation within 7 days of the program start date: no refund\n• Cancellation between 7 and 14 days before the start: 50% refund of the full fee, minus a 10% administration fee\n• Cancellation more than 14 days before the start: full refund, minus a 10% administration fee\n\nIf unable to attend due to exceptional circumstances, enrollment can be shifted to a future program. Please contact us by email with a detailed explanation.\n\nIn case of cancellation on our part, a full refund or rescheduling will be offered."
         },
         "responsibility": {
           "title": "Responsibility",
