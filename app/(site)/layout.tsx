@@ -59,9 +59,12 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import PreviewBanner from "@/components/layout/PreviewBanner";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
+import CookieConsentBanner from "@/components/ui/CookieConsentBanner";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { Analytics } from "@vercel/analytics/react";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import ConditionalGA4 from "@/components/analytics/ConditionalGA4";
+import JsonLd from "@/components/seo/JsonLd";
+import { organizationSchema, personSchema, websiteSchema } from "@/lib/structured-data";
 
 export default async function RootLayout({
   children,
@@ -72,6 +75,11 @@ export default async function RootLayout({
 
   return (
     <html lang="fr">
+      <head>
+        <JsonLd data={organizationSchema} />
+        <JsonLd data={personSchema} />
+        <JsonLd data={websiteSchema} />
+      </head>
       <body
         className={`${playfair.variable} ${inter.variable} antialiased`}
       >
@@ -81,10 +89,11 @@ export default async function RootLayout({
           <Footer />
           {isDraftMode && <PreviewBanner />}
           <WhatsAppButton />
+          <CookieConsentBanner />
           <Analytics />
         </LanguageProvider>
         {process.env.NEXT_PUBLIC_GA_ID && (
-          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+          <ConditionalGA4 gaId={process.env.NEXT_PUBLIC_GA_ID} />
         )}
       </body>
     </html>

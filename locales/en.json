@@ -1059,5 +1059,115 @@
       "radius": "Border Radius"
     },
     "footer": "© Transcendence Work. These assets are protected. For any use, please contact us."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you are looking for does not exist or has been moved.",
+    "cta": "Back to home",
+    "suggestions": "You might be looking for..."
+  },
+  "faq": {
+    "description": "Find answers to your questions about coaching, yoga and our services.",
+    "cta": "Have more questions? Feel free to contact us."
+  },
+  "cookies": {
+    "message": "We use cookies to improve your experience and analyze our traffic.",
+    "learnMore": "Learn more",
+    "accept": "Accept",
+    "reject": "Reject"
+  },
+  "legal": {
+    "mentions": {
+      "title": "Legal Notice",
+      "description": "Legal information about the Transcendence Work website",
+      "sections": {
+        "editor": {
+          "title": "Website Publisher",
+          "content": "Hajar Habi - Transcendence Work\nCasablanca, Morocco\nEmail: contact@transcendencework.com\nPhone: +212 663 096 857"
+        },
+        "hosting": {
+          "title": "Hosting",
+          "content": "Vercel Inc.\n340 S Lemon Ave #4133\nWalnut, CA 91789, USA\nWebsite: vercel.com"
+        },
+        "intellectual": {
+          "title": "Intellectual Property",
+          "content": "All content on this website (text, images, logos, videos, sounds, layout) is the exclusive property of Hajar Habi / Transcendence Work or its partners. Any reproduction, representation, modification, publication, or partial or total adaptation of the site elements is prohibited without prior written authorization."
+        },
+        "responsibility": {
+          "title": "Limitation of Liability",
+          "content": "Transcendence Work strives to ensure the accuracy and updating of information published on this site. However, it cannot guarantee the accuracy, precision, or completeness of the information provided. Consequently, Transcendence Work declines all responsibility for errors, inaccuracies, or omissions."
+        }
+      }
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "description": "How we protect your personal data",
+      "lastUpdated": "Last updated: January 2026",
+      "sections": {
+        "intro": {
+          "title": "Introduction",
+          "content": "Transcendence Work (\"we\", \"our\") is committed to protecting your privacy. This policy describes how we collect, use, and protect your personal data in accordance with GDPR and Moroccan law 09-08."
+        },
+        "dataCollection": {
+          "title": "Data Collected",
+          "content": "We collect data you voluntarily provide:\n• First and last name\n• Email address\n• Phone number\n• Booking information\n\nWe also automatically collect:\n• Browsing data (via Google Analytics)\n• Anonymized IP address\n• Browser type"
+        },
+        "purpose": {
+          "title": "Use of Data",
+          "content": "Your data is used to:\n• Respond to your contact requests\n• Manage your program registrations\n• Improve our website and services\n• Send you information if you have consented"
+        },
+        "cookies": {
+          "title": "Cookies",
+          "content": "We use cookies to:\n• Analyze traffic (Google Analytics) - with your consent\n• Remember your language preferences\n\nYou can manage your preferences via the consent banner."
+        },
+        "rights": {
+          "title": "Your Rights",
+          "content": "Under GDPR, you have the following rights:\n• Right of access to your data\n• Right of rectification\n• Right to erasure\n• Right to portability\n• Right to object\n\nTo exercise these rights, contact us at: contact@transcendencework.com"
+        },
+        "retention": {
+          "title": "Data Retention",
+          "content": "Your data is kept for the time necessary for the purposes for which it was collected, and for a maximum of 3 years after your last contact with us."
+        },
+        "contact": {
+          "title": "Contact",
+          "content": "For any questions regarding this policy or your personal data:\nEmail: contact@transcendencework.com"
+        }
+      }
+    },
+    "cgv": {
+      "title": "Terms and Conditions",
+      "description": "Terms applicable to services offered by Transcendence Work",
+      "lastUpdated": "Last updated: January 2026",
+      "sections": {
+        "object": {
+          "title": "Purpose",
+          "content": "These Terms and Conditions govern the contractual relationship between Transcendence Work (Hajar Habi) and its clients for coaching and yoga services."
+        },
+        "services": {
+          "title": "Services Offered",
+          "content": "Transcendence Work offers:\n• Individual and professional coaching\n• Team and organizational coaching\n• Classical Hatha Yoga programs\n• Wellness workshops and retreats"
+        },
+        "pricing": {
+          "title": "Pricing and Payment",
+          "content": "Prices are provided upon request or indicated at registration. Payment is made by bank transfer or credit card, according to the options indicated in our payment procedures linked to the program."
+        },
+        "booking": {
+          "title": "Booking and Registration",
+          "content": "Any booking is considered final after written confirmation (email) and receipt of payment. Places are limited and allocated on a first-come, first-served basis."
+        },
+        "cancellation": {
+          "title": "Cancellation and Refund",
+          "content": "• Cancellation more than 7 days before: full refund or rescheduling\n• Cancellation between 3 and 7 days: 50% refund or rescheduling\n• Cancellation less than 3 days: no refund\n\nIn case of cancellation on our part, a full refund or rescheduling will be offered."
+        },
+        "responsibility": {
+          "title": "Responsibility",
+          "content": "The client agrees to inform Transcendence Work of any medical contraindication. Transcendence Work cannot be held responsible for damages resulting from information not communicated by the client."
+        },
+        "disputes": {
+          "title": "Disputes",
+          "content": "In case of dispute, the parties agree to seek an amicable solution. Failing that, the courts of Casablanca shall have sole jurisdiction."
+        }
+      }
+    }
   }
 }

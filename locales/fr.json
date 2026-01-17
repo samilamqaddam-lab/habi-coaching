@@ -1056,5 +1056,115 @@
       "radius": "Rayons de Bordure"
     },
     "footer": "© Transcendence Work. Ces éléments sont protégés. Pour toute utilisation, veuillez nous contacter."
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "description": "La page que vous recherchez n'existe pas ou a été déplacée.",
+    "cta": "Retour à l'accueil",
+    "suggestions": "Vous cherchez peut-être..."
+  },
+  "faq": {
+    "description": "Trouvez les réponses à vos questions sur le coaching, le yoga et nos services.",
+    "cta": "Vous avez d'autres questions ? N'hésitez pas à nous contacter."
+  },
+  "cookies": {
+    "message": "Nous utilisons des cookies pour améliorer votre expérience et analyser notre trafic.",
+    "learnMore": "En savoir plus",
+    "accept": "Accepter",
+    "reject": "Refuser"
+  },
+  "legal": {
+    "mentions": {
+      "title": "Mentions Légales",
+      "description": "Informations légales concernant le site Transcendence Work",
+      "sections": {
+        "editor": {
+          "title": "Éditeur du site",
+          "content": "Hajar Habi - Transcendence Work\nCasablanca, Maroc\nEmail : contact@transcendencework.com\nTéléphone : +212 663 096 857"
+        },
+        "hosting": {
+          "title": "Hébergement",
+          "content": "Vercel Inc.\n340 S Lemon Ave #4133\nWalnut, CA 91789, USA\nSite : vercel.com"
+        },
+        "intellectual": {
+          "title": "Propriété intellectuelle",
+          "content": "L'ensemble du contenu de ce site (textes, images, logos, vidéos, sons, mise en page) est la propriété exclusive de Hajar Habi / Transcendence Work ou de ses partenaires. Toute reproduction, représentation, modification, publication, adaptation totale ou partielle des éléments du site est interdite sans autorisation écrite préalable."
+        },
+        "responsibility": {
+          "title": "Limitation de responsabilité",
+          "content": "Transcendence Work s'efforce d'assurer l'exactitude et la mise à jour des informations diffusées sur ce site. Toutefois, elle ne peut garantir l'exactitude, la précision ou l'exhaustivité des informations mises à disposition. En conséquence, Transcendence Work décline toute responsabilité pour les erreurs, inexactitudes ou omissions."
+        }
+      }
+    },
+    "privacy": {
+      "title": "Politique de Confidentialité",
+      "description": "Comment nous protégeons vos données personnelles",
+      "lastUpdated": "Dernière mise à jour : Janvier 2026",
+      "sections": {
+        "intro": {
+          "title": "Introduction",
+          "content": "Transcendence Work (\"nous\", \"notre\") s'engage à protéger votre vie privée. Cette politique décrit comment nous collectons, utilisons et protégeons vos données personnelles conformément au RGPD et à la loi marocaine 09-08."
+        },
+        "dataCollection": {
+          "title": "Données collectées",
+          "content": "Nous collectons les données que vous nous fournissez volontairement :\n• Nom et prénom\n• Adresse email\n• Numéro de téléphone\n• Informations de réservation\n\nNous collectons également automatiquement :\n• Données de navigation (via Google Analytics)\n• Adresse IP anonymisée\n• Type de navigateur"
+        },
+        "purpose": {
+          "title": "Utilisation des données",
+          "content": "Vos données sont utilisées pour :\n• Répondre à vos demandes de contact\n• Gérer vos inscriptions aux programmes\n• Améliorer notre site et nos services\n• Vous envoyer des informations si vous y avez consenti"
+        },
+        "cookies": {
+          "title": "Cookies",
+          "content": "Nous utilisons des cookies pour :\n• Analyser le trafic (Google Analytics) - avec votre consentement\n• Mémoriser vos préférences de langue\n\nVous pouvez gérer vos préférences via la bannière de consentement."
+        },
+        "rights": {
+          "title": "Vos droits",
+          "content": "Conformément au RGPD, vous disposez des droits suivants :\n• Droit d'accès à vos données\n• Droit de rectification\n• Droit à l'effacement\n• Droit à la portabilité\n• Droit d'opposition\n\nPour exercer ces droits, contactez-nous à : contact@transcendencework.com"
+        },
+        "retention": {
+          "title": "Conservation des données",
+          "content": "Vos données sont conservées pendant la durée nécessaire aux finalités pour lesquelles elles ont été collectées, et au maximum 3 ans après votre dernier contact avec nous."
+        },
+        "contact": {
+          "title": "Contact",
+          "content": "Pour toute question concernant cette politique ou vos données personnelles :\nEmail : contact@transcendencework.com"
+        }
+      }
+    },
+    "cgv": {
+      "title": "Conditions Générales de Vente",
+      "description": "Conditions applicables aux services proposés par Transcendence Work",
+      "lastUpdated": "Dernière mise à jour : Janvier 2026",
+      "sections": {
+        "object": {
+          "title": "Objet",
+          "content": "Les présentes Conditions Générales de Vente (CGV) régissent les relations contractuelles entre Transcendence Work (Hajar Habi) et ses clients pour les services de coaching et de yoga."
+        },
+        "services": {
+          "title": "Services proposés",
+          "content": "Transcendence Work propose :\n• Coaching individuel et professionnel\n• Coaching d'équipe et organisationnel\n• Programmes de Hatha Yoga Classique\n• Ateliers et retraites bien-être"
+        },
+        "pricing": {
+          "title": "Tarifs et paiement",
+          "content": "Les tarifs sont communiqués sur devis ou indiqués lors de l'inscription. Le paiement s'effectue par virement bancaire ou carte bancaire, selon les options indiquées dans nos procédures de paiement liées au programme."
+        },
+        "booking": {
+          "title": "Réservation et inscription",
+          "content": "Toute réservation est considérée comme ferme après confirmation écrite (email) et réception du paiement. Les places sont limitées et attribuées par ordre d'inscription."
+        },
+        "cancellation": {
+          "title": "Annulation et remboursement",
+          "content": "• Annulation plus de 7 jours avant : remboursement intégral ou report\n• Annulation entre 3 et 7 jours : remboursement de 50% ou report\n• Annulation moins de 3 jours : aucun remboursement\n\nEn cas d'annulation de notre part, un remboursement intégral ou un report sera proposé."
+        },
+        "responsibility": {
+          "title": "Responsabilité",
+          "content": "Le client s'engage à informer Transcendence Work de toute contre-indication médicale. Transcendence Work ne peut être tenue responsable des dommages résultant d'informations non communiquées par le client."
+        },
+        "disputes": {
+          "title": "Litiges",
+          "content": "En cas de litige, les parties s'engagent à rechercher une solution amiable. À défaut, les tribunaux de Casablanca seront seuls compétents."
+        }
+      }
+    }
   }
 }
