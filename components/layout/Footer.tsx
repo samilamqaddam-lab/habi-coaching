@@ -12,21 +12,21 @@ export default function Footer() {
   const navigation = {
     services: [
       { name: t('common.footer.organisations'), href: '/organisations' },
-      { name: t('common.nav.programmes'), href: '/yoga' },
-      { name: t('common.footer.individualCoaching'), href: '/coaching' },
-      { name: t('common.footer.expertise'), href: '/expertise' },
+      { name: t('common.footer.programmesYoga'), href: '/yoga' },
+      { name: t('common.footer.coaching'), href: '/coaching' },
     ],
-    resources: [
-      { name: 'Articles', href: '/ressources#articles' },
-      { name: t('ressources.guides.title'), href: '/ressources#guides' },
-      { name: t('common.footer.certifications'), href: '/ressources#temoignages' },
+    about: [
+      { name: t('common.footer.myJourney'), href: '/expertise' },
+      { name: t('common.footer.blog'), href: '/blog' },
+      { name: t('common.nav.contact'), href: '/contact' },
     ],
     legal: [
-      { name: t('common.footer.terms'), href: '/mentions-legales' },
+      { name: t('common.footer.mentionsLegales'), href: '/mentions-legales' },
       { name: t('common.footer.privacy'), href: '/confidentialite' },
-      { name: 'CGV', href: '/cgv' },
+      { name: t('common.footer.cgv'), href: '/cgv' },
     ],
   };
+
   return (
     <footer className="bg-deep-blue text-warm-white">
       <Container className="py-12 md:py-16">
@@ -62,11 +62,11 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Resources */}
+          {/* About */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">{t('common.nav.ressources')}</h4>
+            <h4 className="font-semibold text-lg mb-4">{t('common.footer.about')}</h4>
             <ul className="space-y-2">
-              {navigation.resources.map((item) => (
+              {navigation.about.map((item) => (
                 <li key={item.name}>
                   <Link
                     href={item.href}
@@ -86,12 +86,12 @@ export default function Footer() {
               <li>
                 <strong className="text-warm-white">{t('common.footer.coachTeamEMCC')}</strong>
                 <br />
-                (EMCC)
+                <span className="text-xs">(EMCC)</span>
               </li>
               <li className="pt-3">
                 <strong className="text-warm-white">{t('common.footer.ishaFoundation')}</strong>
                 <br />
-                (Classical Hatha Yoga)
+                <span className="text-xs">{t('common.footer.hathaYoga')}</span>
               </li>
               <li className="pt-3">
                 <strong className="text-warm-white">{t('common.footer.corporateExperience')}</strong>
@@ -113,10 +113,10 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="tel:+212600000000"
+                  href="tel:+212663096857"
                   className="hover:text-warm-white transition-colors duration-200"
                 >
-                  +212 6 00 00 00 00
+                  +212 663 096 857
                 </a>
               </li>
             </ul>
