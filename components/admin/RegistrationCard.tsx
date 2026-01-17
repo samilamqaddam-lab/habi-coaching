@@ -51,6 +51,8 @@ export default function RegistrationCard({ registration }: RegistrationCardProps
   const [isUpdating, setIsUpdating] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isSendingPaymentRequest, setIsSendingPaymentRequest] = useState(false);
+  const [paymentRequestSent, setPaymentRequestSent] = useState(false);
   const router = useRouter();
 
   const handleStatusChange = async (newStatus: 'pending' | 'confirmed' | 'cancelled') => {
@@ -97,6 +99,31 @@ export default function RegistrationCard({ registration }: RegistrationCardProps
     } finally {
       setIsDeleting(false);
       setShowDeleteConfirm(false);
+    }
+  };
+
+  const handlePaymentRequest = async () => {
+    if (isSendingPaymentRequest) return;
+
+    setIsSendingPaymentRequest(true);
+    try {
+      const response = await fetch(`/api/registrations/${registration.id}/payment-request`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send payment request');
+      }
+
+      setPaymentRequestSent(true);
+      // Reset the "sent" state after 5 seconds
+      setTimeout(() => setPaymentRequestSent(false), 5000);
+    } catch (error) {
+      console.error('Error sending payment request:', error);
+      alert('Erreur lors de l\'envoi de la demande de paiement');
+    } finally {
+      setIsSendingPaymentRequest(false);
     }
   };
 
@@ -274,6 +301,44 @@ export default function RegistrationCard({ registration }: RegistrationCardProps
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
                 </svg>
                 Annuler
+              </button>
+
+              {/* Payment Request Button */}
+              <button
+                onClick={handlePaymentRequest}
+                disabled={isSendingPaymentRequest || paymentRequestSent}
+                className={`
+                  flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all
+                  ${paymentRequestSent
+                    ? 'bg-emerald-400/20 text-emerald-400 border-2 border-emerald-400/50'
+                    : 'bg-slate-700 text-slate-300 hover:bg-orange-400/10 hover:text-orange-400 hover:border-orange-400/30 border-2 border-transparent'
+                  }
+                  ${isSendingPaymentRequest ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
+                `}
+              >
+                {isSendingPaymentRequest ? (
+                  <>
+                    <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Envoi...
+                  </>
+                ) : paymentRequestSent ? (
+                  <>
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    Envoyé ✓
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                    </svg>
+                    Demande de paiement
+                  </>
+                )}
               </button>
             </div>
 
