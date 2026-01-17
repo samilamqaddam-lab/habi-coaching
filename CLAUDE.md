@@ -140,6 +140,16 @@ interface HeroProps {
 - Detailed credentials page
 - Coach & Team – Transformance Pro (EMCC), Sadhguru Gurukulam, ≃20 ans Corporate & Conseil
 
+### Pages Légales
+- `/mentions-legales` - Mentions légales (éditeur, hébergement, propriété intellectuelle)
+- `/confidentialite` - Politique de confidentialité (RGPD, cookies, droits)
+- `/cgv` - Conditions générales de vente (services, tarifs, annulation)
+
+### Page 404
+- **Fichier:** `app/(site)/not-found.tsx`
+- Design personnalisé avec suggestions (yoga, coaching, contact)
+- Utilise le Hero compact centré
+
 ## Sadhguru Gurukulam Integration
 
 ### Yoga Page (`/yoga`) - Lineage Section
@@ -183,6 +193,41 @@ Location: `/public/images/Reel/`
 
 ### Security
 - React 19.2.2 and Next.js 16.0.10 (patched for CVE-2025-55182, CVE-2025-55183, CVE-2025-55184)
+
+## Analytics & RGPD Compliance
+
+### Analytics Stack
+- **Vercel Analytics:** `@vercel/analytics` - Intégré dans layout.tsx
+- **Google Analytics 4:** `@next/third-parties/google` - ID: `G-Z5XGDJYXGV`
+- GA4 chargé conditionnellement après consentement cookies
+
+### Cookie Consent (RGPD)
+**Composants:**
+- `hooks/useConsentManager.ts` - Gestion du consentement (localStorage)
+- `components/ui/CookieConsentBanner.tsx` - Bannière avec Accept/Reject
+- `components/analytics/ConditionalGA4.tsx` - Charge GA4 seulement si consentement
+
+**Fonctionnement:**
+1. Bannière apparaît à la première visite
+2. Choix stocké dans `localStorage` (clé: `transcendence_consent`)
+3. GA4 chargé uniquement si `consent === 'accepted'`
+4. Vercel Analytics toujours actif (anonymisé, pas de cookies)
+
+**États possibles:** `pending` | `accepted` | `rejected`
+
+### JSON-LD Structured Data
+**Fichiers:**
+- `components/seo/JsonLd.tsx` - Wrapper component
+- `lib/structured-data.ts` - Schémas (Organization, Person, Website, FAQ, Service)
+
+**Schémas globaux (layout.tsx):**
+- `organizationSchema` - LocalBusiness avec coordonnées
+- `personSchema` - Hajar Habi avec credentials
+- `websiteSchema` - Site multilingue
+
+**Schémas spécifiques:**
+- `getFaqSchema(faqs)` - Pour pages FAQ
+- `getServiceSchema(service)` - Pour pages services
 
 ## Sanity CMS Integration
 
@@ -442,6 +487,24 @@ SEO, UX & Conversion, Performance, Qualité Contenu, Nouvelles Features, Stabili
 - **Use Thèmes**: All work should be linked to a strategic theme
 - **Use Deadlines**: Calendar-based planning, not sprints
 
+## Footer Structure
+
+### Colonnes
+1. **Brand** - Logo + tagline
+2. **Services** - Organisations, Programmes Yoga, Coaching
+3. **À propos** - Mon parcours, Blog, Contact
+4. **Certifications** - Coach & Team, Sadhguru Gurukulam, Corporate
+5. **Contact** - Email, téléphone (+212 663 096 857), réseaux sociaux
+
+### Liens légaux (bottom bar)
+- Mentions Légales → `/mentions-legales`
+- Confidentialité → `/confidentialite`
+- CGV → `/cgv`
+
+### Réseaux sociaux
+- Spotify Podcast: https://open.spotify.com/show/3c1fH8hzdIRcFVwRGYQClR
+- LinkedIn: https://www.linkedin.com/in/hajar-habi/
+
 ## File Structure
 ```
 /app
@@ -454,6 +517,10 @@ SEO, UX & Conversion, Performance, Qualité Contenu, Nouvelles Features, Stabili
     /organisations/page.tsx - B2B services (split layout)
     /ressources/page.tsx   - Resources (split layout)
     /expertise/page.tsx    - Credentials page
+    /mentions-legales/     - Legal notices
+    /confidentialite/      - Privacy policy
+    /cgv/                  - Terms of sale
+    /not-found.tsx         - Custom 404 page
   /(admin)
     /admin/...             - Dashboard admin (registrations, editions)
   /api
@@ -465,16 +532,21 @@ SEO, UX & Conversion, Performance, Qualité Contenu, Nouvelles Features, Stabili
   /sections/Section.tsx
   /ui/Button.tsx
   /ui/Card.tsx
+  /ui/CookieConsentBanner.tsx - RGPD cookie banner
   /forms/                - Contact forms, registration forms
   /admin/                - Admin dashboard components
+  /analytics/ConditionalGA4.tsx - Conditional GA4 loader
+  /seo/JsonLd.tsx        - JSON-LD wrapper component
 
 /hooks
   /useEditionData.ts     - Fetch edition + sessions pour un programme
   /useMultipleEditionsData.ts - Fetch toutes les éditions actives
+  /useConsentManager.ts  - Cookie consent state management
 
 /lib
   /programmes-config.ts  - Configuration des 5 programmes yoga
   /supabase.ts           - Client Supabase
+  /structured-data.ts    - JSON-LD schemas
 
 /public/images
   /heroes/              - Hero section images
