@@ -147,7 +147,7 @@ export async function POST(
           </p>
 
           <p style="font-size: 16px; line-height: 1.6; color: #333;">
-            Pour finaliser votre place, merci de procéder au paiement par virement bancaire :
+            Pour finaliser votre inscription et garantir votre place, merci de procéder au paiement par virement bancaire :
           </p>
 
           ${sessionsHtml}
