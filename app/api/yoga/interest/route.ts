@@ -52,67 +52,79 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Admin editions URL
+    const adminUrl = 'https://transcendencework.com/admin/editions';
+
     // Send notification email to Hajar
     const notificationHtml = `
       <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto;">
-        <div style="background: linear-gradient(135deg, #E8A54B 0%, #d4943c 100%); padding: 30px; text-align: center; border-radius: 12px 12px 0 0;">
-          <h1 style="color: white; margin: 0; font-size: 24px;">🧘 Nouvelle Demande de Cours Collectif</h1>
+        <div style="background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%); padding: 30px; text-align: center; border-radius: 12px 12px 0 0;">
+          <h1 style="color: white; margin: 0; font-size: 24px;">💜 Manifestation d'Intérêt</h1>
+          <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0; font-size: 14px;">${yogaTypeName}</p>
         </div>
 
         <div style="background: #f8f9fa; padding: 30px; border-radius: 0 0 12px 12px;">
-          <div style="background: white; padding: 24px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-            <h2 style="color: #E8A54B; margin-top: 0; font-size: 18px; border-bottom: 2px solid #E8A54B; padding-bottom: 10px;">
-              Programme demandé
-            </h2>
-            <p style="font-size: 20px; font-weight: bold; color: #1a365d; margin: 15px 0;">
-              ${yogaTypeName}
+          <!-- Info Banner -->
+          <div style="background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); padding: 16px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #c4b5fd; text-align: center;">
+            <p style="margin: 0; color: #6d28d9; font-size: 14px;">
+              📌 Cette personne souhaite être informée des prochaines sessions
             </p>
           </div>
 
           <div style="background: white; padding: 24px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-            <h2 style="color: #E8A54B; margin-top: 0; font-size: 18px; border-bottom: 2px solid #E8A54B; padding-bottom: 10px;">
-              Informations du participant
+            <h2 style="color: #1a365d; margin-top: 0; font-size: 16px; border-bottom: 2px solid #7c3aed; padding-bottom: 10px;">
+              👤 Contact
             </h2>
             <table style="width: 100%; border-collapse: collapse;">
               <tr>
-                <td style="padding: 8px 0; color: #666; width: 120px;">Nom:</td>
-                <td style="padding: 8px 0; font-weight: 500;">${data.firstName} ${data.lastName}</td>
+                <td style="padding: 10px 0; color: #666; width: 100px; vertical-align: top;">Nom:</td>
+                <td style="padding: 10px 0; font-weight: 600; font-size: 16px; color: #1a365d;">${data.firstName} ${data.lastName}</td>
               </tr>
               <tr>
-                <td style="padding: 8px 0; color: #666;">Email:</td>
-                <td style="padding: 8px 0;">
-                  <a href="mailto:${data.email}" style="color: #E8A54B; text-decoration: none;">${data.email}</a>
+                <td style="padding: 10px 0; color: #666; vertical-align: top;">Email:</td>
+                <td style="padding: 10px 0;">
+                  <a href="mailto:${data.email}" style="color: #7c3aed; text-decoration: none; font-weight: 500;">${data.email}</a>
                 </td>
               </tr>
               <tr>
-                <td style="padding: 8px 0; color: #666;">Téléphone:</td>
-                <td style="padding: 8px 0;">
-                  <a href="tel:${data.phone}" style="color: #E8A54B; text-decoration: none;">${data.phone}</a>
+                <td style="padding: 10px 0; color: #666; vertical-align: top;">Téléphone:</td>
+                <td style="padding: 10px 0;">
+                  <a href="tel:${data.phone}" style="color: #1a365d; text-decoration: none;">${data.phone}</a>
+                  ${data.whatsapp ? `
+                  <br>
+                  <a href="https://wa.me/${data.whatsapp.replace(/[^0-9]/g, '')}" style="display: inline-flex; align-items: center; gap: 4px; color: #25D366; text-decoration: none; font-size: 13px; margin-top: 4px;">
+                    <span style="background: #25D366; color: white; padding: 2px 8px; border-radius: 4px; font-size: 11px;">WhatsApp</span>
+                    ${data.whatsapp}
+                  </a>
+                  ` : ''}
                 </td>
               </tr>
-              ${data.whatsapp ? `
-              <tr>
-                <td style="padding: 8px 0; color: #666;">WhatsApp:</td>
-                <td style="padding: 8px 0;">
-                  <a href="https://wa.me/${data.whatsapp.replace(/[^0-9]/g, '')}" style="color: #25D366; text-decoration: none;">${data.whatsapp}</a>
-                </td>
-              </tr>
-              ` : ''}
             </table>
           </div>
 
           ${data.message ? `
-          <div style="background: white; padding: 24px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-            <h2 style="color: #E8A54B; margin-top: 0; font-size: 18px; border-bottom: 2px solid #E8A54B; padding-bottom: 10px;">
-              Message
+          <div style="background: white; padding: 24px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+            <h2 style="color: #1a365d; margin-top: 0; font-size: 16px; border-bottom: 2px solid #7c3aed; padding-bottom: 10px;">
+              💬 Message
             </h2>
-            <p style="line-height: 1.6; color: #333; white-space: pre-wrap;">${data.message}</p>
+            <p style="line-height: 1.6; color: #333; white-space: pre-wrap; background: #f8fafc; padding: 15px; border-radius: 6px; border-left: 3px solid #7c3aed;">${data.message}</p>
           </div>
           ` : ''}
 
-          <div style="text-align: center; margin-top: 25px; padding: 15px; background: #fff8f0; border-radius: 8px; border: 1px solid #E8A54B33;">
-            <p style="color: #666; margin: 0; font-size: 14px;">
-              📌 Cette personne souhaite être informée des prochaines sessions de <strong>${yogaTypeName}</strong>
+          <!-- Action Section -->
+          <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 20px; border-radius: 8px; border: 1px solid #f59e0b33; text-align: center;">
+            <p style="color: #92400e; margin: 0 0 15px 0; font-size: 14px;">
+              <strong>💡 Action suggérée:</strong> Créer une nouvelle édition ou contacter cette personne
+            </p>
+            <a href="${adminUrl}" style="display: inline-block; background: #1a365d; color: white; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-weight: 500; font-size: 14px;">
+              Gérer les éditions →
+            </a>
+          </div>
+
+          <!-- Footer -->
+          <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid #e2e8f0; text-align: center;">
+            <p style="color: #94a3b8; font-size: 12px; margin: 0;">
+              Email automatique • <a href="${adminUrl}" style="color: #64748b;">Accéder au dashboard</a>
             </p>
           </div>
         </div>

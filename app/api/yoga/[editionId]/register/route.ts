@@ -192,65 +192,76 @@ export async function POST(
         </tr>
       `).join('');
 
+      // Admin dashboard URL for this edition
+      const adminUrl = `https://transcendencework.com/admin/dashboard/${resolvedEditionId}`;
+
       // Email to admin (notification)
       const adminHtml = `
         <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto;">
-          <div style="background: linear-gradient(135deg, #E8A54B 0%, #d4943c 100%); padding: 30px; text-align: center; border-radius: 12px 12px 0 0;">
+          <div style="background: linear-gradient(135deg, #1a365d 0%, #2d4a7c 100%); padding: 30px; text-align: center; border-radius: 12px 12px 0 0;">
             <h1 style="color: white; margin: 0; font-size: 24px;">🧘 Nouvelle Inscription</h1>
+            <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0; font-size: 14px;">${programTitle}</p>
           </div>
 
           <div style="background: #f8f9fa; padding: 30px; border-radius: 0 0 12px 12px;">
-            <div style="background: white; padding: 24px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-              <h2 style="color: #E8A54B; margin-top: 0; font-size: 18px; border-bottom: 2px solid #E8A54B; padding-bottom: 10px;">
-                Programme
-              </h2>
-              <p style="font-size: 20px; font-weight: bold; color: #1a365d; margin: 15px 0;">
-                ${programTitle}
+            <!-- Action Button - Prominent CTA -->
+            <div style="text-align: center; margin-bottom: 25px;">
+              <a href="${adminUrl}" style="display: inline-block; background: linear-gradient(135deg, #E8A54B 0%, #d4943c 100%); color: white; text-decoration: none; padding: 16px 32px; border-radius: 8px; font-weight: bold; font-size: 16px; box-shadow: 0 4px 12px rgba(232,165,75,0.3);">
+                📋 Gérer cette inscription
+              </a>
+              <p style="margin: 10px 0 0 0; font-size: 12px; color: #666;">
+                Accès direct au dashboard admin
               </p>
             </div>
 
+            <!-- Registration ID Badge -->
+            <div style="text-align: center; margin-bottom: 20px;">
+              <span style="display: inline-block; background: #e2e8f0; color: #475569; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-family: monospace;">
+                ID: ${registration.id.slice(0, 8)}...
+              </span>
+            </div>
+
             <div style="background: white; padding: 24px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-              <h2 style="color: #E8A54B; margin-top: 0; font-size: 18px; border-bottom: 2px solid #E8A54B; padding-bottom: 10px;">
-                Informations du participant
+              <h2 style="color: #1a365d; margin-top: 0; font-size: 16px; border-bottom: 2px solid #E8A54B; padding-bottom: 10px;">
+                👤 Participant
               </h2>
               <table style="width: 100%; border-collapse: collapse;">
                 <tr>
-                  <td style="padding: 8px 0; color: #666; width: 120px;">Nom:</td>
-                  <td style="padding: 8px 0; font-weight: 500;">${firstName} ${lastName}</td>
+                  <td style="padding: 10px 0; color: #666; width: 100px; vertical-align: top;">Nom:</td>
+                  <td style="padding: 10px 0; font-weight: 600; font-size: 16px; color: #1a365d;">${firstName} ${lastName}</td>
                 </tr>
                 <tr>
-                  <td style="padding: 8px 0; color: #666;">Email:</td>
-                  <td style="padding: 8px 0;">
-                    <a href="mailto:${email}" style="color: #E8A54B; text-decoration: none;">${email}</a>
+                  <td style="padding: 10px 0; color: #666; vertical-align: top;">Email:</td>
+                  <td style="padding: 10px 0;">
+                    <a href="mailto:${email}" style="color: #E8A54B; text-decoration: none; font-weight: 500;">${email}</a>
                   </td>
                 </tr>
                 <tr>
-                  <td style="padding: 8px 0; color: #666;">Téléphone:</td>
-                  <td style="padding: 8px 0;">
-                    <a href="tel:${phone}" style="color: #E8A54B; text-decoration: none;">${phone}</a>
+                  <td style="padding: 10px 0; color: #666; vertical-align: top;">Téléphone:</td>
+                  <td style="padding: 10px 0;">
+                    <a href="tel:${phone}" style="color: #1a365d; text-decoration: none;">${phone}</a>
+                    ${whatsapp ? `
+                    <br>
+                    <a href="https://wa.me/${whatsapp.replace(/[^0-9]/g, '')}" style="display: inline-flex; align-items: center; gap: 4px; color: #25D366; text-decoration: none; font-size: 13px; margin-top: 4px;">
+                      <span style="background: #25D366; color: white; padding: 2px 8px; border-radius: 4px; font-size: 11px;">WhatsApp</span>
+                      ${whatsapp}
+                    </a>
+                    ` : ''}
                   </td>
                 </tr>
-                ${whatsapp ? `
-                <tr>
-                  <td style="padding: 8px 0; color: #666;">WhatsApp:</td>
-                  <td style="padding: 8px 0;">
-                    <a href="https://wa.me/${whatsapp.replace(/[^0-9]/g, '')}" style="color: #25D366; text-decoration: none;">${whatsapp}</a>
-                  </td>
-                </tr>
-                ` : ''}
               </table>
             </div>
 
             <div style="background: white; padding: 24px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-              <h2 style="color: #E8A54B; margin-top: 0; font-size: 18px; border-bottom: 2px solid #E8A54B; padding-bottom: 10px;">
-                📅 Dates sélectionnées
+              <h2 style="color: #1a365d; margin-top: 0; font-size: 16px; border-bottom: 2px solid #E8A54B; padding-bottom: 10px;">
+                📅 Sessions choisies
               </h2>
               <table style="width: 100%; border-collapse: collapse;">
                 <thead>
-                  <tr style="background: #f8f9fa;">
-                    <th style="padding: 12px; text-align: left; font-size: 14px; color: #666;">Session</th>
-                    <th style="padding: 12px; text-align: left; font-size: 14px; color: #666;">Date & Heure</th>
-                    <th style="padding: 12px; text-align: left; font-size: 14px; color: #666;">Lieu</th>
+                  <tr style="background: #f1f5f9;">
+                    <th style="padding: 12px; text-align: left; font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">Session</th>
+                    <th style="padding: 12px; text-align: left; font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">Date & Heure</th>
+                    <th style="padding: 12px; text-align: left; font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">Lieu</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -261,17 +272,27 @@ export async function POST(
 
             ${message ? `
             <div style="background: white; padding: 24px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-              <h2 style="color: #E8A54B; margin-top: 0; font-size: 18px; border-bottom: 2px solid #E8A54B; padding-bottom: 10px;">
-                Message
+              <h2 style="color: #1a365d; margin-top: 0; font-size: 16px; border-bottom: 2px solid #E8A54B; padding-bottom: 10px;">
+                💬 Message du participant
               </h2>
-              <p style="line-height: 1.6; color: #333; white-space: pre-wrap;">${message}</p>
+              <p style="line-height: 1.6; color: #333; white-space: pre-wrap; background: #f8fafc; padding: 15px; border-radius: 6px; border-left: 3px solid #E8A54B;">${message}</p>
             </div>
             ` : ''}
 
-            <div style="text-align: center; margin-top: 25px; padding: 15px; background: #fef3c7; border-radius: 8px; border: 1px solid #f59e0b33;">
-              <p style="color: #92400e; margin: 0; font-size: 14px;">
-                ⏳ <strong>Statut: En attente de confirmation</strong><br>
-                <span style="font-size: 12px;">Rendez-vous sur le dashboard admin pour confirmer cette inscription</span>
+            <!-- Status and Quick Actions -->
+            <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 20px; border-radius: 8px; border: 1px solid #f59e0b33; text-align: center;">
+              <p style="color: #92400e; margin: 0 0 15px 0; font-size: 15px; font-weight: 600;">
+                ⏳ En attente de confirmation
+              </p>
+              <a href="${adminUrl}" style="display: inline-block; background: #1a365d; color: white; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-weight: 500; font-size: 14px;">
+                Confirmer sur le dashboard →
+              </a>
+            </div>
+
+            <!-- Footer -->
+            <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid #e2e8f0; text-align: center;">
+              <p style="color: #94a3b8; font-size: 12px; margin: 0;">
+                Email automatique • <a href="${adminUrl}" style="color: #64748b;">Accéder au dashboard</a>
               </p>
             </div>
           </div>

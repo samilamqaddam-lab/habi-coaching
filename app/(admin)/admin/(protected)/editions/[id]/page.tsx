@@ -7,8 +7,12 @@ import AdminNav from '@/components/admin/AdminNav';
 import SessionBuilder, { SessionData } from '@/components/admin/SessionBuilder';
 import { PROGRAMMES_CONFIG, getEditionProgrammeKeys } from '@/lib/programmes-config';
 
+// Note: Ce formulaire est exclusivement pour les cours collectifs.
+// Les cours individuels et événements auront des formulaires dédiés.
+
 interface EditionFormData {
   programmeKey: string;
+  editionType: 'collective'; // Toujours 'collective' pour ce formulaire
   title: string;
   titleEn?: string;
   description?: string;
@@ -21,6 +25,7 @@ interface EditionFormData {
 
 const defaultFormData: EditionFormData = {
   programmeKey: '',
+  editionType: 'collective', // Fixé à 'collective'
   title: '',
   maxCapacity: 10,
   isActive: true,
@@ -31,7 +36,9 @@ const defaultFormData: EditionFormData = {
       title: 'Session 1',
       dateOptions: [
         {
-          dateTime: '',
+          date: '',
+          startTime: '',
+          endTime: '',
           location: 'Studio, Casablanca',
           maxCapacity: 10,
         },
@@ -71,8 +78,10 @@ export default function EditionFormPage() {
         const edition = data.edition;
 
         // Transform API response to form data
+        // Note: editionType est toujours 'collective' pour ce formulaire
         setFormData({
           programmeKey: edition.programmeKey,
+          editionType: 'collective',
           title: edition.title,
           titleEn: edition.titleEn,
           maxCapacity: edition.maxCapacity,
@@ -83,9 +92,13 @@ export default function EditionFormPage() {
             session_number: number;
             title: string;
             title_en?: string;
+            duration_minutes?: number;
             dateOptions: Array<{
               id: string;
-              dateTime: string;
+              date?: string;
+              startTime?: string;
+              endTime?: string;
+              dateTime?: string;
               location: string;
               maxCapacity: number;
             }>;
@@ -94,9 +107,12 @@ export default function EditionFormPage() {
             sessionNumber: session.session_number,
             title: session.title,
             titleEn: session.title_en,
+            durationMinutes: session.duration_minutes,
             dateOptions: session.dateOptions.map((opt) => ({
               id: opt.id,
-              dateTime: opt.dateTime,
+              date: opt.date || '',
+              startTime: opt.startTime || '',
+              endTime: opt.endTime || '',
               location: opt.location,
               maxCapacity: opt.maxCapacity,
             })),
@@ -141,8 +157,8 @@ export default function EditionFormPage() {
         return;
       }
       for (const dateOption of session.dateOptions) {
-        if (!dateOption.dateTime) {
-          setError(`Toutes les dates de la session ${session.sessionNumber} doivent être remplies`);
+        if (!dateOption.date || !dateOption.startTime || !dateOption.endTime) {
+          setError(`Toutes les dates et horaires de la session ${session.sessionNumber} doivent être remplies`);
           return;
         }
       }
@@ -248,6 +264,9 @@ export default function EditionFormPage() {
             <h1 className="text-3xl font-bold text-slate-100">
               {isNew ? 'Nouvelle Édition' : 'Modifier l\'Édition'}
             </h1>
+            <p className="text-slate-400 mt-1">
+              Cours collectif • Prix calculé automatiquement (150 DH/heure)
+            </p>
           </div>
 
           {/* Error Message */}
@@ -376,7 +395,31 @@ export default function EditionFormPage() {
                 sessions={formData.sessions}
                 onChange={(sessions) => updateFormData({ sessions })}
                 defaultCapacity={formData.maxCapacity}
+                editionType="collective"
               />
+
+              {/* Prix Total - Toujours affiché car ce formulaire est pour cours collectifs */}
+              <div className="mt-4 p-4 bg-slate-800/50 rounded-lg border border-slate-600">
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-300 font-medium">Prix total calculé:</span>
+                  <span className="text-xl font-bold text-green-400">
+                    {Math.round(formData.sessions.reduce((total, session) =>
+                      total + (session.durationMinutes || 0), 0
+                    ) / 60 * 150)} DH
+                  </span>
+                </div>
+                <p className="text-xs text-slate-500 mt-1">
+                  {(() => {
+                    const totalMinutes = formData.sessions.reduce((total, session) =>
+                      total + (session.durationMinutes || 0), 0
+                    );
+                    const hours = Math.floor(totalMinutes / 60);
+                    const mins = totalMinutes % 60;
+                    const formatted = mins > 0 ? `${hours}h${mins}min` : `${hours}h`;
+                    return `Basé sur ${formatted} au total × 150 DH/heure`;
+                  })()}
+                </p>
+              </div>
             </div>
 
             {/* Actions */}

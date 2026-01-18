@@ -3,26 +3,44 @@ import { supabaseAdmin, isSupabaseConfigured } from '@/lib/supabase';
 import { PROGRAMMES_CONFIG } from '@/lib/programmes-config';
 import { z } from 'zod';
 
+// Helper to combine date and time into ISO datetime
+function combineDateAndTime(date: string, time: string): string {
+  if (!date || !time) return '';
+  // date is YYYY-MM-DD, time is HH:mm
+  return new Date(`${date}T${time}:00`).toISOString();
+}
+
 // Validation schema for creating an edition
 const sessionDateOptionSchema = z.object({
-  dateTime: z.string().min(1), // Accept any non-empty string, will be converted to ISO
+  // New format: separate date, startTime, endTime
+  date: z.string().optional(),        // YYYY-MM-DD
+  startTime: z.string().optional(),   // HH:mm
+  endTime: z.string().optional(),     // HH:mm
+  // Legacy format for backward compatibility
+  dateTime: z.string().optional(),
   location: z.string().default('Studio, Casablanca'),
   maxCapacity: z.number().int().positive().optional(),
-});
+}).refine(
+  (data) => (data.date && data.startTime && data.endTime) || data.dateTime,
+  { message: 'Vous devez fournir date/startTime/endTime ou dateTime' }
+);
 
 const sessionSchema = z.object({
   sessionNumber: z.number().int().positive(),
   title: z.string().min(1),
   titleEn: z.string().optional(),
-  duration: z.string().optional(),
+  durationMinutes: z.number().int().positive().optional(),
   dateOptions: z.array(sessionDateOptionSchema).min(1),
 });
+
+const editionTypeSchema = z.enum(['collective', 'individual', 'event']).default('collective');
 
 const createEditionSchema = z.object({
   programmeKey: z.string().refine(
     (key) => key in PROGRAMMES_CONFIG && PROGRAMMES_CONFIG[key].supportsEditions,
     { message: 'Programme invalide ou ne supporte pas les éditions' }
   ),
+  editionType: editionTypeSchema,
   title: z.string().min(1),
   titleEn: z.string().optional(),
   description: z.string().optional(),
@@ -189,19 +207,31 @@ export async function POST(request: NextRequest) {
 
     const data = validationResult.data;
 
+    // Calculate start_date from first session's first date option
+    const firstDateOption = data.sessions[0]?.dateOptions[0];
+    let startDate: string | null = null;
+    if (firstDateOption) {
+      if (firstDateOption.date) {
+        // New format
+        startDate = firstDateOption.date;
+      } else if (firstDateOption.dateTime) {
+        // Legacy format
+        startDate = new Date(firstDateOption.dateTime).toISOString().split('T')[0];
+      }
+    }
+
     // 1. Create the edition
     const { data: edition, error: editionError } = await supabaseAdmin
       .from('programme_editions')
       .insert({
         programme_key: data.programmeKey,
+        edition_type: data.editionType,
         title: data.title,
         title_en: data.titleEn,
         max_capacity: data.maxCapacity,
         is_active: data.isActive,
         sessions_mandatory: data.sessionsMandatory,
-        start_date: data.sessions[0]?.dateOptions[0]?.dateTime
-          ? new Date(data.sessions[0].dateOptions[0].dateTime).toISOString().split('T')[0]
-          : null,
+        start_date: startDate,
       })
       .select()
       .single();
@@ -220,6 +250,7 @@ export async function POST(request: NextRequest) {
       session_number: session.sessionNumber,
       title: session.title,
       title_en: session.titleEn,
+      duration_minutes: session.durationMinutes,
     }));
 
     const { data: sessions, error: sessionsError } = await supabaseAdmin
@@ -241,6 +272,7 @@ export async function POST(request: NextRequest) {
     const dateOptionsToInsert: Array<{
       session_id: string;
       date_time: string;
+      end_time: string | null;
       location: string;
       max_capacity: number;
     }> = [];
@@ -248,9 +280,23 @@ export async function POST(request: NextRequest) {
     data.sessions.forEach((sessionData, index) => {
       const session = sessions[index];
       sessionData.dateOptions.forEach(dateOption => {
+        // Handle new format (date + startTime + endTime) or legacy format (dateTime)
+        let dateTime: string;
+        let endTime: string | null = null;
+
+        if (dateOption.date && dateOption.startTime && dateOption.endTime) {
+          // New format
+          dateTime = combineDateAndTime(dateOption.date, dateOption.startTime);
+          endTime = combineDateAndTime(dateOption.date, dateOption.endTime);
+        } else {
+          // Legacy format
+          dateTime = dateOption.dateTime || '';
+        }
+
         dateOptionsToInsert.push({
           session_id: session.id,
-          date_time: dateOption.dateTime,
+          date_time: dateTime,
+          end_time: endTime,
           location: dateOption.location,
           max_capacity: dateOption.maxCapacity || data.maxCapacity,
         });

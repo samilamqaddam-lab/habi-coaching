@@ -3,25 +3,56 @@ import { supabaseAdmin, isSupabaseConfigured } from '@/lib/supabase';
 import { PROGRAMMES_CONFIG } from '@/lib/programmes-config';
 import { z } from 'zod';
 
+// Helper to combine date and time into ISO datetime
+function combineDateAndTime(date: string, time: string): string {
+  if (!date || !time) return '';
+  // date is YYYY-MM-DD, time is HH:mm
+  return new Date(`${date}T${time}:00`).toISOString();
+}
+
+// Helper to extract date and time from ISO datetime
+function extractDateAndTime(isoString: string): { date: string; time: string } {
+  if (!isoString) return { date: '', time: '' };
+  try {
+    const d = new Date(isoString);
+    const date = d.toISOString().split('T')[0]; // YYYY-MM-DD
+    const time = `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`; // HH:mm
+    return { date, time };
+  } catch {
+    return { date: '', time: '' };
+  }
+}
+
 // Validation schema for updating an edition
 const sessionDateOptionSchema = z.object({
   id: z.string().optional(), // Optional for new date options
-  dateTime: z.string().min(1), // Accept any non-empty string
+  // New format: separate date, startTime, endTime
+  date: z.string().optional(),        // YYYY-MM-DD
+  startTime: z.string().optional(),   // HH:mm
+  endTime: z.string().optional(),     // HH:mm
+  // Legacy format for backward compatibility
+  dateTime: z.string().optional(),
   location: z.string().default('Studio, Casablanca'),
   maxCapacity: z.coerce.number().int().positive().optional(),
-});
+}).refine(
+  (data) => (data.date && data.startTime && data.endTime) || data.dateTime,
+  { message: 'Vous devez fournir date/startTime/endTime ou dateTime' }
+);
 
 const sessionSchema = z.object({
   id: z.string().optional(), // Optional for new sessions
   sessionNumber: z.coerce.number().int().positive(),
   title: z.string().min(1),
   titleEn: z.string().optional().nullable(),
-  duration: z.string().optional().nullable(),
+  durationMinutes: z.coerce.number().int().positive().optional().nullable(),
   dateOptions: z.array(sessionDateOptionSchema).min(1),
 });
 
+const editionTypeSchema = z.enum(['collective', 'individual', 'event']);
+
 const updateEditionSchema = z.object({
   programmeKey: z.string().optional(),
+  editionType: editionTypeSchema.optional(),
   title: z.string().min(1).optional(),
   titleEn: z.string().optional().nullable(),
   description: z.string().optional().nullable(),
@@ -60,9 +91,11 @@ export async function GET(
           session_number,
           title,
           title_en,
+          duration_minutes,
           session_date_options (
             id,
             date_time,
+            end_time,
             location,
             max_capacity
           )
@@ -116,9 +149,11 @@ export async function GET(
       session_number: number;
       title: string;
       title_en?: string;
+      duration_minutes?: number;
       session_date_options?: Array<{
         id: string;
         date_time: string;
+        end_time?: string;
         location: string;
         max_capacity: number;
       }>;
@@ -127,25 +162,36 @@ export async function GET(
       dateOptions: session.session_date_options?.map((opt: {
         id: string;
         date_time: string;
+        end_time?: string;
         location: string;
         max_capacity: number;
-      }) => ({
-        id: opt.id,
-        dateTime: opt.date_time,
-        location: opt.location,
-        maxCapacity: opt.max_capacity,
-        availability: availabilityMap[opt.id] || {
-          current_count: 0,
-          remaining_spots: opt.max_capacity,
-          is_full: false,
-        },
-      })) || [],
+      }) => {
+        const start = extractDateAndTime(opt.date_time);
+        const end = opt.end_time ? extractDateAndTime(opt.end_time) : { date: '', time: '' };
+        return {
+          id: opt.id,
+          // New format
+          date: start.date,
+          startTime: start.time,
+          endTime: end.time,
+          // Legacy format (for compatibility)
+          dateTime: opt.date_time,
+          location: opt.location,
+          maxCapacity: opt.max_capacity,
+          availability: availabilityMap[opt.id] || {
+            current_count: 0,
+            remaining_spots: opt.max_capacity,
+            is_full: false,
+          },
+        };
+      }) || [],
     })).sort((a: { session_number: number }, b: { session_number: number }) => a.session_number - b.session_number);
 
     return NextResponse.json({
       edition: {
         id: edition.id,
         programmeKey: edition.programme_key,
+        editionType: edition.edition_type || 'collective',
         title: edition.title,
         titleEn: edition.title_en,
         startDate: edition.start_date,
@@ -219,6 +265,7 @@ export async function PUT(
     // 1. Update edition basic info
     const editionUpdate: Record<string, unknown> = {};
     if (data.programmeKey) editionUpdate.programme_key = data.programmeKey;
+    if (data.editionType) editionUpdate.edition_type = data.editionType;
     if (data.title) editionUpdate.title = data.title;
     if (data.titleEn !== undefined) editionUpdate.title_en = data.titleEn;
     if (data.maxCapacity) editionUpdate.max_capacity = data.maxCapacity;
@@ -279,6 +326,7 @@ export async function PUT(
               session_number: sessionData.sessionNumber,
               title: sessionData.title,
               title_en: sessionData.titleEn,
+              duration_minutes: sessionData.durationMinutes,
             })
             .eq('id', sessionId);
         } else {
@@ -290,6 +338,7 @@ export async function PUT(
               session_number: sessionData.sessionNumber,
               title: sessionData.title,
               title_en: sessionData.titleEn,
+              duration_minutes: sessionData.durationMinutes,
             })
             .select()
             .single();
@@ -319,12 +368,26 @@ export async function PUT(
 
         // Update or create date options
         for (const dateOption of sessionData.dateOptions) {
+          // Handle new format (date + startTime + endTime) or legacy format (dateTime)
+          let dateTime: string;
+          let endTime: string | null = null;
+
+          if (dateOption.date && dateOption.startTime && dateOption.endTime) {
+            // New format
+            dateTime = combineDateAndTime(dateOption.date, dateOption.startTime);
+            endTime = combineDateAndTime(dateOption.date, dateOption.endTime);
+          } else {
+            // Legacy format
+            dateTime = dateOption.dateTime || '';
+          }
+
           if (dateOption.id) {
             // Update existing
             await supabaseAdmin
               .from('session_date_options')
               .update({
-                date_time: dateOption.dateTime,
+                date_time: dateTime,
+                end_time: endTime,
                 location: dateOption.location,
                 max_capacity: dateOption.maxCapacity || data.maxCapacity || 10,
               })
@@ -335,7 +398,8 @@ export async function PUT(
               .from('session_date_options')
               .insert({
                 session_id: sessionId,
-                date_time: dateOption.dateTime,
+                date_time: dateTime,
+                end_time: endTime,
                 location: dateOption.location,
                 max_capacity: dateOption.maxCapacity || data.maxCapacity || 10,
               });

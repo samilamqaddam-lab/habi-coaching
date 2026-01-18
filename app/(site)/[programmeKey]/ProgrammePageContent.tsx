@@ -1,10 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslation } from '@/hooks/useTranslation';
 import { useEditionData } from '@/hooks/useEditionData';
+import { getDisplayPrice, formatDuration, formatEditionTabLabel } from '@/lib/price-utils';
 import PrivateYogaRequestForm from '@/components/forms/PrivateYogaRequestForm';
 import Container from '@/components/ui/Container';
 
@@ -13,15 +15,30 @@ interface ProgrammePageContentProps {
   translationKey: string;
 }
 
-export default function ProgrammePageContent({
+// Inner component that uses useSearchParams
+function ProgrammePageContentInner({
   programmeKey,
   translationKey,
 }: ProgrammePageContentProps) {
   const { t, locale } = useTranslation();
-  const { edition, sessions, isLoading } = useEditionData(programmeKey);
+  const searchParams = useSearchParams();
+  const editionIdFromUrl = searchParams.get('edition');
+
+  const {
+    editions,
+    selectedEdition,
+    selectEdition,
+    edition,
+    sessions,
+    totalMinutes,
+    calculatedPrice,
+    isLoading
+  } = useEditionData(programmeKey, editionIdFromUrl);
+
   const [showAllBenefits, setShowAllBenefits] = useState(false);
 
   const hasActiveEdition = edition && sessions && sessions.length > 0;
+  const hasMultipleEditions = editions.length > 1;
 
   // Get programme data from translations
   const title = t(`programmes.classes.${translationKey}.title`);
@@ -138,6 +155,81 @@ export default function ProgrammePageContent({
         </Container>
       </section>
 
+      {/* Edition Tabs - Only show when multiple editions */}
+      {hasMultipleEditions && (
+        <section className="bg-gradient-to-r from-deep-blue/5 via-golden-orange/10 to-deep-blue/5 border-b border-golden-orange/20 sticky top-16 z-10 shadow-sm">
+          <Container>
+            <div className="py-4">
+              {/* Section label */}
+              <p className="text-xs font-medium text-deep-blue/70 uppercase tracking-wide mb-3">
+                {locale === 'fr' ? 'Choisissez votre édition' : 'Choose your edition'}
+              </p>
+
+              {/* Tabs */}
+              <div className="flex gap-3 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0">
+                {editions.map((editionData) => {
+                  const isSelected = selectedEdition?.edition.id === editionData.edition.id;
+                  const tabLabel = formatEditionTabLabel(editionData.sessions, locale);
+                  const editionTotalMinutes = editionData.edition?.total_minutes || 0;
+                  const editionSessions = editionData.sessions || [];
+
+                  // Calculate min remaining spots
+                  const minSpots = editionSessions.length > 0
+                    ? Math.min(...editionSessions.flatMap(s =>
+                        s.date_options?.map(o => o.remaining_spots) || [Infinity]
+                      ))
+                    : null;
+
+                  return (
+                    <button
+                      key={editionData.edition.id}
+                      onClick={() => selectEdition(editionData.edition.id)}
+                      className={`
+                        flex-shrink-0 flex flex-col items-start px-5 py-3 rounded-xl transition-all border-2
+                        ${isSelected
+                          ? 'bg-golden-orange text-white border-golden-orange shadow-lg scale-[1.02]'
+                          : 'bg-white text-deep-blue border-slate-200 hover:border-golden-orange/50 hover:shadow-md'
+                        }
+                      `}
+                    >
+                      {/* Date + Price row */}
+                      <div className="flex items-center gap-3 w-full">
+                        <span className="flex items-center gap-1.5 font-semibold">
+                          <svg className={`w-4 h-4 ${isSelected ? 'text-white/80' : 'text-golden-orange'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          </svg>
+                          {tabLabel}
+                        </span>
+                        {editionData.edition.calculated_price && (
+                          <span className={`font-bold ${isSelected ? 'text-white' : 'text-golden-orange'}`}>
+                            {editionData.edition.calculated_price} DH
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Duration + Sessions */}
+                      {editionTotalMinutes > 0 && (
+                        <span className={`text-xs mt-1 ${isSelected ? 'text-white/80' : 'text-text-secondary'}`}>
+                          {formatDuration(editionTotalMinutes)}
+                          {editionSessions.length > 0 && ` • ${editionSessions.length} session${editionSessions.length > 1 ? 's' : ''}`}
+                        </span>
+                      )}
+
+                      {/* Places remaining badge */}
+                      {minSpots !== null && minSpots > 0 && minSpots <= 10 && (
+                        <span className={`text-xs mt-1 font-medium ${isSelected ? 'text-white' : 'text-golden-orange'}`}>
+                          {minSpots} {locale === 'fr' ? 'places' : 'spots'}
+                        </span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </Container>
+        </section>
+      )}
+
       {/* Main Content - Two Columns */}
       <section className="py-12 md:py-16">
         <Container>
@@ -245,10 +337,37 @@ export default function ProgrammePageContent({
                       </svg>
                     </div>
                     <div>
-                      <dt className="text-sm text-text-secondary">{locale === 'fr' ? 'Durée' : 'Duration'}</dt>
-                      <dd className="font-medium text-deep-blue">{duration}</dd>
+                      <dt className="text-sm text-text-secondary">
+                        {locale === 'fr' ? 'Durée totale' : 'Total duration'}
+                      </dt>
+                      <dd className="font-medium text-deep-blue">
+                        {hasActiveEdition && totalMinutes > 0
+                          ? formatDuration(totalMinutes)
+                          : duration}
+                      </dd>
                     </div>
                   </div>
+
+                  {/* Sessions count - only when active edition */}
+                  {hasActiveEdition && sessions && sessions.length > 0 && (
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 bg-golden-orange/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg className="w-4 h-4 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                        </svg>
+                      </div>
+                      <div>
+                        <dt className="text-sm text-text-secondary">
+                          {locale === 'fr' ? 'Sessions' : 'Sessions'}
+                        </dt>
+                        <dd className="font-medium text-deep-blue">
+                          {sessions.length} {locale === 'fr'
+                            ? (sessions.length > 1 ? 'sessions' : 'session')
+                            : (sessions.length > 1 ? 'sessions' : 'session')}
+                        </dd>
+                      </div>
+                    </div>
+                  )}
 
                   {/* Price */}
                   <div className="flex items-start gap-3">
@@ -259,7 +378,9 @@ export default function ProgrammePageContent({
                     </div>
                     <div>
                       <dt className="text-sm text-text-secondary">{locale === 'fr' ? 'Tarif' : 'Price'}</dt>
-                      <dd className="font-bold text-golden-orange text-lg">{price}</dd>
+                      <dd className="font-bold text-golden-orange text-lg">
+                        {getDisplayPrice(calculatedPrice, price)}
+                      </dd>
                     </div>
                   </div>
                 </dl>
@@ -275,7 +396,7 @@ export default function ProgrammePageContent({
                     className="object-cover"
                   />
                 </div>
-                <div>
+                <div className="flex-1">
                   <p className="font-heading font-semibold text-deep-blue">Hajar Habi</p>
                   <p className="text-sm text-text-secondary">
                     {locale === 'fr'
@@ -287,6 +408,14 @@ export default function ProgrammePageContent({
                       ? 'Certifiée Sadhguru Gurukulam • 1750 heures de formation'
                       : 'Sadhguru Gurukulam Certified • 1750 hours of training'}
                   </p>
+                </div>
+                <div className="relative w-20 h-20 flex-shrink-0">
+                  <Image
+                    src="/images/certifications/isha-hatha-yoga-certified.png"
+                    alt="Isha Hatha Yoga Certified"
+                    fill
+                    className="object-contain drop-shadow-sm"
+                  />
                 </div>
               </div>
 
@@ -338,5 +467,18 @@ export default function ProgrammePageContent({
         </Container>
       </section>
     </div>
+  );
+}
+
+// Wrapper component with Suspense for useSearchParams
+export default function ProgrammePageContent(props: ProgrammePageContentProps) {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-golden-orange border-t-transparent rounded-full animate-spin" />
+      </div>
+    }>
+      <ProgrammePageContentInner {...props} />
+    </Suspense>
   );
 }

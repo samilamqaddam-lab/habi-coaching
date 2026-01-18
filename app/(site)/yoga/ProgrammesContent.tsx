@@ -9,6 +9,8 @@ import Button from '@/components/ui/Button'
 import { PrivateYogaRequestModal, IndividualYogaBookingModal } from '@/components/forms'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useMultipleEditionsData } from '@/hooks/useMultipleEditionsData'
+import { getDisplayPrice, formatDuration, formatEditionBadgeDate } from '@/lib/price-utils'
+import Link from 'next/link'
 
 // Composant Accordion pour les bénéfices
 function BenefitsAccordion({ programKey, t }: { programKey: string; t: (key: string) => string }) {
@@ -398,7 +400,9 @@ export default function ProgrammesContent() {
             // Get edition data for this programme
             const apiKey = programKeyToFormValue[programKey]
             const editionInfo = editionsData[apiKey]
-            const hasActiveEdition = editionInfo?.edition && editionInfo?.sessions?.length > 0
+            const editions = editionInfo?.editions || []
+            const hasActiveEdition = editions.length > 0 && editions.some(e => e.sessions?.length > 0)
+            // Use first edition for backward compatibility in some displays
             const edition = editionInfo?.edition
             const sessions = editionInfo?.sessions || []
 
@@ -448,8 +452,8 @@ export default function ProgrammesContent() {
                 <BenefitsAccordion programKey={programKey} t={t} />
 
                 {/* Infos pratiques */}
-                <div className="space-y-2 mb-4 text-sm flex-grow">
-                  {/* Schedule info - Hidden when active edition exists (dates shown in badge instead) */}
+                <div className="space-y-1.5 mb-4 text-sm flex-grow">
+                  {/* Schedule info - Hidden when active edition exists */}
                   {!hasActiveEdition && (
                     <div className="flex items-start text-text-secondary">
                       <svg className="w-4 h-4 mr-2 text-golden-orange mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -458,120 +462,162 @@ export default function ProgrammesContent() {
                       <span>{t(`programmes.classes.${programKey}.schedule`)}</span>
                     </div>
                   )}
-                  <div className="flex items-start text-text-secondary">
-                    <svg className="w-4 h-4 mr-2 text-golden-orange mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span>{t(`programmes.classes.${programKey}.duration`)}</span>
-                  </div>
-                  <div className="flex items-start text-text-secondary">
-                    <svg className="w-4 h-4 mr-2 text-golden-orange mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <span>{t(`programmes.classes.${programKey}.location`)}</span>
-                  </div>
 
-                  {/* Active edition block - Shown when active edition exists for any programme */}
-                  {hasActiveEdition && (
-                    <div className="mt-3 pt-3 border-t border-golden-orange/20">
-                      {/* Badge "Inscriptions ouvertes" - Morocco blue from palette */}
-                      <div className="inline-flex items-center gap-1.5 bg-morocco-blue text-white text-xs font-semibold px-2.5 py-1 rounded-full mb-2">
-                        <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                        {locale === 'fr' ? 'Inscriptions ouvertes' : 'Registration open'}
-                      </div>
-
-                      {/* Date range */}
-                      <div className="flex items-center text-deep-blue font-medium">
-                        <svg className="w-4 h-4 mr-2 text-golden-orange flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                        <span>
-                          {(() => {
-                            const allDates = sessions.flatMap(session =>
-                              session.date_options.map(option => new Date(option.date_time))
-                            ).sort((a, b) => a.getTime() - b.getTime());
-
-                            if (allDates.length === 0) return null;
-
-                            const firstDate = allDates[0];
-                            const lastDate = allDates[allDates.length - 1];
-
-                            const formatDate = (date: Date) => {
-                              return date.toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US', {
-                                day: 'numeric',
-                                month: 'short',
-                                year: firstDate.getFullYear() !== lastDate.getFullYear() ? 'numeric' : undefined,
-                                timeZone: 'Africa/Casablanca',
-                              });
-                            };
-
-                            const startDateStr = formatDate(firstDate);
-                            const endDateStr = lastDate.toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US', {
-                              day: 'numeric',
-                              month: 'short',
-                              year: 'numeric',
-                              timeZone: 'Africa/Casablanca',
-                            });
-
-                            return `${startDateStr} - ${endDateStr}`;
-                          })()}
-                        </span>
-                      </div>
-
-                      {/* Places disponibles */}
-                      {(() => {
-                        // Calculate remaining spots (minimum across all date options)
-                        const minAvailable = Math.min(
-                          ...sessions.flatMap(session =>
-                            session.date_options.map(option =>
-                              option.remaining_spots
-                            )
-                          )
-                        );
-
-                        if (minAvailable > 0 && minAvailable <= 10) {
-                          return (
-                            <p className="text-xs text-golden-orange mt-1 flex items-center gap-1">
-                              <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
-                              </svg>
-                              {locale === 'fr'
-                                ? `${minAvailable} place${minAvailable > 1 ? 's' : ''} restante${minAvailable > 1 ? 's' : ''}`
-                                : `${minAvailable} spot${minAvailable > 1 ? 's' : ''} left`
-                              }
-                            </p>
-                          );
-                        }
-                        return null;
-                      })()}
+                  {/* Duration - Only show at card level when no editions OR single edition */}
+                  {(!hasActiveEdition || editions.length <= 1) && (
+                    <div className="flex items-start text-text-secondary">
+                      <svg className="w-4 h-4 mr-2 text-golden-orange mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span>
+                        {hasActiveEdition && editionInfo?.totalMinutes && editionInfo.totalMinutes > 0
+                          ? `${formatDuration(editionInfo.totalMinutes)} ${locale === 'fr' ? 'au total' : 'total'}${sessions.length > 0 ? ` • ${sessions.length} session${sessions.length > 1 ? 's' : ''}` : ''}`
+                          : t(`programmes.classes.${programKey}.duration`)}
+                      </span>
                     </div>
                   )}
 
-                  <p className="font-semibold text-golden-orange mt-4">
-                    {t(`programmes.classes.${programKey}.price`)}
-                  </p>
+                  {/* Location - Only show at card level when no editions OR single edition */}
+                  {(!hasActiveEdition || editions.length <= 1) && (
+                    <div className="flex items-start text-text-secondary">
+                      <svg className="w-4 h-4 mr-2 text-golden-orange mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      <span>
+                        {(() => {
+                          // Try to get dynamic location from active edition
+                          if (hasActiveEdition && sessions.length > 0) {
+                            const firstLocation = sessions[0]?.date_options?.[0]?.location;
+                            if (firstLocation) return firstLocation;
+                          }
+                          // Fallback to static translation
+                          return t(`programmes.classes.${programKey}.location`);
+                        })()}
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Active editions block - Multi-edition badges */}
+                  {hasActiveEdition && editions.length > 0 && (
+                    <div className="mt-2 pt-2 border-t border-golden-orange/20 space-y-2">
+                      {/* Section header */}
+                      <div className="flex items-center gap-2">
+                        <span className="inline-flex items-center gap-1 bg-morocco-blue text-white text-xs font-semibold px-2 py-0.5 rounded-full">
+                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                          </svg>
+                          {locale === 'fr' ? 'Ouvert' : 'Open'}
+                        </span>
+                        {editions.length > 1 && (
+                          <span className="text-xs text-text-secondary">
+                            {editions.length} {locale === 'fr' ? 'éditions disponibles' : 'editions available'}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Edition badges - clickable with full details */}
+                      <div className="flex flex-col gap-2">
+                        {editions.map((editionData) => {
+                          const editionSessions = editionData.sessions || [];
+                          const dateLabel = formatEditionBadgeDate(editionSessions, locale);
+                          const editionPrice = editionData.edition?.calculated_price;
+                          const editionTotalMinutes = editionData.edition?.total_minutes || 0;
+                          const fallbackPrice = t(`programmes.classes.${programKey}.price`);
+
+                          // Get location from first session
+                          const editionLocation = editionSessions[0]?.date_options?.[0]?.location || null;
+
+                          // Calculate min remaining spots for this edition
+                          const minSpots = editionSessions.length > 0
+                            ? Math.min(...editionSessions.flatMap(s =>
+                                s.date_options?.map(o => o.remaining_spots) || [Infinity]
+                              ))
+                            : null;
+
+                          return (
+                            <Link
+                              key={editionData.edition.id}
+                              href={`/${apiKey}?edition=${editionData.edition.id}`}
+                              className="group/badge flex flex-col gap-1 px-3 py-2.5 bg-golden-orange/5 hover:bg-golden-orange/15 rounded-lg transition-colors border border-golden-orange/20 hover:border-golden-orange/40"
+                            >
+                              {/* Date + Price row */}
+                              <div className="flex items-center justify-between gap-2">
+                                <span className="flex items-center gap-1 text-deep-blue font-semibold text-sm">
+                                  <svg className="w-3.5 h-3.5 text-golden-orange flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                  </svg>
+                                  {dateLabel}
+                                </span>
+                                <span className="text-golden-orange font-bold text-sm">
+                                  {getDisplayPrice(editionPrice ?? null, fallbackPrice)}
+                                </span>
+                              </div>
+
+                              {/* Duration + Sessions */}
+                              {editionTotalMinutes > 0 && (
+                                <span className="flex items-center gap-1 text-text-secondary text-xs">
+                                  <svg className="w-3 h-3 text-golden-orange flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                  </svg>
+                                  {formatDuration(editionTotalMinutes)} {locale === 'fr' ? 'au total' : 'total'}
+                                  {editionSessions.length > 0 && ` • ${editionSessions.length} session${editionSessions.length > 1 ? 's' : ''}`}
+                                </span>
+                              )}
+
+                              {/* Location */}
+                              {editionLocation && (
+                                <span className="flex items-center gap-1 text-text-secondary text-xs">
+                                  <svg className="w-3 h-3 text-golden-orange flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                  </svg>
+                                  <span className="truncate">{editionLocation}</span>
+                                </span>
+                              )}
+
+                              {/* Places remaining */}
+                              {minSpots !== null && minSpots > 0 && minSpots <= 10 && (
+                                <span className="flex items-center gap-1 text-golden-orange text-xs font-medium">
+                                  <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+                                  </svg>
+                                  {minSpots} {locale === 'fr' ? 'places restantes' : 'spots remaining'}
+                                </span>
+                              )}
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Price - Only show at card level when no editions */}
+                  {!hasActiveEdition && (
+                    <p className="font-semibold text-golden-orange mt-4">
+                      {t(`programmes.classes.${programKey}.price`)}
+                    </p>
+                  )}
                 </div>
 
-                {/* Bouton - Primary style for active edition, outline for others */}
-                <PrivateYogaRequestModal
-                  triggerText={
-                    hasActiveEdition
-                      ? (locale === 'fr' ? "S'inscrire maintenant" : 'Register now')
-                      : t('programmes.buttons.book')
-                  }
-                  variant={hasActiveEdition ? 'primary' : 'outline'}
-                  fullWidth
-                  defaultYogaType={programKeyToFormValue[programKey]}
-                  isGroupClass={true}
-                  // Pass edition data when active edition exists
-                  {...(hasActiveEdition && {
-                    edition: edition,
-                    sessions: sessions
-                  })}
-                />
+                {/* Bouton - Link to programme page when edition exists, modal otherwise */}
+                {hasActiveEdition ? (
+                  <Button
+                    href={`/${apiKey}?edition=${editions[0]?.edition.id}`}
+                    variant="primary"
+                    fullWidth
+                  >
+                    {locale === 'fr' ? "S'inscrire maintenant" : 'Register now'}
+                  </Button>
+                ) : (
+                  <PrivateYogaRequestModal
+                    triggerText={t('programmes.buttons.book')}
+                    variant="outline"
+                    fullWidth
+                    defaultYogaType={programKeyToFormValue[programKey]}
+                    isGroupClass={true}
+                  />
+                )}
               </div>
             </Card>
             )

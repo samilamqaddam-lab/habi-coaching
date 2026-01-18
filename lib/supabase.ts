@@ -1,6 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
 
 // Types for our database
+export type EditionType = 'collective' | 'individual' | 'event';
+
 export interface ProgrammeEdition {
   id: string;
   programme_key: string;
@@ -11,6 +13,7 @@ export interface ProgrammeEdition {
   is_active: boolean;
   created_at: string;
   sessions_mandatory?: boolean;
+  edition_type: EditionType;
 }
 
 export interface EditionSession {
@@ -20,6 +23,7 @@ export interface EditionSession {
   title: string;
   title_en?: string;
   created_at: string;
+  duration_minutes?: number;
 }
 
 export interface SessionDateOption {
@@ -88,6 +92,12 @@ export interface SessionWithDates extends EditionSession {
 
 export interface EditionWithSessions extends ProgrammeEdition {
   sessions: SessionWithDates[];
+}
+
+// Extended edition type with calculated fields (from API response)
+export interface EditionWithCalculatedFields extends ProgrammeEdition {
+  total_minutes: number;
+  calculated_price: number | null;
 }
 
 // Environment variables

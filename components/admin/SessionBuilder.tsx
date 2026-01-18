@@ -1,13 +1,18 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import DateOptionPicker from './DateOptionPicker';
+import type { EditionType } from '@/lib/supabase';
 
 export interface DateOptionData {
   id?: string;
-  dateTime: string;
+  date: string;        // Format: YYYY-MM-DD
+  startTime: string;   // Format: HH:mm
+  endTime: string;     // Format: HH:mm
   location: string;
   maxCapacity?: number;
+  // Legacy: pour compatibilité avec données existantes
+  dateTime?: string;
 }
 
 export interface SessionData {
@@ -15,17 +20,47 @@ export interface SessionData {
   sessionNumber: number;
   title: string;
   titleEn?: string;
-  duration?: string;
+  durationMinutes?: number; // Auto-calculé à partir de startTime/endTime
   dateOptions: DateOptionData[];
+}
+
+// Helper to format minutes as "Xh Ymin"
+export function formatDuration(minutes: number): string {
+  const hours = Math.floor(minutes / 60);
+  const mins = minutes % 60;
+  if (hours === 0) return `${mins}min`;
+  if (mins === 0) return `${hours}h`;
+  return `${hours}h${mins}min`;
+}
+
+// Helper to calculate price from minutes (150 DH per hour)
+export function calculatePriceFromMinutes(minutes: number): number {
+  return Math.round((minutes / 60) * 150);
+}
+
+// Helper to calculate duration in minutes from start and end times
+export function calculateDurationFromTimes(startTime: string, endTime: string): number {
+  if (!startTime || !endTime) return 0;
+  const [startH, startM] = startTime.split(':').map(Number);
+  const [endH, endM] = endTime.split(':').map(Number);
+  const startMinutes = startH * 60 + startM;
+  const endMinutes = endH * 60 + endM;
+  // Handle case where end time is before start time (crosses midnight)
+  if (endMinutes < startMinutes) {
+    // Add 24 hours to end time (e.g., 22:30 to 00:30 = 2 hours)
+    return (endMinutes + 24 * 60) - startMinutes;
+  }
+  return endMinutes - startMinutes;
 }
 
 interface SessionBuilderProps {
   sessions: SessionData[];
   onChange: (sessions: SessionData[]) => void;
   defaultCapacity: number;
+  editionType?: EditionType;
 }
 
-export default function SessionBuilder({ sessions, onChange, defaultCapacity }: SessionBuilderProps) {
+export default function SessionBuilder({ sessions, onChange, defaultCapacity, editionType = 'collective' }: SessionBuilderProps) {
   const [expandedSession, setExpandedSession] = useState<number | null>(
     sessions.length > 0 ? 0 : null
   );
@@ -36,7 +71,9 @@ export default function SessionBuilder({ sessions, onChange, defaultCapacity }: 
       title: `Session ${sessions.length + 1}`,
       dateOptions: [
         {
-          dateTime: '',
+          date: '',
+          startTime: '',
+          endTime: '',
           location: 'Studio, Casablanca',
           maxCapacity: defaultCapacity,
         },
@@ -69,7 +106,16 @@ export default function SessionBuilder({ sessions, onChange, defaultCapacity }: 
   };
 
   const updateDateOptions = (sessionIndex: number, dateOptions: DateOptionData[]) => {
-    updateSession(sessionIndex, { dateOptions });
+    // Calculate duration from first date option's start/end times
+    const firstOption = dateOptions[0];
+    const durationMinutes = firstOption
+      ? calculateDurationFromTimes(firstOption.startTime, firstOption.endTime)
+      : 0;
+
+    updateSession(sessionIndex, {
+      dateOptions,
+      durationMinutes: durationMinutes > 0 ? durationMinutes : undefined
+    });
   };
 
   return (
@@ -137,15 +183,26 @@ export default function SessionBuilder({ sessions, onChange, defaultCapacity }: 
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-1">
-                    Durée (optionnel)
+                    Durée (calculée automatiquement)
                   </label>
-                  <input
-                    type="text"
-                    value={session.duration || ''}
-                    onChange={(e) => updateSession(index, { duration: e.target.value })}
-                    placeholder="Ex: 2h"
-                    className="w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-orange-400"
-                  />
+                  <div className="flex items-center gap-2 bg-slate-800 border border-slate-600 rounded-lg px-3 py-2">
+                    {session.durationMinutes && session.durationMinutes > 0 ? (
+                      <>
+                        <span className="text-slate-100 font-medium">
+                          {formatDuration(session.durationMinutes)}
+                        </span>
+                        {editionType === 'collective' && (
+                          <span className="text-green-400 text-sm">
+                            = {calculatePriceFromMinutes(session.durationMinutes)} DH
+                          </span>
+                        )}
+                      </>
+                    ) : (
+                      <span className="text-slate-500 italic">
+                        Définissez les horaires ci-dessous
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
 
