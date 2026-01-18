@@ -165,7 +165,7 @@ export async function POST(
               </tr>
               <tr>
                 <td style="padding: 8px 0; color: #666;"><strong>RIB :</strong></td>
-                <td style="padding: 8px 0; color: #333; font-family: monospace; font-size: 14px;">230 810 3338203840010002 40</td>
+                <td style="padding: 8px 0; color: #333; font-family: monospace; font-size: 14px;">230 810 3473290211005600 89</td>
               </tr>
             </table>
           </div>

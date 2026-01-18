@@ -42,11 +42,11 @@ export default function CoachingPackageModal({
 
   // Informations bancaires pour les paiements
   const bankInfo = {
-    accountName: "Hajar Habi",
-    bank: "Votre Banque", // À configurer
-    rib: "XXX XXX XXXXXXXXXXXXXXXXXX XX", // À configurer
-    email: "contact@hajar-habi.com", // À configurer
-    phone: "+212 6XX XX XX XX", // À configurer
+    accountName: "HAJAR HABI",
+    bank: "CIH Bank",
+    rib: "230 810 3473290211005600 89",
+    email: "hajar@transcendencework.com",
+    phone: "+212 663 096 857",
   };
 
   const handlePackageClick = (packageType: '3' | '6' | '12', price: number) => {
