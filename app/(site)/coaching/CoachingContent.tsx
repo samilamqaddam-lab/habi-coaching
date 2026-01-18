@@ -61,7 +61,7 @@ export default function CoachingContent() {
         theme="coaching"
         compact
         splitLayout
-        splitImage="/images/heroes/coaching-path-hero.jpg"
+        splitImage="/images/heroes/coaching-session-hero.png"
       />
 
       {/* Types de coaching */}

@@ -58,14 +58,14 @@ export async function POST(request: NextRequest) {
     // Send notification email to Hajar
     const notificationHtml = `
       <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto;">
-        <div style="background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%); padding: 30px; text-align: center; border-radius: 12px 12px 0 0;">
-          <h1 style="color: white; margin: 0; font-size: 24px;">💜 Manifestation d'Intérêt</h1>
-          <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0; font-size: 14px;">${yogaTypeName}</p>
+        <div style="background-color: #7c3aed; background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%); padding: 30px; text-align: center; border-radius: 12px 12px 0 0;">
+          <h1 style="color: #ffffff; margin: 0; font-size: 24px;">💜 Manifestation d'Intérêt</h1>
+          <p style="color: #e2e8f0; margin: 10px 0 0 0; font-size: 14px;">${yogaTypeName}</p>
         </div>
 
         <div style="background: #f8f9fa; padding: 30px; border-radius: 0 0 12px 12px;">
           <!-- Info Banner -->
-          <div style="background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); padding: 16px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #c4b5fd; text-align: center;">
+          <div style="background-color: #faf5ff; background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); padding: 16px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #c4b5fd; text-align: center;">
             <p style="margin: 0; color: #6d28d9; font-size: 14px;">
               📌 Cette personne souhaite être informée des prochaines sessions
             </p>
@@ -112,11 +112,11 @@ export async function POST(request: NextRequest) {
           ` : ''}
 
           <!-- Action Section -->
-          <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 20px; border-radius: 8px; border: 1px solid #f59e0b33; text-align: center;">
+          <div style="background-color: #fef3c7; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 20px; border-radius: 8px; border: 1px solid #f59e0b; text-align: center;">
             <p style="color: #92400e; margin: 0 0 15px 0; font-size: 14px;">
               <strong>💡 Action suggérée:</strong> Créer une nouvelle édition ou contacter cette personne
             </p>
-            <a href="${adminUrl}" style="display: inline-block; background: #1a365d; color: white; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-weight: 500; font-size: 14px;">
+            <a href="${adminUrl}" style="display: inline-block; background-color: #1a365d; color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-weight: 500; font-size: 14px;">
               Gérer les éditions →
             </a>
           </div>

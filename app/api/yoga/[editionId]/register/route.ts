@@ -198,15 +198,15 @@ export async function POST(
       // Email to admin (notification)
       const adminHtml = `
         <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto;">
-          <div style="background: linear-gradient(135deg, #1a365d 0%, #2d4a7c 100%); padding: 30px; text-align: center; border-radius: 12px 12px 0 0;">
-            <h1 style="color: white; margin: 0; font-size: 24px;">🧘 Nouvelle Inscription</h1>
-            <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0; font-size: 14px;">${programTitle}</p>
+          <div style="background-color: #1a365d; background: linear-gradient(135deg, #1a365d 0%, #2d4a7c 100%); padding: 30px; text-align: center; border-radius: 12px 12px 0 0;">
+            <h1 style="color: #ffffff; margin: 0; font-size: 24px;">🧘 Nouvelle Inscription</h1>
+            <p style="color: #e2e8f0; margin: 10px 0 0 0; font-size: 14px;">${programTitle}</p>
           </div>
 
           <div style="background: #f8f9fa; padding: 30px; border-radius: 0 0 12px 12px;">
             <!-- Action Button - Prominent CTA -->
             <div style="text-align: center; margin-bottom: 25px;">
-              <a href="${adminUrl}" style="display: inline-block; background: linear-gradient(135deg, #E8A54B 0%, #d4943c 100%); color: white; text-decoration: none; padding: 16px 32px; border-radius: 8px; font-weight: bold; font-size: 16px; box-shadow: 0 4px 12px rgba(232,165,75,0.3);">
+              <a href="${adminUrl}" style="display: inline-block; background-color: #E8A54B; background: linear-gradient(135deg, #E8A54B 0%, #d4943c 100%); color: #ffffff; text-decoration: none; padding: 16px 32px; border-radius: 8px; font-weight: bold; font-size: 16px;">
                 📋 Gérer cette inscription
               </a>
               <p style="margin: 10px 0 0 0; font-size: 12px; color: #666;">
@@ -280,11 +280,11 @@ export async function POST(
             ` : ''}
 
             <!-- Status and Quick Actions -->
-            <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 20px; border-radius: 8px; border: 1px solid #f59e0b33; text-align: center;">
+            <div style="background-color: #fef3c7; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 20px; border-radius: 8px; border: 1px solid #f59e0b; text-align: center;">
               <p style="color: #92400e; margin: 0 0 15px 0; font-size: 15px; font-weight: 600;">
                 ⏳ En attente de confirmation
               </p>
-              <a href="${adminUrl}" style="display: inline-block; background: #1a365d; color: white; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-weight: 500; font-size: 14px;">
+              <a href="${adminUrl}" style="display: inline-block; background-color: #1a365d; color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-weight: 500; font-size: 14px;">
                 Confirmer sur le dashboard →
               </a>
             </div>
