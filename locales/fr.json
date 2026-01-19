@@ -605,13 +605,13 @@
           "title": "100% personnalisé"
         }
       },
-      "secondaryButton": "Réserve un cours",
+      "secondaryButton": "Réserver un cours",
       "button": "Demander des infos"
     },
     "cta": {
       "title": "Prêt·e à Commencer ?",
       "description": "Contactez-nous pour toute question sur nos cours et programmes, ou pour vous inscrire à une prochaine session.",
-      "primaryCTA": "Réserve un cours",
+      "primaryCTA": "Réserver un cours",
       "secondaryCTA": "Demander des infos"
     }
   },
