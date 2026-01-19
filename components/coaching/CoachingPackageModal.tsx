@@ -90,7 +90,7 @@ export default function CoachingPackageModal({
         <div className="flex items-start justify-between p-4 sm:p-6 border-b border-gray-200 gap-3">
           <div className="flex-1 min-w-0">
             <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-deep-blue leading-snug break-words">
-              Choisissez votre formule de coaching
+              Coaching professionnel
             </h3>
             <p className="text-xs sm:text-sm text-text-secondary mt-1.5 leading-relaxed">
               Coaching professionnel certifié Coach & Team avec Hajar
@@ -128,9 +128,6 @@ export default function CoachingPackageModal({
                   <h4 className="font-heading text-xl sm:text-2xl font-bold text-warm-white mb-3">
                     Séance Unique
                   </h4>
-                  <div className="text-xs sm:text-sm font-semibold text-warm-white/90 uppercase tracking-wide mb-2">
-                    Découvrez le coaching
-                  </div>
                   <ul className="space-y-2 text-sm text-warm-white/90">
                     <li className="flex items-start">
                       <svg className="w-5 h-5 text-warm-white mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
