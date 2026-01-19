@@ -13,6 +13,32 @@ Professional coaching website for Hajar Habi - Holistic Coach & Traditional Yoga
 **Repository:** https://github.com/samilamqaddam-lab/habi-coaching.git
 **Deployment:** Vercel (auto-deploy on push to main)
 
+## Informations Critiques (NE JAMAIS INVENTER)
+
+> **RÈGLE ABSOLUE:** Ne JAMAIS inventer ou deviner des informations critiques comme les coordonnées bancaires, adresses, numéros de téléphone, etc. Toujours utiliser les données ci-dessous ou demander confirmation à l'utilisateur.
+
+### Coordonnées Bancaires
+- **Titulaire:** HAJAR HABI
+- **Banque:** CIH Bank
+- **RIB:** 230 810 3473290211005600 89
+
+### Coordonnées de Contact
+- **Email professionnel:** hajar@transcendencework.com
+- **Téléphone:** +212 663 096 857
+- **WhatsApp:** +212 663 096 857
+
+### Réseaux Sociaux
+- **LinkedIn:** https://www.linkedin.com/in/hajar-habi/
+- **Spotify Podcast:** https://open.spotify.com/show/3c1fH8hzdIRcFVwRGYQClR
+
+### Adresse Studio Yoga
+- **Nom:** Studio Shido Mind
+- **Adresse:** 36 B boulevard d'Anfa, 5ème étage, Appartement 54, Casablanca
+
+### Site Web
+- **URL Production:** https://transcendencework.com
+- **Domaine email:** @transcendencework.com
+
 ## Design System
 
 ### Theme Colors
