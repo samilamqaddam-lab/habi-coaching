@@ -125,6 +125,11 @@ export default function CoachingContent() {
                     {type.format}
                   </p>
                 </div>
+                {type.isExecutive && (
+                  <p className="text-xs text-text-secondary/80 italic mb-6 leading-relaxed">
+                    {t('coaching.services.executive.note')}
+                  </p>
+                )}
               </div>
               {type.isExecutive ? (
                 <Button variant="outline" fullWidth href="/contact">
