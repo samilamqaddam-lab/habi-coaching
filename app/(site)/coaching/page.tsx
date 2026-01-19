@@ -2,10 +2,10 @@ import { Metadata } from 'next'
 import CoachingContent from './CoachingContent'
 
 export const metadata: Metadata = {
-  title: 'Coaching - Accompagnement Personnel & Professionnel',
+  title: 'Coaching professionnel - Individuel, collectif & Organisationnel',
   description: 'Coaching individuel et professionnel avec Hajar Habi. Transformation personnelle, évolution de carrière et équilibre de vie.',
   openGraph: {
-    title: 'Coaching - Accompagnement Personnel & Professionnel | Transcendence Work',
+    title: 'Coaching professionnel - Individuel, collectif & Organisationnel | Transcendence Work',
     description: 'Coaching individuel et professionnel avec Hajar Habi. Transformation personnelle, évolution de carrière et équilibre de vie.',
     images: [
       {
