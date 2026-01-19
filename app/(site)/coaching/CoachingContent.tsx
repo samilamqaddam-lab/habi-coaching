@@ -76,9 +76,9 @@ export default function CoachingContent() {
           {coachingTypes.map((type, index) => (
             <Card key={index} hover padding="lg" className="flex flex-col">
               <div className="flex-grow">
-                <div className="w-16 h-16 bg-mystic-mauve/10 rounded-2xl flex items-center justify-center mb-6">
+                <div className="w-14 h-14 bg-mystic-mauve/10 rounded-xl flex items-center justify-center mb-5">
                   <svg
-                    className="w-8 h-8 text-mystic-mauve"
+                    className="w-7 h-7 text-mystic-mauve"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -109,24 +109,31 @@ export default function CoachingContent() {
                     )}
                   </svg>
                 </div>
-                <h3 className="font-heading text-2xl font-bold text-deep-blue mb-4">
+                <h3 className="font-heading text-xl font-bold text-deep-blue mb-3">
                   {type.title}
                 </h3>
-                <p className="text-text-secondary leading-relaxed mb-6">
+                <p className="text-text-secondary text-sm leading-relaxed mb-5">
                   {type.description}
                 </p>
-                <div className="space-y-2 mb-6 text-sm text-text-secondary">
-                  <p>
-                    <strong className="text-deep-blue">Durée:</strong>{' '}
-                    {type.duration}
-                  </p>
-                  <p>
-                    <strong className="text-deep-blue">Format:</strong>{' '}
-                    {type.format}
-                  </p>
+
+                {/* Duration & Format Section */}
+                <div className="border-t border-gray-100 pt-4 mb-5 space-y-2.5">
+                  <div className="flex items-center gap-2 text-sm">
+                    <svg className="w-4 h-4 text-mystic-mauve flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span className="text-text-secondary">{type.duration}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <svg className="w-4 h-4 text-mystic-mauve flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <span className="text-text-secondary">{type.format}</span>
+                  </div>
                 </div>
+
                 {type.isExecutive && (
-                  <p className="text-xs text-text-secondary/80 italic mb-6 leading-relaxed">
+                  <p className="text-xs text-text-secondary/80 italic mb-5 leading-relaxed">
                     {t('coaching.services.executive.note')}
                   </p>
                 )}
