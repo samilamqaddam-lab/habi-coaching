@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
 
     // Labels for display
     const locationLabels: Record<string, string> = {
-      studio: 'Au Studio Shido Mind (Casablanca)',
+      studio: 'En présentiel (Casablanca)',
       home: 'À domicile',
     };
 
