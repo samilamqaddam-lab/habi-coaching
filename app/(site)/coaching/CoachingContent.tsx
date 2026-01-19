@@ -15,15 +15,14 @@ export default function CoachingContent() {
     description: string;
     duration: string;
     format: string;
-    price: string;
-    icon: 'user' | 'briefcase' | 'heart';
+    icon: 'user' | 'briefcase' | 'building';
+    isExecutive?: boolean;
   }> = [
     {
       title: t('coaching.services.individual.title'),
       description: t('coaching.services.individual.description'),
       duration: t('coaching.services.individual.duration'),
       format: t('coaching.services.individual.format'),
-      price: t('coaching.services.individual.price'),
       icon: 'user',
     },
     {
@@ -31,16 +30,15 @@ export default function CoachingContent() {
       description: t('coaching.services.career.description'),
       duration: t('coaching.services.career.duration'),
       format: t('coaching.services.career.format'),
-      price: t('coaching.services.career.price'),
       icon: 'briefcase',
     },
     {
-      title: t('coaching.services.life.title'),
-      description: t('coaching.services.life.description'),
-      duration: t('coaching.services.life.duration'),
-      format: t('coaching.services.life.format'),
-      price: t('coaching.services.life.price'),
-      icon: 'heart',
+      title: t('coaching.services.executive.title'),
+      description: t('coaching.services.executive.description'),
+      duration: t('coaching.services.executive.duration'),
+      format: t('coaching.services.executive.format'),
+      icon: 'building',
+      isExecutive: true,
     },
   ];
 
@@ -101,12 +99,12 @@ export default function CoachingContent() {
                         d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                       />
                     )}
-                    {type.icon === 'heart' && (
+                    {type.icon === 'building' && (
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth={2}
-                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
                       />
                     )}
                   </svg>
@@ -119,25 +117,26 @@ export default function CoachingContent() {
                 </p>
                 <div className="space-y-2 mb-6 text-sm text-text-secondary">
                   <p>
-                    <strong className="text-deep-blue">
-                      {t('coaching.services.individual.duration').split(':')[0]}:
-                    </strong>{' '}
+                    <strong className="text-deep-blue">Durée:</strong>{' '}
                     {type.duration}
                   </p>
                   <p>
-                    <strong className="text-deep-blue">
-                      {t('coaching.services.individual.format').split(':')[0]}:
-                    </strong>{' '}
+                    <strong className="text-deep-blue">Format:</strong>{' '}
                     {type.format}
                   </p>
-                  <p className="font-semibold text-mystic-mauve">{type.price}</p>
                 </div>
               </div>
-              <CoachingPackageModal
-                triggerText="Réserver une séance"
-                variant="outline"
-                fullWidth
-              />
+              {type.isExecutive ? (
+                <Button variant="outline" fullWidth href="/contact">
+                  {t('coaching.services.executive.cta')}
+                </Button>
+              ) : (
+                <CoachingPackageModal
+                  triggerText="Réserver une séance"
+                  variant="outline"
+                  fullWidth
+                />
+              )}
             </Card>
           ))}
         </div>

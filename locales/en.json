@@ -136,24 +136,22 @@
       "title": "Support Adapted to Your Needs",
       "individual": {
         "title": "Individual Coaching",
-        "description": "Personalized support to explore your challenges, clarify your vision and navigate your professional journey on your own terms.",
-        "duration": "Duration: 60-90 min",
-        "format": "Format: In-person or online",
-        "price": "From €150/session"
+        "description": "Personalized professional coaching focused on personal development (confidence, positioning, communication, assertiveness, emotional management) and gaining perspective on a specific challenge.",
+        "duration": "60 or 90 min session",
+        "format": "In-person or online"
       },
       "career": {
         "title": "Career Coaching",
-        "description": "Professional guidance, career transitions (upward, lateral or reflective), and leadership development for executives and entrepreneurs.",
-        "duration": "Duration: 3-6 month program",
-        "format": "Format: Bi-monthly sessions",
-        "price": "Personalized program"
+        "description": "Professional guidance, career transitions (upward, lateral or reflective), and leadership development for managers.",
+        "duration": "Personalized program",
+        "format": "Bi-monthly or tailored sessions"
       },
-      "life": {
-        "title": "Life Coaching",
-        "description": "Deep personal transformation, harmonious work-life integration, burnout prevention and alignment with your values.",
-        "duration": "Duration: Flexible program",
-        "format": "Format: In-person or online",
-        "price": "From €600/month"
+      "executive": {
+        "title": "Executive Coaching & Leadership",
+        "description": "Supporting executives and senior managers in their posture, leadership and strategic challenges.",
+        "duration": "Tailored program",
+        "format": "In-person or online",
+        "cta": "Book a consultation"
       }
     },
     "approach": {

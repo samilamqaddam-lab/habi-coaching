@@ -136,24 +136,22 @@
       "title": "Un Accompagnement Adapté à Vos Besoins",
       "individual": {
         "title": "Coaching Individuel",
-        "description": "Un accompagnement personnalisé pour explorer vos défis, clarifier votre vision et naviguer votre parcours professionnel selon vos propres termes.",
-        "duration": "60-90 min",
-        "format": "En personne ou en ligne",
-        "price": "À partir de 150€/session"
+        "description": "Un accompagnement personnalisé de coaching professionnel axé sur le développement des personnes (confiance, positionnement, communication, assertivité, gestion émotionnelle) et la prise de recul face à un problème spécifique.",
+        "duration": "Séance de 60 ou 90 min",
+        "format": "En personne ou en ligne"
       },
       "career": {
         "title": "Coaching de Carrière",
-        "description": "Orientation professionnelle, transitions de carrière (ascendantes, latérales ou réflexives), et développement de leadership pour les cadres et entrepreneurs.",
-        "duration": "Programme 3-6 mois",
-        "format": "Sessions bi-mensuelles",
-        "price": "Programme personnalisé"
+        "description": "Orientation professionnelle, transitions de carrière (ascendantes, latérales ou réflexives), et développement de leadership pour les managers.",
+        "duration": "Programme personnalisé",
+        "format": "Sessions bi-mensuelles ou sur mesure"
       },
-      "life": {
-        "title": "Coaching de Vie",
-        "description": "Transformation personnelle profonde, intégration harmonieuse travail-vie, prévention du burnout et alignement avec vos valeurs.",
-        "duration": "Programme flexible",
+      "executive": {
+        "title": "Coaching Exécutif et Leadership",
+        "description": "Accompagnement des dirigeants et cadres supérieurs dans leur posture, leur leadership et leurs enjeux stratégiques.",
+        "duration": "Programme sur mesure",
         "format": "En personne ou en ligne",
-        "price": "À partir de 600€/mois"
+        "cta": "Prendre un RDV"
       }
     },
     "approach": {

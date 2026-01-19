@@ -37,9 +37,6 @@ export default function CoachingPackageModal({
     setIsOpen(false);
   };
 
-  const calcomUsername = process.env.NEXT_PUBLIC_CALCOM_USERNAME || 'hajar-habi-tpufjt';
-  const calcomCoachingSlug = process.env.NEXT_PUBLIC_CALCOM_COACHING_SLUG || 'coaching-individuel';
-
   // Informations bancaires pour les paiements
   const bankInfo = {
     accountName: "HAJAR HABI",
@@ -49,10 +46,30 @@ export default function CoachingPackageModal({
     phone: "+212 663 096 857",
   };
 
-  const handlePackageClick = (packageType: '3' | '6' | '12', price: number) => {
-    // Pour l'instant, redirection vers contact avec info package
-    const subject = `Demande Pack ${packageType} Séances - ${price} DH`;
-    const body = `Bonjour Hajar,\n\nJe souhaite réserver le Pack ${packageType} Séances au tarif de ${price} DH.\n\nMerci de me communiquer les informations de paiement.\n\nCordialement,`;
+  const handlePackageClick = (packageType: string, price: number) => {
+    // Redirection vers contact avec info package
+    let packageName = '';
+    switch (packageType) {
+      case 'seance-unique':
+        packageName = 'Séance Unique (60 min)';
+        break;
+      case 'initiation-60':
+        packageName = 'Pack Initiation (3 × 60 min)';
+        break;
+      case 'initiation-90':
+        packageName = 'Pack Initiation (3 × 90 min)';
+        break;
+      case 'approfondissement':
+        packageName = 'Pack Approfondissement (6 séances)';
+        break;
+      case 'transformation':
+        packageName = 'Pack Transformation (12 séances)';
+        break;
+      default:
+        packageName = packageType;
+    }
+    const subject = `Demande ${packageName} - ${price} DH`;
+    const body = `Bonjour Hajar,\n\nJe souhaite réserver ${packageName} au tarif de ${price} DH.\n\nMerci de me communiquer les informations de paiement.\n\nCordialement,`;
     window.location.href = `/contact?subject=${encodeURIComponent(subject)}&message=${encodeURIComponent(body)}`;
   };
 
@@ -76,7 +93,7 @@ export default function CoachingPackageModal({
               Choisissez votre formule de coaching
             </h3>
             <p className="text-xs sm:text-sm text-text-secondary mt-1.5 leading-relaxed">
-              Accompagnement holistique certifié EMCC avec Hajar
+              Coaching professionnel certifié Coach & Team avec Hajar
             </p>
           </div>
           <button
@@ -112,14 +129,14 @@ export default function CoachingPackageModal({
                     Séance Unique
                   </h4>
                   <div className="text-xs sm:text-sm font-semibold text-warm-white/90 uppercase tracking-wide mb-2">
-                    Réservation immédiate
+                    Découvrez le coaching
                   </div>
                   <ul className="space-y-2 text-sm text-warm-white/90">
                     <li className="flex items-start">
                       <svg className="w-5 h-5 text-warm-white mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                       </svg>
-                      <span className="leading-relaxed">60 minutes d'échange approfondi</span>
+                      <span className="leading-relaxed">Clarifier une situation ou un enjeu</span>
                     </li>
                     <li className="flex items-start">
                       <svg className="w-5 h-5 text-warm-white mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -131,26 +148,24 @@ export default function CoachingPackageModal({
                       <svg className="w-5 h-5 text-warm-white mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                       </svg>
-                      <span className="leading-relaxed">Réservation en ligne immédiate</span>
+                      <span className="leading-relaxed">Session planifiée sur mesure</span>
                     </li>
                   </ul>
                 </div>
                 <div className="text-left sm:text-right flex-shrink-0">
-                  <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-warm-white mb-1 leading-none">510 DH</div>
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-warm-white mb-1 leading-none">750 DH</div>
                   <div className="text-xs sm:text-sm text-warm-white/80 mt-1.5">Séance unique • 60 min</div>
                   <div className="inline-block mt-2.5 px-3 py-1 bg-warm-white/20 text-warm-white rounded-full text-xs font-semibold backdrop-blur-sm">
                     Commencez aujourd'hui
                   </div>
                 </div>
               </div>
-              <a
-                href={`https://cal.com/${calcomUsername}/${calcomCoachingSlug}`}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={() => handlePackageClick('seance-unique', 750)}
                 className="block w-full px-4 py-2.5 bg-warm-white text-deep-blue rounded-full font-semibold text-sm text-center hover:bg-warm-white/95 hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-warm-white focus:ring-offset-2 focus:ring-offset-deep-blue"
               >
                 Réserver une séance
-              </a>
+              </button>
             </div>
           </div>
 
@@ -165,48 +180,49 @@ export default function CoachingPackageModal({
               </p>
             </div>
             <div className="grid grid-cols-1 gap-4 sm:gap-5">
-              {/* Pack 3 */}
+              {/* Pack Initiation - Double Option */}
               <div className="bg-white border-2 border-gray-200 rounded-xl p-4 sm:p-5 hover:border-golden-orange hover:shadow-lg transition-all duration-300 group">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
-                  <div className="flex-1">
-                    <div className="text-xs sm:text-sm font-semibold text-golden-orange uppercase tracking-wide mb-2">
-                      Initiation
-                    </div>
-                    <ul className="space-y-2 text-sm text-text-secondary">
-                      <li className="flex items-start">
-                        <svg className="w-5 h-5 text-golden-orange mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                        <span className="leading-relaxed">Initier votre transformation</span>
-                      </li>
-                      <li className="flex items-start">
-                        <svg className="w-5 h-5 text-golden-orange mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                        <span className="leading-relaxed">Suivi personnalisé et flexible</span>
-                      </li>
-                      <li className="flex items-start">
-                        <svg className="w-5 h-5 text-golden-orange mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                        <span className="leading-relaxed">Séances en visio</span>
-                      </li>
-                    </ul>
+                <div className="text-xs sm:text-sm font-semibold text-golden-orange uppercase tracking-wide mb-3">
+                  Initiation
+                </div>
+                <p className="text-sm text-text-secondary mb-4 leading-relaxed">
+                  Initier votre transformation avec un suivi personnalisé
+                </p>
+
+                {/* Options 60/90 min */}
+                <div className="grid grid-cols-2 gap-3 mb-4">
+                  {/* Option 60 min */}
+                  <div className="border border-gray-200 rounded-lg p-3 text-center hover:border-golden-orange/50 transition-colors">
+                    <div className="text-lg sm:text-xl font-bold text-deep-blue mb-1">1 275 DH</div>
+                    <div className="text-xs text-text-secondary mb-1">3 × 60 min</div>
+                    <div className="text-xs text-golden-orange font-medium mb-3">425 DH/séance</div>
+                    <button
+                      onClick={() => handlePackageClick('initiation-60', 1275)}
+                      className="w-full px-3 py-2 bg-golden-orange text-white rounded-full font-semibold text-xs hover:bg-golden-orange-dark hover:-translate-y-0.5 transition-all duration-200 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-golden-orange focus:ring-offset-1"
+                    >
+                      Choisir 60 min
+                    </button>
                   </div>
-                  <div className="text-left sm:text-right flex-shrink-0">
-                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-deep-blue mb-1 leading-none">1400 DH</div>
-                    <div className="text-xs sm:text-sm text-text-secondary mt-1.5">3 séances • 467 DH/séance</div>
-                    <div className="inline-block mt-2.5 px-3 py-1 bg-golden-orange/10 text-golden-orange rounded-full text-xs font-semibold">
-                      Pour démarrer votre parcours
-                    </div>
+
+                  {/* Option 90 min */}
+                  <div className="border border-gray-200 rounded-lg p-3 text-center hover:border-golden-orange/50 transition-colors">
+                    <div className="text-lg sm:text-xl font-bold text-deep-blue mb-1">2 040 DH</div>
+                    <div className="text-xs text-text-secondary mb-1">3 × 90 min</div>
+                    <div className="text-xs text-golden-orange font-medium mb-3">680 DH/séance</div>
+                    <button
+                      onClick={() => handlePackageClick('initiation-90', 2040)}
+                      className="w-full px-3 py-2 bg-golden-orange text-white rounded-full font-semibold text-xs hover:bg-golden-orange-dark hover:-translate-y-0.5 transition-all duration-200 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-golden-orange focus:ring-offset-1"
+                    >
+                      Choisir 90 min
+                    </button>
                   </div>
                 </div>
-                <button
-                  onClick={() => handlePackageClick('3', 1400)}
-                  className="block w-full px-4 py-2.5 bg-golden-orange text-white rounded-full font-semibold text-sm text-center hover:bg-golden-orange-dark hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-golden-orange focus:ring-offset-2"
-                >
-                  Commencer ce parcours
-                </button>
+
+                <div className="text-center">
+                  <span className="inline-block px-3 py-1 bg-golden-orange/10 text-golden-orange rounded-full text-xs font-semibold">
+                    Pour démarrer votre parcours
+                  </span>
+                </div>
               </div>
 
               {/* Pack 6 - Recommandé */}
@@ -224,13 +240,13 @@ export default function CoachingPackageModal({
                         <svg className="w-5 h-5 text-mystic-mauve mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
-                        <span className="leading-relaxed">Accompagnement en profondeur</span>
+                        <span className="leading-relaxed">Travail en profondeur sur vos objectifs</span>
                       </li>
                       <li className="flex items-start">
                         <svg className="w-5 h-5 text-mystic-mauve mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
-                        <span className="leading-relaxed">Continuité de votre cheminement</span>
+                        <span className="leading-relaxed">Continuité et ancrage de votre cheminement</span>
                       </li>
                       <li className="flex items-start">
                         <svg className="w-5 h-5 text-mystic-mauve mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -241,15 +257,15 @@ export default function CoachingPackageModal({
                     </ul>
                   </div>
                   <div className="text-left sm:text-right flex-shrink-0">
-                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-deep-blue mb-1 leading-none">2500 DH</div>
-                    <div className="text-xs sm:text-sm text-text-secondary mt-1.5">6 séances • 417 DH/séance</div>
+                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-deep-blue mb-1 leading-none">3 825 DH</div>
+                    <div className="text-xs sm:text-sm text-text-secondary mt-1.5">6 séances • 637,50 DH/séance</div>
                     <div className="inline-block mt-2.5 px-3 py-1 bg-mystic-mauve/10 text-mystic-mauve rounded-full text-xs font-semibold">
                       Pour ancrer votre transformation
                     </div>
                   </div>
                 </div>
                 <button
-                  onClick={() => handlePackageClick('6', 2500)}
+                  onClick={() => handlePackageClick('approfondissement', 3825)}
                   className="block w-full px-4 py-2.5 bg-mystic-mauve text-white rounded-full font-semibold text-sm text-center hover:bg-mystic-mauve-dark hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-mystic-mauve focus:ring-offset-2"
                 >
                   Commencer ce parcours
@@ -274,7 +290,7 @@ export default function CoachingPackageModal({
                         <svg className="w-5 h-5 text-morocco-blue mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
-                        <span className="leading-relaxed">Changements profonds et durables</span>
+                        <span className="leading-relaxed">Transformation durable et ancrée</span>
                       </li>
                       <li className="flex items-start">
                         <svg className="w-5 h-5 text-morocco-blue mr-2.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -285,15 +301,15 @@ export default function CoachingPackageModal({
                     </ul>
                   </div>
                   <div className="text-left sm:text-right flex-shrink-0">
-                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-deep-blue mb-1 leading-none">4500 DH</div>
-                    <div className="text-xs sm:text-sm text-text-secondary mt-1.5">12 séances • 375 DH/séance</div>
+                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-deep-blue mb-1 leading-none">7 650 DH</div>
+                    <div className="text-xs sm:text-sm text-text-secondary mt-1.5">12 séances • 637,50 DH/séance</div>
                     <div className="inline-block mt-2.5 px-3 py-1 bg-morocco-blue/10 text-morocco-blue rounded-full text-xs font-semibold">
                       Pour une évolution durable
                     </div>
                   </div>
                 </div>
                 <button
-                  onClick={() => handlePackageClick('12', 4500)}
+                  onClick={() => handlePackageClick('transformation', 7650)}
                   className="block w-full px-4 py-2.5 bg-morocco-blue text-white rounded-full font-semibold text-sm text-center hover:bg-deep-blue hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-morocco-blue focus:ring-offset-2"
                 >
                   Commencer ce parcours
@@ -305,7 +321,7 @@ export default function CoachingPackageModal({
           {/* Footer info */}
           <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-gray-200">
             <p className="text-xs sm:text-sm text-text-secondary text-center mb-2 leading-relaxed">
-              Paiement par <strong>virement bancaire</strong> ou <strong>Cal.com</strong> (séance unique)
+              Paiement par <strong>virement bancaire</strong>
             </p>
             <p className="text-xs text-text-secondary text-center italic opacity-80 leading-relaxed mb-3">
               Après réservation d'un package, vous recevrez les informations de paiement et un lien privé pour réserver vos séances.
