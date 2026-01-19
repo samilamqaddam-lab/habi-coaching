@@ -123,6 +123,8 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  /* Prevent horizontal scroll on mobile */
+  overflow-x: hidden;
 }
 
 body {
@@ -136,6 +138,8 @@ body {
   hyphens: none;
   -webkit-hyphens: none;
   -ms-hyphens: none;
+  /* Prevent horizontal scroll on mobile */
+  overflow-x: hidden;
 }
 
 /* Dark mode for admin interface */
