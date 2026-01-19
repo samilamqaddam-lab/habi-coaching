@@ -18,7 +18,7 @@ interface RegistrationCardProps {
     whatsapp: string | null;
     message: string | null;
     status: 'pending' | 'confirmed' | 'cancelled';
-    payment_request_sent: boolean;
+    payment_requested_at: string | null;
     created_at: string;
     date_choices: DateChoice[];
   };
@@ -54,7 +54,7 @@ export default function RegistrationCard({ registration }: RegistrationCardProps
   const [isDeleting, setIsDeleting] = useState(false);
   const [isSendingPaymentRequest, setIsSendingPaymentRequest] = useState(false);
   // Initialize with DB value, can be updated after sending
-  const [paymentRequestSent, setPaymentRequestSent] = useState(registration.payment_request_sent || false);
+  const [paymentRequestedAt, setPaymentRequestedAt] = useState(registration.payment_requested_at);
   const router = useRouter();
 
   const handleStatusChange = async (newStatus: 'pending' | 'confirmed' | 'cancelled') => {
@@ -118,8 +118,9 @@ export default function RegistrationCard({ registration }: RegistrationCardProps
         throw new Error('Failed to send payment request');
       }
 
-      // Mark as sent (persistent - stays green)
-      setPaymentRequestSent(true);
+      const data = await response.json();
+      // Mark as sent with timestamp
+      setPaymentRequestedAt(data.payment_requested_at || new Date().toISOString());
     } catch (error) {
       console.error('Error sending payment request:', error);
       alert('Erreur lors de l\'envoi de la demande de paiement');
@@ -310,13 +311,13 @@ export default function RegistrationCard({ registration }: RegistrationCardProps
                 disabled={isSendingPaymentRequest}
                 className={`
                   flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all
-                  ${paymentRequestSent
+                  ${paymentRequestedAt
                     ? 'bg-emerald-400/20 text-emerald-400 border-2 border-emerald-400/50 hover:bg-emerald-400/30'
                     : 'bg-slate-700 text-slate-300 hover:bg-orange-400/10 hover:text-orange-400 hover:border-orange-400/30 border-2 border-transparent'
                   }
                   ${isSendingPaymentRequest ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
                 `}
-                title={paymentRequestSent ? 'Renvoyer la demande de paiement' : 'Envoyer une demande de paiement'}
+                title={paymentRequestedAt ? 'Renvoyer la demande de paiement' : 'Envoyer une demande de paiement'}
               >
                 {isSendingPaymentRequest ? (
                   <>
@@ -326,12 +327,12 @@ export default function RegistrationCard({ registration }: RegistrationCardProps
                     </svg>
                     Envoi...
                   </>
-                ) : paymentRequestSent ? (
+                ) : paymentRequestedAt ? (
                   <>
                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    Paiement demandé ✓
+                    Renvoyer demande
                   </>
                 ) : (
                   <>
@@ -343,6 +344,18 @@ export default function RegistrationCard({ registration }: RegistrationCardProps
                 )}
               </button>
             </div>
+
+            {/* Payment Request Info Banner */}
+            {paymentRequestedAt && (
+              <div className="bg-green-400/10 border border-green-400/20 rounded-lg p-3 mt-3">
+                <p className="text-green-400 text-sm flex items-center gap-2">
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  Demande de paiement envoyée le {formatDate(paymentRequestedAt)}
+                </p>
+              </div>
+            )}
 
             {isUpdating && (
               <p className="text-xs text-slate-400 mt-2 flex items-center gap-2">

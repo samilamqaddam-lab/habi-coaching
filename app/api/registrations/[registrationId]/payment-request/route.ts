@@ -133,7 +133,7 @@ export async function POST(
     // Payment request email
     const paymentRequestHtml = `
       <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto;">
-        <div style="background: linear-gradient(135deg, #E8A54B 0%, #d4943c 100%); padding: 30px; text-align: center; border-radius: 12px 12px 0 0;">
+        <div style="background-color: #E8A54B; background: linear-gradient(135deg, #E8A54B 0%, #d4943c 100%); padding: 30px; text-align: center; border-radius: 12px 12px 0 0;">
           <h1 style="color: white; margin: 0; font-size: 24px;">🪷 Finalisez votre inscription</h1>
         </div>
 
@@ -216,16 +216,16 @@ export async function POST(
 
     console.log('Payment request email sent to:', registration.email);
 
-    // Update the payment_request_sent flag in the database
+    // Update the payment_requested_at timestamp in the database
     await supabaseAdmin
       .from('registrations')
-      .update({ payment_request_sent: true })
+      .update({ payment_requested_at: new Date().toISOString() })
       .eq('id', registrationId);
 
     return NextResponse.json({
       success: true,
       message: 'Email de demande de paiement envoyé avec succès',
-      payment_request_sent: true,
+      payment_requested_at: new Date().toISOString(),
     });
 
   } catch (error) {

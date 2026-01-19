@@ -9,11 +9,15 @@ export default function AdminNav() {
   const router = useRouter();
   const [loggingOut, setLoggingOut] = useState(false);
   const [eventsOpen, setEventsOpen] = useState(true);
+  const [coachingOpen, setCoachingOpen] = useState(true);
 
   // Keep section open if we're on a related page
   useEffect(() => {
     if (pathname.startsWith('/admin/dashboard') || pathname.startsWith('/admin/editions')) {
       setEventsOpen(true);
+    }
+    if (pathname.startsWith('/admin/coaching')) {
+      setCoachingOpen(true);
     }
   }, [pathname]);
 
@@ -44,6 +48,16 @@ export default function AdminNav() {
         ),
       },
     ],
+  };
+
+  const coachingSection = {
+    name: 'Coaching Individuel',
+    href: '/admin/coaching',
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+      </svg>
+    ),
   };
 
   const handleLogout = async () => {
@@ -125,6 +139,22 @@ export default function AdminNav() {
             </div>
           )}
         </div>
+
+        {/* Coaching Section */}
+        <Link
+          href={coachingSection.href}
+          className={`
+            flex items-center gap-3 px-4 py-3 rounded-lg transition-colors
+            ${
+              pathname.startsWith('/admin/coaching')
+                ? 'bg-purple-400/10 text-purple-400'
+                : 'text-slate-300 hover:bg-slate-700 hover:text-slate-100'
+            }
+          `}
+        >
+          {coachingSection.icon}
+          <span className="font-medium text-sm">{coachingSection.name}</span>
+        </Link>
       </nav>
 
       {/* Footer */}

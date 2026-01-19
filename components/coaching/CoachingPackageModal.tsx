@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import Button from '@/components/ui/Button';
+import CoachingRegistrationForm from './CoachingRegistrationForm';
 
 interface CoachingPackageModalProps {
   triggerText?: string;
@@ -11,6 +12,17 @@ interface CoachingPackageModalProps {
   fullWidth?: boolean;
   className?: string;
 }
+
+interface SelectedPackage {
+  slug: string;
+  name: string;
+  sessionCount: number;
+  sessionDuration: number;
+  price: number;
+  pricePerSession: number;
+}
+
+type ModalView = 'packages' | 'form' | 'success';
 
 export default function CoachingPackageModal({
   triggerText = 'Réserver une séance',
@@ -21,6 +33,8 @@ export default function CoachingPackageModal({
 }: CoachingPackageModalProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [view, setView] = useState<ModalView>('packages');
+  const [selectedPackage, setSelectedPackage] = useState<SelectedPackage | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -31,46 +45,31 @@ export default function CoachingPackageModal({
     e?.preventDefault();
     e?.stopPropagation();
     setIsOpen(true);
+    setView('packages');
+    setSelectedPackage(null);
   };
 
   const handleClose = () => {
     setIsOpen(false);
+    // Reset state after animation
+    setTimeout(() => {
+      setView('packages');
+      setSelectedPackage(null);
+    }, 200);
   };
 
-  // Informations bancaires pour les paiements
-  const bankInfo = {
-    accountName: "HAJAR HABI",
-    bank: "CIH Bank",
-    rib: "230 810 3473290211005600 89",
-    email: "hajar@transcendencework.com",
-    phone: "+212 663 096 857",
+  const handlePackageClick = (pkg: SelectedPackage) => {
+    setSelectedPackage(pkg);
+    setView('form');
   };
 
-  const handlePackageClick = (packageType: string, price: number) => {
-    // Redirection vers contact avec info package
-    let packageName = '';
-    switch (packageType) {
-      case 'seance-unique':
-        packageName = 'Séance Unique (90 min)';
-        break;
-      case 'initiation-60':
-        packageName = 'Pack Initiation (3 × 60 min)';
-        break;
-      case 'initiation-90':
-        packageName = 'Pack Initiation (3 × 90 min)';
-        break;
-      case 'approfondissement':
-        packageName = 'Pack Approfondissement (6 séances)';
-        break;
-      case 'transformation':
-        packageName = 'Pack Transformation (12 séances)';
-        break;
-      default:
-        packageName = packageType;
-    }
-    const subject = `Demande ${packageName} - ${price} DH`;
-    const body = `Bonjour Hajar,\n\nJe souhaite réserver ${packageName} au tarif de ${price} DH.\n\nMerci de me communiquer les informations de paiement.\n\nCordialement,`;
-    window.location.href = `/contact?subject=${encodeURIComponent(subject)}&message=${encodeURIComponent(body)}`;
+  const handleFormSuccess = () => {
+    setView('success');
+  };
+
+  const handleBackToPackages = () => {
+    setView('packages');
+    setSelectedPackage(null);
   };
 
   const modalContent = isOpen && mounted ? (
@@ -90,10 +89,14 @@ export default function CoachingPackageModal({
         <div className="flex items-start justify-between p-4 sm:p-6 border-b border-gray-200 gap-3">
           <div className="flex-1 min-w-0">
             <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-deep-blue leading-snug break-words">
-              Coaching professionnel
+              {view === 'packages' && 'Coaching professionnel'}
+              {view === 'form' && 'Réserver votre coaching'}
+              {view === 'success' && 'Demande envoyée'}
             </h3>
             <p className="text-xs sm:text-sm text-text-secondary mt-1.5 leading-relaxed">
-              Coaching professionnel certifié Coach & Team avec Hajar
+              {view === 'packages' && 'Coaching professionnel certifié Coach & Team avec Hajar'}
+              {view === 'form' && selectedPackage?.name}
+              {view === 'success' && 'Votre demande a été enregistrée avec succès'}
             </p>
           </div>
           <button
@@ -119,6 +122,7 @@ export default function CoachingPackageModal({
         </div>
 
         {/* Content */}
+        {view === 'packages' && (
         <div className="p-4 sm:p-6 max-h-[calc(100vh-200px)] overflow-y-auto">
           {/* Séance Unique - Mise en avant avec fond sombre */}
           <div className="mb-6 sm:mb-8">
@@ -158,7 +162,14 @@ export default function CoachingPackageModal({
                 </div>
               </div>
               <button
-                onClick={() => handlePackageClick('seance-unique', 750)}
+                onClick={() => handlePackageClick({
+                  slug: 'seance-unique',
+                  name: 'Séance Unique',
+                  sessionCount: 1,
+                  sessionDuration: 90,
+                  price: 750,
+                  pricePerSession: 750,
+                })}
                 className="block w-full px-4 py-2.5 bg-warm-white text-deep-blue rounded-full font-semibold text-sm text-center hover:bg-warm-white/95 hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-warm-white focus:ring-offset-2 focus:ring-offset-deep-blue"
               >
                 Réserver une séance
@@ -211,7 +222,14 @@ export default function CoachingPackageModal({
                     <div className="text-xs text-text-secondary mb-1">3 × 60 min</div>
                     <div className="text-xs text-golden-orange font-medium mb-3">450 DH/séance</div>
                     <button
-                      onClick={() => handlePackageClick('initiation-60', 1350)}
+                      onClick={() => handlePackageClick({
+                        slug: 'initiation-60',
+                        name: 'Initiation 60 min',
+                        sessionCount: 3,
+                        sessionDuration: 60,
+                        price: 1350,
+                        pricePerSession: 450,
+                      })}
                       className="w-full px-3 py-2 bg-golden-orange text-white rounded-full font-semibold text-xs hover:bg-golden-orange-dark hover:-translate-y-0.5 transition-all duration-200 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-golden-orange focus:ring-offset-1"
                     >
                       3 séances de 60 min
@@ -224,7 +242,14 @@ export default function CoachingPackageModal({
                     <div className="text-xs text-text-secondary mb-1">3 × 90 min</div>
                     <div className="text-xs text-golden-orange font-medium mb-3">675 DH/séance</div>
                     <button
-                      onClick={() => handlePackageClick('initiation-90', 2025)}
+                      onClick={() => handlePackageClick({
+                        slug: 'initiation-90',
+                        name: 'Initiation 90 min',
+                        sessionCount: 3,
+                        sessionDuration: 90,
+                        price: 2025,
+                        pricePerSession: 675,
+                      })}
                       className="w-full px-3 py-2 bg-golden-orange text-white rounded-full font-semibold text-xs hover:bg-golden-orange-dark hover:-translate-y-0.5 transition-all duration-200 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-golden-orange focus:ring-offset-1"
                     >
                       3 séances de 90 min
@@ -280,7 +305,14 @@ export default function CoachingPackageModal({
                   </div>
                 </div>
                 <button
-                  onClick={() => handlePackageClick('approfondissement', 3825)}
+                  onClick={() => handlePackageClick({
+                    slug: 'approfondissement',
+                    name: 'Approfondissement',
+                    sessionCount: 6,
+                    sessionDuration: 90,
+                    price: 3825,
+                    pricePerSession: 637.50,
+                  })}
                   className="block w-full px-4 py-2.5 bg-mystic-mauve text-white rounded-full font-semibold text-sm text-center hover:bg-mystic-mauve-dark hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-mystic-mauve focus:ring-offset-2"
                 >
                   Commencer ce parcours
@@ -325,7 +357,14 @@ export default function CoachingPackageModal({
                   </div>
                 </div>
                 <button
-                  onClick={() => handlePackageClick('transformation', 7650)}
+                  onClick={() => handlePackageClick({
+                    slug: 'transformation',
+                    name: 'Transformation',
+                    sessionCount: 12,
+                    sessionDuration: 90,
+                    price: 7650,
+                    pricePerSession: 637.50,
+                  })}
                   className="block w-full px-4 py-2.5 bg-morocco-blue text-white rounded-full font-semibold text-sm text-center hover:bg-deep-blue hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-morocco-blue focus:ring-offset-2"
                 >
                   Commencer ce parcours
@@ -351,6 +390,42 @@ export default function CoachingPackageModal({
             </p>
           </div>
         </div>
+        )}
+
+        {/* Registration Form View */}
+        {view === 'form' && selectedPackage && (
+          <CoachingRegistrationForm
+            selectedPackage={selectedPackage}
+            onSuccess={handleFormSuccess}
+            onBack={handleBackToPackages}
+          />
+        )}
+
+        {/* Success View */}
+        {view === 'success' && (
+          <div className="p-6 sm:p-8 text-center">
+            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg className="w-10 h-10 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h4 className="text-xl font-bold text-deep-blue mb-3">
+              Merci pour votre demande !
+            </h4>
+            <p className="text-text-secondary mb-6 leading-relaxed max-w-md mx-auto">
+              Votre demande de coaching a bien été enregistrée. Je reviendrai vers vous dans les <strong>24-48 heures</strong> pour discuter de votre projet et planifier notre première séance.
+            </p>
+            <p className="text-sm text-text-secondary mb-6">
+              Un email de confirmation a été envoyé à votre adresse.
+            </p>
+            <button
+              onClick={handleClose}
+              className="px-8 py-3 bg-mystic-mauve text-white rounded-full font-semibold hover:bg-mystic-mauve-dark transition-colors"
+            >
+              Fermer
+            </button>
+          </div>
+        )}
       </div>
     </div>
   ) : null;
