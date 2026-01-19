@@ -9,10 +9,10 @@ export const metadata: Metadata = {
     description: 'Coaching individuel et professionnel avec Hajar Habi. Transformation personnelle, évolution de carrière et équilibre de vie.',
     images: [
       {
-        url: '/images/heroes/coaching-path-hero.jpg',
+        url: '/images/heroes/coaching-path-hero.jpg?v=2',
         width: 1200,
         height: 630,
-        alt: 'Coaching - Transcendence Work',
+        alt: 'Coaching professionnel - Transcendence Work',
       },
     ],
   },
