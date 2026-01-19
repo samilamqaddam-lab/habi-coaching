@@ -4,20 +4,30 @@ import { PROGRAMMES_CONFIG } from '@/lib/programmes-config';
 import { z } from 'zod';
 
 // Helper to combine date and time into ISO datetime
+// Store as UTC so the time is preserved exactly as entered
 function combineDateAndTime(date: string, time: string): string {
   if (!date || !time) return '';
   // date is YYYY-MM-DD, time is HH:mm
-  return new Date(`${date}T${time}:00`).toISOString();
+  // Store with Z suffix to treat as UTC - this ensures the time is preserved exactly
+  return `${date}T${time}:00.000Z`;
 }
 
 // Helper to extract date and time from ISO datetime
+// Read as UTC to get the exact time that was stored
 function extractDateAndTime(isoString: string): { date: string; time: string } {
   if (!isoString) return { date: '', time: '' };
   try {
     const d = new Date(isoString);
-    const date = d.toISOString().split('T')[0]; // YYYY-MM-DD
-    const time = `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`; // HH:mm
-    return { date, time };
+    // Use UTC methods to get the exact time that was stored
+    const year = d.getUTCFullYear();
+    const month = String(d.getUTCMonth() + 1).padStart(2, '0');
+    const day = String(d.getUTCDate()).padStart(2, '0');
+    const hours = String(d.getUTCHours()).padStart(2, '0');
+    const minutes = String(d.getUTCMinutes()).padStart(2, '0');
+    return {
+      date: `${year}-${month}-${day}`,
+      time: `${hours}:${minutes}`,
+    };
   } catch {
     return { date: '', time: '' };
   }

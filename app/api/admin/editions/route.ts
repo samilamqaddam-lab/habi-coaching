@@ -4,10 +4,12 @@ import { PROGRAMMES_CONFIG } from '@/lib/programmes-config';
 import { z } from 'zod';
 
 // Helper to combine date and time into ISO datetime
+// Store as UTC so the time is preserved exactly as entered
 function combineDateAndTime(date: string, time: string): string {
   if (!date || !time) return '';
   // date is YYYY-MM-DD, time is HH:mm
-  return new Date(`${date}T${time}:00`).toISOString();
+  // Store with Z suffix to treat as UTC - this ensures the time is preserved exactly
+  return `${date}T${time}:00.000Z`;
 }
 
 // Validation schema for creating an edition

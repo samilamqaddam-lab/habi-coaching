@@ -30,6 +30,7 @@ export interface SessionDateOption {
   id: string;
   session_id: string;
   date_time: string;
+  end_time?: string;
   location: string;
   max_capacity: number;
   created_at: string;

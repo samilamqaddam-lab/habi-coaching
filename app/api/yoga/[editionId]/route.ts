@@ -32,6 +32,7 @@ async function processEdition(edition: Record<string, unknown>, availability: Re
       id: string;
       session_id: string;
       date_time: string;
+      end_time?: string;
       location: string;
       max_capacity: number;
       created_at: string;
@@ -41,6 +42,7 @@ async function processEdition(edition: Record<string, unknown>, availability: Re
         id: option.id,
         session_id: option.session_id,
         date_time: option.date_time,
+        end_time: option.end_time,
         location: option.location,
         max_capacity: option.max_capacity,
         current_count: avail?.current_count || 0,

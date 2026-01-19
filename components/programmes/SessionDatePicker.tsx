@@ -7,6 +7,7 @@ interface DateOption {
   id: string;
   session_id: string;
   date_time: string;
+  end_time?: string;
   location: string;
   max_capacity: number;
   current_count: number;
@@ -55,39 +56,48 @@ export default function SessionDatePicker({
     return () => clearInterval(interval);
   }, [onRefreshAvailability]);
 
+  // Format date using UTC to match exactly what was stored
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
+    // Use UTC values to get the exact date that was stored
     return date.toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US', {
       weekday: 'long',
       day: 'numeric',
       month: 'long',
-      timeZone: 'Africa/Casablanca', // Fuseau horaire marocain
+      timeZone: 'UTC', // Use UTC to match stored value
     });
   };
 
+  // Format time using UTC to match exactly what was stored
   const formatTime = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleTimeString(locale === 'fr' ? 'fr-FR' : 'en-US', {
       hour: '2-digit',
       minute: '2-digit',
-      timeZone: 'Africa/Casablanca', // Fuseau horaire marocain
+      timeZone: 'UTC', // Use UTC to match stored value
     });
   };
 
-  const formatTimeRange = (dateString: string, durationMinutes: number = 60) => {
-    const startDate = new Date(dateString);
-    const endDate = new Date(startDate.getTime() + durationMinutes * 60 * 1000);
+  // Format time range using UTC to match exactly what was stored
+  const formatTimeRange = (startDateString: string, endTimeString?: string) => {
+    const startDate = new Date(startDateString);
 
     const formatOptions: Intl.DateTimeFormatOptions = {
       hour: '2-digit',
       minute: '2-digit',
-      timeZone: 'Africa/Casablanca',
+      timeZone: 'UTC', // Use UTC to match stored value
     };
 
     const startTime = startDate.toLocaleTimeString(locale === 'fr' ? 'fr-FR' : 'en-US', formatOptions);
-    const endTime = endDate.toLocaleTimeString(locale === 'fr' ? 'fr-FR' : 'en-US', formatOptions);
 
-    return `${startTime} - ${endTime}`;
+    // If end_time is provided, use it; otherwise just show start time
+    if (endTimeString) {
+      const endDate = new Date(endTimeString);
+      const endTime = endDate.toLocaleTimeString(locale === 'fr' ? 'fr-FR' : 'en-US', formatOptions);
+      return `${startTime} - ${endTime}`;
+    }
+
+    return startTime;
   };
 
   const getAvailabilityColor = (remainingSpots: number, maxCapacity: number) => {
@@ -249,7 +259,7 @@ export default function SessionDatePicker({
                           )}
                         </div>
                         <div className="text-sm text-text-secondary">
-                          {formatTimeRange(option.date_time)}
+                          {formatTimeRange(option.date_time, option.end_time)}
                         </div>
                         {/* Location with Google Maps link */}
                         <a
