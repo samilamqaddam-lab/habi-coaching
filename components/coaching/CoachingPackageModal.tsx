@@ -214,7 +214,7 @@ export default function CoachingPackageModal({
                       onClick={() => handlePackageClick('initiation-60', 1350)}
                       className="w-full px-3 py-2 bg-golden-orange text-white rounded-full font-semibold text-xs hover:bg-golden-orange-dark hover:-translate-y-0.5 transition-all duration-200 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-golden-orange focus:ring-offset-1"
                     >
-                      Choisir 60 min
+                      3 séances de 60 min
                     </button>
                   </div>
 
@@ -227,7 +227,7 @@ export default function CoachingPackageModal({
                       onClick={() => handlePackageClick('initiation-90', 2025)}
                       className="w-full px-3 py-2 bg-golden-orange text-white rounded-full font-semibold text-xs hover:bg-golden-orange-dark hover:-translate-y-0.5 transition-all duration-200 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-golden-orange focus:ring-offset-1"
                     >
-                      Choisir 90 min
+                      3 séances de 90 min
                     </button>
                   </div>
                 </div>
