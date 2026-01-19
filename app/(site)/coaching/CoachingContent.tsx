@@ -198,17 +198,6 @@ export default function CoachingContent() {
             </div>
           </div>
 
-          <Card padding="lg" className="bg-gradient-to-br from-dune-beige to-mystic-mauve-light/20">
-            <h4 className="font-heading text-xl font-bold text-deep-blue mb-4">
-              {t('home.testimonials.title')}
-            </h4>
-            <blockquote className="italic text-text-secondary mb-4 leading-relaxed">
-              {t('coaching.approach.testimonial.quote')}
-            </blockquote>
-            <p className="text-sm font-semibold text-deep-blue">
-              — {t('coaching.approach.testimonial.author')}
-            </p>
-          </Card>
         </div>
       </Section>
 
