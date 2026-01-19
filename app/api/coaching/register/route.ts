@@ -107,7 +107,7 @@ export async function POST(request: NextRequest) {
           <div style="background: #f8f9fa; padding: 30px; border-radius: 0 0 12px 12px;">
             <!-- Action Button -->
             <div style="text-align: center; margin-bottom: 25px;">
-              <a href="${adminUrl}" style="display: inline-block; background: linear-gradient(135deg, #9B6B9E 0%, #7d5580 100%); color: #ffffff; text-decoration: none; padding: 16px 32px; border-radius: 8px; font-weight: bold; font-size: 16px;">
+              <a href="${adminUrl}" style="display: inline-block; background-color: #9B6B9E; background: linear-gradient(135deg, #9B6B9E 0%, #7d5580 100%); color: #ffffff; text-decoration: none; padding: 16px 32px; border-radius: 8px; font-weight: bold; font-size: 16px;">
                 📋 Gérer les demandes coaching
               </a>
             </div>
