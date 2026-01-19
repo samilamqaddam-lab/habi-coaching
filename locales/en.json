@@ -137,8 +137,8 @@
       "individual": {
         "title": "Individual Coaching",
         "description": "Personalized professional coaching focused on personal development (confidence, positioning, communication, assertiveness, emotional management) and gaining perspective on a specific challenge.",
-        "duration": "60 or 90 min session",
-        "format": "In-person or online"
+        "duration": "60-90 min • Flexible program",
+        "format": "Bi-monthly sessions • Personalized program"
       },
       "career": {
         "title": "Career Coaching",
@@ -148,9 +148,9 @@
       },
       "executive": {
         "title": "Executive Coaching & Leadership",
-        "description": "Supporting executives and senior managers in their posture, leadership and strategic challenges.",
-        "duration": "Tailored program",
-        "format": "In-person or online",
+        "description": "Supporting executives and managers in contexts of complexity, transformation and strategic decision-making.",
+        "duration": "60-90 min • 6–12 month program",
+        "format": "Monthly sessions • Personalized program",
         "cta": "Book a consultation"
       }
     },

@@ -137,8 +137,8 @@
       "individual": {
         "title": "Coaching Individuel",
         "description": "Un accompagnement personnalisé de coaching professionnel axé sur le développement des personnes (confiance, positionnement, communication, assertivité, gestion émotionnelle) et la prise de recul face à un problème spécifique.",
-        "duration": "Séance de 60 ou 90 min",
-        "format": "En personne ou en ligne"
+        "duration": "60-90 min • Programme flexible",
+        "format": "Sessions bi-mensuelles • Programme personnalisé"
       },
       "career": {
         "title": "Coaching de Carrière",
@@ -148,9 +148,9 @@
       },
       "executive": {
         "title": "Coaching Exécutif et Leadership",
-        "description": "Accompagnement des dirigeants et cadres supérieurs dans leur posture, leur leadership et leurs enjeux stratégiques.",
-        "duration": "Programme sur mesure",
-        "format": "En personne ou en ligne",
+        "description": "Accompagnement des dirigeant-e-s et managers dans des contextes de complexité, de transformation et de prise de décision stratégique.",
+        "duration": "60-90 min • Programme 6–12 mois",
+        "format": "Sessions mensuelles • Programme personnalisé",
         "cta": "Prendre un RDV"
       }
     },
