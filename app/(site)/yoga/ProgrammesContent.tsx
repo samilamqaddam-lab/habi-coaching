@@ -369,7 +369,7 @@ export default function ProgrammesContent() {
             href="#autres-programmes"
             variant="secondary"
             size="lg"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 py-4 px-6 bg-mystic-mauve/10 text-mystic-mauve hover:bg-mystic-mauve hover:text-white border-mystic-mauve/20"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 py-5 px-6 bg-mystic-mauve/10 text-mystic-mauve hover:bg-mystic-mauve hover:text-white border-mystic-mauve/20"
           >
             {/* Icône cœur dans des mains */}
             <Image
