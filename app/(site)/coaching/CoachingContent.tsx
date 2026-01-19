@@ -119,16 +119,16 @@ export default function CoachingContent() {
                 {/* Duration & Format Section */}
                 <div className="border-t border-gray-100 pt-4 mb-5 space-y-2.5">
                   <div className="flex items-center gap-2 text-sm">
-                    <svg className="w-4 h-4 text-mystic-mauve flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-4 h-4 text-deep-blue flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <span className="text-text-secondary">{type.duration}</span>
+                    <span className="text-deep-blue font-semibold">{type.duration}</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
-                    <svg className="w-4 h-4 text-mystic-mauve flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-4 h-4 text-deep-blue flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
-                    <span className="text-text-secondary">{type.format}</span>
+                    <span className="text-deep-blue font-semibold">{type.format}</span>
                   </div>
                 </div>
 
@@ -139,13 +139,13 @@ export default function CoachingContent() {
                 )}
               </div>
               {type.isExecutive ? (
-                <Button variant="outline" fullWidth href="/contact">
+                <Button variant="corporate" fullWidth href="/contact">
                   {t('coaching.services.executive.cta')}
                 </Button>
               ) : (
                 <CoachingPackageModal
                   triggerText="Réserver une séance"
-                  variant="outline"
+                  variant="corporate"
                   fullWidth
                 />
               )}

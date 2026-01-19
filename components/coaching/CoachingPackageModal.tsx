@@ -7,7 +7,7 @@ import CoachingRegistrationForm from './CoachingRegistrationForm';
 
 interface CoachingPackageModalProps {
   triggerText?: string;
-  variant?: 'primary' | 'outline' | 'secondary';
+  variant?: 'primary' | 'outline' | 'secondary' | 'corporate';
   size?: 'sm' | 'md' | 'lg';
   fullWidth?: boolean;
   className?: string;
