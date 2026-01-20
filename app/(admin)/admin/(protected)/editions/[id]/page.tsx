@@ -197,13 +197,37 @@ export default function EditionFormPage() {
     setFormData((prev) => ({ ...prev, ...updates }));
   };
 
-  // When programme changes, update default capacity
+  // When maxCapacity changes, propagate to all date options
+  const handleCapacityChange = (newCapacity: number) => {
+    setFormData((prev) => ({
+      ...prev,
+      maxCapacity: newCapacity,
+      sessions: prev.sessions.map(session => ({
+        ...session,
+        dateOptions: session.dateOptions.map(option => ({
+          ...option,
+          maxCapacity: newCapacity,
+        })),
+      })),
+    }));
+  };
+
+  // When programme changes, update default capacity and propagate to all date options
   const handleProgrammeChange = (programmeKey: string) => {
     const config = PROGRAMMES_CONFIG[programmeKey];
-    updateFormData({
+    const newCapacity = config?.defaultCapacity || 10;
+    setFormData((prev) => ({
+      ...prev,
       programmeKey,
-      maxCapacity: config?.defaultCapacity || 10,
-    });
+      maxCapacity: newCapacity,
+      sessions: prev.sessions.map(session => ({
+        ...session,
+        dateOptions: session.dateOptions.map(option => ({
+          ...option,
+          maxCapacity: newCapacity,
+        })),
+      })),
+    }));
   };
 
   if (loading) {
@@ -333,13 +357,13 @@ export default function EditionFormPage() {
                   <input
                     type="number"
                     value={formData.maxCapacity}
-                    onChange={(e) => updateFormData({ maxCapacity: parseInt(e.target.value) || 10 })}
+                    onChange={(e) => handleCapacityChange(parseInt(e.target.value) || 10)}
                     min={1}
                     max={100}
                     className="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-orange-400"
                   />
                   <p className="text-xs text-slate-500 mt-1">
-                    Nombre de places par date (modifiable par date)
+                    Appliqué à toutes les dates de session
                   </p>
                 </div>
 
