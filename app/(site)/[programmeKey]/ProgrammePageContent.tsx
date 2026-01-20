@@ -89,20 +89,20 @@ function ProgrammePageContentInner({
     return `${formatDate(minDate)} - ${formatDate(maxDate)}`;
   };
 
-  // Get minimum remaining spots
+  // Get total remaining spots (sum per session, then min across sessions)
+  // Each session has multiple date options that participants can choose from
+  // So the total capacity per session = sum of all option capacities
   const getMinRemainingSpots = () => {
     if (!sessions || sessions.length === 0) return null;
 
-    let minSpots = Infinity;
-    sessions.forEach((session) => {
-      session.date_options?.forEach((option) => {
-        if (option.remaining_spots !== undefined && option.remaining_spots < minSpots) {
-          minSpots = option.remaining_spots;
-        }
-      });
+    const sessionTotals = sessions.map((session) => {
+      return (session.date_options || []).reduce((sum, option) => {
+        return sum + (option.remaining_spots || 0);
+      }, 0);
     });
 
-    return minSpots === Infinity ? null : minSpots;
+    const minTotal = Math.min(...sessionTotals);
+    return minTotal === 0 && sessionTotals.every(t => t === 0) ? 0 : (minTotal === Infinity ? null : minTotal);
   };
 
   const dateRange = getDateRange();
@@ -173,10 +173,10 @@ function ProgrammePageContentInner({
                   const editionTotalMinutes = editionData.edition?.total_minutes || 0;
                   const editionSessions = editionData.sessions || [];
 
-                  // Calculate min remaining spots
-                  const minSpots = editionSessions.length > 0
-                    ? Math.min(...editionSessions.flatMap(s =>
-                        s.date_options?.map(o => o.remaining_spots) || [Infinity]
+                  // Calculate total remaining spots (sum per session, then min across sessions)
+                  const totalSpots = editionSessions.length > 0
+                    ? Math.min(...editionSessions.map(s =>
+                        (s.date_options || []).reduce((sum, o) => sum + (o.remaining_spots || 0), 0)
                       ))
                     : null;
 
@@ -216,9 +216,9 @@ function ProgrammePageContentInner({
                       )}
 
                       {/* Places remaining badge */}
-                      {minSpots !== null && minSpots > 0 && minSpots <= 10 && (
+                      {totalSpots !== null && totalSpots > 0 && totalSpots <= 20 && (
                         <span className={`text-xs mt-1 font-medium ${isSelected ? 'text-white' : 'text-golden-orange'}`}>
-                          {minSpots} {locale === 'fr' ? 'places' : 'spots'}
+                          {totalSpots} {locale === 'fr' ? 'places' : 'spots'}
                         </span>
                       )}
                     </button>
@@ -314,7 +314,7 @@ function ProgrammePageContentInner({
                         {hasActiveEdition && dateRange ? (
                           <>
                             {dateRange}
-                            {minAvailable !== null && minAvailable > 0 && minAvailable <= 10 && (
+                            {minAvailable !== null && minAvailable > 0 && minAvailable <= 20 && (
                               <span className="ml-2 text-golden-orange text-sm">
                                 ({minAvailable} {locale === 'fr' ? 'places' : 'spots'})
                               </span>

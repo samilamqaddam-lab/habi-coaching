@@ -12,6 +12,19 @@ interface EditionStats {
   registrations: number;
 }
 
+interface SessionDateOption {
+  id: string;
+  date_time: string;
+  max_capacity: number;
+}
+
+interface EditionSession {
+  id: string;
+  session_number: number;
+  title: string;
+  session_date_options?: SessionDateOption[];
+}
+
 interface Edition {
   id: string;
   programme_key: string;
@@ -23,6 +36,7 @@ interface Edition {
   created_at: string;
   stats: EditionStats;
   programmeConfig?: ProgrammeConfig;
+  edition_sessions?: EditionSession[];
 }
 
 export default function EditionsListPage() {
@@ -113,6 +127,25 @@ export default function EditionsListPage() {
       month: 'short',
       year: 'numeric',
     });
+  };
+
+  // Get the actual first date from sessions data (not the stale start_date field)
+  const getActualFirstDate = (edition: Edition) => {
+    const allDates: Date[] = [];
+
+    edition.edition_sessions?.forEach(session => {
+      session.session_date_options?.forEach(option => {
+        if (option.date_time) {
+          allDates.push(new Date(option.date_time));
+        }
+      });
+    });
+
+    if (allDates.length === 0) return edition.start_date;
+
+    // Sort and return the earliest date
+    allDates.sort((a, b) => a.getTime() - b.getTime());
+    return allDates[0].toISOString();
   };
 
   return (
@@ -254,7 +287,7 @@ export default function EditionsListPage() {
                         <td className="px-6 py-4">
                           <div>
                             <p className="text-slate-100">{edition.title}</p>
-                            <p className="text-xs text-slate-500">{formatDate(edition.start_date)}</p>
+                            <p className="text-xs text-slate-500">{formatDate(getActualFirstDate(edition))}</p>
                           </div>
                         </td>
                         <td className="px-6 py-4 text-center">

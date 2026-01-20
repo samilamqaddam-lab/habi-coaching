@@ -518,10 +518,12 @@ export default function ProgrammesContent() {
                           // Get location from first session
                           const editionLocation = editionSessions[0]?.date_options?.[0]?.location || null;
 
-                          // Calculate min remaining spots for this edition
-                          const minSpots = editionSessions.length > 0
-                            ? Math.min(...editionSessions.flatMap(s =>
-                                s.date_options?.map(o => o.remaining_spots) || [Infinity]
+                          // Calculate total remaining spots for this edition
+                          // For each session, sum remaining spots across all date options (participants choose one option per session)
+                          // Then take the minimum across sessions (the bottleneck)
+                          const totalSpots = editionSessions.length > 0
+                            ? Math.min(...editionSessions.map(s =>
+                                (s.date_options || []).reduce((sum, o) => sum + (o.remaining_spots || 0), 0)
                               ))
                             : null;
 
@@ -567,12 +569,12 @@ export default function ProgrammesContent() {
                               )}
 
                               {/* Places remaining */}
-                              {minSpots !== null && minSpots > 0 && minSpots <= 10 && (
+                              {totalSpots !== null && totalSpots > 0 && totalSpots <= 20 && (
                                 <span className="flex items-center gap-1 text-golden-orange text-xs font-medium">
                                   <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
                                   </svg>
-                                  {minSpots} {locale === 'fr' ? 'places restantes' : 'spots remaining'}
+                                  {totalSpots} {locale === 'fr' ? 'places restantes' : 'spots remaining'}
                                 </span>
                               )}
                             </Link>
