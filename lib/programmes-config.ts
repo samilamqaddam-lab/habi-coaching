@@ -45,10 +45,18 @@ export const PROGRAMMES_CONFIG: Record<string, ProgrammeConfig> = {
     theme: 'yoga',
     description: 'Postures classiques pour l\'alignement corps-esprit'
   },
+  'surya-shakti': {
+    name: 'Surya Shakti',
+    icon: '⚡',
+    supportsEditions: true,
+    defaultCapacity: 10,
+    theme: 'yoga',
+    description: 'Pratique dynamique pour la force, l\'endurance et l\'énergie'
+  },
   'bhuta-shuddhi': {
     name: 'Bhuta Shuddhi',
     icon: '✨',
-    supportsEditions: true,
+    supportsEditions: false, // Pas de cours collectif sur le site actuellement
     defaultCapacity: 10,
     theme: 'yoga',
     description: 'Purification des cinq éléments'
@@ -64,7 +72,7 @@ export const PROGRAMMES_CONFIG: Record<string, ProgrammeConfig> = {
   'retraite': {
     name: 'Retraite',
     icon: '🏔️',
-    supportsEditions: true,
+    supportsEditions: false, // Pas de cours collectif sur le site actuellement
     defaultCapacity: 15,
     theme: 'default',
     description: 'Immersion transformative'

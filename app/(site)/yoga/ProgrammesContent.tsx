@@ -325,15 +325,14 @@ export default function ProgrammesContent() {
           </div>
         </div>
 
-        {/* Boutons d'action */}
-        <div className="flex flex-col sm:flex-row gap-4 max-w-full">
+        {/* Boutons d'action - tous dans un seul conteneur avec espacement cohérent */}
+        <div className="flex flex-col gap-3 max-w-full sm:max-w-md">
           {/* CTA 1: Réserver un cours individuel - opens modal */}
           <IndividualYogaBookingModal
             variant="primary"
             size="lg"
-            className="flex items-center justify-center gap-2 py-4 px-6 flex-shrink"
+            className="flex items-center justify-center gap-2 py-3.5 px-6 h-14"
           >
-            {/* Icône calendrier avec + */}
             <Image
               src="/images/icons/calendar-plus.png"
               alt="Calendar"
@@ -345,33 +344,24 @@ export default function ProgrammesContent() {
           </IndividualYogaBookingModal>
 
           {/* CTA 2: Nous rejoindre sur le tapis */}
-          <Button href="#cours" variant="primary" size="lg" className="flex flex-col items-center justify-center gap-1 py-3 px-6 flex-shrink">
-            <div className="flex items-center gap-2">
-              {/* Icône personne en méditation */}
-              <Image
-                src="/images/icons/guru.png"
-                alt="Meditation"
-                width={24}
-                height={24}
-                className="flex-shrink-0"
-              />
-              <span className="font-semibold text-sm whitespace-nowrap">{t('programmes.hero.cta2.text')}</span>
-            </div>
-            {t('programmes.hero.cta2.subtitle') && (
-              <span className="text-xs italic opacity-90 whitespace-nowrap">{t('programmes.hero.cta2.subtitle')}</span>
-            )}
+          <Button href="#cours" variant="primary" size="lg" className="flex items-center justify-center gap-2 py-3.5 px-6 h-14">
+            <Image
+              src="/images/icons/guru.png"
+              alt="Meditation"
+              width={24}
+              height={24}
+              className="flex-shrink-0"
+            />
+            <span className="font-semibold text-sm whitespace-nowrap">{t('programmes.hero.cta2.text')}</span>
           </Button>
-        </div>
 
-        {/* CTA 3: Découvrir programmes santé et bien-être */}
-        <div className="-mt-1 max-w-full">
+          {/* CTA 3: Découvrir programmes santé et bien-être */}
           <Button
             href="#autres-programmes"
             variant="secondary"
             size="lg"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 py-5 px-6 bg-mystic-mauve/10 text-mystic-mauve hover:bg-mystic-mauve hover:text-white border-mystic-mauve/20"
+            className="flex items-center justify-center gap-2 py-3.5 px-6 h-14 bg-mystic-mauve/10 text-mystic-mauve hover:bg-mystic-mauve hover:text-white border-mystic-mauve/20"
           >
-            {/* Icône cœur dans des mains */}
             <Image
               src="/images/icons/trust.png"
               alt="Trust"

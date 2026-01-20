@@ -157,7 +157,7 @@ export async function PATCH(
 
         const confirmationHtml = `
           <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto;">
-            <div style="background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); padding: 30px; text-align: center; border-radius: 12px 12px 0 0;">
+            <div style="background-color: #22c55e; background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); padding: 30px; text-align: center; border-radius: 12px 12px 0 0;">
               <h1 style="color: white; margin: 0; font-size: 24px;">✅ Inscription Confirmée!</h1>
             </div>
 
@@ -233,7 +233,7 @@ export async function PATCH(
         // Cancellation email
         const cancellationHtml = `
           <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto;">
-            <div style="background: linear-gradient(135deg, #64748b 0%, #475569 100%); padding: 30px; text-align: center; border-radius: 12px 12px 0 0;">
+            <div style="background-color: #64748b; background: linear-gradient(135deg, #64748b 0%, #475569 100%); padding: 30px; text-align: center; border-radius: 12px 12px 0 0;">
               <h1 style="color: white; margin: 0; font-size: 24px;">Inscription Annulée</h1>
             </div>
 
