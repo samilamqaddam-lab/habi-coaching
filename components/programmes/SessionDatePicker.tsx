@@ -56,35 +56,35 @@ export default function SessionDatePicker({
     return () => clearInterval(interval);
   }, [onRefreshAvailability]);
 
-  // Format date using Morocco timezone
+  // Format date - display as stored (local time stored as UTC)
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US', {
       weekday: 'long',
       day: 'numeric',
       month: 'long',
-      timeZone: 'Africa/Casablanca',
+      timeZone: 'UTC',
     });
   };
 
-  // Format time using Morocco timezone
+  // Format time - display as stored (local time stored as UTC)
   const formatTime = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleTimeString(locale === 'fr' ? 'fr-FR' : 'en-US', {
       hour: '2-digit',
       minute: '2-digit',
-      timeZone: 'Africa/Casablanca',
+      timeZone: 'UTC',
     });
   };
 
-  // Format time range using Morocco timezone
+  // Format time range - display as stored (local time stored as UTC)
   const formatTimeRange = (startDateString: string, endTimeString?: string) => {
     const startDate = new Date(startDateString);
 
     const formatOptions: Intl.DateTimeFormatOptions = {
       hour: '2-digit',
       minute: '2-digit',
-      timeZone: 'Africa/Casablanca',
+      timeZone: 'UTC',
     };
 
     const startTime = startDate.toLocaleTimeString(locale === 'fr' ? 'fr-FR' : 'en-US', formatOptions);
