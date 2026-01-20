@@ -1,6 +1,6 @@
 # Habi Coaching
 
-Site web professionnel de Hajar Habi - Coaching Holistique & Yoga Traditionnel
+Site web professionnel de Hajar Habi - Coaching Professionnel & Yoga Traditionnel
 
 ## 🚀 Stack Technique
 - Next.js 16 (App Router + Turbopack)

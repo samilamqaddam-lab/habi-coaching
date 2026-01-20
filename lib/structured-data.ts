@@ -6,7 +6,7 @@ export const organizationSchema = {
   '@id': `${siteUrl}/#organization`,
   name: 'Transcendence Work',
   alternateName: 'Hajar Habi - Coaching & Yoga',
-  description: 'Coaching holistique et yoga traditionnel à Casablanca. Accompagnement individuel et transformation des organisations.',
+  description: 'Coaching professionnel et yoga traditionnel à Casablanca. Accompagnement individuel et transformation des organisations.',
   url: siteUrl,
   logo: `${siteUrl}/images/logo.png`,
   image: `${siteUrl}/images/Reel/hajar-professional.jpg`,
@@ -34,7 +34,7 @@ export const personSchema = {
   '@id': `${siteUrl}/#person`,
   name: 'Hajar Habi',
   jobTitle: ['Coach Professionnelle', 'Professeure de Hatha Yoga'],
-  description: 'Experte en coaching organisationnel et pratiques yogiques traditionnelles avec ≃20 ans d\'expérience corporate.',
+  description: 'Experte en coaching professionnel et pratiques yogiques traditionnelles avec ≃20 ans d\'expérience corporate.',
   image: `${siteUrl}/images/Reel/hajar-professional.jpg`,
   url: siteUrl,
   worksFor: {
@@ -55,7 +55,6 @@ export const personSchema = {
   ],
   knowsAbout: [
     'Coaching professionnel',
-    'Coaching organisationnel',
     'Hatha Yoga',
     'Transformation personnelle',
     'Leadership',
@@ -68,7 +67,7 @@ export const websiteSchema = {
   '@id': `${siteUrl}/#website`,
   url: siteUrl,
   name: 'Transcendence Work',
-  description: 'Coaching holistique et yoga traditionnel par Hajar Habi',
+  description: 'Coaching professionnel et yoga traditionnel par Hajar Habi',
   inLanguage: ['fr', 'en'],
   publisher: {
     '@id': `${siteUrl}/#organization`,

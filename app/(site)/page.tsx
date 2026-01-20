@@ -3,11 +3,11 @@ import { getFeaturedTestimonials, getHomepageContent, getHeroByPage } from '@/li
 import HomeContent from './HomeContent'
 
 export const metadata: Metadata = {
-  title: 'Transcendence Work - Coaching Holistique & Yoga Traditionnel',
-  description: 'Hajar Habi - Experte en coaching organisationnel et pratiques yogiques traditionnelles. Transformation des organisations et accompagnement individuel.',
+  title: 'Transcendence Work - Coaching Professionnel & Yoga Traditionnel',
+  description: 'Hajar Habi - Experte en coaching professionnel et pratiques yogiques traditionnelles. Transformation des organisations et accompagnement individuel.',
   openGraph: {
-    title: 'Transcendence Work - Coaching Holistique & Yoga Traditionnel',
-    description: 'Hajar Habi - Experte en coaching organisationnel et pratiques yogiques traditionnelles.',
+    title: 'Transcendence Work - Coaching Professionnel & Yoga Traditionnel',
+    description: 'Hajar Habi - Experte en coaching professionnel et pratiques yogiques traditionnelles.',
     images: [
       {
         url: '/images/Reel/hajar-professional.jpg',

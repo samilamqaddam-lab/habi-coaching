@@ -346,7 +346,7 @@ export default function HomeContent({ testimonials, homepageContent, hero }: Hom
                     src={imagePresets.hero(homepageContent.aboutSection.image).url()}
                     alt={
                       homepageContent.aboutSection.image.alt ||
-                      'Hajar Habi - Coach Holistique & Professeure de Yoga'
+                      'Hajar Habi - Coach Professionnelle & Professeure de Yoga'
                     }
                     fill
                     className="object-cover"
