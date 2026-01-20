@@ -125,10 +125,10 @@ export default function ContactContent() {
             </div>
             <h3 className="font-semibold text-deep-blue mb-3">Email</h3>
             <a
-              href="mailto:contact@transcendencework.com"
+              href="mailto:hajar@transcendencework.com"
               className="text-text-secondary hover:text-terracotta transition-colors"
             >
-              contact@transcendencework.com
+              hajar@transcendencework.com
             </a>
           </Card>
 
@@ -152,10 +152,10 @@ export default function ContactContent() {
               {t('contact.methods.phone')}
             </h3>
             <a
-              href="tel:+212600000000"
+              href="tel:+212663096857"
               className="text-text-secondary hover:text-terracotta transition-colors"
             >
-              +212 6 00 00 00 00
+              +212 663 096 857
             </a>
           </Card>
 
