@@ -131,7 +131,7 @@ export default function Hero({
                 </p>
               )}
 
-              <p className={`leading-relaxed text-text-secondary ${
+              <p className={`leading-relaxed text-text-secondary whitespace-pre-line ${
                 compact ? 'text-base md:text-lg' : 'text-lg md:text-xl'
               } animate-[fade-in-up_0.6s_ease-out_0.2s_both]`}>
                 {description}
@@ -271,7 +271,7 @@ export default function Hero({
           )}
 
           <p
-            className={`text-lg md:text-xl mb-10 leading-relaxed ${
+            className={`text-lg md:text-xl mb-10 leading-relaxed whitespace-pre-line ${
               backgroundImage ? 'text-sage-light' : 'text-text-secondary'
             } ${minimal ? 'animate-[fade-in-up_0.6s_ease-out_0.1s_both]' : ''}`}
           >
