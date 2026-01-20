@@ -183,7 +183,7 @@ export default function HomeContent({ testimonials, homepageContent, hero }: Hom
         minimal
         endWithWhite
         splitLayout
-        splitImage="/images/heroes/mountain-tree-transcendence.jpg"
+        splitImage="/images/heroes/homepage-coaching-hero.jpg"
         reducedTitle
       >
         {/* Sadhguru Quote - Inline compact */}
