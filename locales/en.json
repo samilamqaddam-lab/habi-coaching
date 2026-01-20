@@ -97,18 +97,21 @@
       "subtitle": "My Services",
       "title": "How I Can Support You",
       "organisations": {
-        "title": "For Organizations",
-        "description": "Cultural transformation, conscious leadership and facilitation to create human and high-performing organizations.",
+        "badge": "For organizations",
+        "title": "Collective & Organizational Coaching",
+        "description": "Support for cultural and managerial transformations, leadership development and custom programs for organizations and teams in evolution.",
         "cta": "Discover"
       },
       "coaching": {
+        "badge": "For individuals",
         "title": "Individual Coaching",
         "description": "Personalized support to clarify your vision, navigate transitions and define success on your own terms.",
         "cta": "Discover"
       },
       "yoga": {
-        "title": "Classical Hatha Yoga Programs (individual & group)",
-        "description": "Hatha yoga classes, wellbeing programs, health programs and retreats.",
+        "badge": "For yogis",
+        "title": "Classical Hatha Yoga",
+        "description": "Classical Hatha Yoga programs, including formats adapted for businesses, to refine perception, strengthen inner stability and support individual and collective transformations.",
         "cta": "Discover"
       }
     },

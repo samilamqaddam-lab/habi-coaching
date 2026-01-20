@@ -97,18 +97,21 @@
       "subtitle": "Mes Services",
       "title": "Comment Je Peux Vous Accompagner",
       "organisations": {
-        "title": "Pour les Organisations",
-        "description": "Accompagnement des transformations culturelles et managériales, développement du leadership et conception de programmes sur mesure pour des organisations en évolution.",
+        "badge": "Pour les organisations",
+        "title": "Coaching Collectif & Organisationnel",
+        "description": "Accompagnement des transformations culturelles et managériales, développement du leadership et conception de programmes sur mesure pour des organisations et équipes en évolution.",
         "cta": "Découvrir"
       },
       "coaching": {
+        "badge": "Pour les particuliers",
         "title": "Coaching Individuel",
         "description": "Accompagnement individuel pour clarifier vos objectifs professionnels, traverser des périodes de transition, dépasser les obstacles et renforcer votre posture.",
         "cta": "Découvrir"
       },
       "yoga": {
-        "title": "Yoga Classique & Programmes",
-        "description": "Programmes de Hatha Yoga classique, avec des formats adaptés aux entreprises, pour affiner la perception, renforcer la stabilité intérieure et soutenir des transformations individuelles et collectives.",
+        "badge": "Pour les yogis",
+        "title": "Hatha Yoga Classique",
+        "description": "Programmes de Hatha Yoga classique, y inclus des formats adaptés pour les entreprises, pour affiner la perception, renforcer la stabilité intérieure et soutenir des transformations individuelles et collectives.",
         "cta": "Découvrir"
       }
     },

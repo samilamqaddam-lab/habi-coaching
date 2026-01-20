@@ -449,15 +449,20 @@ export default function HomeContent({ testimonials, homepageContent, hero }: Hom
               {/* Organisations Card */}
               <Card hover padding="lg" className="flex flex-col">
                 <div className="flex-grow">
-                  <div className="w-16 h-16 bg-morocco-blue/10 rounded-2xl flex items-center justify-center mb-6">
-                    <svg
-                      className="w-8 h-8 text-morocco-blue"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      {icons.organisations}
-                    </svg>
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-16 h-16 bg-morocco-blue/10 rounded-2xl flex items-center justify-center">
+                      <svg
+                        className="w-8 h-8 text-morocco-blue"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        {icons.organisations}
+                      </svg>
+                    </div>
+                    <span className="text-sm text-morocco-blue font-medium">
+                      {t('home.services.organisations.badge')}
+                    </span>
                   </div>
                   <h3 className="font-heading text-2xl font-bold text-deep-blue mb-4">
                     {t('home.services.organisations.title')}
@@ -474,15 +479,20 @@ export default function HomeContent({ testimonials, homepageContent, hero }: Hom
               {/* Coaching Card */}
               <Card hover padding="lg" className="flex flex-col">
                 <div className="flex-grow">
-                  <div className="w-16 h-16 bg-mystic-mauve/10 rounded-2xl flex items-center justify-center mb-6">
-                    <svg
-                      className="w-8 h-8 text-mystic-mauve"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      {icons.coaching}
-                    </svg>
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-16 h-16 bg-mystic-mauve/10 rounded-2xl flex items-center justify-center">
+                      <svg
+                        className="w-8 h-8 text-mystic-mauve"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        {icons.coaching}
+                      </svg>
+                    </div>
+                    <span className="text-sm text-mystic-mauve font-medium">
+                      {t('home.services.coaching.badge')}
+                    </span>
                   </div>
                   <h3 className="font-heading text-2xl font-bold text-deep-blue mb-4">
                     {t('home.services.coaching.title')}
@@ -499,15 +509,20 @@ export default function HomeContent({ testimonials, homepageContent, hero }: Hom
               {/* Yoga Card */}
               <Card hover padding="lg" className="flex flex-col">
                 <div className="flex-grow">
-                  <div className="w-16 h-16 bg-golden-orange/10 rounded-2xl flex items-center justify-center mb-6">
-                    <svg
-                      className="w-8 h-8 text-golden-orange"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      {icons.yoga}
-                    </svg>
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-16 h-16 bg-golden-orange/10 rounded-2xl flex items-center justify-center">
+                      <svg
+                        className="w-8 h-8 text-golden-orange"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        {icons.yoga}
+                      </svg>
+                    </div>
+                    <span className="text-sm text-golden-orange font-medium">
+                      {t('home.services.yoga.badge')}
+                    </span>
                   </div>
                   <h3 className="font-heading text-2xl font-bold text-deep-blue mb-4">
                     {t('home.services.yoga.title')}
