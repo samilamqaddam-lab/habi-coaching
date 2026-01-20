@@ -60,6 +60,16 @@ export default function AdminNav() {
     ),
   };
 
+  const yogaIndividuelSection = {
+    name: 'Yoga Individuel',
+    href: '/admin/yoga-individuel',
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+      </svg>
+    ),
+  };
+
   const handleLogout = async () => {
     setLoggingOut(true);
     try {
@@ -154,6 +164,22 @@ export default function AdminNav() {
         >
           {coachingSection.icon}
           <span className="font-medium text-sm">{coachingSection.name}</span>
+        </Link>
+
+        {/* Yoga Individuel Section */}
+        <Link
+          href={yogaIndividuelSection.href}
+          className={`
+            flex items-center gap-3 px-4 py-3 rounded-lg transition-colors
+            ${
+              pathname.startsWith('/admin/yoga-individuel')
+                ? 'bg-orange-400/10 text-orange-400'
+                : 'text-slate-300 hover:bg-slate-700 hover:text-slate-100'
+            }
+          `}
+        >
+          {yogaIndividuelSection.icon}
+          <span className="font-medium text-sm">{yogaIndividuelSection.name}</span>
         </Link>
       </nav>
 

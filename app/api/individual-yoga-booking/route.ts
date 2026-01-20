@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { z } from 'zod';
+import { supabaseAdmin, isSupabaseConfigured } from '@/lib/supabase';
 
 const resend = process.env.RESEND_API_KEY
   ? new Resend(process.env.RESEND_API_KEY)
@@ -32,6 +33,34 @@ export async function POST(request: NextRequest) {
     }
 
     const { firstName, lastName, email, phone, whatsapp, locationPreference, interest, message } = validation.data;
+
+    // Save to database if Supabase is configured
+    let savedRequest = null;
+    if (isSupabaseConfigured() && supabaseAdmin) {
+      const { data, error } = await supabaseAdmin
+        .from('individual_yoga_requests')
+        .insert({
+          first_name: firstName,
+          last_name: lastName,
+          email,
+          phone,
+          whatsapp: whatsapp || null,
+          location_preference: locationPreference,
+          interest,
+          message: message || null,
+          status: 'pending',
+          contacted: false,
+        })
+        .select()
+        .single();
+
+      if (error) {
+        console.error('Database insert error:', error);
+        // Continue anyway to send emails
+      } else {
+        savedRequest = data;
+      }
+    }
 
     // Labels for display
     const locationLabels: Record<string, string> = {
