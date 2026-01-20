@@ -94,20 +94,30 @@ async function getDashboardData(): Promise<DashboardData> {
           `)
           .eq('edition_id', edition.id);
 
+        // Calculate max participants: sum capacities per session, then take minimum across sessions
+        // This is because participants choose ONE date option per session (not all),
+        // so session capacity = sum of all option capacities
+        // But they must attend ALL sessions, so total capacity = minimum session capacity (bottleneck)
         let maxInscriptions = edition.max_capacity || 20;
         if (sessions && sessions.length > 0) {
-          let minDateCapacity = Infinity;
+          const sessionCapacities: number[] = [];
           sessions.forEach((session: any) => {
             if (session.session_date_options) {
               const dateOptions = Array.isArray(session.session_date_options)
                 ? session.session_date_options
                 : [session.session_date_options];
-              dateOptions.forEach((option: any) => {
-                minDateCapacity = Math.min(minDateCapacity, option.max_capacity || 10);
-              });
+              // Sum all date option capacities for this session
+              const sessionTotal = dateOptions.reduce(
+                (sum: number, option: any) => sum + (option.max_capacity || 10),
+                0
+              );
+              sessionCapacities.push(sessionTotal);
             }
           });
-          maxInscriptions = minDateCapacity !== Infinity ? minDateCapacity : 20;
+          // Take minimum across all sessions (bottleneck)
+          if (sessionCapacities.length > 0) {
+            maxInscriptions = Math.min(...sessionCapacities);
+          }
         }
 
         const registrations = registrationCount || 0;
