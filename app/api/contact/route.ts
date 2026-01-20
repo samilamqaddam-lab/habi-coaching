@@ -20,7 +20,7 @@ const contactSchema = z.object({
   organization: z.string().optional(),
   function: z.string().optional(),
   city: z.string().optional(),
-  interest: z.enum(['coaching', 'yoga', 'retraite', 'organisation', 'autre']),
+  interest: z.enum(['coaching', 'yoga', 'retraite', 'organisation', 'autre', 'yoga-individuel', 'coaching-individuel', 'yoga-coaching']),
   message: z.string().min(10, 'Le message doit contenir au moins 10 caractères'),
   consent: z.boolean().refine((val) => val === true, 'Vous devez accepter les conditions'),
 })
@@ -31,6 +31,9 @@ const interestLabels: Record<string, string> = {
   retraite: 'Retraite',
   organisation: 'Organisation / Entreprise',
   autre: 'Autre',
+  'yoga-individuel': 'Yoga Individuel',
+  'coaching-individuel': 'Coaching Individuel',
+  'yoga-coaching': 'Yoga & Coaching',
 }
 
 export async function POST(request: NextRequest) {
