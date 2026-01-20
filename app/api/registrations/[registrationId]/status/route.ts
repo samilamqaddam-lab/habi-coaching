@@ -192,8 +192,7 @@ export async function PATCH(
                 <p style="margin: 0; color: #333; line-height: 1.6;">
                   <strong>Prochaines étapes:</strong><br>
                   • Prévoyez des vêtements confortables<br>
-                  • Arrivez 10-15 minutes avant le début de la session<br>
-                  • Apportez une bouteille d'eau
+                  • Arrivez 10-15 minutes avant le début de la session
                 </p>
               </div>
 

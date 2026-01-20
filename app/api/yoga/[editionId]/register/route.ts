@@ -135,7 +135,7 @@ export async function POST(
     // Get edition and session details for email
     const { data: editionDetails } = await supabaseAdmin
       .from('programme_editions')
-      .select('title')
+      .select('title, price')
       .eq('id', resolvedEditionId)
       .single();
 
@@ -156,6 +156,7 @@ export async function POST(
     // Send emails
     if (resend) {
       const programTitle = editionDetails?.title || 'Programme Yoga';
+      const price = editionDetails?.price ? `${Number(editionDetails.price).toLocaleString('fr-FR')} DH` : null;
 
       // Format date choices for email - with Morocco timezone
       const formattedSessions = chosenDates?.map(d => {
@@ -268,6 +269,13 @@ export async function POST(
                   ${sessionsHtml}
                 </tbody>
               </table>
+              ${price ? `
+              <div style="margin-top: 16px; padding-top: 16px; border-top: 2px solid #f1f5f9;">
+                <p style="margin: 0; font-size: 16px; color: #1a365d;">
+                  <strong>Tarif :</strong> <span style="color: #E8A54B; font-size: 18px; font-weight: 600;">${price}</span>
+                </p>
+              </div>
+              ` : ''}
             </div>
 
             ${message ? `
@@ -341,6 +349,13 @@ export async function POST(
                   ${sessionsHtml}
                 </tbody>
               </table>
+              ${price ? `
+              <div style="margin-top: 16px; padding-top: 16px; border-top: 2px solid #f1f5f9;">
+                <p style="margin: 0; font-size: 16px; color: #333;">
+                  <strong>Tarif :</strong> <span style="color: #E8A54B; font-size: 18px; font-weight: 600;">${price}</span>
+                </p>
+              </div>
+              ` : ''}
             </div>
 
             <div style="background: #fef3c7; padding: 20px; border-radius: 8px; border-left: 4px solid #f59e0b; margin: 20px 0;">

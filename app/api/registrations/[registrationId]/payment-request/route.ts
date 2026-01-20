@@ -47,7 +47,8 @@ export async function POST(
         programme_editions (
           id,
           title,
-          programme_key
+          programme_key,
+          price
         )
       `)
       .eq('id', registrationId)
@@ -88,6 +89,7 @@ export async function POST(
 
     const edition = registration.programme_editions as any;
     const programTitle = edition?.title || 'Programme Yoga';
+    const price = edition?.price ? `${Number(edition.price).toLocaleString('fr-FR')} DH` : null;
 
     // Check if Resend is configured
     if (!process.env.RESEND_API_KEY) {
@@ -126,6 +128,13 @@ export async function POST(
               `).join('')}
             </tbody>
           </table>
+          ${price ? `
+          <div style="margin-top: 16px; padding-top: 16px; border-top: 2px solid #f1f5f9;">
+            <p style="margin: 0; font-size: 16px; color: #333;">
+              <strong>Montant à régler :</strong> <span style="color: #E8A54B; font-size: 20px; font-weight: 700;">${price}</span>
+            </p>
+          </div>
+          ` : ''}
         </div>
       `
       : '';
