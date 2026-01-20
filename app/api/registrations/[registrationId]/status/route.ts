@@ -20,7 +20,7 @@ function formatDateMorocco(dateString: string): string {
     year: 'numeric',
     hour: '2-digit',
     minute: '2-digit',
-    timeZone: 'Africa/Casablanca',
+    timeZone: 'UTC',
   });
 }
 
