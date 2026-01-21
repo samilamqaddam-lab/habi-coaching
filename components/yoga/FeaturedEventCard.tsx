@@ -110,7 +110,7 @@ export default function FeaturedEventCard({ event, image }: FeaturedEventCardPro
         {/* Left: Image */}
         <div className="relative aspect-[4/5] sm:aspect-[3/4] lg:aspect-auto lg:min-h-full">
           <Image
-            src={image || '/images/events/default-event.jpg'}
+            src={event.image_url || image || '/images/events/default-event.jpg'}
             alt={title}
             fill
             className="object-cover"

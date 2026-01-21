@@ -20,6 +20,7 @@ export interface YogaEvent {
   max_capacity: number;
   is_active: boolean;
   created_at: string;
+  image_url: string | null;
   // Availability data
   current_count: number;
   remaining_spots: number;
