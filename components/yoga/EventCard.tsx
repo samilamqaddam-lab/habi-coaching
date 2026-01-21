@@ -86,10 +86,23 @@ export default function EventCard({ event }: EventCardProps) {
   };
 
   return (
-    <Card padding="lg" className="group !bg-warm-white border border-golden-orange/20 hover:border-golden-orange/40 transition-colors">
+    <Card padding="lg" className="group !bg-warm-white border border-golden-orange/20 hover:border-golden-orange/40 transition-colors relative">
+      {/* Open in new tab icon */}
+      <a
+        href={`/evenements/${event.id}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="absolute top-3 right-3 w-8 h-8 bg-golden-orange/10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-golden-orange/20 hover:scale-110 z-10"
+        title={locale === 'fr' ? 'Voir la page complète' : 'View full page'}
+      >
+        <svg className="w-4 h-4 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
+      </a>
+
       <div className="space-y-4">
         {/* Header with Badge */}
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex items-start justify-between gap-4 pr-10">
           <div>
             <h3 className="font-heading text-xl font-bold text-deep-blue">
               {title}

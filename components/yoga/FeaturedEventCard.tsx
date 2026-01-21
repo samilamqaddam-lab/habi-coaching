@@ -85,7 +85,7 @@ export default function FeaturedEventCard({ event, image }: FeaturedEventCardPro
   };
 
   return (
-    <div className="bg-warm-white rounded-2xl border border-golden-orange/20 overflow-hidden shadow-sm">
+    <div className="bg-warm-white rounded-2xl border border-golden-orange/20 overflow-hidden shadow-sm group/card">
       <div className="grid lg:grid-cols-3">
         {/* Left: Image */}
         <div className="relative aspect-[4/5] sm:aspect-[3/4] lg:aspect-auto lg:min-h-full">
@@ -96,6 +96,18 @@ export default function FeaturedEventCard({ event, image }: FeaturedEventCardPro
             className="object-cover"
             sizes="(max-width: 1024px) 100vw, 33vw"
           />
+          {/* Open in new tab icon */}
+          <a
+            href={`/evenements/${event.id}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute top-3 right-3 w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover/card:opacity-100 transition-opacity duration-200 hover:bg-white hover:scale-110 shadow-md z-10"
+            title={locale === 'fr' ? 'Voir la page complète' : 'View full page'}
+          >
+            <svg className="w-4 h-4 text-deep-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
           {/* Gradient overlay on mobile */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent lg:hidden" />
         </div>
