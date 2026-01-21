@@ -15,6 +15,7 @@ const createEventSchema = z.object({
   price: z.coerce.number().positive().optional().nullable(),
   maxCapacity: z.coerce.number().int().positive().default(15),
   isActive: z.boolean().default(true),
+  imageUrl: z.string().optional(),
 });
 
 /**
@@ -104,6 +105,7 @@ export async function GET(request: NextRequest) {
         price: event.price,
         maxCapacity: event.max_capacity,
         isActive: event.is_active,
+        imageUrl: event.image_url,
         createdAt: event.created_at,
         isPast,
         stats: {
@@ -183,6 +185,7 @@ export async function POST(request: NextRequest) {
         price: data.price || null,
         max_capacity: data.maxCapacity,
         is_active: data.isActive,
+        image_url: data.imageUrl || null,
       })
       .select()
       .single();

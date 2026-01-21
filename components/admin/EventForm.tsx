@@ -15,6 +15,7 @@ export interface EventFormData {
   price?: number | null;
   maxCapacity: number;
   isActive: boolean;
+  imageUrl?: string;
 }
 
 interface EventFormProps {
@@ -63,6 +64,7 @@ export default function EventForm({ event, onSubmit, isLoading = false }: EventF
     price: event?.price || null,
     maxCapacity: event?.maxCapacity || 15,
     isActive: event?.isActive ?? true,
+    imageUrl: event?.imageUrl || '',
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -124,6 +126,7 @@ export default function EventForm({ event, onSubmit, isLoading = false }: EventF
         subtitle: formData.subtitle?.trim() || undefined,
         badge: formData.badge?.trim() || undefined,
         description: formData.description?.trim() || undefined,
+        imageUrl: formData.imageUrl?.trim() || undefined,
       };
 
       if (onSubmit) {
@@ -230,6 +233,33 @@ export default function EventForm({ event, onSubmit, isLoading = false }: EventF
               placeholder="Nouveau"
             />
             <p className="text-slate-500 text-xs mt-1">Texte court affiché comme badge (ex: Nouveau, Populaire)</p>
+          </div>
+
+          {/* Image URL */}
+          <div className="md:col-span-2">
+            <label className={labelClassName}>Image de l'événement</label>
+            <input
+              type="text"
+              value={formData.imageUrl || ''}
+              onChange={(e) => handleChange('imageUrl', e.target.value)}
+              className={inputClassName(false)}
+              placeholder="/images/events/mon-evenement.jpg"
+            />
+            <p className="text-slate-500 text-xs mt-1">
+              Chemin vers l'image (ex: /images/events/atelier-yoga.jpg). L'image doit être ajoutée au dossier public/images/events/
+            </p>
+            {formData.imageUrl && (
+              <div className="mt-3 relative w-32 h-32 rounded-lg overflow-hidden border border-slate-600">
+                <img
+                  src={formData.imageUrl}
+                  alt="Aperçu"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = 'none';
+                  }}
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>

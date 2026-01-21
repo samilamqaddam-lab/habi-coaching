@@ -24,6 +24,7 @@ interface EventData {
   max_capacity: number;
   remaining_spots: number;
   is_full: boolean;
+  image_url?: string | null;
 }
 
 interface EventPageContentProps {
@@ -141,6 +142,19 @@ export default function EventPageContent({ event }: EventPageContentProps) {
               <li className="text-deep-blue font-medium">{title}</li>
             </ol>
           </nav>
+
+          {/* Event Image */}
+          {event.image_url && (
+            <div className="relative w-full h-64 md:h-80 lg:h-96 rounded-2xl overflow-hidden mb-8 shadow-lg">
+              <Image
+                src={event.image_url}
+                alt={title}
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+          )}
 
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Left Column - Event Info */}
@@ -400,28 +414,35 @@ export default function EventPageContent({ event }: EventPageContentProps) {
       <section className="bg-white py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
-            <div className="flex flex-col md:flex-row items-center gap-8">
-              <div className="w-32 h-32 rounded-full overflow-hidden flex-shrink-0 border-4 border-golden-orange/20">
+            <div className="flex items-center gap-4 p-4 bg-dune-beige/30 rounded-xl border border-golden-orange/10 shadow-sm">
+              <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-golden-orange/20">
                 <Image
                   src="/images/Reel/Hajar.jpg"
                   alt="Hajar Habi"
-                  width={128}
-                  height={128}
-                  className="object-cover w-full h-full"
+                  fill
+                  className="object-cover"
                 />
               </div>
-              <div className="text-center md:text-left">
-                <h3 className="font-heading text-xl font-bold text-deep-blue mb-1">
-                  Hajar Habi
-                </h3>
-                <p className="text-golden-orange font-medium text-sm mb-3">
-                  {locale === 'fr' ? 'Professeure de Yoga Certifiée' : 'Certified Yoga Teacher'}
-                </p>
-                <p className="text-text-secondary text-sm leading-relaxed">
+              <div className="flex-1">
+                <p className="font-heading font-semibold text-deep-blue">Hajar Habi</p>
+                <p className="text-sm text-text-secondary">
                   {locale === 'fr'
-                    ? 'Certifiée Sadhguru Gurukulam avec plus de 1750 heures de formation. Coach professionnelle et consultante avec plus de 20 ans d\'expérience corporate.'
-                    : 'Certified by Sadhguru Gurukulam with over 1750 hours of training. Professional coach and consultant with over 20 years of corporate experience.'}
+                    ? 'Professeure de Hatha Yoga Classique'
+                    : 'Classical Hatha Yoga Teacher'}
                 </p>
+                <p className="text-xs text-golden-orange font-medium">
+                  {locale === 'fr'
+                    ? 'Certifiée Sadhguru Gurukulam • 1750 heures de formation'
+                    : 'Sadhguru Gurukulam Certified • 1750 hours of training'}
+                </p>
+              </div>
+              <div className="relative w-20 h-20 flex-shrink-0">
+                <Image
+                  src="/images/certifications/isha-hatha-yoga-certified.png"
+                  alt="Isha Hatha Yoga Certified"
+                  fill
+                  className="object-contain drop-shadow-sm"
+                />
               </div>
             </div>
           </div>

@@ -15,6 +15,7 @@ const updateEventSchema = z.object({
   price: z.coerce.number().positive().optional().nullable(),
   maxCapacity: z.coerce.number().int().positive().optional(),
   isActive: z.boolean().optional(),
+  imageUrl: z.string().optional().nullable(),
 });
 
 /**
@@ -84,6 +85,7 @@ export async function GET(
         price: event.price,
         maxCapacity: event.max_capacity,
         isActive: event.is_active,
+        imageUrl: event.image_url,
         createdAt: event.created_at,
         isPast,
         stats: {
@@ -164,6 +166,7 @@ export async function PUT(
     if (data.price !== undefined) eventUpdate.price = data.price;
     if (data.maxCapacity !== undefined) eventUpdate.max_capacity = data.maxCapacity;
     if (data.isActive !== undefined) eventUpdate.is_active = data.isActive;
+    if (data.imageUrl !== undefined) eventUpdate.image_url = data.imageUrl;
 
     if (Object.keys(eventUpdate).length > 0) {
       const { error: updateError } = await supabaseAdmin

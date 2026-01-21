@@ -69,6 +69,7 @@ export async function GET(
         max_capacity: event.max_capacity,
         remaining_spots: availability?.remaining_spots ?? event.max_capacity,
         is_full: availability?.is_full ?? false,
+        image_url: event.image_url,
       },
     });
 
