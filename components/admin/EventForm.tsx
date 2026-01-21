@@ -5,13 +5,9 @@ import { useRouter } from 'next/navigation';
 
 export interface EventFormData {
   title: string;
-  titleEn?: string;
   subtitle?: string;
-  subtitleEn?: string;
   badge?: string;
-  badgeEn?: string;
   description?: string;
-  descriptionEn?: string;
   dateTime: string;
   durationMinutes: number;
   location: string;
@@ -57,17 +53,13 @@ export default function EventForm({ event, onSubmit, isLoading = false }: EventF
 
   const [formData, setFormData] = useState<EventFormData>({
     title: event?.title || '',
-    titleEn: event?.titleEn || '',
     subtitle: event?.subtitle || '',
-    subtitleEn: event?.subtitleEn || '',
     badge: event?.badge || '',
-    badgeEn: event?.badgeEn || '',
     description: event?.description || '',
-    descriptionEn: event?.descriptionEn || '',
     dateTime: event?.dateTime ? formatDateTimeForInput(event.dateTime) : '',
     durationMinutes: event?.durationMinutes || 90,
-    location: event?.location || 'Shido Mind Yoga Studio',
-    address: event?.address || "36B bd d'Anfa, Casablanca",
+    location: event?.location || '',
+    address: event?.address || '',
     price: event?.price || null,
     maxCapacity: event?.maxCapacity || 15,
     isActive: event?.isActive ?? true,
@@ -128,14 +120,10 @@ export default function EventForm({ event, onSubmit, isLoading = false }: EventF
       const submitData: EventFormData = {
         ...formData,
         dateTime: localDateTimeToUTC(formData.dateTime),
-        // Clean up empty strings to null
-        titleEn: formData.titleEn?.trim() || undefined,
+        // Clean up empty strings to undefined
         subtitle: formData.subtitle?.trim() || undefined,
-        subtitleEn: formData.subtitleEn?.trim() || undefined,
         badge: formData.badge?.trim() || undefined,
-        badgeEn: formData.badgeEn?.trim() || undefined,
         description: formData.description?.trim() || undefined,
-        descriptionEn: formData.descriptionEn?.trim() || undefined,
       };
 
       if (onSubmit) {
@@ -204,10 +192,10 @@ export default function EventForm({ event, onSubmit, isLoading = false }: EventF
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Title FR */}
+          {/* Title */}
           <div>
             <label className={labelClassName}>
-              Titre (FR) <span className="text-red-400">*</span>
+              Titre <span className="text-red-400">*</span>
             </label>
             <input
               type="text"
@@ -219,21 +207,9 @@ export default function EventForm({ event, onSubmit, isLoading = false }: EventF
             {errors.title && <p className="text-red-400 text-sm mt-1">{errors.title}</p>}
           </div>
 
-          {/* Title EN */}
+          {/* Subtitle */}
           <div>
-            <label className={labelClassName}>Titre (EN)</label>
-            <input
-              type="text"
-              value={formData.titleEn || ''}
-              onChange={(e) => handleChange('titleEn', e.target.value)}
-              className={inputClassName(false)}
-              placeholder="Intensive Yoga Workshop"
-            />
-          </div>
-
-          {/* Subtitle FR */}
-          <div>
-            <label className={labelClassName}>Sous-titre (FR)</label>
+            <label className={labelClassName}>Sous-titre</label>
             <input
               type="text"
               value={formData.subtitle || ''}
@@ -243,21 +219,9 @@ export default function EventForm({ event, onSubmit, isLoading = false }: EventF
             />
           </div>
 
-          {/* Subtitle EN */}
+          {/* Badge */}
           <div>
-            <label className={labelClassName}>Sous-titre (EN)</label>
-            <input
-              type="text"
-              value={formData.subtitleEn || ''}
-              onChange={(e) => handleChange('subtitleEn', e.target.value)}
-              className={inputClassName(false)}
-              placeholder="Spring special session"
-            />
-          </div>
-
-          {/* Badge FR */}
-          <div>
-            <label className={labelClassName}>Badge (FR)</label>
+            <label className={labelClassName}>Badge</label>
             <input
               type="text"
               value={formData.badge || ''}
@@ -266,18 +230,6 @@ export default function EventForm({ event, onSubmit, isLoading = false }: EventF
               placeholder="Nouveau"
             />
             <p className="text-slate-500 text-xs mt-1">Texte court affiché comme badge (ex: Nouveau, Populaire)</p>
-          </div>
-
-          {/* Badge EN */}
-          <div>
-            <label className={labelClassName}>Badge (EN)</label>
-            <input
-              type="text"
-              value={formData.badgeEn || ''}
-              onChange={(e) => handleChange('badgeEn', e.target.value)}
-              className={inputClassName(false)}
-              placeholder="New"
-            />
           </div>
         </div>
       </div>
@@ -406,28 +358,14 @@ export default function EventForm({ event, onSubmit, isLoading = false }: EventF
           Description
         </h2>
 
-        <div className="grid grid-cols-1 gap-6">
-          {/* Description FR */}
-          <div>
-            <label className={labelClassName}>Description (FR)</label>
-            <textarea
-              value={formData.description || ''}
-              onChange={(e) => handleChange('description', e.target.value)}
-              className={`${inputClassName(false)} h-32 resize-none`}
-              placeholder="Décrivez l'événement en détail..."
-            />
-          </div>
-
-          {/* Description EN */}
-          <div>
-            <label className={labelClassName}>Description (EN)</label>
-            <textarea
-              value={formData.descriptionEn || ''}
-              onChange={(e) => handleChange('descriptionEn', e.target.value)}
-              className={`${inputClassName(false)} h-32 resize-none`}
-              placeholder="Describe the event in detail..."
-            />
-          </div>
+        <div>
+          <label className={labelClassName}>Description</label>
+          <textarea
+            value={formData.description || ''}
+            onChange={(e) => handleChange('description', e.target.value)}
+            className={`${inputClassName(false)} h-32 resize-none`}
+            placeholder="Décrivez l'événement en détail..."
+          />
         </div>
       </div>
 

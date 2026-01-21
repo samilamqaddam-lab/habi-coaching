@@ -5,13 +5,9 @@ import { z } from 'zod';
 // Validation schema for updating an event
 const updateEventSchema = z.object({
   title: z.string().min(1).optional(),
-  titleEn: z.string().optional().nullable(),
   subtitle: z.string().optional().nullable(),
-  subtitleEn: z.string().optional().nullable(),
   badge: z.string().optional().nullable(),
-  badgeEn: z.string().optional().nullable(),
   description: z.string().optional().nullable(),
-  descriptionEn: z.string().optional().nullable(),
   dateTime: z.string().optional(),
   durationMinutes: z.coerce.number().int().positive().optional(),
   location: z.string().optional(),
@@ -158,13 +154,9 @@ export async function PUT(
     // Build update object
     const eventUpdate: Record<string, unknown> = {};
     if (data.title !== undefined) eventUpdate.title = data.title;
-    if (data.titleEn !== undefined) eventUpdate.title_en = data.titleEn;
     if (data.subtitle !== undefined) eventUpdate.subtitle = data.subtitle;
-    if (data.subtitleEn !== undefined) eventUpdate.subtitle_en = data.subtitleEn;
     if (data.badge !== undefined) eventUpdate.badge = data.badge;
-    if (data.badgeEn !== undefined) eventUpdate.badge_en = data.badgeEn;
     if (data.description !== undefined) eventUpdate.description = data.description;
-    if (data.descriptionEn !== undefined) eventUpdate.description_en = data.descriptionEn;
     if (data.dateTime !== undefined) eventUpdate.date_time = data.dateTime;
     if (data.durationMinutes !== undefined) eventUpdate.duration_minutes = data.durationMinutes;
     if (data.location !== undefined) eventUpdate.location = data.location;

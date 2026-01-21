@@ -5,17 +5,13 @@ import { z } from 'zod';
 // Validation schema for creating an event
 const createEventSchema = z.object({
   title: z.string().min(1, 'Le titre est requis'),
-  titleEn: z.string().optional(),
   subtitle: z.string().optional(),
-  subtitleEn: z.string().optional(),
   badge: z.string().optional(),
-  badgeEn: z.string().optional(),
   description: z.string().optional(),
-  descriptionEn: z.string().optional(),
   dateTime: z.string().min(1, 'La date et heure sont requises'),
   durationMinutes: z.coerce.number().int().positive().default(90),
-  location: z.string().default('Shido Mind Yoga Studio'),
-  address: z.string().default("36B bd d'Anfa, Casablanca"),
+  location: z.string().min(1, 'Le lieu est requis'),
+  address: z.string().min(1, "L'adresse est requise"),
   price: z.coerce.number().positive().optional().nullable(),
   maxCapacity: z.coerce.number().int().positive().default(15),
   isActive: z.boolean().default(true),
@@ -177,13 +173,9 @@ export async function POST(request: NextRequest) {
       .from('yoga_events')
       .insert({
         title: data.title,
-        title_en: data.titleEn || null,
         subtitle: data.subtitle || null,
-        subtitle_en: data.subtitleEn || null,
         badge: data.badge || null,
-        badge_en: data.badgeEn || null,
         description: data.description || null,
-        description_en: data.descriptionEn || null,
         date_time: data.dateTime,
         duration_minutes: data.durationMinutes,
         location: data.location,
