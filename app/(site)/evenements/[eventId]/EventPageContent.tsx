@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslation } from '@/hooks/useTranslation';
 import Button from '@/components/ui/Button';
+import { formatDuration } from '@/lib/price-utils';
 
 interface EventData {
   id: string;
@@ -69,6 +70,17 @@ export default function EventPageContent({ event }: EventPageContentProps) {
 
   const formatEventTime = (dateString: string) => {
     const date = new Date(dateString);
+    return date.toLocaleTimeString(locale === 'fr' ? 'fr-FR' : 'en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+      timeZone: 'UTC',
+    });
+  };
+
+  // Calculate end time based on start time + duration
+  const getEndTime = (dateString: string, durationMinutes: number) => {
+    const date = new Date(dateString);
+    date.setMinutes(date.getMinutes() + durationMinutes);
     return date.toLocaleTimeString(locale === 'fr' ? 'fr-FR' : 'en-US', {
       hour: '2-digit',
       minute: '2-digit',
@@ -216,10 +228,13 @@ export default function EventPageContent({ event }: EventPageContentProps) {
                     </div>
                     <div>
                       <p className="text-xs text-text-secondary uppercase tracking-wide">
-                        {locale === 'fr' ? 'Heure' : 'Time'}
+                        {locale === 'fr' ? 'Horaire' : 'Schedule'}
                       </p>
                       <p className="text-deep-blue font-semibold">
-                        {formatEventTime(event.date_time)} ({event.duration_minutes} min)
+                        {formatEventTime(event.date_time)} - {getEndTime(event.date_time, event.duration_minutes)}
+                      </p>
+                      <p className="text-xs text-text-secondary">
+                        {locale === 'fr' ? 'Durée' : 'Duration'}: {formatDuration(event.duration_minutes)}
                       </p>
                     </div>
                   </div>

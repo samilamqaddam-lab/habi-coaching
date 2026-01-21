@@ -5,6 +5,7 @@ import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import { useTranslation } from '@/hooks/useTranslation';
 import type { YogaEvent } from '@/hooks/useEventsData';
+import { formatDuration } from '@/lib/price-utils';
 
 interface EventCardProps {
   event: YogaEvent;
@@ -35,7 +36,7 @@ export default function EventCard({ event }: EventCardProps) {
   const badge = locale === 'en' && event.badge_en ? event.badge_en : event.badge;
   const description = locale === 'en' && event.description_en ? event.description_en : event.description;
 
-  // Format date
+  // Format date (without time)
   const formatEventDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US', {
@@ -43,6 +44,25 @@ export default function EventCard({ event }: EventCardProps) {
       day: 'numeric',
       month: 'long',
       year: 'numeric',
+      timeZone: 'UTC',
+    });
+  };
+
+  // Format time
+  const formatEventTime = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleTimeString(locale === 'fr' ? 'fr-FR' : 'en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+      timeZone: 'UTC',
+    });
+  };
+
+  // Calculate end time
+  const getEndTime = (dateString: string, durationMinutes: number) => {
+    const date = new Date(dateString);
+    date.setMinutes(date.getMinutes() + durationMinutes);
+    return date.toLocaleTimeString(locale === 'fr' ? 'fr-FR' : 'en-US', {
       hour: '2-digit',
       minute: '2-digit',
       timeZone: 'UTC',
@@ -137,12 +157,14 @@ export default function EventCard({ event }: EventCardProps) {
             <span>{formatEventDate(event.date_time)}</span>
           </div>
 
-          {/* Duration */}
+          {/* Time & Duration */}
           <div className="flex items-start text-text-secondary">
             <svg className="w-4 h-4 mr-2 text-golden-orange mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <span>{event.duration_minutes} {locale === 'fr' ? 'minutes' : 'min'}</span>
+            <span>
+              {formatEventTime(event.date_time)} - {getEndTime(event.date_time, event.duration_minutes)} ({formatDuration(event.duration_minutes)})
+            </span>
           </div>
 
           {/* Location */}
