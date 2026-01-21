@@ -283,6 +283,12 @@ export default function EventCard({ event }: EventCardProps) {
                 }
               </Button>
             </div>
+
+            <p className="text-xs text-text-secondary text-center">
+              {locale === 'fr'
+                ? 'En vous inscrivant, vous acceptez de recevoir des informations concernant cet événement.'
+                : 'By registering, you agree to receive information about this event.'}
+            </p>
           </form>
         )}
       </div>

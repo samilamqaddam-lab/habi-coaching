@@ -289,8 +289,8 @@ export default function FeaturedEventCard({ event, image }: FeaturedEventCardPro
 
               <p className="text-xs text-text-secondary text-center mt-3">
                 {locale === 'fr'
-                  ? 'Vous recevrez un email avec les détails de paiement.'
-                  : 'You will receive an email with payment details.'}
+                  ? 'En vous inscrivant, vous acceptez de recevoir des informations concernant cet événement.'
+                  : 'By registering, you agree to receive information about this event.'}
               </p>
             </form>
           )}
