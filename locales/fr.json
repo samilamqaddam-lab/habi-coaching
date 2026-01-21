@@ -318,6 +318,11 @@
       "description": "Nos cours sont accessibles à tous les niveaux. Contactez-nous pour discuter de vos objectifs et trouver le programme qui vous convient.",
       "button": "Nous contacter"
     },
+    "events": {
+      "subtitle": "Événements",
+      "title": "Ateliers & Sessions Découverte",
+      "description": "Des événements ponctuels pour découvrir ou approfondir votre pratique du yoga."
+    },
     "otherPrograms": {
       "subtitle": "Autres programmes",
       "title": "Pour la santé et le bien-être",

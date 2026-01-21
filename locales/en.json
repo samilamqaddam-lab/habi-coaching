@@ -318,6 +318,11 @@
       "description": "Our classes are accessible to all levels. Contact us to discuss your goals and find the program that suits you.",
       "button": "Contact Us"
     },
+    "events": {
+      "subtitle": "Events",
+      "title": "Workshops & Discovery Sessions",
+      "description": "One-time events to discover or deepen your yoga practice."
+    },
     "otherPrograms": {
       "subtitle": "Other Programs",
       "title": "For Health and Wellbeing",

@@ -369,51 +369,65 @@ vercel env pull .env.vercel.check
 cat .env.vercel.check
 ```
 
-## Programme Editions System (Supabase)
+## Backend Yoga System (Supabase)
 
 ### Overview
-Dynamic registration system for yoga programmes using Supabase as backend.
+Two parallel registration systems coexist on `/yoga` page, both using Supabase:
 
-**Database:** Supabase project linked to Vercel
+| Système | Usage | Complexité |
+|---------|-------|------------|
+| **Événements Ponctuels** | Ateliers, introductions, sessions découverte | Simple (1 date fixe) |
+| **Programmes/Éditions** | Cours collectifs réguliers (Upa Yoga, Surya Kriya...) | Complexe (multi-sessions) |
 
-### Tables Structure
-```
-programme_editions     - Éditions (ex: "Upa Yoga - Janvier 2025")
-  ├── id, programme_key, title, status (draft/active/completed/cancelled)
-  └── created_at, updated_at
+**Documentation complète:** See `docs/BACKEND-YOGA-SYSTEM.md` for schemas, API routes, and flows.
 
-edition_sessions       - Sessions de chaque édition
-  ├── id, edition_id, session_number, title
-  └── date_options[] (JSONB: date_time, max_spots, remaining_spots)
+### Système 1: Événements Ponctuels
+**Tables:** `yoga_events`, `event_registrations`, `event_availability` (view)
 
-registrations          - Inscriptions des participants
-  ├── id, edition_id, session_id, selected_date_option_index
-  ├── first_name, last_name, email, phone
-  └── status (pending/confirmed/cancelled), notes, created_at
-```
+**Hooks:**
+- `useEventsData()` - Fetch active events for /yoga page
 
-### Key Hooks
-- `useEditionData(programmeKey)` - Fetch active edition + sessions for one programme
+**API Routes:**
+| Route | Method | Purpose |
+|-------|--------|---------|
+| `/api/events` | GET | Liste événements actifs + futurs |
+| `/api/events/[eventId]/register` | POST | Inscription publique |
+| `/api/admin/events` | GET/POST | Liste admin + création |
+| `/api/admin/events/[id]` | GET/PUT/DELETE | CRUD événement |
+
+**Admin Pages:**
+- `/admin/events` - Liste avec CRUD complet
+- `/admin/events/new` - Création événement
+- `/admin/events/[eventId]/edit` - Modification événement
+- `/admin/events/[eventId]` - Gestion inscriptions
+
+### Système 2: Programmes/Éditions
+**Tables:** `programme_editions`, `edition_sessions`, `session_date_options`, `registrations`, `registration_date_choices`, `date_availability` (view)
+
+**Hooks:**
+- `useEditionData(programmeKey)` - Fetch active edition + sessions pour un programme
 - `useMultipleEditionsData()` - Fetch all active editions (for /yoga page badges)
 
-### API Routes
+**API Routes:**
 | Route | Method | Purpose |
 |-------|--------|---------|
 | `/api/yoga/[editionId]` | GET | Get edition details |
 | `/api/yoga/[editionId]/register` | POST | Register participant |
 | `/api/yoga/[editionId]/availability` | GET | Check spots availability |
+| `/api/admin/editions` | GET/POST | Liste admin + création |
+| `/api/admin/editions/[id]` | GET/PUT/DELETE | CRUD édition |
 
-### Registration Flow
-1. User visits `/yoga` or `/[programmeKey]`
-2. `useEditionData` fetches active edition from Supabase
-3. Form displays available date options with remaining spots
-4. On submit → POST to `/api/yoga/[editionId]/register`
-5. Email confirmation sent via Resend
+**Admin Pages:**
+- `/admin/editions` - Liste avec gestion
+- `/admin/dashboard` - Vue globale inscriptions
+- `/admin/dashboard/[editionId]` - Inscriptions par édition
 
-### Admin Dashboard
-- **URL:** `/admin` (protected)
-- **Features:** View registrations, manage editions, update status
-- **Components:** `RegistrationCard`, `EditionManager`
+### Key Components
+| Composant | Fichier | Usage |
+|-----------|---------|-------|
+| `EventForm` | `components/admin/EventForm.tsx` | Formulaire création/édition événement |
+| `EventRegistrationCard` | `components/admin/EventRegistrationCard.tsx` | Carte inscription événement |
+| `RegistrationCard` | `components/admin/RegistrationCard.tsx` | Carte inscription programme |
 
 ## Translation Files
 Location: `/locales/fr.json` and `/locales/en.json`
@@ -548,9 +562,22 @@ SEO, UX & Conversion, Performance, Qualité Contenu, Nouvelles Features, Stabili
     /cgv/                  - Terms of sale
     /not-found.tsx         - Custom 404 page
   /(admin)
-    /admin/...             - Dashboard admin (registrations, editions)
+    /admin/(protected)/
+      /dashboard/          - Vue inscriptions programmes
+      /editions/           - Gestion éditions programmes
+      /events/             - Gestion événements (CRUD)
+        /page.tsx          - Liste événements
+        /new/page.tsx      - Création événement
+        /[eventId]/
+          /page.tsx        - Détail inscriptions événement
+          /edit/page.tsx   - Modification événement
   /api
+    /events/               - API publique événements
+      /route.ts            - GET liste événements actifs
+      /[eventId]/register/ - POST inscription
     /yoga/[editionId]/     - API programmes (register, availability)
+    /admin/events/         - API admin événements (CRUD)
+    /admin/editions/       - API admin éditions (CRUD)
     /registrations/        - API gestion inscriptions
 
 /components
@@ -561,10 +588,14 @@ SEO, UX & Conversion, Performance, Qualité Contenu, Nouvelles Features, Stabili
   /ui/CookieConsentBanner.tsx - RGPD cookie banner
   /forms/                - Contact forms, registration forms
   /admin/                - Admin dashboard components
+    /EventForm.tsx       - Formulaire création/édition événement
+    /EventRegistrationCard.tsx - Carte inscription événement
+    /RegistrationCard.tsx - Carte inscription programme
   /analytics/ConditionalGA4.tsx - Conditional GA4 loader
   /seo/JsonLd.tsx        - JSON-LD wrapper component
 
 /hooks
+  /useEventsData.ts      - Fetch événements actifs pour /yoga
   /useEditionData.ts     - Fetch edition + sessions pour un programme
   /useMultipleEditionsData.ts - Fetch toutes les éditions actives
   /useConsentManager.ts  - Cookie consent state management
@@ -585,6 +616,7 @@ SEO, UX & Conversion, Performance, Qualité Contenu, Nouvelles Features, Stabili
 
 /docs
   /COMMON-CSS-ISSUES.md - CSS troubleshooting guide (IMPORTANT!)
+  /BACKEND-YOGA-SYSTEM.md - Architecture complète système yoga (événements + programmes)
 ```
 
 ## Common Issues & Troubleshooting

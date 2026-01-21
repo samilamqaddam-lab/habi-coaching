@@ -9,7 +9,10 @@ import Button from '@/components/ui/Button'
 import { PrivateYogaRequestModal, IndividualYogaBookingModal } from '@/components/forms'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useMultipleEditionsData } from '@/hooks/useMultipleEditionsData'
+import { useEventsData } from '@/hooks/useEventsData'
 import { getDisplayPrice, formatDuration, formatEditionBadgeDate } from '@/lib/price-utils'
+import EventCard from '@/components/yoga/EventCard'
+import FeaturedEventCard from '@/components/yoga/FeaturedEventCard'
 import Link from 'next/link'
 
 // Composant Accordion pour les bénéfices
@@ -282,6 +285,9 @@ export default function ProgrammesContent() {
   const editionsData = useMultipleEditionsData([
     'upa-yoga', 'surya-kriya', 'surya-shakti', 'angamardana', 'yogasanas'
   ])
+
+  // Fetch active events
+  const { events, hasActiveEvents, isLoading: eventsLoading } = useEventsData()
 
   return (
     <>
@@ -620,22 +626,62 @@ export default function ProgrammesContent() {
       {/* Autres programmes */}
       <Section
         id="autres-programmes"
-        subtitle={t('programmes.otherPrograms.subtitle')}
-        title={t('programmes.otherPrograms.title')}
         accentColor="yoga"
       >
-        {/* Intro + Disclaimers - Aligned with title */}
-        <div className="mb-12 space-y-4 max-w-4xl">
-          <p className="text-lg text-text-secondary leading-relaxed">
-            {t('programmes.otherPrograms.intro')}
-          </p>
-          <p className="text-sm text-text-secondary italic">
-            {t('programmes.otherPrograms.disclaimer')}
-          </p>
-          <div className="bg-golden-orange/5 border-l-4 border-golden-orange p-4 rounded-r-lg">
-            <p className="text-sm text-text-secondary font-medium">
-              {t('programmes.otherPrograms.medicalWarning')}
+        {/* Section subtitle */}
+        <p className="text-golden-orange text-sm md:text-base font-medium uppercase tracking-wider mb-6">
+          {t('programmes.otherPrograms.subtitle')}
+        </p>
+
+        {/* Événements et Ateliers - Only show if there are active events */}
+        {hasActiveEvents && !eventsLoading && (
+          <div className="mb-16">
+            <h3 className="font-heading text-3xl md:text-4xl font-bold text-deep-blue mb-4">
+              {locale === 'fr' ? 'Événements et Ateliers' : 'Events & Workshops'}
+            </h3>
+            <p className="text-text-secondary mb-8">
+              {t('programmes.events.description')}
             </p>
+
+            {/* Single event: Featured horizontal layout */}
+            {events.length === 1 ? (
+              <FeaturedEventCard
+                event={events[0]}
+                image="/images/events/nadi-shuddhi.jpg"
+              />
+            ) : (
+              /* Multiple events: Grid layout */
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {events.map((event) => (
+                  <EventCard key={event.id} event={event} />
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Séparateur */}
+        {hasActiveEvents && !eventsLoading && (
+          <div className="border-t border-golden-orange/20 my-12" />
+        )}
+
+        {/* Yoga pour la Santé et le Bien-être */}
+        <div className="mb-12">
+          <h3 className="font-heading text-3xl md:text-4xl font-bold text-deep-blue mb-4">
+            {locale === 'fr' ? 'Yoga pour la santé et le bien-être' : 'Yoga for Health & Wellbeing'}
+          </h3>
+          <div className="space-y-4 max-w-4xl">
+            <p className="text-lg text-text-secondary leading-relaxed">
+              {t('programmes.otherPrograms.intro')}
+            </p>
+            <p className="text-sm text-text-secondary italic">
+              {t('programmes.otherPrograms.disclaimer')}
+            </p>
+            <div className="bg-golden-orange/5 border-l-4 border-golden-orange p-4 rounded-r-lg">
+              <p className="text-sm text-text-secondary font-medium">
+                {t('programmes.otherPrograms.medicalWarning')}
+              </p>
+            </div>
           </div>
         </div>
 
