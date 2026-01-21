@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslation } from '@/hooks/useTranslation';
 import Button from '@/components/ui/Button';
-import Section from '@/components/sections/Section';
 
 interface EventData {
   id: string;
@@ -114,7 +113,7 @@ export default function EventPageContent({ event }: EventPageContentProps) {
   return (
     <>
       {/* Hero Section */}
-      <Section className="!pt-24 !pb-12 bg-gradient-to-b from-dune-beige to-white">
+      <section className="pt-24 pb-12 bg-gradient-to-b from-dune-beige to-white">
         <div className="container mx-auto px-4">
           {/* Breadcrumb */}
           <nav className="mb-8">
@@ -395,10 +394,10 @@ export default function EventPageContent({ event }: EventPageContentProps) {
             </div>
           </div>
         </div>
-      </Section>
+      </section>
 
       {/* Instructor Section */}
-      <Section className="bg-white !py-16">
+      <section className="bg-white py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <div className="flex flex-col md:flex-row items-center gap-8">
@@ -427,10 +426,10 @@ export default function EventPageContent({ event }: EventPageContentProps) {
             </div>
           </div>
         </div>
-      </Section>
+      </section>
 
       {/* CTA Section */}
-      <Section className="bg-gradient-to-b from-dune-beige/50 to-white !py-16">
+      <section className="bg-gradient-to-b from-dune-beige/50 to-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="font-heading text-2xl font-bold text-deep-blue mb-4">
             {locale === 'fr' ? 'Découvrez nos autres offres' : 'Discover our other offerings'}
@@ -453,7 +452,7 @@ export default function EventPageContent({ event }: EventPageContentProps) {
             </Link>
           </div>
         </div>
-      </Section>
+      </section>
     </>
   );
 }
