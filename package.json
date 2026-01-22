@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "migrate:homepage": "node scripts/migrate-homepage-to-sanity.mjs"
+    "migrate:homepage": "node scripts/migrate-homepage-to-sanity.mjs",
+    "seo:audit": "node scripts/seo-audit.mjs"
   },
   "dependencies": {
     "@next/third-parties": "^16.1.2",
