@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/studio/', '/api/'],
+        disallow: ['/admin/', '/api/', '/studio/', '/brand-kit/'],
       },
     ],
     sitemap: 'https://transcendencework.com/sitemap.xml',

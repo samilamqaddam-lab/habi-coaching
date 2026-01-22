@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
 import { client } from '@/lib/sanity'
 import { articlesQuery, programmesQuery } from '@/lib/sanity.queries'
+import { supabase, isSupabaseConfigured } from '@/lib/supabase'
 
 const BASE_URL = 'https://transcendencework.com'
 
@@ -13,8 +14,17 @@ interface Programme {
   slug: { current: string }
 }
 
+// Programme yoga keys (pages dédiées)
+const YOGA_PROGRAMMES = [
+  'upa-yoga',
+  'surya-kriya',
+  'angamardana',
+  'yogasanas',
+  'surya-shakti',
+]
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // Static pages
+  // Static pages - Services principaux
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: BASE_URL,
@@ -66,10 +76,40 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ]
 
+  // Pages légales
+  const legalPages: MetadataRoute.Sitemap = [
+    {
+      url: `${BASE_URL}/mentions-legales`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: `${BASE_URL}/confidentialite`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: `${BASE_URL}/cgv`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+  ]
+
+  // Pages programmes yoga dédiées
+  const yogaProgrammePages: MetadataRoute.Sitemap = YOGA_PROGRAMMES.map((slug) => ({
+    url: `${BASE_URL}/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }))
+
   // Fetch dynamic content from Sanity
   const [articles, programmes] = await Promise.all([
-    client.fetch<Article[]>(articlesQuery),
-    client.fetch<Programme[]>(programmesQuery),
+    client.fetch<Article[]>(articlesQuery).catch(() => [] as Article[]),
+    client.fetch<Programme[]>(programmesQuery).catch(() => [] as Programme[]),
   ])
 
   // Article pages
@@ -80,13 +120,34 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }))
 
-  // Programme pages (if we have individual programme pages in the future)
-  const programmePages: MetadataRoute.Sitemap = programmes.map((programme) => ({
-    url: `${BASE_URL}/yoga#${programme.slug.current}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.5,
-  }))
+  // Fetch events from Supabase
+  let eventPages: MetadataRoute.Sitemap = []
+  if (isSupabaseConfigured() && supabase) {
+    try {
+      const { data: events } = await supabase
+        .from('yoga_events')
+        .select('id, created_at')
+        .eq('is_active', true)
+        .gte('date_time', new Date().toISOString())
 
-  return [...staticPages, ...articlePages, ...programmePages]
+      if (events) {
+        eventPages = events.map((event) => ({
+          url: `${BASE_URL}/evenements/${event.id}`,
+          lastModified: new Date(event.created_at),
+          changeFrequency: 'weekly' as const,
+          priority: 0.7,
+        }))
+      }
+    } catch (error) {
+      console.error('Error fetching events for sitemap:', error)
+    }
+  }
+
+  return [
+    ...staticPages,
+    ...yogaProgrammePages,
+    ...legalPages,
+    ...articlePages,
+    ...eventPages,
+  ]
 }

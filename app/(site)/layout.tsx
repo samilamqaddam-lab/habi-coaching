@@ -20,31 +20,58 @@ const siteUrl = "https://www.transcendencework.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Transcendence Work - Coaching Professionnel et Yoga Classique",
+    default: "Transcendence Work - Coaching Professionnel et Yoga Classique à Casablanca",
     template: "%s | Transcendence Work",
   },
-  description: "Hajar Habi - Coaching professionnel et Yoga classique. Accompagnement des individus et des organisations.",
+  description: "Hajar Habi - Coaching professionnel et Hatha Yoga classique à Casablanca, Maroc. Accompagnement des individus et transformation des organisations.",
+  keywords: [
+    "coaching casablanca",
+    "yoga casablanca",
+    "hatha yoga maroc",
+    "coach professionnel maroc",
+    "développement personnel casablanca",
+    "transformation organisationnelle",
+    "sadhguru gurukulam",
+    "coaching individuel",
+    "yoga traditionnel",
+  ],
+  authors: [{ name: "Hajar Habi", url: siteUrl }],
+  creator: "Hajar Habi",
+  publisher: "Transcendence Work",
+  alternates: {
+    canonical: siteUrl,
+    languages: {
+      "fr-MA": siteUrl,
+      "en": siteUrl,
+    },
+  },
   openGraph: {
     type: "website",
-    locale: "fr_FR",
+    locale: "fr_MA",
     url: siteUrl,
     siteName: "Transcendence Work",
-    title: "Transcendence Work - Coaching Professionnel et Yoga Classique",
-    description: "Hajar Habi - Coaching professionnel et Yoga classique. Accompagnement des individus et des organisations.",
+    title: "Transcendence Work - Coaching Professionnel et Yoga Classique à Casablanca",
+    description: "Hajar Habi - Coaching professionnel et Hatha Yoga classique à Casablanca, Maroc. Accompagnement des individus et transformation des organisations.",
     images: [
       {
         url: "/images/Reel/hajar-professional.jpg",
         width: 1200,
         height: 630,
-        alt: "Hajar Habi - Transcendence Work",
+        alt: "Hajar Habi - Coach et Professeure de Yoga à Casablanca",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Transcendence Work - Coaching Professionnel et Yoga Classique",
-    description: "Hajar Habi - Coaching professionnel et Yoga classique. Accompagnement des individus et des organisations.",
+    title: "Transcendence Work - Coaching et Yoga à Casablanca",
+    description: "Hajar Habi - Coaching professionnel et Hatha Yoga classique à Casablanca, Maroc.",
     images: ["/images/Reel/hajar-professional.jpg"],
+  },
+  other: {
+    "geo.region": "MA-CAS",
+    "geo.placename": "Casablanca",
+    "geo.position": "33.5731;-7.5898",
+    "ICBM": "33.5731, -7.5898",
   },
 };
 

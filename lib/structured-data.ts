@@ -108,3 +108,110 @@ export function getServiceSchema(service: {
     },
   }
 }
+
+export function getCourseSchema(course: {
+  name: string
+  description: string
+  duration?: string
+  price?: number
+  image?: string
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Course',
+    name: course.name,
+    description: course.description,
+    provider: {
+      '@id': `${siteUrl}/#organization`,
+    },
+    instructor: {
+      '@id': `${siteUrl}/#person`,
+    },
+    ...(course.image && { image: `${siteUrl}${course.image}` }),
+    hasCourseInstance: {
+      '@type': 'CourseInstance',
+      courseMode: 'onsite',
+      location: {
+        '@type': 'Place',
+        name: 'Studio Shido Mind',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: '36B boulevard d\'Anfa, 5ème étage, Appartement 54',
+          addressLocality: 'Casablanca',
+          addressCountry: 'MA',
+        },
+      },
+    },
+    ...(course.price && {
+      offers: {
+        '@type': 'Offer',
+        price: course.price,
+        priceCurrency: 'MAD',
+        availability: 'https://schema.org/InStock',
+      },
+    }),
+  }
+}
+
+export function getEventSchema(event: {
+  name: string
+  description: string
+  startDate: string
+  endDate?: string
+  price?: number
+  location?: string
+  image?: string
+  availableSpots?: number
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: event.name,
+    description: event.description,
+    startDate: event.startDate,
+    ...(event.endDate && { endDate: event.endDate }),
+    ...(event.image && { image: `${siteUrl}${event.image}` }),
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    eventStatus: 'https://schema.org/EventScheduled',
+    location: {
+      '@type': 'Place',
+      name: event.location || 'Studio Shido Mind',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '36B boulevard d\'Anfa',
+        addressLocality: 'Casablanca',
+        addressCountry: 'MA',
+      },
+    },
+    organizer: {
+      '@id': `${siteUrl}/#organization`,
+    },
+    performer: {
+      '@id': `${siteUrl}/#person`,
+    },
+    ...(event.price !== undefined && {
+      offers: {
+        '@type': 'Offer',
+        price: event.price,
+        priceCurrency: 'MAD',
+        availability: event.availableSpots && event.availableSpots > 0
+          ? 'https://schema.org/InStock'
+          : 'https://schema.org/SoldOut',
+        validFrom: new Date().toISOString(),
+      },
+    }),
+  }
+}
+
+export function getBreadcrumbSchema(items: { name: string; url: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: item.url,
+    })),
+  }
+}

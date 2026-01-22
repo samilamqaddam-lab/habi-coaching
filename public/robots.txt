@@ -1,0 +1,14 @@
+# Robots.txt for Transcendence Work
+# https://transcendencework.com
+
+User-agent: *
+Allow: /
+
+# Bloquer les pages admin et API
+Disallow: /admin/
+Disallow: /api/
+Disallow: /studio/
+Disallow: /brand-kit/
+
+# Sitemap
+Sitemap: https://transcendencework.com/sitemap.xml
