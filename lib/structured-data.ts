@@ -6,26 +6,50 @@ export const organizationSchema = {
   '@id': `${siteUrl}/#organization`,
   name: 'Transcendence Work',
   alternateName: 'Hajar Habi - Coaching & Yoga',
-  description: 'Coaching professionnel et yoga traditionnel à Casablanca. Accompagnement individuel et transformation des organisations.',
+  description: 'Coach professionnel et professeure de Hatha Yoga à Casablanca. Coaching individuel, yoga traditionnel et accompagnement des organisations au Maroc.',
   url: siteUrl,
   logo: `${siteUrl}/images/logo.png`,
   image: `${siteUrl}/images/Reel/hajar-professional.jpg`,
-  email: 'contact@transcendencework.com',
+  email: 'hajar@transcendencework.com',
   telephone: '+212663096857',
   address: {
     '@type': 'PostalAddress',
+    streetAddress: '36B boulevard d\'Anfa, 5ème étage, Appartement 54',
     addressLocality: 'Casablanca',
+    postalCode: '20000',
+    addressRegion: 'Grand Casablanca',
     addressCountry: 'MA',
   },
-  priceRange: '$$',
-  areaServed: {
-    '@type': 'Country',
-    name: 'Morocco',
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 33.5883,
+    longitude: -7.6114,
   },
+  priceRange: '$$',
+  areaServed: [
+    {
+      '@type': 'City',
+      name: 'Casablanca',
+    },
+    {
+      '@type': 'AdministrativeArea',
+      name: 'Grand Casablanca',
+    },
+    {
+      '@type': 'Country',
+      name: 'Morocco',
+    },
+  ],
   sameAs: [
     'https://www.linkedin.com/in/hajar-habi/',
     'https://open.spotify.com/show/3c1fH8hzdIRcFVwRGYQClR',
   ],
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    opens: '09:00',
+    closes: '18:00',
+  },
 }
 
 export const personSchema = {
@@ -34,9 +58,16 @@ export const personSchema = {
   '@id': `${siteUrl}/#person`,
   name: 'Hajar Habi',
   jobTitle: ['Coach Professionnelle', 'Professeure de Hatha Yoga'],
-  description: 'Experte en coaching professionnel et pratiques yogiques traditionnelles avec ≃20 ans d\'expérience corporate.',
+  description: 'Coach professionnel et professeure de Hatha Yoga à Casablanca. Certifiée Transformance Pro (EMCC) et Sadhguru Gurukulam. ≃20 ans expérience corporate & conseil au Maroc.',
   image: `${siteUrl}/images/Reel/hajar-professional.jpg`,
   url: siteUrl,
+  email: 'hajar@transcendencework.com',
+  telephone: '+212663096857',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Casablanca',
+    addressCountry: 'MA',
+  },
   worksFor: {
     '@id': `${siteUrl}/#organization`,
   },
@@ -45,12 +76,20 @@ export const personSchema = {
       '@type': 'EducationalOccupationalCredential',
       name: 'Coach & Team - Transformance Pro',
       credentialCategory: 'Professional Certification',
+      recognizedBy: {
+        '@type': 'Organization',
+        name: 'EMCC (European Mentoring and Coaching Council)',
+      },
     },
     {
       '@type': 'EducationalOccupationalCredential',
       name: 'Hatha Yoga Classique - Sadhguru Gurukulam',
       credentialCategory: 'Professional Certification',
-      educationalLevel: '1750 heures de formation',
+      educationalLevel: '1750 heures de formation (21 semaines résidentielles)',
+      recognizedBy: {
+        '@type': 'Organization',
+        name: 'Sadhguru Gurukulam',
+      },
     },
   ],
   knowsAbout: [
@@ -58,6 +97,12 @@ export const personSchema = {
     'Hatha Yoga',
     'Transformation personnelle',
     'Leadership',
+    'Coaching d\'équipe',
+    'Développement organisationnel',
+    'Yoga traditionnel',
+  ],
+  sameAs: [
+    'https://www.linkedin.com/in/hajar-habi/',
   ],
 }
 
