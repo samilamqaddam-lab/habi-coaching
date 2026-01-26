@@ -146,7 +146,7 @@ export async function POST(
                 </tr>
                 <tr>
                   <td style="padding: 10px 0; color: #666;">Téléphone:</td>
-                  <td style="padding: 10px 0;"><a href="tel:${phone}" style="color: #1a365d;">${phone}</a></td>
+                  <td style="padding: 10px 0;"><a href="tel:${phone.replace(/\s/g, '')}" style="color: #1a365d; text-decoration: none;">${phone}</a></td>
                 </tr>
               </table>
             </div>

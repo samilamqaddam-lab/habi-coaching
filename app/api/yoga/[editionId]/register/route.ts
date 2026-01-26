@@ -240,7 +240,7 @@ export async function POST(
                 <tr>
                   <td style="padding: 10px 0; color: #666; vertical-align: top;">Téléphone:</td>
                   <td style="padding: 10px 0;">
-                    <a href="tel:${phone}" style="color: #1a365d; text-decoration: none;">${phone}</a>
+                    <a href="tel:${phone.replace(/\s/g, '')}" style="color: #1a365d; text-decoration: none;">${phone}</a>
                     ${whatsapp ? `
                     <br>
                     <a href="https://wa.me/${whatsapp.replace(/[^0-9]/g, '')}" style="display: inline-flex; align-items: center; gap: 4px; color: #25D366; text-decoration: none; font-size: 13px; margin-top: 4px;">
