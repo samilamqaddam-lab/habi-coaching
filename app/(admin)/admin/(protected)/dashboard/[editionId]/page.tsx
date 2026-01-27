@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import AdminNav from '@/components/admin/AdminNav';
+import AdminLayout from '@/components/admin/AdminLayout';
 import RegistrationCard from '@/components/admin/RegistrationCard';
 import { supabaseAdmin, isSupabaseConfigured } from '@/lib/supabase';
 
@@ -120,15 +120,8 @@ export default async function EditionRegistrationsPage({
   const cancelledCount = registrations.filter(r => r.status === 'cancelled').length;
 
   return (
-    <div className="flex h-screen overflow-hidden">
-      {/* Sidebar */}
-      <div className="w-64 flex-shrink-0">
-        <AdminNav />
-      </div>
-
-      {/* Main Content */}
-      <div className="flex-1 overflow-auto">
-        <div className="p-8">
+    <AdminLayout>
+      <div className="p-4 sm:p-6 md:p-8">
           {/* Header */}
           <div className="mb-8">
             <Link
@@ -224,7 +217,6 @@ export default async function EditionRegistrationsPage({
             )}
           </div>
         </div>
-      </div>
-    </div>
+    </AdminLayout>
   );
 }

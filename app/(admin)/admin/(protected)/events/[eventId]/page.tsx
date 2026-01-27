@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import AdminNav from '@/components/admin/AdminNav';
+import AdminLayout from '@/components/admin/AdminLayout';
 import EventRegistrationCard from '@/components/admin/EventRegistrationCard';
 import { supabaseAdmin, isSupabaseConfigured } from '@/lib/supabase';
 import { notFound } from 'next/navigation';
@@ -132,15 +132,8 @@ export default async function EventDetailPage({
   const isPast = new Date(event.date_time) < new Date();
 
   return (
-    <div className="flex h-screen overflow-hidden">
-      {/* Sidebar */}
-      <div className="w-64 flex-shrink-0">
-        <AdminNav />
-      </div>
-
-      {/* Main Content */}
-      <div className="flex-1 overflow-auto">
-        <div className="p-8">
+    <AdminLayout>
+      <div className="p-4 sm:p-6 md:p-8">
           {/* Back Button */}
           <Link
             href="/admin/events"
@@ -242,7 +235,6 @@ export default async function EventDetailPage({
             )}
           </div>
         </div>
-      </div>
-    </div>
+    </AdminLayout>
   );
 }

@@ -100,7 +100,7 @@ export default function Hero({
             ? 'py-12 sm:py-16 md:py-20'
             : 'py-16 sm:py-20 md:py-24 lg:py-28'
         }`}>
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-stretch isolate">
+          <div className="grid lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12 xl:gap-16 items-stretch isolate">
             {/* Left Side - Text Content */}
             <div className="order-2 lg:order-1 space-y-6 flex flex-col justify-center">
               {subtitle && (
@@ -160,7 +160,7 @@ export default function Hero({
             </div>
 
             {/* Right Side - Image */}
-            <div className="order-1 lg:order-2 relative animate-[fade-in-up_0.8s_ease-out_0.4s_both] h-full min-h-[500px]">
+            <div className="order-1 lg:order-2 relative animate-[fade-in-up_0.8s_ease-out_0.4s_both] h-full min-h-[300px] md:min-h-[400px] lg:min-h-[500px]">
               <div className="relative w-full h-full">
                 {/* Decorative background elements */}
                 <div className="absolute -top-6 -left-6 w-32 h-32 bg-golden-orange/20 rounded-full blur-3xl -z-10"></div>

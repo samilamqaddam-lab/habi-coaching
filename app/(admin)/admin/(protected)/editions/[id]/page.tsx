@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import AdminNav from '@/components/admin/AdminNav';
+import AdminLayout from '@/components/admin/AdminLayout';
 import SessionBuilder, { SessionData } from '@/components/admin/SessionBuilder';
 import { PROGRAMMES_CONFIG, getEditionProgrammeKeys } from '@/lib/programmes-config';
 
@@ -232,24 +232,18 @@ export default function EditionFormPage() {
 
   if (loading) {
     return (
-      <div className="flex h-screen overflow-hidden">
-        <div className="w-64 flex-shrink-0">
-          <AdminNav />
-        </div>
-        <div className="flex-1 flex items-center justify-center">
+      <AdminLayout>
+        <div className="flex items-center justify-center h-64">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-400"></div>
         </div>
-      </div>
+      </AdminLayout>
     );
   }
 
   if (error && !isNew && !formData.programmeKey) {
     return (
-      <div className="flex h-screen overflow-hidden">
-        <div className="w-64 flex-shrink-0">
-          <AdminNav />
-        </div>
-        <div className="flex-1 flex items-center justify-center">
+      <AdminLayout>
+        <div className="flex items-center justify-center h-64">
           <div className="text-center">
             <p className="text-red-400 mb-4">{error}</p>
             <Link
@@ -260,20 +254,13 @@ export default function EditionFormPage() {
             </Link>
           </div>
         </div>
-      </div>
+      </AdminLayout>
     );
   }
 
   return (
-    <div className="flex h-screen overflow-hidden">
-      {/* Sidebar */}
-      <div className="w-64 flex-shrink-0">
-        <AdminNav />
-      </div>
-
-      {/* Main Content */}
-      <div className="flex-1 overflow-auto">
-        <div className="p-8 max-w-4xl">
+    <AdminLayout>
+      <div className="p-4 sm:p-6 md:p-8 max-w-4xl">
           {/* Header */}
           <div className="mb-8">
             <Link
@@ -470,7 +457,6 @@ export default function EditionFormPage() {
             </div>
           </form>
         </div>
-      </div>
-    </div>
+    </AdminLayout>
   );
 }

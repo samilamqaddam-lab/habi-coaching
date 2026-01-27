@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import AdminNav from '@/components/admin/AdminNav';
+import AdminLayout from '@/components/admin/AdminLayout';
 import { PROGRAMMES_CONFIG, type ProgrammeConfig } from '@/lib/programmes-config';
 
 interface EditionStats {
@@ -149,15 +149,8 @@ export default function EditionsListPage() {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden">
-      {/* Sidebar */}
-      <div className="w-64 flex-shrink-0">
-        <AdminNav />
-      </div>
-
-      {/* Main Content */}
-      <div className="flex-1 overflow-auto">
-        <div className="p-8">
+    <AdminLayout>
+      <div className="p-4 sm:p-6 md:p-8">
           {/* Header */}
           <div className="flex items-center justify-between mb-8">
             <div>
@@ -368,7 +361,6 @@ export default function EditionsListPage() {
             </div>
           )}
         </div>
-      </div>
-    </div>
+    </AdminLayout>
   );
 }

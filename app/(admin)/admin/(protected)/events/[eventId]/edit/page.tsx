@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import AdminNav from '@/components/admin/AdminNav';
+import AdminLayout from '@/components/admin/AdminLayout';
 import EventForm, { EventFormData } from '@/components/admin/EventForm';
 
 interface EventData extends EventFormData {
@@ -59,11 +59,8 @@ export default function EditEventPage() {
 
   if (isLoading) {
     return (
-      <div className="flex h-screen overflow-hidden">
-        <div className="w-64 flex-shrink-0">
-          <AdminNav />
-        </div>
-        <div className="flex-1 flex items-center justify-center">
+      <AdminLayout>
+        <div className="flex items-center justify-center h-64">
           <div className="text-center">
             <svg className="w-12 h-12 text-orange-400 animate-spin mx-auto mb-4" fill="none" viewBox="0 0 24 24">
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -72,17 +69,14 @@ export default function EditEventPage() {
             <p className="text-slate-400">Chargement de l&apos;événement...</p>
           </div>
         </div>
-      </div>
+      </AdminLayout>
     );
   }
 
   if (error || !event) {
     return (
-      <div className="flex h-screen overflow-hidden">
-        <div className="w-64 flex-shrink-0">
-          <AdminNav />
-        </div>
-        <div className="flex-1 flex items-center justify-center">
+      <AdminLayout>
+        <div className="flex items-center justify-center h-64">
           <div className="text-center max-w-md">
             <div className="w-16 h-16 bg-red-400/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <svg className="w-8 h-8 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -103,20 +97,13 @@ export default function EditEventPage() {
             </button>
           </div>
         </div>
-      </div>
+      </AdminLayout>
     );
   }
 
   return (
-    <div className="flex h-screen overflow-hidden">
-      {/* Sidebar */}
-      <div className="w-64 flex-shrink-0">
-        <AdminNav />
-      </div>
-
-      {/* Main Content */}
-      <div className="flex-1 overflow-auto">
-        <div className="p-8 max-w-4xl">
+    <AdminLayout>
+      <div className="p-4 sm:p-6 md:p-8 max-w-4xl">
           {/* Header with back button */}
           <div className="mb-8">
             <Link
@@ -179,7 +166,6 @@ export default function EditEventPage() {
           {/* Form */}
           <EventForm event={event} />
         </div>
-      </div>
-    </div>
+    </AdminLayout>
   );
 }

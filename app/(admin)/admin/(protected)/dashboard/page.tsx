@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import AdminNav from '@/components/admin/AdminNav';
+import AdminLayout from '@/components/admin/AdminLayout';
 import { supabaseAdmin, isSupabaseConfigured } from '@/lib/supabase';
 
 interface DashboardData {
@@ -155,15 +155,8 @@ export default async function AdminDashboardPage() {
   const { editions, globalStats } = await getDashboardData();
 
   return (
-    <div className="flex h-screen overflow-hidden">
-      {/* Sidebar */}
-      <div className="w-64 flex-shrink-0">
-        <AdminNav />
-      </div>
-
-      {/* Main Content */}
-      <div className="flex-1 overflow-auto">
-        <div className="p-8">
+    <AdminLayout>
+      <div className="p-4 sm:p-6 md:p-8">
           {/* Header */}
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-slate-100 mb-2">
@@ -175,7 +168,7 @@ export default async function AdminDashboardPage() {
           </div>
 
           {/* Global Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
             <div className="bg-slate-800 rounded-xl border border-slate-700 p-6">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-slate-400 text-sm font-medium">Inscriptions totales</span>
@@ -258,7 +251,7 @@ export default async function AdminDashboardPage() {
                   </div>
 
                   {/* Stats Grid */}
-                  <div className="grid grid-cols-4 gap-4 mb-4">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-4">
                     <div>
                       <p className="text-xs text-slate-500 mb-1">Inscrits</p>
                       <p className="text-2xl font-bold text-slate-100">{edition.stats.registrations}</p>
@@ -297,7 +290,6 @@ export default async function AdminDashboardPage() {
             )}
           </div>
         </div>
-      </div>
-    </div>
+    </AdminLayout>
   );
 }

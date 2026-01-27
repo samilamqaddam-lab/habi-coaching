@@ -1,18 +1,11 @@
 import Link from 'next/link';
-import AdminNav from '@/components/admin/AdminNav';
+import AdminLayout from '@/components/admin/AdminLayout';
 import EventForm from '@/components/admin/EventForm';
 
 export default function NewEventPage() {
   return (
-    <div className="flex h-screen overflow-hidden">
-      {/* Sidebar */}
-      <div className="w-64 flex-shrink-0">
-        <AdminNav />
-      </div>
-
-      {/* Main Content */}
-      <div className="flex-1 overflow-auto">
-        <div className="p-8 max-w-4xl">
+    <AdminLayout>
+      <div className="p-4 sm:p-6 md:p-8 max-w-4xl">
           {/* Header with back button */}
           <div className="mb-8">
             <Link
@@ -35,7 +28,6 @@ export default function NewEventPage() {
           {/* Form */}
           <EventForm />
         </div>
-      </div>
-    </div>
+    </AdminLayout>
   );
 }

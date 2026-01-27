@@ -222,7 +222,7 @@ export default function HomeContent({ testimonials, homepageContent, hero }: Hom
         background="beige"
         centered
       >
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-12 max-w-5xl mx-auto">
           {homepageContent?.expertiseSection?.cards && homepageContent.expertiseSection.cards.length > 0 ? (
             // Render cards from Sanity
             homepageContent.expertiseSection.cards.map((card) => {
@@ -405,7 +405,7 @@ export default function HomeContent({ testimonials, homepageContent, hero }: Hom
         background="beige"
         centered
       >
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-12">
           {homepageContent?.servicesSection?.services && homepageContent.servicesSection.services.length > 0 ? (
             // Render services from Sanity
             homepageContent.servicesSection.services.map((service) => {

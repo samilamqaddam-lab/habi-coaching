@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import AdminNav from '@/components/admin/AdminNav';
+import AdminLayout from '@/components/admin/AdminLayout';
 
 interface EventData {
   id: string;
@@ -134,11 +134,8 @@ export default function AdminEventsPage() {
 
   if (isLoading) {
     return (
-      <div className="flex h-screen overflow-hidden">
-        <div className="w-64 flex-shrink-0">
-          <AdminNav />
-        </div>
-        <div className="flex-1 flex items-center justify-center">
+      <AdminLayout>
+        <div className="flex items-center justify-center h-64">
           <div className="text-center">
             <svg className="w-12 h-12 text-orange-400 animate-spin mx-auto mb-4" fill="none" viewBox="0 0 24 24">
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -147,20 +144,13 @@ export default function AdminEventsPage() {
             <p className="text-slate-400">Chargement des événements...</p>
           </div>
         </div>
-      </div>
+      </AdminLayout>
     );
   }
 
   return (
-    <div className="flex h-screen overflow-hidden">
-      {/* Sidebar */}
-      <div className="w-64 flex-shrink-0">
-        <AdminNav />
-      </div>
-
-      {/* Main Content */}
-      <div className="flex-1 overflow-auto">
-        <div className="p-8">
+    <AdminLayout>
+      <div className="p-4 sm:p-6 md:p-8">
           {/* Header */}
           <div className="flex items-start justify-between mb-8">
             <div>
@@ -412,7 +402,6 @@ export default function AdminEventsPage() {
             )}
           </div>
         </div>
-      </div>
 
       {/* Delete Confirmation Modal */}
       {showDeleteConfirm && (
@@ -485,6 +474,6 @@ export default function AdminEventsPage() {
           </div>
         </div>
       )}
-    </div>
+    </AdminLayout>
   );
 }

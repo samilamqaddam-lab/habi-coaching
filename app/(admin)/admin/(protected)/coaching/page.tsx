@@ -1,4 +1,4 @@
-import AdminNav from '@/components/admin/AdminNav';
+import AdminLayout from '@/components/admin/AdminLayout';
 import CoachingRequestsList from '@/components/admin/CoachingRequestsList';
 import { supabaseAdmin, isSupabaseConfigured } from '@/lib/supabase';
 
@@ -49,15 +49,8 @@ export default async function CoachingAdminPage() {
   const stats = await getCoachingStats();
 
   return (
-    <div className="flex h-screen overflow-hidden">
-      {/* Sidebar */}
-      <div className="w-64 flex-shrink-0">
-        <AdminNav />
-      </div>
-
-      {/* Main Content */}
-      <div className="flex-1 overflow-auto">
-        <div className="p-8">
+    <AdminLayout>
+      <div className="p-4 sm:p-6 md:p-8">
           {/* Header */}
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-slate-100 mb-2">
@@ -124,7 +117,6 @@ export default async function CoachingAdminPage() {
           {/* Requests List */}
           <CoachingRequestsList />
         </div>
-      </div>
-    </div>
+    </AdminLayout>
   );
 }
