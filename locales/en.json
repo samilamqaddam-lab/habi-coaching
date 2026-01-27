@@ -626,9 +626,9 @@
   "organisations": {
     "hero": {
       "subtitle": "For Organizations",
-      "title": "Sustainably Transform Your Organization",
+      "title": "Transform Your Organization Sustainably",
       "description": "Support that combines operational excellence and deep human dimension. A proven approach that reconciles performance and well-being.",
-      "primaryCTA": "Request a Quote",
+      "primaryCTA": "Request an Appointment",
       "secondaryCTA": "Our Programs"
     },
     "services": {
@@ -692,7 +692,8 @@
         "1": "Conscious leadership",
         "2": "Corporate retreat",
         "3": "One-off facilitation",
-        "4": "Other / To be defined together"
+        "4": "Corporate yoga",
+        "5": "Other / To be defined together"
       },
       "message": "Describe Your Project",
       "messagePlaceholder": "Tell us about your needs, challenges and expectations...",

@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     description: 'Accompagnement des organisations dans leur transformation. Leadership, cohésion d\'équipe et retraites corporate.',
     images: [
       {
-        url: '/images/heroes/coaching-session-hero.png',
+        url: '/images/heroes/organisations-coaching-hero.jpg',
         width: 1200,
         height: 630,
         alt: 'Conseil Entreprise Casablanca - Hajar Habi',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Conseil Entreprise Casablanca | Team Building Maroc',
     description: 'Transformation organisationnelle et coaching équipe. ≃20 ans expérience corporate.',
-    images: ['/images/heroes/coaching-session-hero.png'],
+    images: ['/images/heroes/organisations-coaching-hero.jpg'],
   },
 }
 

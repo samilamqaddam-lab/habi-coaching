@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Hero from '@/components/sections/Hero';
 import Section from '@/components/sections/Section';
 import Card from '@/components/ui/Card';
@@ -9,6 +10,69 @@ import { useTranslation } from '@/hooks/useTranslation';
 
 export default function OrganisationsContent() {
   const { t } = useTranslation();
+
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    organization: '',
+    size: '',
+    service: '',
+    message: '',
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('/api/organisations/quote', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setSubmitStatus('success');
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          organization: '',
+          size: '',
+          service: '',
+          message: '',
+        });
+      } else {
+        setSubmitStatus('error');
+        setErrorMessage(data.error || 'Une erreur est survenue');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+      setErrorMessage('Erreur réseau. Veuillez réessayer.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   return (
     <>
@@ -27,7 +91,7 @@ export default function OrganisationsContent() {
         theme="corporate"
         compact
         splitLayout
-        splitImage="/images/heroes/coaching-session-hero.png"
+        splitImage="/images/heroes/organisations-coaching-hero.jpg"
       />
 
       {/* Services pour Organisations */}
@@ -148,13 +212,29 @@ export default function OrganisationsContent() {
       >
         <div className="max-w-3xl mx-auto">
           <Card padding="lg">
-            <form className="space-y-6">
+            {submitStatus === 'success' && (
+              <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                <p className="text-green-800 font-medium">
+                  ✓ Votre demande a été envoyée avec succès ! Nous vous répondrons dans les plus brefs délais.
+                </p>
+              </div>
+            )}
+            {submitStatus === 'error' && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                <p className="text-red-800 font-medium">
+                  ✗ {errorMessage}
+                </p>
+              </div>
+            )}
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid lg:grid-cols-2 gap-6">
                 <FormInput
                   label={t('organisations.form.firstName')}
                   name="firstName"
                   type="text"
                   placeholder={t('organisations.form.firstNamePlaceholder')}
+                  value={formData.firstName}
+                  onChange={handleChange}
                   required
                 />
                 <FormInput
@@ -162,6 +242,8 @@ export default function OrganisationsContent() {
                   name="lastName"
                   type="text"
                   placeholder={t('organisations.form.lastNamePlaceholder')}
+                  value={formData.lastName}
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -171,6 +253,8 @@ export default function OrganisationsContent() {
                 name="email"
                 type="email"
                 placeholder={t('organisations.form.emailPlaceholder')}
+                value={formData.email}
+                onChange={handleChange}
                 required
               />
 
@@ -179,6 +263,8 @@ export default function OrganisationsContent() {
                 name="phone"
                 type="tel"
                 placeholder="+212 6 00 00 00 00"
+                value={formData.phone}
+                onChange={handleChange}
               />
 
               <FormInput
@@ -186,6 +272,8 @@ export default function OrganisationsContent() {
                 name="organization"
                 type="text"
                 placeholder={t('organisations.form.organizationPlaceholder')}
+                value={formData.organization}
+                onChange={handleChange}
                 required
               />
 
@@ -193,6 +281,8 @@ export default function OrganisationsContent() {
                 label={t('organisations.form.size')}
                 name="size"
                 type="select"
+                value={formData.size}
+                onChange={handleChange}
                 required
                 options={[
                   { value: '1-10', label: t('organisations.form.sizeOptions.0') },
@@ -207,6 +297,8 @@ export default function OrganisationsContent() {
                 label={t('organisations.form.service')}
                 name="service"
                 type="select"
+                value={formData.service}
+                onChange={handleChange}
                 required
                 options={[
                   {
@@ -216,7 +308,8 @@ export default function OrganisationsContent() {
                   { value: 'leadership', label: t('organisations.form.serviceOptions.1') },
                   { value: 'retraite', label: t('organisations.form.serviceOptions.2') },
                   { value: 'facilitation', label: t('organisations.form.serviceOptions.3') },
-                  { value: 'autre', label: t('organisations.form.serviceOptions.4') },
+                  { value: 'yoga-corporate', label: t('organisations.form.serviceOptions.4') },
+                  { value: 'autre', label: t('organisations.form.serviceOptions.5') },
                 ]}
               />
 
@@ -225,12 +318,20 @@ export default function OrganisationsContent() {
                 name="message"
                 type="textarea"
                 placeholder={t('organisations.form.messagePlaceholder')}
+                value={formData.message}
+                onChange={handleChange}
                 required
                 rows={6}
               />
 
-              <Button variant="primary" size="lg" fullWidth>
-                {t('organisations.form.submit')}
+              <Button
+                variant="primary"
+                size="lg"
+                fullWidth
+                type="submit"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Envoi en cours...' : t('organisations.form.submit')}
               </Button>
 
               <p className="text-sm text-text-secondary text-center">

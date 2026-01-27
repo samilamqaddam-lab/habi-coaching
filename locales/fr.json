@@ -692,7 +692,8 @@
         "1": "Leadership conscient",
         "2": "Retraite corporate",
         "3": "Facilitation ponctuelle",
-        "4": "Autre / À définir ensemble"
+        "4": "Yoga corporate",
+        "5": "Autre / À définir ensemble"
       },
       "message": "Décrivez votre projet",
       "messagePlaceholder": "Parlez-nous de vos besoins, vos enjeux et vos attentes...",
