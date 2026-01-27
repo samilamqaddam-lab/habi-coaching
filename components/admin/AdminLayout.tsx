@@ -28,7 +28,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   }, [sidebarOpen]);
 
   return (
-    <div className="flex h-screen overflow-hidden bg-slate-50">
+    <div className="flex h-screen overflow-hidden bg-slate-900">
       {/* Mobile overlay */}
       {sidebarOpen && (
         <div
@@ -52,10 +52,10 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
       {/* Main content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Mobile header with hamburger */}
-        <header className="lg:hidden bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between">
+        <header className="lg:hidden bg-slate-800 border-b border-slate-700 px-4 py-3 flex items-center justify-between">
           <button
             onClick={() => setSidebarOpen(true)}
-            className="p-2 rounded-md text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+            className="p-2 rounded-md text-slate-300 hover:bg-slate-700 hover:text-slate-100"
             aria-label="Open sidebar"
           >
             <svg
@@ -72,14 +72,14 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
               />
             </svg>
           </button>
-          <h1 className="text-lg font-semibold text-slate-800">
+          <h1 className="text-lg font-semibold text-slate-100">
             Transcendence Work
           </h1>
           <div className="w-10" /> {/* Spacer for centering */}
         </header>
 
         {/* Scrollable content area */}
-        <main className="flex-1 overflow-y-auto">
+        <main className="flex-1 overflow-y-auto bg-slate-900">
           {children}
         </main>
       </div>
