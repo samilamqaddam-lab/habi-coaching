@@ -27,7 +27,7 @@ export default function OrganisationsContent() {
         theme="corporate"
         compact
         splitLayout
-        splitImage="/images/heroes/organisations-meeting-room-hero.jpg"
+        splitImage="/images/heroes/coaching-session-hero.png"
       />
 
       {/* Services pour Organisations */}
