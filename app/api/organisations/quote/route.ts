@@ -44,8 +44,12 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
 
+    console.log('Received quote request:', body)
+
     // Validate input
     const validatedData = quoteSchema.parse(body)
+
+    console.log('Validated data:', validatedData)
 
     // Get Resend client
     const resend = getResendClient()
@@ -190,15 +194,17 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: true, message: 'Demande envoyée avec succès' })
   } catch (error) {
     if (error instanceof z.ZodError) {
+      console.error('Validation error:', error.issues)
+      const errorMessages = error.issues.map(issue => `${issue.path.join('.')}: ${issue.message}`).join(', ')
       return NextResponse.json(
-        { success: false, errors: error.issues },
+        { success: false, error: `Erreur de validation: ${errorMessages}`, errors: error.issues },
         { status: 400 }
       )
     }
 
     console.error('Quote form error:', error)
     return NextResponse.json(
-      { success: false, error: 'Une erreur est survenue' },
+      { success: false, error: 'Une erreur est survenue lors de l\'envoi' },
       { status: 500 }
     )
   }

@@ -32,6 +32,8 @@ export default function OrganisationsContent() {
     setSubmitStatus('idle');
     setErrorMessage('');
 
+    console.log('Submitting form data:', formData);
+
     try {
       const response = await fetch('/api/organisations/quote', {
         method: 'POST',
@@ -42,6 +44,8 @@ export default function OrganisationsContent() {
       });
 
       const data = await response.json();
+
+      console.log('Response:', { status: response.status, data });
 
       if (response.ok && data.success) {
         setSubmitStatus('success');
@@ -58,10 +62,12 @@ export default function OrganisationsContent() {
       } else {
         setSubmitStatus('error');
         setErrorMessage(data.error || 'Une erreur est survenue');
+        console.error('Form submission error:', data);
       }
     } catch (error) {
       setSubmitStatus('error');
       setErrorMessage('Erreur réseau. Veuillez réessayer.');
+      console.error('Network error:', error);
     } finally {
       setIsSubmitting(false);
     }
