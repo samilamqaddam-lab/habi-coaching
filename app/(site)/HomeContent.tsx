@@ -407,8 +407,10 @@ export default function HomeContent({ testimonials, homepageContent, hero }: Hom
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mt-12">
           {homepageContent?.servicesSection?.services && homepageContent.servicesSection.services.length > 0 ? (
-            // Render services from Sanity
-            homepageContent.servicesSection.services.map((service) => {
+            // Render services from Sanity (exclude coaching)
+            homepageContent.servicesSection.services
+              .filter((service) => !service.link?.includes('/coaching'))
+              .map((service) => {
               const colorMap: Record<string, { bg: string; text: string }> = {
                 'morocco-blue': { bg: 'bg-morocco-blue/10', text: 'text-morocco-blue' },
                 'mystic-mauve': { bg: 'bg-mystic-mauve/10', text: 'text-mystic-mauve' },
