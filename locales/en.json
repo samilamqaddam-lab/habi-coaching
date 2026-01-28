@@ -740,9 +740,14 @@
       "cityPlaceholder": "Your city",
       "interest": "I'm interested in",
       "interestOptions": {
-        "0": "1. individual yoga classes",
-        "1": "2. individual coaching",
-        "2": "3. Yoga and individual coaching"
+        "0": "Upa Yoga",
+        "1": "Surya Kriya",
+        "2": "Angamardana",
+        "3": "Yogasanas",
+        "4": "Surya Shakti",
+        "5": "Yoga for Well-being",
+        "6": "Yoga for Health",
+        "7": "Other / Specify in message"
       },
       "message": "Your Message",
       "messagePlaceholder": "Tell me about your project, your needs, your questions...",

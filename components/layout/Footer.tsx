@@ -13,7 +13,6 @@ export default function Footer() {
     services: [
       { name: t('common.footer.organisations'), href: '/organisations' },
       { name: t('common.footer.programmesYoga'), href: '/yoga' },
-      { name: t('common.footer.coaching'), href: '/coaching' },
     ],
     about: [
       { name: t('common.footer.myJourney'), href: '/expertise' },

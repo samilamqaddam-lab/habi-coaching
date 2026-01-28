@@ -309,12 +309,6 @@ export default function ExpertiseContent() {
               {t('expertise.cta.cta1')}
             </a>
             <a
-              href="/coaching"
-              className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-full border-2 border-terracotta text-terracotta hover:bg-terracotta hover:text-warm-white transition-all duration-300"
-            >
-              {t('expertise.cta.cta2')}
-            </a>
-            <a
               href="/yoga"
               className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-full border-2 border-terracotta text-terracotta hover:bg-terracotta hover:text-warm-white transition-all duration-300"
             >

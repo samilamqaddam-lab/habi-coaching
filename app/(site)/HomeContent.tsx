@@ -405,7 +405,7 @@ export default function HomeContent({ testimonials, homepageContent, hero }: Hom
         background="beige"
         centered
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mt-12">
           {homepageContent?.servicesSection?.services && homepageContent.servicesSection.services.length > 0 ? (
             // Render services from Sanity
             homepageContent.servicesSection.services.map((service) => {
@@ -473,36 +473,6 @@ export default function HomeContent({ testimonials, homepageContent, hero }: Hom
                 </div>
                 <Button variant="outline" href="/organisations" fullWidth>
                   {t('home.services.organisations.cta')}
-                </Button>
-              </Card>
-
-              {/* Coaching Card */}
-              <Card hover padding="lg" className="flex flex-col">
-                <div className="flex-grow">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-16 h-16 bg-mystic-mauve/10 rounded-2xl flex items-center justify-center">
-                      <svg
-                        className="w-8 h-8 text-mystic-mauve"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        {icons.coaching}
-                      </svg>
-                    </div>
-                    <span className="text-sm text-mystic-mauve font-medium">
-                      {t('home.services.coaching.badge')}
-                    </span>
-                  </div>
-                  <h3 className="font-heading text-2xl font-bold text-deep-blue mb-4">
-                    {t('home.services.coaching.title')}
-                  </h3>
-                  <p className="text-text-secondary leading-relaxed mb-6">
-                    {t('home.services.coaching.description')}
-                  </p>
-                </div>
-                <Button variant="outline" href="/coaching" fullWidth>
-                  {t('home.services.coaching.cta')}
                 </Button>
               </Card>
 

@@ -11,7 +11,7 @@ export default function NotFound() {
 
   const suggestions = [
     { href: '/yoga', title: 'Yoga', desc: 'Nos programmes' },
-    { href: '/coaching', title: 'Coaching', desc: 'Accompagnement' },
+    { href: '/organisations', title: 'Organisations', desc: 'Services B2B' },
     { href: '/contact', title: 'Contact', desc: 'Nous écrire' },
   ]
 

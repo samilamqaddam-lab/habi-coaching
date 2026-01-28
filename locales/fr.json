@@ -739,9 +739,14 @@
       "cityPlaceholder": "Votre ville",
       "interest": "Je m'intéresse à",
       "interestOptions": {
-        "0": "1. cours de yoga individuel",
-        "1": "2. coaching individuel",
-        "2": "3. Yoga et coaching individuel"
+        "0": "Upa Yoga",
+        "1": "Surya Kriya",
+        "2": "Angamardana",
+        "3": "Yogasanas",
+        "4": "Surya Shakti",
+        "5": "Yoga pour le bien-être",
+        "6": "Yoga pour la santé",
+        "7": "Autre / Préciser dans le message"
       },
       "message": "Votre message",
       "messagePlaceholder": "Parlez-moi de votre projet, vos besoins, vos questions...",

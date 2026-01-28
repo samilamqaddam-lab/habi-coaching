@@ -4,6 +4,10 @@ import CoachingContent from './CoachingContent'
 export const metadata: Metadata = {
   title: 'Coach Professionnel Casablanca | Coaching Individuel Maroc - Hajar Habi',
   description: 'Coach certifiée Transformance Pro (EMCC) à Casablanca. Coaching individuel, développement personnel et professionnel. ≃20 ans expérience corporate. Accompagnement transformation personnelle au Maroc.',
+  robots: {
+    index: false,
+    follow: true,
+  },
   keywords: [
     'coach casablanca',
     'coaching maroc',
