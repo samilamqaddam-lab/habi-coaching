@@ -516,43 +516,40 @@ export default function HomeContent({ testimonials, homepageContent, hero }: Hom
       <TestimonialsSection testimonials={testimonials} />
 
       {/* CTA Section */}
-      {homepageContent?.ctaSection && (
-        <Section background="mystic-mauve-light" padding="lg" centered>
-          <div className="max-w-3xl mx-auto">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-deep-blue mb-6">
-              {getText(homepageContent.ctaSection.title, homepageContent.ctaSection.titleEn)}
-            </h2>
-            <p className="text-lg text-text-secondary mb-8 leading-relaxed">
-              {getText(
-                homepageContent.ctaSection.description,
-                homepageContent.ctaSection.descriptionEn
-              )}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                variant="primary"
-                size="lg"
-                href={homepageContent.ctaSection.primaryCTA.link}
-              >
-                {getText(
-                  homepageContent.ctaSection.primaryCTA.text,
-                  homepageContent.ctaSection.primaryCTA.textEn
-                )}
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                href={homepageContent.ctaSection.secondaryCTA.link}
-              >
-                {getText(
-                  homepageContent.ctaSection.secondaryCTA.text,
-                  homepageContent.ctaSection.secondaryCTA.textEn
-                )}
-              </Button>
-            </div>
+      <Section background="mystic-mauve-light" padding="lg" centered>
+        <div className="max-w-3xl mx-auto">
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-deep-blue mb-6">
+            {homepageContent?.ctaSection
+              ? getText(homepageContent.ctaSection.title, homepageContent.ctaSection.titleEn)
+              : t('home.cta.title')}
+          </h2>
+          <p className="text-lg text-text-secondary mb-8 leading-relaxed">
+            {homepageContent?.ctaSection
+              ? getText(homepageContent.ctaSection.description, homepageContent.ctaSection.descriptionEn)
+              : t('home.cta.description')}
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              variant="primary"
+              size="lg"
+              href={homepageContent?.ctaSection?.primaryCTA?.link || '/contact'}
+            >
+              {homepageContent?.ctaSection
+                ? getText(homepageContent.ctaSection.primaryCTA.text, homepageContent.ctaSection.primaryCTA.textEn)
+                : t('home.cta.primaryCTA')}
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              href={homepageContent?.ctaSection?.secondaryCTA?.link || '/yoga'}
+            >
+              {homepageContent?.ctaSection
+                ? getText(homepageContent.ctaSection.secondaryCTA.text, homepageContent.ctaSection.secondaryCTA.textEn)
+                : t('home.cta.secondaryCTA')}
+            </Button>
           </div>
-        </Section>
-      )}
+        </div>
+      </Section>
     </>
   )
 }
