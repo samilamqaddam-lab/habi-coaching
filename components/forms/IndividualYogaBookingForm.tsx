@@ -153,8 +153,14 @@ export default function IndividualYogaBookingForm({ onClose }: IndividualYogaBoo
         type="select"
         required
         options={[
-          { value: 'yoga-only', label: t('forms.individualYoga.interestOptions.yogaOnly') },
-          { value: 'yoga-coaching', label: t('forms.individualYoga.interestOptions.yogaCoaching') },
+          { value: 'upa-yoga', label: t('forms.individualYoga.interestOptions.0') },
+          { value: 'surya-kriya', label: t('forms.individualYoga.interestOptions.1') },
+          { value: 'angamardana', label: t('forms.individualYoga.interestOptions.2') },
+          { value: 'yogasanas', label: t('forms.individualYoga.interestOptions.3') },
+          { value: 'surya-shakti', label: t('forms.individualYoga.interestOptions.4') },
+          { value: 'yoga-bien-etre', label: t('forms.individualYoga.interestOptions.5') },
+          { value: 'yoga-sante', label: t('forms.individualYoga.interestOptions.6') },
+          { value: 'autre', label: t('forms.individualYoga.interestOptions.7') },
         ]}
       />
 

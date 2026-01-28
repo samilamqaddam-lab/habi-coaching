@@ -296,14 +296,9 @@ export default function ContactContent() {
                   value={formData.interest}
                   onChange={handleChange}
                   options={[
-                    { value: 'upa-yoga', label: t('contact.form.interestOptions.0') },
-                    { value: 'surya-kriya', label: t('contact.form.interestOptions.1') },
-                    { value: 'angamardana', label: t('contact.form.interestOptions.2') },
-                    { value: 'yogasanas', label: t('contact.form.interestOptions.3') },
-                    { value: 'surya-shakti', label: t('contact.form.interestOptions.4') },
-                    { value: 'yoga-bien-etre', label: t('contact.form.interestOptions.5') },
-                    { value: 'yoga-sante', label: t('contact.form.interestOptions.6') },
-                    { value: 'autre', label: t('contact.form.interestOptions.7') },
+                    { value: 'yoga-individuel', label: t('contact.form.interestOptions.0') },
+                    { value: 'organisations', label: t('contact.form.interestOptions.1') },
+                    { value: 'autre', label: t('contact.form.interestOptions.2') },
                   ]}
                 />
 

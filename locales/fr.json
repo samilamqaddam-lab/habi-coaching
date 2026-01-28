@@ -739,14 +739,9 @@
       "cityPlaceholder": "Votre ville",
       "interest": "Je m'intéresse à",
       "interestOptions": {
-        "0": "Upa Yoga",
-        "1": "Surya Kriya",
-        "2": "Angamardana",
-        "3": "Yogasanas",
-        "4": "Surya Shakti",
-        "5": "Yoga pour le bien-être",
-        "6": "Yoga pour la santé",
-        "7": "Autre / Préciser dans le message"
+        "0": "Cours de yoga individuel",
+        "1": "Services pour organisations",
+        "2": "Autre / Préciser dans le message"
       },
       "message": "Votre message",
       "messagePlaceholder": "Parlez-moi de votre projet, vos besoins, vos questions...",
@@ -813,8 +808,14 @@
       },
       "interest": "Je m'intéresse à",
       "interestOptions": {
-        "yogaOnly": "Cours de yoga individuel",
-        "yogaCoaching": "Cours de yoga individuel et coaching professionnel"
+        "0": "Upa Yoga",
+        "1": "Surya Kriya",
+        "2": "Angamardana",
+        "3": "Yogasanas",
+        "4": "Surya Shakti",
+        "5": "Yoga pour le bien-être",
+        "6": "Yoga pour la santé",
+        "7": "Autre / Préciser dans le message"
       },
       "message": "Message (optionnel)",
       "messagePlaceholder": "Partagez toute information qui pourrait aider à préparer votre cours...",

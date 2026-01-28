@@ -740,14 +740,9 @@
       "cityPlaceholder": "Your city",
       "interest": "I'm interested in",
       "interestOptions": {
-        "0": "Upa Yoga",
-        "1": "Surya Kriya",
-        "2": "Angamardana",
-        "3": "Yogasanas",
-        "4": "Surya Shakti",
-        "5": "Yoga for Well-being",
-        "6": "Yoga for Health",
-        "7": "Other / Specify in message"
+        "0": "Individual yoga classes",
+        "1": "Organizational services",
+        "2": "Other / Specify in message"
       },
       "message": "Your Message",
       "messagePlaceholder": "Tell me about your project, your needs, your questions...",
@@ -814,8 +809,14 @@
       },
       "interest": "I'm interested in",
       "interestOptions": {
-        "yogaOnly": "Individual yoga class",
-        "yogaCoaching": "Individual yoga class and professional coaching"
+        "0": "Upa Yoga",
+        "1": "Surya Kriya",
+        "2": "Angamardana",
+        "3": "Yogasanas",
+        "4": "Surya Shakti",
+        "5": "Yoga for Well-being",
+        "6": "Yoga for Health",
+        "7": "Other / Specify in message"
       },
       "message": "Message (optional)",
       "messagePlaceholder": "Any additional information or questions...",
