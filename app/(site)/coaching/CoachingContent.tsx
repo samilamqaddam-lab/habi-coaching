@@ -50,7 +50,7 @@ export default function CoachingContent() {
         description={t('coaching.hero.description')}
         primaryCTA={{
           text: t('coaching.hero.primaryCTA'),
-          href: '/contact',
+          href: '#services',
         }}
         secondaryCTA={{
           text: t('coaching.hero.secondaryCTA'),
