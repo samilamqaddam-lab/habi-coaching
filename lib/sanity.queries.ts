@@ -232,6 +232,9 @@ export const siteSettingsQuery = groq`
 `
 
 // Homepage content query
+// DEPRECATED - Homepage content now managed via locales/fr.json and locales/en.json
+// Kept for reference only. Migration completed on 2026-01-28.
+/*
 export const homepageContentQuery = groq`
   *[_type == "homepageContent"][0] {
     _id,
@@ -302,3 +305,4 @@ export const homepageContentQuery = groq`
     }
   }
 `
+*/

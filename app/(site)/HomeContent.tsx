@@ -7,82 +7,7 @@ import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
 import TestimonialsSection from '@/components/sections/TestimonialsSection'
 import { useTranslation } from '@/hooks/useTranslation'
-import { imagePresets } from '@/lib/sanity.image'
 import type { Testimonial } from '@/lib/sanity.types'
-
-interface ExpertiseCard {
-  _key?: string
-  title: string
-  titleEn?: string
-  highlight: string
-  highlightEn?: string
-  description: string
-  descriptionEn?: string
-  icon: string
-  color: string
-}
-
-interface Service {
-  _key?: string
-  title: string
-  titleEn?: string
-  description: string
-  descriptionEn?: string
-  ctaText: string
-  ctaTextEn?: string
-  link: string
-  icon: string
-  color: string
-}
-
-interface HomepageContent {
-  expertiseSection?: {
-    subtitle: string
-    subtitleEn?: string
-    title: string
-    titleEn?: string
-    description: string
-    descriptionEn?: string
-    cards: ExpertiseCard[]
-  }
-  aboutSection?: {
-    badge: string
-    badgeEn?: string
-    title: string
-    titleEn?: string
-    description: string
-    descriptionEn?: string
-    ctaText: string
-    ctaTextEn?: string
-    image?: {
-      asset: { _ref: string }
-      alt?: string
-    }
-  }
-  servicesSection?: {
-    subtitle: string
-    subtitleEn?: string
-    title: string
-    titleEn?: string
-    services: Service[]
-  }
-  ctaSection?: {
-    title: string
-    titleEn?: string
-    description: string
-    descriptionEn?: string
-    primaryCTA: {
-      text: string
-      textEn?: string
-      link: string
-    }
-    secondaryCTA: {
-      text: string
-      textEn?: string
-      link: string
-    }
-  }
-}
 
 interface HeroSection {
   title?: string
@@ -109,7 +34,6 @@ interface HeroSection {
 
 interface HomeContentProps {
   testimonials: Testimonial[]
-  homepageContent: HomepageContent | null
   hero: HeroSection | null
 }
 
@@ -149,7 +73,7 @@ const icons = {
   ),
 }
 
-export default function HomeContent({ testimonials, homepageContent, hero }: HomeContentProps) {
+export default function HomeContent({ testimonials, hero }: HomeContentProps) {
   const { t, locale } = useTranslation()
 
   // Helper to get localized text
@@ -204,133 +128,50 @@ export default function HomeContent({ testimonials, homepageContent, hero }: Hom
         </div>
       </Hero>
 
-      {/* Expertise Section - Sanity with fallback to translations */}
+      {/* Expertise Section */}
       <Section
         id="expertise"
-        subtitle={getText(
-          homepageContent?.expertiseSection?.subtitle || t('home.expertise.subtitle'),
-          homepageContent?.expertiseSection?.subtitleEn
-        )}
-        title={getText(
-          homepageContent?.expertiseSection?.title || t('home.expertise.title'),
-          homepageContent?.expertiseSection?.titleEn
-        )}
-        description={getText(
-          homepageContent?.expertiseSection?.description || t('home.expertise.description'),
-          homepageContent?.expertiseSection?.descriptionEn
-        )}
+        subtitle={t('home.expertise.subtitle')}
+        title={t('home.expertise.title')}
+        description={t('home.expertise.description')}
         background="beige"
         centered
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-12 max-w-5xl mx-auto">
-          {homepageContent?.expertiseSection?.cards && homepageContent.expertiseSection.cards.length > 0 ? (
-            // Render cards from Sanity
-            homepageContent.expertiseSection.cards.map((card) => {
-              const colorMap: Record<string, { bg: string; text: string }> = {
-                'morocco-blue': { bg: 'bg-morocco-blue/10', text: 'text-morocco-blue' },
-                'mystic-mauve': { bg: 'bg-mystic-mauve/10', text: 'text-mystic-mauve' },
-                'golden-orange': { bg: 'bg-golden-orange/10', text: 'text-golden-orange' },
-              }
-              const colors = colorMap[card.color] || colorMap['morocco-blue']
-              const iconKey = card.icon as keyof typeof icons
+          {[0, 1, 2].map((index) => {
+            const card = t(`home.expertise.cards.${index}`) as any
+            const colorMap: Record<string, { bg: string; text: string }> = {
+              'morocco-blue': { bg: 'bg-morocco-blue/10', text: 'text-morocco-blue' },
+              'mystic-mauve': { bg: 'bg-mystic-mauve/10', text: 'text-mystic-mauve' },
+              'golden-orange': { bg: 'bg-golden-orange/10', text: 'text-golden-orange' },
+            }
+            const colors = colorMap[card.color] || colorMap['morocco-blue']
+            const iconKey = card.icon as keyof typeof icons
 
-              return (
-                <Card key={card._key || card.title} padding="lg" className="text-center">
-                  <div className={`w-16 h-16 ${colors.bg} rounded-full flex items-center justify-center mx-auto mb-6`}>
-                    <svg
-                      className={`w-8 h-8 ${colors.text}`}
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      {icons[iconKey] || icons.corporate}
-                    </svg>
-                  </div>
-                  <h3 className="font-heading text-2xl font-bold text-deep-blue mb-3">
-                    {getText(card.title, card.titleEn)}
-                  </h3>
-                  <div className={`text-xl font-bold ${colors.text} mb-3`}>
-                    {getText(card.highlight, card.highlightEn)}
-                  </div>
-                  <p className="text-text-secondary text-sm leading-relaxed">
-                    {getText(card.description, card.descriptionEn)}
-                  </p>
-                </Card>
-              )
-            })
-          ) : (
-            // Fallback to translation keys
-            <>
-              {/* Corporate Card */}
-              <Card padding="lg" className="text-center">
-                <div className="w-16 h-16 bg-morocco-blue/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            return (
+              <Card key={index} padding="lg" className="text-center">
+                <div className={`w-16 h-16 ${colors.bg} rounded-full flex items-center justify-center mx-auto mb-6`}>
                   <svg
-                    className="w-8 h-8 text-morocco-blue"
+                    className={`w-8 h-8 ${colors.text}`}
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                   >
-                    {icons.corporate}
+                    {icons[iconKey]}
                   </svg>
                 </div>
                 <h3 className="font-heading text-2xl font-bold text-deep-blue mb-3">
-                  {t('home.expertise.corporate.title')}
+                  {card.title}
                 </h3>
-                <div className="text-xl font-bold text-morocco-blue mb-3">
-                  {t('home.expertise.corporate.years')}
+                <div className={`text-xl font-bold ${colors.text} mb-3`}>
+                  {card.highlight}
                 </div>
                 <p className="text-text-secondary text-sm leading-relaxed">
-                  {t('home.expertise.corporate.description')}
+                  {card.description}
                 </p>
               </Card>
-
-              {/* Coaching Card */}
-              <Card padding="lg" className="text-center">
-                <div className="w-16 h-16 bg-mystic-mauve/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <svg
-                    className="w-8 h-8 text-mystic-mauve"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    {icons.coaching}
-                  </svg>
-                </div>
-                <h3 className="font-heading text-2xl font-bold text-deep-blue mb-3">
-                  {t('home.expertise.coaching.title')}
-                </h3>
-                <div className="text-xl font-bold text-mystic-mauve mb-3">
-                  {t('home.expertise.coaching.certification')}
-                </div>
-                <p className="text-text-secondary text-sm leading-relaxed">
-                  {t('home.expertise.coaching.description')}
-                </p>
-              </Card>
-
-              {/* Yoga Card */}
-              <Card padding="lg" className="text-center">
-                <div className="w-16 h-16 bg-golden-orange/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <svg
-                    className="w-8 h-8 text-golden-orange"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    {icons.yoga}
-                  </svg>
-                </div>
-                <h3 className="font-heading text-2xl font-bold text-deep-blue mb-3">
-                  {t('home.expertise.yoga.title')}
-                </h3>
-                <div className="text-xl font-bold text-golden-orange mb-3">
-                  {t('home.expertise.yoga.certification')}
-                </div>
-                <p className="text-text-secondary text-sm leading-relaxed">
-                  {t('home.expertise.yoga.description')}
-                </p>
-              </Card>
-            </>
-          )}
+            )
+          })}
         </div>
       </Section>
 
@@ -341,26 +182,13 @@ export default function HomeContent({ testimonials, homepageContent, hero }: Hom
             {/* Image Portrait */}
             <div className="md:col-span-5 relative">
               <div className="relative aspect-[3/4] md:aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl transform md:-rotate-2 hover:rotate-0 transition-transform duration-500">
-                {homepageContent?.aboutSection?.image?.asset ? (
-                  <Image
-                    src={imagePresets.hero(homepageContent.aboutSection.image).url()}
-                    alt={
-                      homepageContent.aboutSection.image.alt ||
-                      'Hajar Habi - Coach Professionnelle & Professeure de Yoga'
-                    }
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 40vw"
-                  />
-                ) : (
-                  <Image
-                    src="/images/Reel/hajar-professional.jpg"
-                    alt="Hajar Habi - Coach Holistique & Professeure de Yoga"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 40vw"
-                  />
-                )}
+                <Image
+                  src="/images/Reel/hajar-professional.jpg"
+                  alt="Hajar Habi - Coach Holistique & Professeure de Yoga"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                />
               </div>
               {/* Decorative elements */}
               <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-mystic-mauve/20 rounded-full blur-2xl -z-10"></div>
@@ -391,124 +219,56 @@ export default function HomeContent({ testimonials, homepageContent, hero }: Hom
         </div>
       </Section>
 
-      {/* Services Section - Sanity with fallback to translations */}
+      {/* Services Section */}
       <Section
         id="services"
-        subtitle={getText(
-          homepageContent?.servicesSection?.subtitle || t('home.services.subtitle'),
-          homepageContent?.servicesSection?.subtitleEn
-        )}
-        title={getText(
-          homepageContent?.servicesSection?.title || t('home.services.title'),
-          homepageContent?.servicesSection?.titleEn
-        )}
+        subtitle={t('home.services.subtitle')}
+        title={t('home.services.title')}
         background="beige"
         centered
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mt-12">
-          {homepageContent?.servicesSection?.services && homepageContent.servicesSection.services.length > 0 ? (
-            // Render services from Sanity (exclude coaching)
-            homepageContent.servicesSection.services
-              .filter((service) => !service.link?.includes('/coaching'))
-              .map((service) => {
-              const colorMap: Record<string, { bg: string; text: string }> = {
-                'morocco-blue': { bg: 'bg-morocco-blue/10', text: 'text-morocco-blue' },
-                'mystic-mauve': { bg: 'bg-mystic-mauve/10', text: 'text-mystic-mauve' },
-                'golden-orange': { bg: 'bg-golden-orange/10', text: 'text-golden-orange' },
-              }
-              const colors = colorMap[service.color] || colorMap['morocco-blue']
-              const iconKey = service.icon as keyof typeof icons
+          {[0, 1].map((index) => {
+            const service = t(`home.services.cards.${index}`) as any
+            const colorMap: Record<string, { bg: string; text: string }> = {
+              'morocco-blue': { bg: 'bg-morocco-blue/10', text: 'text-morocco-blue' },
+              'mystic-mauve': { bg: 'bg-mystic-mauve/10', text: 'text-mystic-mauve' },
+              'golden-orange': { bg: 'bg-golden-orange/10', text: 'text-golden-orange' },
+            }
+            const colors = colorMap[service.color] || colorMap['morocco-blue']
+            const iconKey = service.icon as keyof typeof icons
 
-              return (
-                <Card key={service._key || service.title} hover padding="lg" className="flex flex-col">
-                  <div className="flex-grow">
-                    <div className={`w-16 h-16 ${colors.bg} rounded-2xl flex items-center justify-center mb-6`}>
+            return (
+              <Card key={index} hover padding="lg" className="flex flex-col">
+                <div className="flex-grow">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className={`w-16 h-16 ${colors.bg} rounded-2xl flex items-center justify-center`}>
                       <svg
                         className={`w-8 h-8 ${colors.text}`}
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
                       >
-                        {icons[iconKey] || icons.coaching}
+                        {icons[iconKey]}
                       </svg>
                     </div>
-                    <h3 className="font-heading text-2xl font-bold text-deep-blue mb-4">
-                      {getText(service.title, service.titleEn)}
-                    </h3>
-                    <p className="text-text-secondary leading-relaxed mb-6">
-                      {getText(service.description, service.descriptionEn)}
-                    </p>
-                  </div>
-                  <Button variant="outline" href={service.link} fullWidth>
-                    {getText(service.ctaText, service.ctaTextEn)}
-                  </Button>
-                </Card>
-              )
-            })
-          ) : (
-            // Fallback to translation keys
-            <>
-              {/* Organisations Card */}
-              <Card hover padding="lg" className="flex flex-col">
-                <div className="flex-grow">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-16 h-16 bg-morocco-blue/10 rounded-2xl flex items-center justify-center">
-                      <svg
-                        className="w-8 h-8 text-morocco-blue"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        {icons.organisations}
-                      </svg>
-                    </div>
-                    <span className="text-sm text-morocco-blue font-medium">
-                      {t('home.services.organisations.badge')}
+                    <span className={`text-sm ${colors.text} font-medium`}>
+                      {service.badge}
                     </span>
                   </div>
                   <h3 className="font-heading text-2xl font-bold text-deep-blue mb-4">
-                    {t('home.services.organisations.title')}
+                    {service.title}
                   </h3>
                   <p className="text-text-secondary leading-relaxed mb-6">
-                    {t('home.services.organisations.description')}
+                    {service.description}
                   </p>
                 </div>
-                <Button variant="outline" href="/organisations" fullWidth>
-                  {t('home.services.organisations.cta')}
+                <Button variant="outline" href={service.link} fullWidth>
+                  {service.ctaText}
                 </Button>
               </Card>
-
-              {/* Yoga Card */}
-              <Card hover padding="lg" className="flex flex-col">
-                <div className="flex-grow">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-16 h-16 bg-golden-orange/10 rounded-2xl flex items-center justify-center">
-                      <svg
-                        className="w-8 h-8 text-golden-orange"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        {icons.yoga}
-                      </svg>
-                    </div>
-                    <span className="text-sm text-golden-orange font-medium">
-                      {t('home.services.yoga.badge')}
-                    </span>
-                  </div>
-                  <h3 className="font-heading text-2xl font-bold text-deep-blue mb-4">
-                    {t('home.services.yoga.title')}
-                  </h3>
-                  <p className="text-text-secondary leading-relaxed mb-6">
-                    {t('home.services.yoga.description')}
-                  </p>
-                </div>
-                <Button variant="outline" href="/yoga" fullWidth>
-                  {t('home.services.yoga.cta')}
-                </Button>
-              </Card>
-            </>
-          )}
+            )
+          })}
         </div>
       </Section>
 
@@ -519,33 +279,17 @@ export default function HomeContent({ testimonials, homepageContent, hero }: Hom
       <Section background="mystic-mauve-light" padding="lg" centered>
         <div className="max-w-3xl mx-auto">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-deep-blue mb-6">
-            {homepageContent?.ctaSection
-              ? getText(homepageContent.ctaSection.title, homepageContent.ctaSection.titleEn)
-              : t('home.cta.title')}
+            {t('home.cta.title')}
           </h2>
           <p className="text-lg text-text-secondary mb-8 leading-relaxed">
-            {homepageContent?.ctaSection
-              ? getText(homepageContent.ctaSection.description, homepageContent.ctaSection.descriptionEn)
-              : t('home.cta.description')}
+            {t('home.cta.description')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              variant="primary"
-              size="lg"
-              href={homepageContent?.ctaSection?.primaryCTA?.link || '/contact'}
-            >
-              {homepageContent?.ctaSection
-                ? getText(homepageContent.ctaSection.primaryCTA.text, homepageContent.ctaSection.primaryCTA.textEn)
-                : t('home.cta.primaryCTA')}
+            <Button variant="primary" size="lg" href="/contact">
+              {t('home.cta.primaryCTA')}
             </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              href={homepageContent?.ctaSection?.secondaryCTA?.link || '/yoga'}
-            >
-              {homepageContent?.ctaSection
-                ? getText(homepageContent.ctaSection.secondaryCTA.text, homepageContent.ctaSection.secondaryCTA.textEn)
-                : t('home.cta.secondaryCTA')}
+            <Button variant="outline" size="lg" href="/yoga">
+              {t('home.cta.secondaryCTA')}
             </Button>
           </div>
         </div>

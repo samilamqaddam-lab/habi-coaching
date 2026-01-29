@@ -76,44 +76,53 @@
       "subtitle": "My Expertise",
       "title": "The Unique Alliance of Three Worlds",
       "description": "A rare approach that combines professional excellence, rigor of certified coaching, and depth of traditional yogic practices.",
-      "corporate": {
-        "title": "Corporate Experience",
-        "years": "20 years",
-        "description": "Nearly two decades in organizational transformation and HR management with consulting firms, Moroccan and international companies in Morocco and abroad."
-      },
-      "coaching": {
-        "title": "Professional Coaching",
-        "certification": "Coach & Team – Transformance Pro",
-        "description": "Professional certification supervised by Vincent Lenhardt, internationally recognized for quality support of individuals, teams, and organizations."
-      },
-      "yoga": {
-        "title": "Classical Hatha Yoga",
-        "certification": "Sadhguru Gurukulam",
-        "hours": "1750h training",
-        "description": "In-depth training enabling the transmission of ancient yogic tools and proven wellbeing technologies, to refine perception and cultivate inner clarity."
-      }
+      "cards": [
+        {
+          "title": "Corporate Experience",
+          "highlight": "≃20 years",
+          "description": "Nearly two decades in organizational transformation and HR management with consulting firms, Moroccan and international companies in Morocco and abroad.",
+          "icon": "corporate",
+          "color": "morocco-blue"
+        },
+        {
+          "title": "Professional Coaching",
+          "highlight": "Coach & Team – Transformance Pro",
+          "description": "Professional certification supervised by Vincent Lenhardt, internationally recognized for quality support of individuals, teams, and organizations.",
+          "icon": "coaching",
+          "color": "mystic-mauve"
+        },
+        {
+          "title": "Classical Hatha Yoga",
+          "highlight": "Sadhguru Gurukulam",
+          "description": "In-depth training enabling the transmission of ancient yogic tools and proven wellbeing technologies, to refine perception and cultivate inner clarity.",
+          "icon": "yoga",
+          "color": "golden-orange"
+        }
+      ]
     },
     "services": {
       "subtitle": "My Services",
       "title": "How I Can Support You",
-      "organisations": {
-        "badge": "For organizations",
-        "title": "Collective & Organizational Coaching",
-        "description": "Support for cultural and managerial transformations, leadership development and custom programs for organizations and teams in evolution.",
-        "cta": "Discover"
-      },
-      "coaching": {
-        "badge": "For individuals",
-        "title": "Individual Coaching",
-        "description": "Personalized support to clarify your vision, navigate transitions and define success on your own terms.",
-        "cta": "Discover"
-      },
-      "yoga": {
-        "badge": "For yogis",
-        "title": "Classical Hatha Yoga",
-        "description": "Classical Hatha Yoga programs, including formats adapted for businesses, to refine perception, strengthen inner stability and support individual and collective transformations.",
-        "cta": "Discover"
-      }
+      "cards": [
+        {
+          "badge": "For organizations",
+          "title": "Collective & Organizational Coaching",
+          "description": "Cultural transformation, conscious leadership and facilitation to create human and high-performing organizations.",
+          "ctaText": "Discover",
+          "link": "/organisations",
+          "icon": "organisations",
+          "color": "morocco-blue"
+        },
+        {
+          "badge": "For all",
+          "title": "Classical Hatha Yoga",
+          "description": "Hatha yoga classes, wellbeing programs, health programs and retreats.",
+          "ctaText": "See programs",
+          "link": "/yoga",
+          "icon": "yoga",
+          "color": "golden-orange"
+        }
+      ]
     },
     "testimonials": {
       "subtitle": "Testimonials",

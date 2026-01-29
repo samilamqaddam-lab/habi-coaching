@@ -10,7 +10,7 @@ import {
   articleBySlugQuery,
   featuredArticlesQuery,
   siteSettingsQuery,
-  homepageContentQuery,
+  // homepageContentQuery, // DEPRECATED - moved to locales JSON
 } from './sanity.queries'
 import type {
   Programme,
@@ -100,7 +100,7 @@ export async function getSiteSettings() {
   return client.fetch(siteSettingsQuery)
 }
 
-// Homepage Content
-export async function getHomepageContent() {
-  return client.fetch(homepageContentQuery)
-}
+// DEPRECATED - Homepage content now managed via locales/fr.json and locales/en.json
+// export async function getHomepageContent() {
+//   return client.fetch(homepageContentQuery)
+// }

@@ -76,44 +76,53 @@
       "subtitle": "Mon Expertise",
       "title": "L'Alliance Unique de Trois Mondes",
       "description": "Une approche rare qui allie excellence professionnelle, rigueur du coaching certifié et profondeur des pratiques yogiques traditionnelles.",
-      "corporate": {
-        "title": "Expérience Corporate & Conseil",
-        "years": "≃20 ans",
-        "description": "Parcours en entreprises marocaines et internationales et en cabinets de conseil, au service de la transformation RH, managériale et organisationnelle dans des contextes multiculturels et exigeants."
-      },
-      "coaching": {
-        "title": "Coaching Professionnel",
-        "certification": "Coach & Team – Transformance Pro",
-        "description": "Certification professionnelle supervisée par Vincent Lenhardt, référence européenne du coaching, pour un accompagnement rigoureux des individus, des équipes et des organisations."
-      },
-      "yoga": {
-        "title": "Hatha Yoga Classique",
-        "certification": "Sadhguru Gurukulam",
-        "hours": "1750h de formation",
-        "description": "Formation approfondie (1750h) à des outils yogiques ancestraux et à des technologies de bien-être éprouvées, permettant d'affiner la perception, de développer la stabilité intérieure et de soutenir des processus de transformation durables."
-      }
+      "cards": [
+        {
+          "title": "Expérience Corporate & Conseil",
+          "highlight": "≃20 ans",
+          "description": "Parcours en entreprises marocaines et internationales et en cabinets de conseil, au service de la transformation RH, managériale et organisationnelle dans des contextes multiculturels et exigeants.",
+          "icon": "corporate",
+          "color": "morocco-blue"
+        },
+        {
+          "title": "Coaching Professionnel",
+          "highlight": "Coach & Team – Transformance Pro",
+          "description": "Certification professionnelle supervisée par Vincent Lenhardt, référence européenne du coaching, pour un accompagnement rigoureux des individus, des équipes et des organisations.",
+          "icon": "coaching",
+          "color": "mystic-mauve"
+        },
+        {
+          "title": "Hatha Yoga Classique",
+          "highlight": "Sadhguru Gurukulam",
+          "description": "Formation approfondie (1750h) à des outils yogiques ancestraux et à des technologies de bien-être éprouvées, permettant d'affiner la perception, de développer la stabilité intérieure et de soutenir des processus de transformation durables.",
+          "icon": "yoga",
+          "color": "golden-orange"
+        }
+      ]
     },
     "services": {
       "subtitle": "Mes Services",
       "title": "Comment Je Peux Vous Accompagner",
-      "organisations": {
-        "badge": "Pour les organisations",
-        "title": "Coaching Collectif & Organisationnel",
-        "description": "Accompagnement des transformations culturelles et managériales, développement du leadership et conception de programmes sur mesure pour des organisations et équipes en évolution.",
-        "cta": "Découvrir"
-      },
-      "coaching": {
-        "badge": "Pour les particuliers",
-        "title": "Coaching Individuel",
-        "description": "Accompagnement individuel pour clarifier vos objectifs professionnels, traverser des périodes de transition, dépasser les obstacles et renforcer votre posture.",
-        "cta": "Découvrir"
-      },
-      "yoga": {
-        "badge": "Pour les yogis",
-        "title": "Hatha Yoga Classique",
-        "description": "Programmes de Hatha Yoga classique, y inclus des formats adaptés pour les entreprises, pour affiner la perception, renforcer la stabilité intérieure et soutenir des transformations individuelles et collectives.",
-        "cta": "Découvrir"
-      }
+      "cards": [
+        {
+          "badge": "Pour les organisations",
+          "title": "Coaching Collectif & Organisationnel",
+          "description": "Accompagnement des transformations culturelles et managériales, développement du leadership et conception de programmes sur mesure pour des organisations en évolution.",
+          "ctaText": "Découvrir",
+          "link": "/organisations",
+          "icon": "organisations",
+          "color": "morocco-blue"
+        },
+        {
+          "badge": "Pour tous",
+          "title": "Hatha Yoga Classique",
+          "description": "Programmes de Hatha Yoga classique, avec des formats adaptés aux entreprises, pour affiner la perception, renforcer la stabilité intérieure et soutenir des transformations individuelles et collectives.",
+          "ctaText": "Voir les programmes",
+          "link": "/yoga",
+          "icon": "yoga",
+          "color": "golden-orange"
+        }
+      ]
     },
     "testimonials": {
       "subtitle": "Témoignages",

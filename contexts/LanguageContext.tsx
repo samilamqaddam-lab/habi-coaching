@@ -11,7 +11,7 @@ type Translations = typeof fr;
 interface LanguageContextType {
   locale: Locale;
   setLocale: (locale: Locale) => void;
-  t: (key: string) => string;
+  t: (key: string) => any;
 }
 
 export const LanguageContext = createContext<LanguageContextType>({
@@ -51,7 +51,8 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
   };
 
   // Translation function with nested key support (e.g., "home.hero.title")
-  const t = (key: string): string => {
+  // Returns strings, objects, or arrays depending on the translation data
+  const t = (key: string): any => {
     const keys = key.split('.');
     let value: any = translations[locale];
 
@@ -74,7 +75,8 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
       }
     }
 
-    return typeof value === 'string' ? value : key;
+    // Return value as-is (string, object, or array)
+    return value !== undefined ? value : key;
   };
 
   return (
