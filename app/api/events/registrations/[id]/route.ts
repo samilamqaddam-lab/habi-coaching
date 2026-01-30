@@ -74,7 +74,7 @@ export async function PATCH(
 
   try {
     const body = await request.json();
-    const { status, notes } = body;
+    const { status, notes, cancellation_reason } = body;
 
     // Get current registration with event details
     const { data: registration, error: fetchError } = await supabaseAdmin
@@ -190,6 +190,98 @@ export async function PATCH(
         });
       } catch (emailError) {
         console.error('Confirmation email error:', emailError);
+      }
+    }
+
+    // Send cancellation email if status changed to cancelled
+    if (status === 'cancelled' && previousStatus !== 'cancelled' && resend) {
+      const event = registration.yoga_events as unknown as {
+        title: string;
+        subtitle: string;
+        badge: string;
+        date_time: string;
+        location: string;
+        address: string;
+        price: number;
+      };
+      const eventDate = formatDateMorocco(event.date_time);
+
+      const cancellationHtml = `
+        <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto;">
+          <div style="background-color: #64748b; background: linear-gradient(135deg, #64748b 0%, #475569 100%); padding: 30px; text-align: center; border-radius: 12px 12px 0 0;">
+            <h1 style="color: white; margin: 0; font-size: 24px;">Inscription Annulée</h1>
+          </div>
+
+          <div style="background: #f8f9fa; padding: 30px; border-radius: 0 0 12px 12px;">
+            <p style="font-size: 16px; line-height: 1.6; color: #333;">
+              Bonjour <strong>${registration.first_name}</strong>,
+            </p>
+
+            <p style="font-size: 16px; line-height: 1.6; color: #333;">
+              Nous vous informons que votre inscription à l'événement <strong>${event.title}${event.subtitle ? ' ' + event.subtitle : ''}</strong> a été annulée.
+            </p>
+
+            ${cancellation_reason ? `
+              <div style="background: white; padding: 24px; border-radius: 8px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                <h3 style="color: #64748b; margin-top: 0; font-size: 16px; margin-bottom: 12px;">Raison de l'annulation</h3>
+                <p style="margin: 0; color: #333; line-height: 1.6;">
+                  ${cancellation_reason}
+                </p>
+              </div>
+            ` : ''}
+
+            <div style="background: white; padding: 24px; border-radius: 8px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+              <p style="margin: 0; color: #333; line-height: 1.6;">
+                Si cette annulation n'est pas de votre fait ou si vous avez des questions, n'hésitez pas à nous contacter directement.
+              </p>
+            </div>
+
+            <div style="background: #fff8f0; padding: 20px; border-radius: 8px; border-left: 4px solid #E8A54B; margin: 20px 0;">
+              <p style="margin: 0; color: #333; line-height: 1.6;">
+                <strong>Vous souhaitez participer à un prochain événement?</strong><br>
+                Visitez <a href="https://transcendencework.com/yoga" style="color: #E8A54B; text-decoration: none;">transcendencework.com/yoga</a> pour découvrir les prochaines dates disponibles.
+              </p>
+            </div>
+
+            <div style="background: #f0f9ff; padding: 20px; border-radius: 8px; border-left: 4px solid #3b82f6; margin: 20px 0;">
+              <p style="margin: 0 0 12px 0; color: #333; font-weight: 600;">
+                📞 Besoin de nous contacter ?
+              </p>
+              <p style="margin: 0; color: #333; line-height: 1.6;">
+                <strong>Email:</strong> <a href="mailto:hajar@transcendencework.com" style="color: #3b82f6; text-decoration: none;">hajar@transcendencework.com</a><br>
+                <strong>Téléphone/WhatsApp:</strong> <a href="tel:+212663096857" style="color: #3b82f6; text-decoration: none;">+212 663 096 857</a>
+              </p>
+            </div>
+
+            <p style="font-size: 16px; line-height: 1.6; color: #333; margin-top: 30px;">
+              Namaskaram,<br>
+              <em>In Love, Light & Laughter</em><br><br>
+              🙏<br><br>
+              <strong>Hajar Habi</strong><br>
+              <span style="color: #666; font-size: 14px;">Professeure de Hatha Yoga Classique</span><br>
+              <span style="color: #666; font-size: 14px;">Certifiée par Sadhguru Gurukulam</span><br>
+              <a href="https://www.transcendencework.com/yoga" style="color: #EC8C44; font-size: 14px; text-decoration: none;">www.transcendencework.com/yoga</a>
+            </p>
+
+            <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
+
+            <p style="font-size: 12px; color: #999; text-align: center;">
+              Ce message a été envoyé depuis transcendencework.com
+            </p>
+          </div>
+        </div>
+      `;
+
+      try {
+        await resend.emails.send({
+          from: 'Hajar Habi <hajar@transcendencework.com>',
+          to: [registration.email],
+          subject: `Inscription annulée - ${event.title}`,
+          html: cancellationHtml,
+        });
+        console.log('Cancellation email sent to:', registration.email);
+      } catch (emailError) {
+        console.error('Cancellation email error:', emailError);
       }
     }
 

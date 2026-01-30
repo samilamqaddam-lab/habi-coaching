@@ -48,17 +48,28 @@ export default function EventRegistrationCard({ registration }: EventRegistratio
   const [isSendingPaymentRequest, setIsSendingPaymentRequest] = useState(false);
   const [paymentRequestedAt, setPaymentRequestedAt] = useState(registration.payment_requested_at);
   const [currentStatus, setCurrentStatus] = useState(registration.status);
+  const [showCancelModal, setShowCancelModal] = useState(false);
+  const [cancellationReason, setCancellationReason] = useState('');
   const router = useRouter();
 
-  const handleStatusChange = async (newStatus: 'pending' | 'confirmed' | 'cancelled') => {
+  const handleStatusChange = async (newStatus: 'pending' | 'confirmed' | 'cancelled', reason?: string) => {
     if (isUpdating || newStatus === currentStatus) return;
+
+    // If trying to cancel, show the modal first
+    if (newStatus === 'cancelled' && !reason) {
+      setShowCancelModal(true);
+      return;
+    }
 
     setIsUpdating(true);
     try {
       const response = await fetch(`/api/events/registrations/${registration.id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status: newStatus }),
+        body: JSON.stringify({
+          status: newStatus,
+          cancellation_reason: reason
+        }),
       });
 
       if (!response.ok) {
@@ -66,6 +77,8 @@ export default function EventRegistrationCard({ registration }: EventRegistratio
       }
 
       setCurrentStatus(newStatus);
+      setShowCancelModal(false);
+      setCancellationReason('');
       router.refresh();
     } catch (error) {
       console.error('Error updating status:', error);
@@ -73,6 +86,14 @@ export default function EventRegistrationCard({ registration }: EventRegistratio
     } finally {
       setIsUpdating(false);
     }
+  };
+
+  const handleCancelConfirm = () => {
+    if (!cancellationReason.trim()) {
+      alert('Veuillez saisir une raison d\'annulation');
+      return;
+    }
+    handleStatusChange('cancelled', cancellationReason);
   };
 
   const handleDelete = async () => {
@@ -343,6 +364,87 @@ export default function EventRegistrationCard({ registration }: EventRegistratio
               </svg>
               Supprimer définitivement
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Cancellation Reason Modal */}
+      {showCancelModal && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-slate-800 rounded-xl border border-slate-700 max-w-md w-full p-6 shadow-2xl">
+            {/* Icon */}
+            <div className="w-16 h-16 bg-red-400/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg className="w-8 h-8 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+              </svg>
+            </div>
+
+            {/* Title */}
+            <h3 className="text-xl font-bold text-slate-100 text-center mb-2">
+              Annuler l&apos;inscription
+            </h3>
+
+            {/* Participant Info */}
+            <p className="text-slate-400 text-center mb-2">
+              Inscription de :
+            </p>
+            <p className="text-orange-400 font-semibold text-center mb-6">
+              {registration.first_name} {registration.last_name}
+            </p>
+
+            {/* Reason Input */}
+            <div className="mb-6">
+              <label htmlFor="cancellation-reason" className="block text-sm font-medium text-slate-300 mb-2">
+                Raison de l&apos;annulation <span className="text-red-400">*</span>
+              </label>
+              <textarea
+                id="cancellation-reason"
+                value={cancellationReason}
+                onChange={(e) => setCancellationReason(e.target.value)}
+                placeholder="Exemple: Conflit d'horaire, problème de santé, autre engagement..."
+                rows={4}
+                className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-slate-100 placeholder-slate-500 focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400 resize-none"
+              />
+              <p className="text-xs text-slate-500 mt-2">
+                Cette raison sera incluse dans l&apos;email envoyé au participant
+              </p>
+            </div>
+
+            {/* Buttons */}
+            <div className="flex gap-3">
+              <button
+                onClick={() => {
+                  setShowCancelModal(false);
+                  setCancellationReason('');
+                }}
+                disabled={isUpdating}
+                className="flex-1 px-4 py-3 rounded-lg text-sm font-medium bg-slate-700 text-slate-300 hover:bg-slate-600 transition-colors disabled:opacity-50"
+              >
+                Retour
+              </button>
+              <button
+                onClick={handleCancelConfirm}
+                disabled={isUpdating || !cancellationReason.trim()}
+                className="flex-1 px-4 py-3 rounded-lg text-sm font-medium bg-red-500 text-white hover:bg-red-600 transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+              >
+                {isUpdating ? (
+                  <>
+                    <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Annulation...
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                    </svg>
+                    Confirmer l&apos;annulation
+                  </>
+                )}
+              </button>
+            </div>
           </div>
         </div>
       )}
