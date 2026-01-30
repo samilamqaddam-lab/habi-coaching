@@ -218,39 +218,45 @@ export async function PATCH(
             </p>
 
             <p style="font-size: 16px; line-height: 1.6; color: #333;">
-              Nous vous informons que votre inscription à l'événement <strong>${event.title}${event.subtitle ? ' ' + event.subtitle : ''}</strong> a été annulée.
+              Nous vous informons que, malheureusement, votre inscription à l'événement <strong>${event.title}${event.subtitle ? ' ' + event.subtitle : ''}</strong> a été annulée pour la raison suivante :
             </p>
 
             ${cancellation_reason ? `
-              <div style="background: white; padding: 24px; border-radius: 8px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                <h3 style="color: #64748b; margin-top: 0; font-size: 16px; margin-bottom: 12px;">Raison de l'annulation</h3>
-                <p style="margin: 0; color: #333; line-height: 1.6;">
-                  ${cancellation_reason}
+              <div style="background: white; padding: 20px; border-radius: 8px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-left: 4px solid #64748b;">
+                <p style="margin: 0; color: #333; line-height: 1.6; font-style: italic;">
+                  "${cancellation_reason}"
                 </p>
               </div>
             ` : ''}
 
-            <div style="background: white; padding: 24px; border-radius: 8px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-              <p style="margin: 0; color: #333; line-height: 1.6;">
-                Si cette annulation n'est pas de votre fait ou si vous avez des questions, n'hésitez pas à nous contacter directement.
-              </p>
+            <div style="background: #fef3c7; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #f59e0b;">
+              <div style="display: flex; align-items: flex-start; gap: 12px;">
+                <div style="flex-shrink: 0; margin-top: 2px;">
+                  ℹ️
+                </div>
+                <div style="flex: 1;">
+                  <p style="margin: 0 0 12px 0; color: #333; line-height: 1.6;">
+                    Si cette annulation vous semble erronée ou si vous avez des questions, n'hésitez pas à nous contacter directement :
+                  </p>
+                  <p style="margin: 0; color: #333; line-height: 1.8;">
+                    <strong>📧 Email :</strong> <a href="mailto:hajar@transcendencework.com" style="color: #f59e0b; text-decoration: none; font-weight: 500;">hajar@transcendencework.com</a><br>
+                    <strong>📱 Téléphone/WhatsApp :</strong> <a href="tel:+212663096857" style="color: #f59e0b; text-decoration: none; font-weight: 500;">+212 663 096 857</a>
+                  </p>
+                </div>
+              </div>
             </div>
 
-            <div style="background: #fff8f0; padding: 20px; border-radius: 8px; border-left: 4px solid #E8A54B; margin: 20px 0;">
-              <p style="margin: 0; color: #333; line-height: 1.6;">
-                <strong>Vous souhaitez participer à un prochain événement?</strong><br>
-                Visitez <a href="https://transcendencework.com/yoga" style="color: #E8A54B; text-decoration: none;">transcendencework.com/yoga</a> pour découvrir les prochaines dates disponibles.
+            <div style="background: linear-gradient(135deg, #fff8f0 0%, #ffedd5 100%); padding: 24px; border-radius: 12px; margin: 20px 0; text-align: center; border: 2px solid #E8A54B;">
+              <div style="font-size: 32px; margin-bottom: 12px;">🧘‍♀️</div>
+              <h3 style="color: #E8A54B; margin: 0 0 12px 0; font-size: 18px; font-weight: 600;">
+                Vous souhaitez participer à un prochain événement ?
+              </h3>
+              <p style="margin: 0 0 16px 0; color: #666; line-height: 1.6;">
+                Découvrez nos prochaines sessions de yoga et ateliers disponibles
               </p>
-            </div>
-
-            <div style="background: #f0f9ff; padding: 20px; border-radius: 8px; border-left: 4px solid #3b82f6; margin: 20px 0;">
-              <p style="margin: 0 0 12px 0; color: #333; font-weight: 600;">
-                📞 Besoin de nous contacter ?
-              </p>
-              <p style="margin: 0; color: #333; line-height: 1.6;">
-                <strong>Email:</strong> <a href="mailto:hajar@transcendencework.com" style="color: #3b82f6; text-decoration: none;">hajar@transcendencework.com</a><br>
-                <strong>Téléphone/WhatsApp:</strong> <a href="tel:+212663096857" style="color: #3b82f6; text-decoration: none;">+212 663 096 857</a>
-              </p>
+              <a href="https://transcendencework.com/yoga" style="display: inline-block; background: #E8A54B; color: white; padding: 12px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: background 0.3s;">
+                Voir les événements
+              </a>
             </div>
 
             <p style="font-size: 16px; line-height: 1.6; color: #333; margin-top: 30px;">
