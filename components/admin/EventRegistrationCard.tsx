@@ -401,7 +401,7 @@ export default function EventRegistrationCard({ registration }: EventRegistratio
                 id="cancellation-reason"
                 value={cancellationReason}
                 onChange={(e) => setCancellationReason(e.target.value)}
-                placeholder="Exemple: Conflit d'horaire, problème de santé, autre engagement..."
+                placeholder="Exemple: Paiement non reçu dans les délais, Demande d'annulation du participant..."
                 rows={4}
                 className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-slate-100 placeholder-slate-500 focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400 resize-none"
               />
