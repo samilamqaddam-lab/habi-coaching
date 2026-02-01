@@ -76,12 +76,17 @@ export default function PastEventCard({ event }: PastEventCardProps) {
           </div>
         </div>
 
-        {/* Location */}
+        {/* Location & Address */}
         <div className="flex items-start gap-2 text-sm text-text-secondary">
           <span className="flex-shrink-0" aria-hidden="true">
             📍
           </span>
-          <span>{event.location}</span>
+          <div>
+            <div>{event.location}</div>
+            {event.address && (
+              <div className="text-xs text-text-secondary/80">{event.address}</div>
+            )}
+          </div>
         </div>
 
         {/* Participants Count */}

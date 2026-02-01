@@ -143,6 +143,7 @@ export interface YogaEvent {
   date_time: string;
   end_time?: string;
   location: string;
+  address?: string;
   max_capacity: number;
   price?: number;
   image_url?: string;
