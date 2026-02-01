@@ -15,12 +15,19 @@ interface PageProps {
 
 async function getArticle(slug: string): Promise<Article | null> {
   try {
+    // Use appropriate URL based on environment
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ||
+                    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
+
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/articles/${slug}`,
+      `${baseUrl}/api/articles/${slug}`,
       { next: { revalidate: 60 } }
     );
 
-    if (!response.ok) return null;
+    if (!response.ok) {
+      console.error(`Article fetch failed: ${response.status} for slug: ${slug}`);
+      return null;
+    }
 
     const data = await response.json();
     return data.article;
@@ -38,8 +45,11 @@ async function getRelatedArticles(currentId: string, tags?: string[]): Promise<A
     }
     params.set('limit', '3');
 
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ||
+                    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
+
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/articles?${params}`,
+      `${baseUrl}/api/articles?${params}`,
       { next: { revalidate: 60 } }
     );
 

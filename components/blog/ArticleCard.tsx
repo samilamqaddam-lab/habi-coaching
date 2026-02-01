@@ -43,11 +43,6 @@ export default function ArticleCard({ article, locale = 'fr', featured = false }
               alt={article.title}
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
-            {article.tags && article.tags.length > 0 && (
-              <div className="absolute top-4 left-4">
-                <TagBadgeList tags={[article.tags[0]]} limit={1} size="sm" />
-              </div>
-            )}
           </div>
         )}
 
