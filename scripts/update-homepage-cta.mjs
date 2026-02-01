@@ -6,14 +6,11 @@
  */
 
 import { createClient } from '@sanity/client'
-import dotenv from 'dotenv'
 
-// Load environment variables
-dotenv.config({ path: '.env.local' })
-
+// Use environment variables directly (set via command line or .env.local)
 const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'czmpe9zr',
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   token: process.env.SANITY_API_TOKEN,
   apiVersion: '2024-01-01',
   useCdn: false,
