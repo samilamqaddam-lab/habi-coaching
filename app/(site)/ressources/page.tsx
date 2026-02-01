@@ -1,13 +1,12 @@
 import { Metadata } from 'next'
-import { getArticles } from '@/lib/sanity'
 import RessourcesContent from './RessourcesContent'
 
 export const metadata: Metadata = {
-  title: 'Ressources - Articles & Inspirations',
-  description: 'Explorez nos articles sur le yoga, le coaching, le leadership et le bien-être. Ressources pour votre développement personnel et professionnel.',
+  title: 'Ressources - Hub de Contenu | Transcendence Work',
+  description: 'Actualités, événements passés, vidéos éducatives et ressources pour votre développement personnel et professionnel. Yoga, coaching, QVT.',
   openGraph: {
-    title: 'Ressources - Articles & Inspirations | Transcendence Work',
-    description: 'Explorez nos articles sur le yoga, le coaching, le leadership et le bien-être.',
+    title: 'Ressources - Hub de Contenu | Transcendence Work',
+    description: 'Actualités, événements passés, vidéos éducatives et ressources pour votre développement.',
     images: [
       {
         url: '/images/heroes/ressources-notebook-hero.jpg',
@@ -21,9 +20,6 @@ export const metadata: Metadata = {
 
 export const revalidate = 60 // Revalidate every 60 seconds
 
-export default async function RessourcesPage() {
-  // Fetch articles from Sanity
-  const articles = await getArticles()
-
-  return <RessourcesContent articles={articles} />
+export default function RessourcesPage() {
+  return <RessourcesContent />
 }
