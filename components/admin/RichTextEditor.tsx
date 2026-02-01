@@ -1,6 +1,9 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import { useEditor, EditorContent } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
+import Link from '@tiptap/extension-link';
+import Placeholder from '@tiptap/extension-placeholder';
 
 interface RichTextEditorProps {
   value: string;
@@ -13,361 +16,238 @@ export default function RichTextEditor({
   onChange,
   placeholder = 'Commencez à écrire...',
 }: RichTextEditorProps) {
-  const editorRef = useRef<HTMLDivElement>(null);
-  const [mounted, setMounted] = useState(false);
-  const valueRef = useRef(value);
+  const editor = useEditor({
+    extensions: [
+      StarterKit.configure({
+        heading: {
+          levels: [1, 2, 3],
+        },
+      }),
+      Link.configure({
+        openOnClick: false,
+        HTMLAttributes: {
+          class: 'text-terracotta hover:text-terracotta/80 underline underline-offset-2 transition-colors',
+        },
+      }),
+      Placeholder.configure({
+        placeholder,
+      }),
+    ],
+    content: value,
+    immediatelyRender: false,
+    editorProps: {
+      attributes: {
+        class: 'prose prose-slate max-w-none min-h-[400px] px-6 py-4 focus:outline-none',
+        dir: 'ltr',
+      },
+    },
+    onUpdate: ({ editor }) => {
+      onChange(editor.getHTML());
+    },
+  });
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  if (!editor) {
+    return (
+      <div className="min-h-[400px] bg-white border-2 border-slate-600 rounded-lg flex items-center justify-center">
+        <span className="text-slate-400">Chargement de l'éditeur...</span>
+      </div>
+    );
+  }
 
-  // Callback ref qui se déclenche quand la div est montée dans le DOM
-  const setEditorRef = (node: HTMLDivElement | null) => {
-    editorRef.current = node;
-
-    // Charger le contenu initial quand le node est monté
-    if (node && valueRef.current) {
-      node.innerHTML = valueRef.current;
-    }
-  };
-
-  // Mettre à jour valueRef quand value change
-  useEffect(() => {
-    valueRef.current = value;
-
-    // Si l'éditeur existe déjà et que value change, mettre à jour
-    if (editorRef.current && value) {
-      editorRef.current.innerHTML = value;
-    }
-  }, [value]);
-
-  const handleInput = () => {
-    if (editorRef.current) {
-      onChange(editorRef.current.innerHTML);
-    }
-  };
-
-  const wrapSelection = (tag: string, className?: string) => {
-    if (!mounted) return;
-
-    const selection = window.getSelection();
-    if (!selection || selection.rangeCount === 0) return;
-
-    const range = selection.getRangeAt(0);
-    const selectedText = range.toString();
-
-    if (selectedText) {
-      const element = document.createElement(tag);
-      if (className) element.className = className;
-
-      try {
-        range.deleteContents();
-        element.textContent = selectedText;
-        range.insertNode(element);
-
-        // Move cursor after inserted element
-        range.setStartAfter(element);
-        range.setEndAfter(element);
-        selection.removeAllRanges();
-        selection.addRange(range);
-      } catch (e) {
-        console.error('Error wrapping selection:', e);
-      }
-
-      handleInput();
-    }
-  };
-
-  const insertHeading = (level: 1 | 2 | 3) => {
-    if (!mounted) return;
-
-    const selection = window.getSelection();
-    if (!selection || selection.rangeCount === 0) return;
-
-    const range = selection.getRangeAt(0);
-    const selectedText = range.toString() || 'Titre';
-
-    const classNames = {
-      1: 'font-heading text-4xl font-bold text-deep-blue mt-12 mb-6',
-      2: 'font-heading text-3xl font-bold text-deep-blue mt-10 mb-5',
-      3: 'font-heading text-2xl font-bold text-deep-blue mt-8 mb-4',
-    };
-
-    const heading = document.createElement(`h${level}`);
-    heading.className = classNames[level];
-    heading.textContent = selectedText;
-
-    try {
-      range.deleteContents();
-      range.insertNode(heading);
-
-      // Add line break after heading
-      const br = document.createElement('br');
-      heading.after(br);
-
-      // Move cursor after heading
-      range.setStartAfter(br);
-      range.setEndAfter(br);
-      selection.removeAllRanges();
-      selection.addRange(range);
-    } catch (e) {
-      console.error('Error inserting heading:', e);
-    }
-
-    handleInput();
-  };
-
-  const toggleFormat = (format: 'bold' | 'italic') => {
-    if (!mounted) return;
-    document.execCommand(format, false);
-    handleInput();
-  };
-
-  const createLink = () => {
-    if (!mounted) return;
+  const addLink = () => {
     const url = prompt('Entrez l\'URL du lien:');
     if (url) {
-      document.execCommand('createLink', false, url);
-      // Apply Tailwind classes to the created link
-      const selection = window.getSelection();
-      if (selection && selection.anchorNode) {
-        const link = selection.anchorNode.parentElement;
-        if (link && link.tagName === 'A') {
-          link.className = 'text-terracotta hover:text-terracotta/80 underline underline-offset-2 transition-colors';
-        }
-      }
-      handleInput();
+      editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
     }
   };
 
-  const insertBlockquote = () => {
-    if (!mounted) return;
-
-    const selection = window.getSelection();
-    if (!selection || selection.rangeCount === 0) return;
-
-    const range = selection.getRangeAt(0);
-    const selectedText = range.toString() || 'Citation';
-
-    const blockquote = document.createElement('blockquote');
-    blockquote.className = 'border-l-4 border-terracotta pl-6 my-8 italic text-text-secondary';
-    blockquote.textContent = selectedText;
-
-    try {
-      range.deleteContents();
-      range.insertNode(blockquote);
-
-      const br = document.createElement('br');
-      blockquote.after(br);
-
-      range.setStartAfter(br);
-      range.setEndAfter(br);
-      selection.removeAllRanges();
-      selection.addRange(range);
-    } catch (e) {
-      console.error('Error inserting blockquote:', e);
-    }
-
-    handleInput();
-  };
-
-  const insertList = (ordered: boolean) => {
-    if (!mounted) return;
-
-    const selection = window.getSelection();
-    if (!selection || selection.rangeCount === 0) return;
-
-    const range = selection.getRangeAt(0);
-    const selectedText = range.toString() || 'Élément de liste';
-
-    const list = document.createElement(ordered ? 'ol' : 'ul');
-    list.className = ordered
-      ? 'list-decimal list-outside ml-6 mb-6 space-y-2'
-      : 'list-disc list-outside ml-6 mb-6 space-y-2';
-
-    const li = document.createElement('li');
-    li.className = 'text-text-primary leading-relaxed';
-    li.textContent = selectedText;
-
-    list.appendChild(li);
-
-    try {
-      range.deleteContents();
-      range.insertNode(list);
-
-      const br = document.createElement('br');
-      list.after(br);
-
-      range.setStartAfter(br);
-      range.setEndAfter(br);
-      selection.removeAllRanges();
-      selection.addRange(range);
-    } catch (e) {
-      console.error('Error inserting list:', e);
-    }
-
-    handleInput();
-  };
-
-  const insertParagraph = () => {
-    if (!mounted) return;
-
-    const selection = window.getSelection();
-    if (!selection || selection.rangeCount === 0) return;
-
-    const range = selection.getRangeAt(0);
-    const selectedText = range.toString() || 'Paragraphe';
-
-    const p = document.createElement('p');
-    p.className = 'text-text-primary leading-relaxed mb-6';
-    p.textContent = selectedText;
-
-    try {
-      range.deleteContents();
-      range.insertNode(p);
-
-      const br = document.createElement('br');
-      p.after(br);
-
-      range.setStartAfter(br);
-      range.setEndAfter(br);
-      selection.removeAllRanges();
-      selection.addRange(range);
-    } catch (e) {
-      console.error('Error inserting paragraph:', e);
-    }
-
-    handleInput();
-  };
-
-  const toolbarButtons = [
-    {
-      label: 'P',
-      action: insertParagraph,
-      tooltip: 'Paragraphe normal',
-      className: 'text-sm',
-    },
-    {
-      label: 'H1',
-      action: () => insertHeading(1),
-      tooltip: 'Titre niveau 1 (très grand)',
-      className: 'text-xl font-bold',
-    },
-    {
-      label: 'H2',
-      action: () => insertHeading(2),
-      tooltip: 'Titre niveau 2 (grand)',
-      className: 'text-lg font-bold',
-    },
-    {
-      label: 'H3',
-      action: () => insertHeading(3),
-      tooltip: 'Titre niveau 3 (moyen)',
-      className: 'text-base font-bold',
-    },
-    {
-      divider: true,
-    },
-    {
-      icon: '𝐁',
-      action: () => toggleFormat('bold'),
-      tooltip: 'Gras',
-      className: 'font-bold',
-    },
-    {
-      icon: '𝐼',
-      action: () => toggleFormat('italic'),
-      tooltip: 'Italique',
-      className: 'italic',
-    },
-    {
-      divider: true,
-    },
-    {
-      icon: '🔗',
-      action: createLink,
-      tooltip: 'Insérer un lien',
-    },
-    {
-      icon: '❝',
-      action: insertBlockquote,
-      tooltip: 'Citation',
-    },
-    {
-      divider: true,
-    },
-    {
-      icon: '•',
-      action: () => insertList(false),
-      tooltip: 'Liste à puces',
-    },
-    {
-      icon: '1.',
-      action: () => insertList(true),
-      tooltip: 'Liste numérotée',
-    },
-  ];
-
-  if (!mounted) return null;
+  const ToolbarButton = ({
+    onClick,
+    isActive = false,
+    children,
+    title,
+  }: {
+    onClick: () => void;
+    isActive?: boolean;
+    children: React.ReactNode;
+    title: string;
+  }) => (
+    <button
+      type="button"
+      onClick={onClick}
+      title={title}
+      className={`px-3 py-1.5 text-sm font-medium rounded transition-colors ${
+        isActive
+          ? 'bg-blue-600 text-white'
+          : 'text-slate-200 hover:bg-slate-600'
+      }`}
+    >
+      {children}
+    </button>
+  );
 
   return (
     <div className="space-y-2">
       {/* Toolbar */}
       <div className="flex flex-wrap items-center gap-1 p-2 bg-slate-700 border border-slate-600 rounded-lg">
-        {toolbarButtons.map((button, index) => {
-          if (button.divider) {
-            return <div key={`divider-${index}`} className="h-6 w-px bg-slate-500 mx-1" />;
-          }
+        <ToolbarButton
+          onClick={() => editor.chain().focus().setParagraph().run()}
+          isActive={editor.isActive('paragraph')}
+          title="Paragraphe"
+        >
+          P
+        </ToolbarButton>
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+          isActive={editor.isActive('heading', { level: 1 })}
+          title="Titre 1"
+        >
+          <span className="text-xl font-bold">H1</span>
+        </ToolbarButton>
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+          isActive={editor.isActive('heading', { level: 2 })}
+          title="Titre 2"
+        >
+          <span className="text-lg font-bold">H2</span>
+        </ToolbarButton>
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+          isActive={editor.isActive('heading', { level: 3 })}
+          title="Titre 3"
+        >
+          <span className="font-bold">H3</span>
+        </ToolbarButton>
 
-          return (
-            <button
-              key={button.label || button.icon || index}
-              type="button"
-              onClick={button.action}
-              title={button.tooltip}
-              className={`px-3 py-1.5 text-sm font-medium text-slate-200 hover:bg-slate-600 rounded transition-colors ${
-                button.className || ''
-              }`}
-            >
-              {button.icon || button.label}
-            </button>
-          );
-        })}
+        <div className="h-6 w-px bg-slate-500 mx-1" />
+
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleBold().run()}
+          isActive={editor.isActive('bold')}
+          title="Gras"
+        >
+          <span className="font-bold">B</span>
+        </ToolbarButton>
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleItalic().run()}
+          isActive={editor.isActive('italic')}
+          title="Italique"
+        >
+          <span className="italic">I</span>
+        </ToolbarButton>
+
+        <div className="h-6 w-px bg-slate-500 mx-1" />
+
+        <ToolbarButton
+          onClick={addLink}
+          isActive={editor.isActive('link')}
+          title="Lien"
+        >
+          🔗
+        </ToolbarButton>
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleBlockquote().run()}
+          isActive={editor.isActive('blockquote')}
+          title="Citation"
+        >
+          ❝
+        </ToolbarButton>
+
+        <div className="h-6 w-px bg-slate-500 mx-1" />
+
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleBulletList().run()}
+          isActive={editor.isActive('bulletList')}
+          title="Liste à puces"
+        >
+          •
+        </ToolbarButton>
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleOrderedList().run()}
+          isActive={editor.isActive('orderedList')}
+          title="Liste numérotée"
+        >
+          1.
+        </ToolbarButton>
       </div>
 
       {/* Instructions */}
       <div className="text-xs text-slate-400 bg-slate-800 border border-slate-600 rounded p-2">
-        💡 <strong>Comment utiliser:</strong> Sélectionnez du texte puis cliquez sur un bouton pour appliquer le formatage.
-        Pour les titres et blocs, le texte sélectionné sera converti.
+        💡 <strong>Comment utiliser:</strong> Tapez du texte, sélectionnez-le et cliquez sur les boutons pour formater.
       </div>
 
       {/* Editor */}
-      <div
-        ref={setEditorRef}
-        contentEditable
-        dir="ltr"
-        onInput={handleInput}
-        suppressContentEditableWarning
-        className="rich-text-editor min-h-[400px] max-h-[600px] overflow-y-auto w-full px-6 py-4 bg-white border-2 border-slate-600 text-slate-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none"
-        data-placeholder={placeholder}
-      />
+      <div className="bg-white border-2 border-slate-600 rounded-lg overflow-hidden">
+        <EditorContent
+          editor={editor}
+          className="min-h-[400px] max-h-[600px] overflow-y-auto text-slate-900"
+        />
+      </div>
 
       {/* Character count */}
       <div className="flex items-center justify-between text-xs text-slate-400">
-        <span>{value.length} caractères</span>
-        <span>✨ Éditeur WYSIWYG - Les styles correspondent au site</span>
+        <span>{editor.storage.characterCount?.characters?.() || value.length} caractères</span>
+        <span>✨ Éditeur TipTap - Expérience d'écriture professionnelle</span>
       </div>
 
-      {/* Custom styles for editor placeholder */}
-      <style jsx>{`
-        .rich-text-editor {
+      {/* Styles for TipTap */}
+      <style jsx global>{`
+        .ProseMirror {
           direction: ltr !important;
           text-align: left !important;
         }
-        [contenteditable]:empty:before {
+        .ProseMirror p.is-editor-empty:first-child::before {
           content: attr(data-placeholder);
+          float: left;
           color: #94a3b8;
           font-style: italic;
+          pointer-events: none;
+          height: 0;
+        }
+        .ProseMirror h1 {
+          font-size: 2.25rem;
+          font-weight: 700;
+          margin-top: 2rem;
+          margin-bottom: 1rem;
+          color: #1A3A4A;
+        }
+        .ProseMirror h2 {
+          font-size: 1.875rem;
+          font-weight: 700;
+          margin-top: 1.75rem;
+          margin-bottom: 0.875rem;
+          color: #1A3A4A;
+        }
+        .ProseMirror h3 {
+          font-size: 1.5rem;
+          font-weight: 700;
+          margin-top: 1.5rem;
+          margin-bottom: 0.75rem;
+          color: #1A3A4A;
+        }
+        .ProseMirror p {
+          margin-bottom: 1rem;
+          line-height: 1.7;
+        }
+        .ProseMirror blockquote {
+          border-left: 4px solid #C67B5C;
+          padding-left: 1.5rem;
+          margin: 1.5rem 0;
+          font-style: italic;
+          color: #6B6B6B;
+        }
+        .ProseMirror ul {
+          list-style-type: disc;
+          padding-left: 1.5rem;
+          margin-bottom: 1rem;
+        }
+        .ProseMirror ol {
+          list-style-type: decimal;
+          padding-left: 1.5rem;
+          margin-bottom: 1rem;
+        }
+        .ProseMirror li {
+          margin-bottom: 0.5rem;
         }
       `}</style>
     </div>

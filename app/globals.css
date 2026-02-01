@@ -148,6 +148,19 @@ html.dark body {
   color: #f1f5f9; /* slate-100 */
 }
 
+/* Force LTR for all contenteditable elements */
+[contenteditable] {
+  direction: ltr !important;
+  text-align: left !important;
+  unicode-bidi: embed !important;
+}
+
+[contenteditable="true"] {
+  direction: ltr !important;
+  text-align: left !important;
+  unicode-bidi: embed !important;
+}
+
 /* Transitions sélectives (pas sur tous les éléments) */
 a, button, [role="button"] {
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
