@@ -10,6 +10,7 @@ export default function AdminNav() {
   const [loggingOut, setLoggingOut] = useState(false);
   const [yogaOpen, setYogaOpen] = useState(true);
   const [coachingOpen, setCoachingOpen] = useState(true);
+  const [contentOpen, setContentOpen] = useState(true);
 
   // Keep section open if we're on a related page
   useEffect(() => {
@@ -23,6 +24,9 @@ export default function AdminNav() {
     }
     if (pathname.startsWith('/admin/coaching')) {
       setCoachingOpen(true);
+    }
+    if (pathname.startsWith('/admin/articles') || pathname.startsWith('/admin/resources')) {
+      setContentOpen(true);
     }
   }, [pathname]);
 
@@ -93,6 +97,35 @@ export default function AdminNav() {
     ],
   };
 
+  const contentSection = {
+    name: 'Contenu',
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+      </svg>
+    ),
+    children: [
+      {
+        name: 'Articles',
+        href: '/admin/articles',
+        icon: (
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        ),
+      },
+      {
+        name: 'Ressources',
+        href: '/admin/resources',
+        icon: (
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+          </svg>
+        ),
+      },
+    ],
+  };
+
   const handleLogout = async () => {
     setLoggingOut(true);
     try {
@@ -113,6 +146,10 @@ export default function AdminNav() {
     pathname.startsWith('/admin/yoga-sante');
 
   const isCoachingActive = pathname.startsWith('/admin/coaching');
+
+  const isContentActive =
+    pathname.startsWith('/admin/articles') ||
+    pathname.startsWith('/admin/resources');
 
   return (
     <div className="flex flex-col h-full bg-slate-800 border-r border-slate-700">
@@ -223,6 +260,60 @@ export default function AdminNav() {
                       ${
                         isActive
                           ? 'bg-purple-400/20 text-purple-400'
+                          : 'text-slate-400 hover:bg-slate-700 hover:text-slate-100'
+                      }
+                    `}
+                  >
+                    {item.icon}
+                    <span className="text-sm">{item.name}</span>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
+        </div>
+
+        {/* Content Section */}
+        <div>
+          <button
+            onClick={() => setContentOpen(!contentOpen)}
+            className={`
+              w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg transition-colors
+              ${
+                isContentActive
+                  ? 'bg-blue-400/10 text-blue-400'
+                  : 'text-slate-300 hover:bg-slate-700 hover:text-slate-100'
+              }
+            `}
+          >
+            <div className="flex items-center gap-3">
+              {contentSection.icon}
+              <span className="font-medium">{contentSection.name}</span>
+            </div>
+            <svg
+              className={`w-4 h-4 transition-transform ${contentOpen ? 'rotate-180' : ''}`}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          {/* Content Children */}
+          {contentOpen && (
+            <div className="mt-1 ml-4 space-y-1">
+              {contentSection.children.map((item) => {
+                const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`
+                      flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors
+                      ${
+                        isActive
+                          ? 'bg-blue-400/20 text-blue-400'
                           : 'text-slate-400 hover:bg-slate-700 hover:text-slate-100'
                       }
                     `}
