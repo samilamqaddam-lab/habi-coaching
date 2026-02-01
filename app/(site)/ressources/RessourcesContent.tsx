@@ -45,28 +45,6 @@ export default function RessourcesContent() {
   });
   const { events: pastEvents, isLoading: loadingPastEvents, hasMore, loadMore } = usePastEvents(8);
 
-  // Guides data from translations (keep existing)
-  const guides = [
-    {
-      title: t('ressources.guides.0.title'),
-      description: t('ressources.guides.0.description'),
-      type: 'PDF',
-      pages: t('ressources.guides.0.pages'),
-    },
-    {
-      title: t('ressources.guides.1.title'),
-      description: t('ressources.guides.1.description'),
-      type: 'PDF',
-      pages: t('ressources.guides.1.pages'),
-    },
-    {
-      title: t('ressources.guides.2.title'),
-      description: t('ressources.guides.2.description'),
-      type: 'PDF',
-      pages: t('ressources.guides.2.pages'),
-    },
-  ];
-
   return (
     <>
       {/* Page Header + Inner Engineering Highlight */}
@@ -247,54 +225,9 @@ export default function RessourcesContent() {
         )}
       </Section>
 
-      {/* 5. Guides Gratuits (Keep from original) */}
-      <Section
-        id="guides"
-        subtitle={t('ressources.guides.subtitle')}
-        title={t('ressources.guides.title')}
-        description={t('ressources.guides.description')}
-        background="white"
-        centered
-      >
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-          {guides.map((guide, index) => (
-            <Card key={index} padding="lg" className="flex flex-col">
-              <div className="flex-grow">
-                <div className="w-16 h-16 bg-terracotta/10 rounded-xl flex items-center justify-center mb-6">
-                  <svg
-                    className="w-8 h-8 text-terracotta"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="font-heading text-lg font-bold text-deep-blue mb-3">
-                  {guide.title}
-                </h3>
-                <p className="text-sm text-text-secondary leading-relaxed mb-4">
-                  {guide.description}
-                </p>
-                <div className="flex items-center text-xs text-text-secondary mb-6">
-                  <span className="px-2 py-1 bg-soft-gray rounded mr-2">{guide.type}</span>
-                  <span>{guide.pages}</span>
-                </div>
-              </div>
-              <Button variant="outline" fullWidth href="/contact">
-                {t('common.buttons.download')}
-              </Button>
-            </Card>
-          ))}
-        </div>
-      </Section>
+      {/* TODO: Guides Gratuits - À réactiver quand les ebooks seront disponibles */}
 
-      {/* 6. Newsletter (Keep from original) */}
+      {/* Newsletter */}
       <Section centered padding="lg" background="beige">
         <div className="max-w-3xl mx-auto">
           <h2 className="font-heading text-3xl font-bold text-deep-blue mb-4">
