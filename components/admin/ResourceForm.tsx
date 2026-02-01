@@ -125,7 +125,14 @@ export default function ResourceForm({ resource, mode }: ResourceFormProps) {
             <button
               key={type.value}
               type="button"
-              onClick={() => setFormData({ ...formData, resource_type: type.value })}
+              onClick={() => setFormData({
+                ...formData,
+                resource_type: type.value,
+                // Force 'link' type for YouTube videos
+                upload_type: type.value === 'video' ? 'link' : formData.upload_type,
+                // Clear thumbnail for videos (will use YouTube thumbnail)
+                thumbnail_url: type.value === 'video' ? '' : formData.thumbnail_url,
+              })}
               className={`p-4 border-2 rounded-lg transition-colors ${
                 formData.resource_type === type.value
                   ? 'border-blue-500 bg-blue-600/20 text-slate-100'
@@ -139,40 +146,42 @@ export default function ResourceForm({ resource, mode }: ResourceFormProps) {
         </div>
       </div>
 
-      {/* Upload Type Selection */}
-      <div>
-        <label className="block text-sm font-medium text-slate-200 mb-2">
-          Source de la ressource *
-        </label>
-        <div className="grid grid-cols-2 gap-3">
-          <button
-            type="button"
-            onClick={() => setFormData({ ...formData, upload_type: 'link', url: '' })}
-            className={`p-4 border-2 rounded-lg transition-colors ${
-              formData.upload_type === 'link'
-                ? 'border-blue-500 bg-blue-600/20 text-slate-100'
-                : 'border-slate-600 bg-slate-700/50 text-slate-300 hover:border-slate-500'
-            }`}
-          >
-            <div className="text-2xl mb-2">🔗</div>
-            <div className="text-sm font-medium">Lien externe</div>
-            <div className="text-xs text-slate-400 mt-1">YouTube, Vimeo, etc.</div>
-          </button>
-          <button
-            type="button"
-            onClick={() => setFormData({ ...formData, upload_type: 'upload', url: '' })}
-            className={`p-4 border-2 rounded-lg transition-colors ${
-              formData.upload_type === 'upload'
-                ? 'border-blue-500 bg-blue-600/20 text-slate-100'
-                : 'border-slate-600 bg-slate-700/50 text-slate-300 hover:border-slate-500'
-            }`}
-          >
-            <div className="text-2xl mb-2">⬆️</div>
-            <div className="text-sm font-medium">Upload fichier</div>
-            <div className="text-xs text-slate-400 mt-1">Hébergé sur le site</div>
-          </button>
+      {/* Upload Type Selection - Not shown for YouTube videos */}
+      {!isVideoType && (
+        <div>
+          <label className="block text-sm font-medium text-slate-200 mb-2">
+            Source de la ressource *
+          </label>
+          <div className="grid grid-cols-2 gap-3">
+            <button
+              type="button"
+              onClick={() => setFormData({ ...formData, upload_type: 'link', url: '' })}
+              className={`p-4 border-2 rounded-lg transition-colors ${
+                formData.upload_type === 'link'
+                  ? 'border-blue-500 bg-blue-600/20 text-slate-100'
+                  : 'border-slate-600 bg-slate-700/50 text-slate-300 hover:border-slate-500'
+              }`}
+            >
+              <div className="text-2xl mb-2">🔗</div>
+              <div className="text-sm font-medium">Lien externe</div>
+              <div className="text-xs text-slate-400 mt-1">URL externe</div>
+            </button>
+            <button
+              type="button"
+              onClick={() => setFormData({ ...formData, upload_type: 'upload', url: '' })}
+              className={`p-4 border-2 rounded-lg transition-colors ${
+                formData.upload_type === 'upload'
+                  ? 'border-blue-500 bg-blue-600/20 text-slate-100'
+                  : 'border-slate-600 bg-slate-700/50 text-slate-300 hover:border-slate-500'
+              }`}
+            >
+              <div className="text-2xl mb-2">⬆️</div>
+              <div className="text-sm font-medium">Upload fichier</div>
+              <div className="text-xs text-slate-400 mt-1">Hébergé sur le site</div>
+            </button>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Title */}
       <div>
@@ -190,7 +199,7 @@ export default function ResourceForm({ resource, mode }: ResourceFormProps) {
       </div>
 
       {/* URL or File Upload */}
-      {formData.upload_type === 'link' ? (
+      {isVideoType || formData.upload_type === 'link' ? (
         <div>
           <label className="block text-sm font-medium text-slate-200 mb-2">
             {isVideoType ? 'URL YouTube *' : 'URL *'}
@@ -209,16 +218,14 @@ export default function ResourceForm({ resource, mode }: ResourceFormProps) {
           />
           {isVideoType && (
             <p className="text-xs text-slate-400 mt-1">
-              L'ID vidéo et la miniature seront extraits automatiquement
+              L'ID vidéo et la miniature seront extraits automatiquement de YouTube
             </p>
           )}
         </div>
       ) : (
         <FileUpload
           label={`Fichier ${
-            formData.resource_type === 'video' ? 'vidéo' :
-            formData.resource_type === 'audio' ? 'audio' :
-            'PDF'
+            formData.resource_type === 'audio' ? 'audio' : 'PDF'
           } *`}
           value={formData.url}
           onChange={(url, metadata) => {
@@ -230,7 +237,7 @@ export default function ResourceForm({ resource, mode }: ResourceFormProps) {
               storage_path: metadata?.storagePath,
             });
           }}
-          fileType={formData.resource_type === 'pdf' ? 'pdf' : formData.resource_type as 'video' | 'audio'}
+          fileType={formData.resource_type === 'pdf' ? 'pdf' : formData.resource_type as 'audio'}
           folder="resources"
         />
       )}
@@ -249,20 +256,26 @@ export default function ResourceForm({ resource, mode }: ResourceFormProps) {
         />
       </div>
 
-      {/* Thumbnail */}
-      <div>
-        <ImageUpload
-          label={isVideoType ? "Miniature personnalisée (optionnel)" : "Miniature"}
-          value={formData.thumbnail_url}
-          onChange={(url) => setFormData({ ...formData, thumbnail_url: url })}
-          folder="resources"
-        />
-        {isVideoType && (
-          <p className="text-xs text-slate-400 mt-2">
-            💡 Si aucune miniature n'est uploadée, la miniature par défaut de YouTube sera utilisée
+      {/* Thumbnail - Not shown for YouTube videos (uses YouTube thumbnail automatically) */}
+      {!isVideoType && (
+        <div>
+          <ImageUpload
+            label="Miniature"
+            value={formData.thumbnail_url}
+            onChange={(url) => setFormData({ ...formData, thumbnail_url: url })}
+            folder="resources"
+          />
+        </div>
+      )}
+
+      {/* Info for YouTube videos */}
+      {isVideoType && (
+        <div className="bg-slate-800 border border-slate-600 rounded-lg p-4">
+          <p className="text-sm text-slate-300">
+            🎥 <strong>Vidéo YouTube</strong> — La miniature sera récupérée automatiquement depuis YouTube.
           </p>
-        )}
-      </div>
+        </div>
+      )}
 
       {/* Tags */}
       <div>
