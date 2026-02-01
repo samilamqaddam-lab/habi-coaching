@@ -345,12 +345,14 @@ export default function RichTextEditor({
       <div
         ref={setEditorRef}
         contentEditable
+        dir="ltr"
         onInput={handleInput}
         suppressContentEditableWarning
-        className="min-h-[400px] max-h-[600px] overflow-y-auto w-full px-6 py-4 bg-white border-2 border-slate-600 text-slate-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none"
+        className="min-h-[400px] max-h-[600px] overflow-y-auto w-full px-6 py-4 bg-white border-2 border-slate-600 text-slate-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none text-left"
         style={{
           overflowWrap: 'break-word',
           wordWrap: 'break-word',
+          unicodeBidi: 'plaintext',
         }}
         data-placeholder={placeholder}
       />
