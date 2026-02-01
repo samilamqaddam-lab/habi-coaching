@@ -349,11 +349,6 @@ export default function RichTextEditor({
         onInput={handleInput}
         suppressContentEditableWarning
         className="rich-text-editor min-h-[400px] max-h-[600px] overflow-y-auto w-full px-6 py-4 bg-white border-2 border-slate-600 text-slate-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none"
-        style={{
-          direction: 'ltr',
-          textAlign: 'left',
-          unicodeBidi: 'bidi-override',
-        }}
         data-placeholder={placeholder}
       />
 
@@ -363,16 +358,11 @@ export default function RichTextEditor({
         <span>✨ Éditeur WYSIWYG - Les styles correspondent au site</span>
       </div>
 
-      {/* Custom styles for editor placeholder and LTR direction */}
+      {/* Custom styles for editor placeholder */}
       <style jsx>{`
         .rich-text-editor {
           direction: ltr !important;
           text-align: left !important;
-          unicode-bidi: normal !important;
-        }
-        .rich-text-editor * {
-          direction: ltr !important;
-          unicode-bidi: normal !important;
         }
         [contenteditable]:empty:before {
           content: attr(data-placeholder);
