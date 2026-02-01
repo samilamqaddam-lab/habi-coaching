@@ -289,13 +289,14 @@ export function extractYouTubeId(url: string): string | null {
 }
 
 // Get YouTube thumbnail URL
-export function getYouTubeThumbnailUrl(videoId: string, quality: 'default' | 'hq' | 'mq' | 'sd' | 'maxres' = 'maxres'): string {
+// Note: 'hqdefault' (480x360) is always available, 'maxresdefault' (1280x720) is not always available
+export function getYouTubeThumbnailUrl(videoId: string, quality: 'default' | 'hq' | 'mq' | 'sd' | 'maxres' = 'hq'): string {
   const qualityMap = {
-    default: 'default',
-    hq: 'hqdefault',
-    mq: 'mqdefault',
-    sd: 'sddefault',
-    maxres: 'maxresdefault',
+    default: 'default',      // 120x90
+    hq: 'hqdefault',         // 480x360 (always available)
+    mq: 'mqdefault',         // 320x180
+    sd: 'sddefault',         // 640x480
+    maxres: 'maxresdefault', // 1280x720 (not always available)
   };
   return `https://img.youtube.com/vi/${videoId}/${qualityMap[quality]}.jpg`;
 }
