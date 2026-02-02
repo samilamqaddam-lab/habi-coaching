@@ -697,11 +697,11 @@
       },
       "service": "Type d'accompagnement souhaité",
       "serviceOptions": {
-        "0": "Transformation organisationnelle",
-        "1": "Leadership conscient",
-        "2": "Retraite corporate",
-        "3": "Facilitation ponctuelle",
-        "4": "Yoga corporate",
+        "0": "Transformation & Cohésion d'Équipe",
+        "1": "Leadership Conscient",
+        "2": "Retraite Corporate",
+        "3": "Corporate Yoga - Événement ponctuel",
+        "4": "Corporate Yoga - Programme récurrent",
         "5": "Autre / À définir ensemble"
       },
       "message": "Décrivez votre projet",

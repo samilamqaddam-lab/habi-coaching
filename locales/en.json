@@ -697,11 +697,11 @@
       },
       "service": "Type of Support Desired",
       "serviceOptions": {
-        "0": "Organizational transformation",
-        "1": "Conscious leadership",
-        "2": "Corporate retreat",
-        "3": "One-off facilitation",
-        "4": "Corporate yoga",
+        "0": "Transformation & Team Cohesion",
+        "1": "Conscious Leadership",
+        "2": "Corporate Retreat",
+        "3": "Corporate Yoga - One-time Event",
+        "4": "Corporate Yoga - Recurring Program",
         "5": "Other / To be defined together"
       },
       "message": "Describe Your Project",
