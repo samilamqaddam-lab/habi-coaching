@@ -4,9 +4,66 @@ import { useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+// Types for html2pdf library
+interface Html2PdfOptions {
+  margin?: number | number[];
+  filename?: string;
+  image?: { type?: string; quality?: number };
+  html2canvas?: {
+    scale?: number;
+    useCORS?: boolean;
+    logging?: boolean;
+    allowTaint?: boolean;
+  };
+  jsPDF?: {
+    unit?: string;
+    format?: string | number[];
+    orientation?: 'portrait' | 'landscape';
+  };
+  pagebreak?: { mode?: string | string[] };
+}
+
+interface Html2PdfInstance {
+  set(options: Html2PdfOptions): Html2PdfInstance;
+  from(element: HTMLElement | string): Html2PdfInstance;
+  save(): Promise<void>;
+}
+
+interface WindowWithHtml2Pdf extends Window {
+  html2pdf: () => Html2PdfInstance;
+}
+
 export default function CorporateBrochure() {
   const contentRef = useRef<HTMLDivElement>(null);
   const [isGenerating, setIsGenerating] = useState(false);
+
+  // Load html2pdf library via script tag (more reliable for UMD modules)
+  const loadHtml2Pdf = (): Promise<() => Html2PdfInstance> => {
+    return new Promise((resolve, reject) => {
+      const win = window as unknown as WindowWithHtml2Pdf;
+
+      // Check if already loaded
+      if (typeof win.html2pdf === 'function') {
+        resolve(win.html2pdf);
+        return;
+      }
+
+      // Load the script
+      const script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js';
+      script.async = true;
+      script.onload = () => {
+        const winLoaded = window as unknown as WindowWithHtml2Pdf;
+        if (typeof winLoaded.html2pdf === 'function') {
+          resolve(winLoaded.html2pdf);
+        } else {
+          reject(new Error('html2pdf not loaded'));
+        }
+      };
+      script.onerror = () => reject(new Error('Failed to load html2pdf'));
+      document.head.appendChild(script);
+    });
+  };
 
   const generatePDF = async () => {
     if (!contentRef.current) return;
@@ -14,9 +71,8 @@ export default function CorporateBrochure() {
     setIsGenerating(true);
 
     try {
-      // Dynamic import for html2pdf (client-side only)
-      const html2pdfModule = await import('html2pdf.js');
-      const html2pdf = html2pdfModule.default || html2pdfModule;
+      // Load html2pdf via script tag (reliable approach for UMD)
+      const html2pdf = await loadHtml2Pdf();
 
       const element = contentRef.current;
 
@@ -40,7 +96,7 @@ export default function CorporateBrochure() {
         jsPDF: {
           unit: 'mm',
           format: 'a4',
-          orientation: 'portrait',
+          orientation: 'portrait' as const,
         },
         pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
       };
