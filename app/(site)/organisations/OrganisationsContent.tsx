@@ -321,7 +321,7 @@ export default function OrganisationsContent() {
 
           <div className="grid md:grid-cols-3 gap-6">
             {/* Stress Management Program */}
-            <Card hover padding="md">
+            <Card hover padding="lg">
               <div className="text-center mb-4">
                 <div className="w-14 h-14 bg-mystic-mauve/10 rounded-xl flex items-center justify-center mx-auto mb-3">
                   <svg className="w-7 h-7 text-mystic-mauve" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -331,20 +331,65 @@ export default function OrganisationsContent() {
                 <h4 className="font-heading text-lg font-bold text-deep-blue">
                   Stress Management
                 </h4>
-                <p className="text-sm text-mystic-mauve font-medium">
+                <p className="text-sm text-mystic-mauve font-medium mb-3">
                   Prévenir le stress, renforcer la résilience
                 </p>
               </div>
-              <p className="text-text-secondary text-sm text-center mb-4">
-                Accompagner durablement les collaborateurs dans la gestion du stress et de la charge mentale.
-              </p>
-              <div className="text-center text-sm text-text-secondary">
-                <p className="font-medium">24 ou 36 sessions • 1h/session</p>
+
+              <div className="space-y-4 text-sm">
+                {/* Pour qui */}
+                <div>
+                  <p className="font-medium text-deep-blue mb-1">Pour qui</p>
+                  <p className="text-text-secondary text-xs">
+                    Tous les collaborateurs • Démarche QVT • Contextes de transformation
+                  </p>
+                </div>
+
+                {/* Format */}
+                <div className="flex items-center gap-2 text-text-secondary">
+                  <svg className="w-4 h-4 text-mystic-mauve" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span className="font-medium">24 ou 36 sessions • 1h/session</span>
+                </div>
+
+                {/* Contenu */}
+                <div>
+                  <p className="font-medium text-deep-blue mb-1">Contenu</p>
+                  <p className="text-text-secondary text-xs">
+                    Hatha Yoga • Pranayama • Nada Yoga • Méditations guidées
+                  </p>
+                </div>
+
+                {/* Bénéfices */}
+                <div className="pt-3 border-t border-soft-gray/30">
+                  <p className="font-medium text-deep-blue mb-2">Bénéfices</p>
+                  <ul className="space-y-1">
+                    <li className="flex items-start gap-2 text-text-secondary text-xs">
+                      <svg className="w-3 h-3 text-mystic-mauve mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Diminution du stress chronique</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-text-secondary text-xs">
+                      <svg className="w-3 h-3 text-mystic-mauve mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Meilleure régulation émotionnelle</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-text-secondary text-xs">
+                      <svg className="w-3 h-3 text-mystic-mauve mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Engagement et bien-être durable</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </Card>
 
             {/* Health & Vitality Program */}
-            <Card hover padding="md">
+            <Card hover padding="lg">
               <div className="text-center mb-4">
                 <div className="w-14 h-14 bg-golden-orange/10 rounded-xl flex items-center justify-center mx-auto mb-3">
                   <svg className="w-7 h-7 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -354,20 +399,65 @@ export default function OrganisationsContent() {
                 <h4 className="font-heading text-lg font-bold text-deep-blue">
                   Health & Vitality
                 </h4>
-                <p className="text-sm text-golden-orange font-medium">
+                <p className="text-sm text-golden-orange font-medium mb-3">
                   Énergie, posture & équilibre
                 </p>
               </div>
-              <p className="text-text-secondary text-sm text-center mb-4">
-                Améliorer la santé globale et l'énergie physique, notamment en environnement sédentaire.
-              </p>
-              <div className="text-center text-sm text-text-secondary">
-                <p className="font-medium">24 ou 36 sessions • 1h/session</p>
+
+              <div className="space-y-4 text-sm">
+                {/* Pour qui */}
+                <div>
+                  <p className="font-medium text-deep-blue mb-1">Pour qui</p>
+                  <p className="text-text-secondary text-xs">
+                    Travail de bureau • Prévention santé • Tous niveaux
+                  </p>
+                </div>
+
+                {/* Format */}
+                <div className="flex items-center gap-2 text-text-secondary">
+                  <svg className="w-4 h-4 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span className="font-medium">24 ou 36 sessions • 1h/session</span>
+                </div>
+
+                {/* Contenu */}
+                <div>
+                  <p className="font-medium text-deep-blue mb-1">Contenu</p>
+                  <p className="text-text-secondary text-xs">
+                    Hatha Yoga • Méditations guidées • Nada Yoga • Pranayama
+                  </p>
+                </div>
+
+                {/* Bénéfices */}
+                <div className="pt-3 border-t border-soft-gray/30">
+                  <p className="font-medium text-deep-blue mb-2">Bénéfices</p>
+                  <ul className="space-y-1">
+                    <li className="flex items-start gap-2 text-text-secondary text-xs">
+                      <svg className="w-3 h-3 text-golden-orange mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Réduction des tensions physiques</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-text-secondary text-xs">
+                      <svg className="w-3 h-3 text-golden-orange mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Amélioration de l'énergie et vitalité</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-text-secondary text-xs">
+                      <svg className="w-3 h-3 text-golden-orange mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Prévention troubles sédentarité</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </Card>
 
             {/* Online Well-being Program */}
-            <Card hover padding="md">
+            <Card hover padding="lg">
               <div className="text-center mb-4">
                 <div className="w-14 h-14 bg-morocco-blue/10 rounded-xl flex items-center justify-center mx-auto mb-3">
                   <svg className="w-7 h-7 text-morocco-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -377,15 +467,60 @@ export default function OrganisationsContent() {
                 <h4 className="font-heading text-lg font-bold text-deep-blue">
                   Online Well-being
                 </h4>
-                <p className="text-sm text-morocco-blue font-medium">
+                <p className="text-sm text-morocco-blue font-medium mb-3">
                   Santé globale & immunité
                 </p>
               </div>
-              <p className="text-text-secondary text-sm text-center mb-4">
-                Format flexible en ligne pour équipes hybrides ou multi-sites.
-              </p>
-              <div className="text-center text-sm text-text-secondary">
-                <p className="font-medium">16 sessions • 45min/session</p>
+
+              <div className="space-y-4 text-sm">
+                {/* Pour qui */}
+                <div>
+                  <p className="font-medium text-deep-blue mb-1">Pour qui</p>
+                  <p className="text-text-secondary text-xs">
+                    Équipes hybrides • Multi-sites • Format flexible à distance
+                  </p>
+                </div>
+
+                {/* Format */}
+                <div className="flex items-center gap-2 text-text-secondary">
+                  <svg className="w-4 h-4 text-morocco-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span className="font-medium">16 sessions • 45min/session</span>
+                </div>
+
+                {/* Contenu */}
+                <div>
+                  <p className="font-medium text-deep-blue mb-1">Contenu</p>
+                  <p className="text-text-secondary text-xs">
+                    Yoga bien-être • Système immunitaire • Clarté mentale • Hygiène de vie yogique
+                  </p>
+                </div>
+
+                {/* Bénéfices */}
+                <div className="pt-3 border-t border-soft-gray/30">
+                  <p className="font-medium text-deep-blue mb-2">Bénéfices</p>
+                  <ul className="space-y-1">
+                    <li className="flex items-start gap-2 text-text-secondary text-xs">
+                      <svg className="w-3 h-3 text-morocco-blue mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Renforcement vitalité et prévention</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-text-secondary text-xs">
+                      <svg className="w-3 h-3 text-morocco-blue mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Réduction de la fatigue chronique</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-text-secondary text-xs">
+                      <svg className="w-3 h-3 text-morocco-blue mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Habitudes de vie saines</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </Card>
           </div>
