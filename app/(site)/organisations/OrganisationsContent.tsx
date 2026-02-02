@@ -282,7 +282,7 @@ export default function OrganisationsContent() {
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* Corporate Relaxation Day */}
-            <Card hover padding="lg">
+            <Card hover padding="lg" className="border border-golden-orange/20 shadow-lg">
               <div className="flex items-start gap-4 mb-4">
                 <div className="w-12 h-12 bg-golden-orange/10 rounded-xl flex items-center justify-center flex-shrink-0">
                   <svg className="w-6 h-6 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -333,7 +333,7 @@ export default function OrganisationsContent() {
             </Card>
 
             {/* Corporate Achievement */}
-            <Card hover padding="lg">
+            <Card hover padding="lg" className="border border-morocco-blue/20 shadow-lg">
               <div className="flex items-start gap-4 mb-4">
                 <div className="w-12 h-12 bg-morocco-blue/10 rounded-xl flex items-center justify-center flex-shrink-0">
                   <svg className="w-6 h-6 text-morocco-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -396,7 +396,7 @@ export default function OrganisationsContent() {
 
           <div className="grid md:grid-cols-3 gap-6">
             {/* Stress Management Program */}
-            <Card hover padding="lg">
+            <Card hover padding="lg" className="border border-mystic-mauve/20 shadow-lg">
               <div className="text-center mb-4">
                 <div className="w-14 h-14 bg-mystic-mauve/10 rounded-xl flex items-center justify-center mx-auto mb-3">
                   <svg className="w-7 h-7 text-mystic-mauve" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -464,7 +464,7 @@ export default function OrganisationsContent() {
             </Card>
 
             {/* Health & Vitality Program */}
-            <Card hover padding="lg">
+            <Card hover padding="lg" className="border border-golden-orange/20 shadow-lg">
               <div className="text-center mb-4">
                 <div className="w-14 h-14 bg-golden-orange/10 rounded-xl flex items-center justify-center mx-auto mb-3">
                   <svg className="w-7 h-7 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -532,7 +532,7 @@ export default function OrganisationsContent() {
             </Card>
 
             {/* Online Well-being Program */}
-            <Card hover padding="lg">
+            <Card hover padding="lg" className="border border-morocco-blue/20 shadow-lg">
               <div className="text-center mb-4">
                 <div className="w-14 h-14 bg-morocco-blue/10 rounded-xl flex items-center justify-center mx-auto mb-3">
                   <svg className="w-7 h-7 text-morocco-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
