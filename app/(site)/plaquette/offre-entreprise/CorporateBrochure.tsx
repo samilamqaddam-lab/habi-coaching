@@ -15,31 +15,40 @@ export default function CorporateBrochure() {
 
     try {
       // Dynamic import for html2pdf (client-side only)
-      const html2pdf = (await import('html2pdf.js')).default;
+      const html2pdfModule = await import('html2pdf.js');
+      const html2pdf = html2pdfModule.default || html2pdfModule;
 
       const element = contentRef.current;
+
+      // Clone element to avoid modifying the original
+      const clonedElement = element.cloneNode(true) as HTMLElement;
+
+      // Remove no-print elements from clone
+      const noPrintElements = clonedElement.querySelectorAll('.no-print');
+      noPrintElements.forEach(el => el.remove());
+
       const opt = {
-        margin: [10, 15, 10, 15], // top, left, bottom, right in mm
+        margin: [10, 15, 10, 15],
         filename: 'Transcendence-Work-Offre-Entreprise.pdf',
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: {
           scale: 2,
           useCORS: true,
-          letterRendering: true,
+          logging: false,
+          allowTaint: true,
         },
         jsPDF: {
           unit: 'mm',
           format: 'a4',
           orientation: 'portrait',
         },
-        pagebreak: { mode: 'avoid-all' }, // Single continuous page
+        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
       };
 
-      await html2pdf().set(opt).from(element).save();
+      await html2pdf().set(opt).from(clonedElement).save();
     } catch (error) {
       console.error('Error generating PDF:', error);
-      // Fallback to print
-      window.print();
+      alert('Erreur lors de la génération du PDF. Veuillez réessayer.');
     } finally {
       setIsGenerating(false);
     }
