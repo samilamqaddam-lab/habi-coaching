@@ -40,15 +40,15 @@ export default function CorporateBrochure() {
       {/* Header / Cover */}
       <header className="bg-gradient-to-br from-morocco-blue via-morocco-blue/90 to-deep-blue text-white py-16 px-8">
         <div className="max-w-4xl mx-auto">
-          <div className="flex items-center gap-6 mb-8">
+          <div className="flex items-end gap-3 mb-8">
             <Image
               src="/images/logos/logo-white-full.png"
               alt="Transcendence Work"
-              width={280}
-              height={80}
+              width={240}
+              height={70}
               className="h-auto"
             />
-            <p className="text-white/70 text-sm font-medium">Par Hajar Habi</p>
+            <p className="text-white/60 text-xs font-medium pb-1">par Hajar Habi</p>
           </div>
 
           <div className="space-y-4">
@@ -63,22 +63,22 @@ export default function CorporateBrochure() {
             </p>
           </div>
 
-          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            <div className="bg-white/10 rounded-xl p-4">
-              <p className="text-2xl md:text-3xl font-bold text-golden-orange">≃20 ans</p>
-              <p className="text-xs md:text-sm text-white/80">Expérience corporate</p>
+          <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
+            <div className="bg-white/10 rounded-lg p-3">
+              <p className="text-lg md:text-xl font-bold text-golden-orange">≃20 ans</p>
+              <p className="text-xs text-white/70">Expérience corporate</p>
             </div>
-            <div className="bg-white/10 rounded-xl p-4">
-              <p className="text-2xl md:text-3xl font-bold text-golden-orange">Coach</p>
-              <p className="text-xs md:text-sm text-white/80">Certifiée Transformance Pro</p>
+            <div className="bg-white/10 rounded-lg p-3">
+              <p className="text-lg md:text-xl font-bold text-golden-orange">Coach</p>
+              <p className="text-xs text-white/70">Certifiée Transformance Pro</p>
             </div>
-            <div className="bg-white/10 rounded-xl p-4">
-              <p className="text-2xl md:text-3xl font-bold text-golden-orange">1750h</p>
-              <p className="text-xs md:text-sm text-white/80">Yoga Sadhguru Gurukulam</p>
+            <div className="bg-white/10 rounded-lg p-3">
+              <p className="text-lg md:text-xl font-bold text-golden-orange">1750h</p>
+              <p className="text-xs text-white/70">Yoga Sadhguru Gurukulam</p>
             </div>
-            <div className="bg-white/10 rounded-xl p-4">
-              <p className="text-2xl md:text-3xl font-bold text-golden-orange">FR/EN</p>
-              <p className="text-xs md:text-sm text-white/80">Interventions bilingues</p>
+            <div className="bg-white/10 rounded-lg p-3">
+              <p className="text-lg md:text-xl font-bold text-golden-orange">FR/EN</p>
+              <p className="text-xs text-white/70">Interventions bilingues</p>
             </div>
           </div>
         </div>
