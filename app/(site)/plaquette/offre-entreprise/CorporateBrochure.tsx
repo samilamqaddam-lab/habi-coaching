@@ -33,6 +33,119 @@ interface WindowWithHtml2Pdf extends Window {
   html2pdf: () => Html2PdfInstance;
 }
 
+// Convert oklab/oklch color to RGB using canvas
+const convertColorToRgb = (color: string): string => {
+  if (!color || color === 'transparent' || color === 'inherit' || color === 'initial') {
+    return color;
+  }
+
+  // Check if it's an oklab or oklch color
+  if (!color.includes('oklab') && !color.includes('oklch') && !color.includes('color-mix')) {
+    return color;
+  }
+
+  try {
+    // Use canvas to convert color
+    const canvas = document.createElement('canvas');
+    canvas.width = 1;
+    canvas.height = 1;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return color;
+
+    ctx.fillStyle = color;
+    ctx.fillRect(0, 0, 1, 1);
+    const imageData = ctx.getImageData(0, 0, 1, 1).data;
+
+    if (imageData[3] === 0) {
+      return 'transparent';
+    }
+
+    if (imageData[3] < 255) {
+      return `rgba(${imageData[0]}, ${imageData[1]}, ${imageData[2]}, ${(imageData[3] / 255).toFixed(3)})`;
+    }
+
+    return `rgb(${imageData[0]}, ${imageData[1]}, ${imageData[2]})`;
+  } catch {
+    return color;
+  }
+};
+
+// Pre-process element to convert all oklab colors to RGB
+const convertColorsToRgb = (element: HTMLElement): Map<HTMLElement, Record<string, string>> => {
+  const originalStyles = new Map<HTMLElement, Record<string, string>>();
+  const colorProperties = [
+    'color',
+    'backgroundColor',
+    'borderColor',
+    'borderTopColor',
+    'borderRightColor',
+    'borderBottomColor',
+    'borderLeftColor',
+    'outlineColor',
+    'textDecorationColor',
+    'boxShadow',
+  ];
+
+  const processElement = (el: HTMLElement) => {
+    const computed = window.getComputedStyle(el);
+    const savedStyles: Record<string, string> = {};
+    let hasChanges = false;
+
+    colorProperties.forEach(prop => {
+      const value = computed.getPropertyValue(prop.replace(/([A-Z])/g, '-$1').toLowerCase());
+      if (value && (value.includes('oklab') || value.includes('oklch') || value.includes('color-mix'))) {
+        const converted = convertColorToRgb(value);
+        if (converted !== value) {
+          savedStyles[prop] = el.style.getPropertyValue(prop.replace(/([A-Z])/g, '-$1').toLowerCase());
+          el.style.setProperty(prop.replace(/([A-Z])/g, '-$1').toLowerCase(), converted, 'important');
+          hasChanges = true;
+        }
+      }
+    });
+
+    // Handle background-image gradients
+    const bgImage = computed.backgroundImage;
+    if (bgImage && bgImage !== 'none' && (bgImage.includes('oklab') || bgImage.includes('oklch'))) {
+      savedStyles['backgroundImage'] = el.style.backgroundImage;
+      // For gradients, we need to convert each color stop
+      // This is complex, so we'll just try to set a solid background instead
+      const bgColor = computed.backgroundColor;
+      if (bgColor) {
+        el.style.setProperty('background-image', 'none', 'important');
+        hasChanges = true;
+      }
+    }
+
+    if (hasChanges) {
+      originalStyles.set(el, savedStyles);
+    }
+
+    // Process children
+    Array.from(el.children).forEach(child => {
+      if (child instanceof HTMLElement) {
+        processElement(child);
+      }
+    });
+  };
+
+  processElement(element);
+  return originalStyles;
+};
+
+// Restore original styles after PDF generation
+const restoreOriginalStyles = (originalStyles: Map<HTMLElement, Record<string, string>>) => {
+  originalStyles.forEach((styles, el) => {
+    Object.entries(styles).forEach(([prop, value]) => {
+      const cssProp = prop.replace(/([A-Z])/g, '-$1').toLowerCase();
+      if (value) {
+        el.style.setProperty(cssProp, value);
+      } else {
+        el.style.removeProperty(cssProp);
+      }
+    });
+  });
+};
+
 export default function CorporateBrochure() {
   const contentRef = useRef<HTMLDivElement>(null);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -70,6 +183,9 @@ export default function CorporateBrochure() {
 
     setIsGenerating(true);
 
+    let originalStyles: Map<HTMLElement, Record<string, string>> | null = null;
+    const noPrintElements: NodeListOf<Element> | null = null;
+
     try {
       console.log('Starting PDF generation...');
 
@@ -80,10 +196,15 @@ export default function CorporateBrochure() {
       const element = contentRef.current;
 
       // Hide no-print elements temporarily via CSS
-      const noPrintElements = element.querySelectorAll('.no-print');
-      noPrintElements.forEach(el => {
+      const noPrintEls = element.querySelectorAll('.no-print');
+      noPrintEls.forEach(el => {
         (el as HTMLElement).style.display = 'none';
       });
+
+      // Convert all oklab/oklch colors to RGB for html2canvas compatibility
+      console.log('Converting colors to RGB...');
+      originalStyles = convertColorsToRgb(element);
+      console.log(`Converted colors for ${originalStyles.size} elements`);
 
       const opt = {
         margin: [10, 15, 10, 15],
@@ -92,7 +213,7 @@ export default function CorporateBrochure() {
         html2canvas: {
           scale: 2,
           useCORS: true,
-          logging: true, // Enable logging for debugging
+          logging: false,
           allowTaint: true,
         },
         jsPDF: {
@@ -103,16 +224,35 @@ export default function CorporateBrochure() {
         pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
       };
 
-      console.log('Generating PDF with options:', opt);
+      console.log('Generating PDF...');
       await html2pdf().set(opt).from(element).save();
       console.log('PDF generated successfully');
 
+      // Restore original styles
+      if (originalStyles) {
+        restoreOriginalStyles(originalStyles);
+      }
+
       // Restore no-print elements
-      noPrintElements.forEach(el => {
+      noPrintEls.forEach(el => {
         (el as HTMLElement).style.display = '';
       });
     } catch (error) {
       console.error('Error generating PDF:', error);
+
+      // Restore original styles on error
+      if (originalStyles) {
+        restoreOriginalStyles(originalStyles);
+      }
+
+      // Restore no-print elements on error
+      if (contentRef.current) {
+        const noPrintEls = contentRef.current.querySelectorAll('.no-print');
+        noPrintEls.forEach(el => {
+          (el as HTMLElement).style.display = '';
+        });
+      }
+
       // Show more detailed error message
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
       alert(`Erreur lors de la génération du PDF: ${errorMessage}`);
