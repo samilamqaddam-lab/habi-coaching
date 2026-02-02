@@ -5,13 +5,61 @@ import Link from 'next/link';
 
 export default function CorporateBrochure() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white print-container">
       {/* Print-friendly styles */}
       <style jsx global>{`
         @media print {
-          body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+          /* Preserve colors */
+          body {
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+          }
+
+          /* Hide non-printable elements */
           .no-print { display: none !important; }
-          .page-break { page-break-before: always; }
+
+          /* Remove all page breaks - single continuous page */
+          .print-section { print-section-before: auto !important; }
+          * {
+            print-section-inside: avoid;
+            print-section-before: auto !important;
+            print-section-after: auto !important;
+          }
+
+          /* Page setup - no browser header/footer, with margins */
+          @page {
+            size: A4;
+            margin: 15mm 20mm;
+          }
+
+          /* Remove default browser margins on body */
+          html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+          }
+
+          /* Scale content to fit better */
+          .print-container {
+            width: 100% !important;
+            max-width: 100% !important;
+          }
+
+          /* Ensure links are styled and clickable */
+          a {
+            text-decoration: underline;
+            color: inherit;
+          }
+
+          /* Reduce some spacing for print */
+          section {
+            padding-top: 1.5rem !important;
+            padding-bottom: 1.5rem !important;
+          }
+
+          header {
+            padding-top: 1.5rem !important;
+            padding-bottom: 1.5rem !important;
+          }
         }
       `}</style>
 
@@ -110,7 +158,7 @@ export default function CorporateBrochure() {
       </section>
 
       {/* Section 1: Transformation & Cohésion */}
-      <section id="transformation" className="py-16 px-8 page-break">
+      <section id="transformation" className="py-16 px-8 print-section">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center gap-4 mb-8">
             <div className="w-14 h-14 bg-morocco-blue/10 rounded-xl flex items-center justify-center">
@@ -194,7 +242,7 @@ export default function CorporateBrochure() {
       </section>
 
       {/* Section 2: Leadership Conscient */}
-      <section id="leadership" className="py-16 px-8 bg-dune-beige/30 page-break">
+      <section id="leadership" className="py-16 px-8 bg-dune-beige/30 print-section">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center gap-4 mb-8">
             <div className="w-14 h-14 bg-golden-orange/10 rounded-xl flex items-center justify-center">
@@ -266,7 +314,7 @@ export default function CorporateBrochure() {
       </section>
 
       {/* Section 3: Retraites Corporate */}
-      <section id="retraites" className="py-16 px-8 page-break">
+      <section id="retraites" className="py-16 px-8 print-section">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center gap-4 mb-8">
             <div className="w-14 h-14 bg-mystic-mauve/10 rounded-xl flex items-center justify-center">
@@ -341,7 +389,7 @@ export default function CorporateBrochure() {
       </section>
 
       {/* Section: Corporate Yoga */}
-      <section id="yoga" className="py-16 px-8 bg-golden-orange/5 page-break">
+      <section id="yoga" className="py-16 px-8 bg-golden-orange/5 print-section">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center gap-4 mb-6">
             <div className="w-14 h-14 bg-golden-orange/10 rounded-xl flex items-center justify-center">
@@ -496,7 +544,7 @@ export default function CorporateBrochure() {
           </div>
 
           {/* Programmes Récurrents */}
-          <div className="page-break">
+          <div className="print-section">
             <h3 className="font-semibold text-deep-blue mb-4 flex items-center gap-2">
               <span className="w-6 h-6 bg-mystic-mauve/20 rounded-full flex items-center justify-center text-xs text-mystic-mauve font-bold">B</span>
               Programmes Récurrents
@@ -619,7 +667,7 @@ export default function CorporateBrochure() {
       </section>
 
       {/* Ce qui fait la différence */}
-      <section className="py-16 px-8 page-break">
+      <section className="py-16 px-8 print-section">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-10">
             <span className="inline-block px-4 py-1.5 bg-golden-orange/10 text-golden-orange text-sm font-medium rounded-full mb-3">
