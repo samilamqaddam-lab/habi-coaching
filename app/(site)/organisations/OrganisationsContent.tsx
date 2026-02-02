@@ -8,6 +8,61 @@ import Button from '@/components/ui/Button';
 import FormInput from '@/components/ui/FormInput';
 import { useTranslation } from '@/hooks/useTranslation';
 
+// Accordion component for benefits
+function BenefitsAccordion({
+  benefits,
+  accentColor = 'golden-orange'
+}: {
+  benefits: string[];
+  accentColor?: 'golden-orange' | 'morocco-blue';
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const colorClasses = {
+    'golden-orange': {
+      text: 'text-golden-orange',
+      hover: 'hover:bg-golden-orange/5',
+    },
+    'morocco-blue': {
+      text: 'text-morocco-blue',
+      hover: 'hover:bg-morocco-blue/5',
+    },
+  };
+
+  return (
+    <div className="mt-4 border-t border-soft-gray/30">
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className={`w-full pt-3 pb-2 flex items-center justify-between text-sm font-medium text-deep-blue ${colorClasses[accentColor].hover} rounded transition-colors`}
+      >
+        <span>Bénéfices pour l'entreprise</span>
+        <svg
+          className={`w-4 h-4 ${colorClasses[accentColor].text} transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'}`}>
+        <ul className="space-y-2 pb-2">
+          {benefits.map((benefit, index) => (
+            <li key={index} className="flex items-start gap-2 text-text-secondary text-xs">
+              <svg className={`w-3 h-3 ${colorClasses[accentColor].text} mt-0.5 flex-shrink-0`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+              <span>{benefit}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
 export default function OrganisationsContent() {
   const { t } = useTranslation();
 
@@ -260,11 +315,21 @@ export default function OrganisationsContent() {
                   <span>Hatha Yoga • Nada Yoga • Méditation</span>
                 </div>
               </div>
-              <div className="mt-4 pt-4 border-t border-soft-gray/30">
+              <div className="mt-3 pt-3 border-t border-soft-gray/30">
                 <p className="text-xs text-text-secondary">
                   <strong>Idéal pour :</strong> Séminaires, retraites, clôture de projets
                 </p>
               </div>
+
+              <BenefitsAccordion
+                accentColor="golden-orange"
+                benefits={[
+                  "Réduction immédiate du stress",
+                  "Amélioration du climat relationnel",
+                  "Énergie collective apaisée et recentrée",
+                  "Expérience marquante et fédératrice"
+                ]}
+              />
             </Card>
 
             {/* Corporate Achievement */}
@@ -301,11 +366,21 @@ export default function OrganisationsContent() {
                   <span>Hatha Yoga • Pranayama • Méditation</span>
                 </div>
               </div>
-              <div className="mt-4 pt-4 border-t border-soft-gray/30">
+              <div className="mt-3 pt-3 border-t border-soft-gray/30">
                 <p className="text-xs text-text-secondary">
                   <strong>Idéal pour :</strong> Managers, leadership teams, périodes de transformation
                 </p>
               </div>
+
+              <BenefitsAccordion
+                accentColor="morocco-blue"
+                benefits={[
+                  "Meilleure clarté mentale et capacité de décision",
+                  "Renforcement de la stabilité émotionnelle",
+                  "Performance plus alignée et durable",
+                  "Prévention de l'épuisement professionnel"
+                ]}
+              />
             </Card>
           </div>
         </div>
