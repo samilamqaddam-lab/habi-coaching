@@ -71,17 +71,19 @@ export default function CorporateBrochure() {
     setIsGenerating(true);
 
     try {
+      console.log('Starting PDF generation...');
+
       // Load html2pdf via script tag (reliable approach for UMD)
       const html2pdf = await loadHtml2Pdf();
+      console.log('html2pdf loaded successfully');
 
       const element = contentRef.current;
 
-      // Clone element to avoid modifying the original
-      const clonedElement = element.cloneNode(true) as HTMLElement;
-
-      // Remove no-print elements from clone
-      const noPrintElements = clonedElement.querySelectorAll('.no-print');
-      noPrintElements.forEach(el => el.remove());
+      // Hide no-print elements temporarily via CSS
+      const noPrintElements = element.querySelectorAll('.no-print');
+      noPrintElements.forEach(el => {
+        (el as HTMLElement).style.display = 'none';
+      });
 
       const opt = {
         margin: [10, 15, 10, 15],
@@ -90,7 +92,7 @@ export default function CorporateBrochure() {
         html2canvas: {
           scale: 2,
           useCORS: true,
-          logging: false,
+          logging: true, // Enable logging for debugging
           allowTaint: true,
         },
         jsPDF: {
@@ -101,10 +103,19 @@ export default function CorporateBrochure() {
         pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
       };
 
-      await html2pdf().set(opt).from(clonedElement).save();
+      console.log('Generating PDF with options:', opt);
+      await html2pdf().set(opt).from(element).save();
+      console.log('PDF generated successfully');
+
+      // Restore no-print elements
+      noPrintElements.forEach(el => {
+        (el as HTMLElement).style.display = '';
+      });
     } catch (error) {
       console.error('Error generating PDF:', error);
-      alert('Erreur lors de la génération du PDF. Veuillez réessayer.');
+      // Show more detailed error message
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      alert(`Erreur lors de la génération du PDF: ${errorMessage}`);
     } finally {
       setIsGenerating(false);
     }
