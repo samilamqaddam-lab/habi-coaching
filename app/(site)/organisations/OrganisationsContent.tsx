@@ -263,14 +263,15 @@ export default function OrganisationsContent() {
       </Section>
 
       {/* Corporate Yoga Section */}
-      <Section
-        id="corporate-yoga"
-        subtitle="Bien-être au travail"
-        title="Corporate Yoga"
-        description="Des programmes de yoga adaptés au monde professionnel pour améliorer le bien-être, la performance et la cohésion de vos équipes."
-        centered
-        accentColor="yoga"
-      >
+      <div className="bg-gradient-to-b from-golden-orange/5 to-golden-orange/10">
+        <Section
+          id="corporate-yoga"
+          subtitle="Bien-être au travail"
+          title="Corporate Yoga"
+          description="Des programmes de yoga adaptés au monde professionnel pour améliorer le bien-être, la performance et la cohésion de vos équipes."
+          centered
+          accentColor="yoga"
+        >
         {/* Événements Ponctuels */}
         <div className="mb-16">
           <h3 className="font-heading text-xl font-bold text-deep-blue mb-2 text-center">
@@ -642,6 +643,7 @@ export default function OrganisationsContent() {
           </div>
         </div>
       </Section>
+      </div>
 
       {/* Formulaire de Devis */}
       <Section
