@@ -89,19 +89,19 @@ export default function CorporateBrochure() {
           <h2 className="font-heading text-xl font-bold text-deep-blue mb-6 text-center">Notre Offre</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <a href="#transformation" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow border-l-4 border-morocco-blue">
-              <p className="font-semibold text-deep-blue text-sm">1. Transformation & Cohésion</p>
+              <p className="font-semibold text-deep-blue text-sm">Transformation & Cohésion</p>
               <p className="text-xs text-text-secondary mt-1">Accompagnement du changement</p>
             </a>
             <a href="#leadership" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow border-l-4 border-golden-orange">
-              <p className="font-semibold text-deep-blue text-sm">2. Leadership Conscient</p>
+              <p className="font-semibold text-deep-blue text-sm">Leadership Conscient</p>
               <p className="text-xs text-text-secondary mt-1">Coaching dirigeants & managers</p>
             </a>
             <a href="#retraites" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow border-l-4 border-mystic-mauve">
-              <p className="font-semibold text-deep-blue text-sm">3. Retraites Corporate</p>
+              <p className="font-semibold text-deep-blue text-sm">Retraites Corporate</p>
               <p className="text-xs text-text-secondary mt-1">Séminaires & team building</p>
             </a>
             <a href="#yoga" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow border-l-4 border-golden-orange">
-              <p className="font-semibold text-deep-blue text-sm">4. Corporate Yoga</p>
+              <p className="font-semibold text-deep-blue text-sm">Corporate Yoga</p>
               <p className="text-xs text-text-secondary mt-1">Bien-être au travail</p>
             </a>
           </div>
@@ -117,12 +117,9 @@ export default function CorporateBrochure() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
             </div>
-            <div>
-              <span className="text-morocco-blue text-sm font-medium">Service 1</span>
-              <h2 className="font-heading text-2xl font-bold text-deep-blue">
-                Transformation & Cohésion d'Équipe
-              </h2>
-            </div>
+            <h2 className="font-heading text-2xl font-bold text-deep-blue">
+              Transformation & Cohésion d'Équipe
+            </h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -204,12 +201,9 @@ export default function CorporateBrochure() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
-            <div>
-              <span className="text-golden-orange text-sm font-medium">Service 2</span>
-              <h2 className="font-heading text-2xl font-bold text-deep-blue">
-                Leadership Conscient
-              </h2>
-            </div>
+            <h2 className="font-heading text-2xl font-bold text-deep-blue">
+              Leadership Conscient
+            </h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -279,12 +273,9 @@ export default function CorporateBrochure() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <div>
-              <span className="text-mystic-mauve text-sm font-medium">Service 3</span>
-              <h2 className="font-heading text-2xl font-bold text-deep-blue">
-                Retraites Corporate
-              </h2>
-            </div>
+            <h2 className="font-heading text-2xl font-bold text-deep-blue">
+              Retraites Corporate
+            </h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -348,26 +339,80 @@ export default function CorporateBrochure() {
         </div>
       </section>
 
-      {/* Section 4: Corporate Yoga */}
+      {/* Section: Corporate Yoga */}
       <section id="yoga" className="py-16 px-8 bg-golden-orange/5 page-break">
         <div className="max-w-4xl mx-auto">
-          <div className="flex items-center gap-4 mb-8">
+          <div className="flex items-center gap-4 mb-6">
             <div className="w-14 h-14 bg-golden-orange/10 rounded-xl flex items-center justify-center">
               <svg className="w-7 h-7 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
               </svg>
             </div>
-            <div>
-              <span className="text-golden-orange text-sm font-medium">Service 4</span>
-              <h2 className="font-heading text-2xl font-bold text-deep-blue">
-                Corporate Yoga
-              </h2>
-            </div>
+            <h2 className="font-heading text-2xl font-bold text-deep-blue">
+              Corporate Yoga
+            </h2>
           </div>
 
-          <p className="text-text-secondary mb-8">
+          <p className="text-text-secondary mb-6">
             Des programmes de yoga adaptés au monde professionnel pour améliorer le bien-être, la performance et la cohésion de vos équipes.
           </p>
+
+          {/* Pourquoi le yoga en entreprise */}
+          <div className="bg-white rounded-2xl p-6 shadow-sm border border-golden-orange/20 mb-10">
+            <h3 className="font-semibold text-deep-blue mb-4">Pourquoi le yoga en entreprise ?</h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <p className="text-sm font-medium text-deep-blue mb-2">Les enjeux du monde professionnel</p>
+                <ul className="space-y-1 text-xs text-text-secondary">
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-400">•</span>
+                    Stress chronique et risques psychosociaux en hausse
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-400">•</span>
+                    Troubles musculosquelettiques liés à la sédentarité
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-400">•</span>
+                    Difficultés de concentration et surcharge mentale
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-400">•</span>
+                    Besoin de cohésion dans les équipes hybrides
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <p className="text-sm font-medium text-deep-blue mb-2">Les bénéfices du yoga</p>
+                <ul className="space-y-1 text-xs text-text-secondary">
+                  <li className="flex items-start gap-2">
+                    <svg className="w-3 h-3 text-green-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Réduction du stress et meilleure régulation émotionnelle
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <svg className="w-3 h-3 text-green-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Amélioration de la posture et prévention des TMS
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <svg className="w-3 h-3 text-green-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Clarté mentale et meilleure capacité de concentration
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <svg className="w-3 h-3 text-green-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Cohésion d'équipe et climat relationnel apaisé
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
           {/* Événements Ponctuels */}
           <div className="mb-10">
@@ -375,20 +420,74 @@ export default function CorporateBrochure() {
               <span className="w-6 h-6 bg-golden-orange/20 rounded-full flex items-center justify-center text-xs text-golden-orange font-bold">A</span>
               Événements Ponctuels
             </h3>
-            <div className="grid md:grid-cols-2 gap-4">
+            <p className="text-text-secondary text-sm mb-4">
+              Journées ou demi-journées pour des temps forts : séminaires, retraites, team building
+            </p>
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Corporate Relaxation Day */}
               <div className="bg-white rounded-xl p-5 shadow-sm border border-golden-orange/20">
                 <h4 className="font-semibold text-deep-blue">Corporate Relaxation Day</h4>
-                <p className="text-golden-orange text-xs font-medium mb-2">Reconnexion, détente & cohésion</p>
-                <p className="text-text-secondary text-sm mb-3">1 journée • Hatha Yoga, Nada Yoga, Méditation</p>
-                <p className="text-xs text-text-secondary">
+                <p className="text-golden-orange text-xs font-medium mb-3">Reconnexion, détente & cohésion</p>
+                <p className="text-text-secondary text-sm mb-3">
+                  Une pause régénérante pour relâcher les tensions et renforcer la cohésion collective.
+                </p>
+                <div className="space-y-2 text-xs mb-3">
+                  <div className="flex items-center gap-2 text-text-secondary">
+                    <svg className="w-4 h-4 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span><strong>Durée :</strong> 1 journée</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-text-secondary">
+                    <svg className="w-4 h-4 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    </svg>
+                    <span><strong>Contenu :</strong> Hatha Yoga • Nada Yoga • Méditation</span>
+                  </div>
+                </div>
+                <div className="bg-golden-orange/5 rounded-lg p-3">
+                  <p className="text-xs font-medium text-deep-blue mb-1">Bénéfices</p>
+                  <ul className="text-xs text-text-secondary space-y-0.5">
+                    <li>• Réduction immédiate du stress</li>
+                    <li>• Amélioration du climat relationnel</li>
+                    <li>• Énergie collective apaisée et recentrée</li>
+                  </ul>
+                </div>
+                <p className="text-xs text-text-secondary mt-3">
                   <strong>Idéal pour :</strong> Séminaires, retraites, clôture de projets
                 </p>
               </div>
+
+              {/* Corporate Achievement */}
               <div className="bg-white rounded-xl p-5 shadow-sm border border-morocco-blue/20">
                 <h4 className="font-semibold text-deep-blue">Corporate Achievement</h4>
-                <p className="text-morocco-blue text-xs font-medium mb-2">Clarté mentale, focus & énergie</p>
-                <p className="text-text-secondary text-sm mb-3">1 journée ou 2 demi-journées • Pranayama, Méditation</p>
-                <p className="text-xs text-text-secondary">
+                <p className="text-morocco-blue text-xs font-medium mb-3">Clarté mentale, focus & énergie</p>
+                <p className="text-text-secondary text-sm mb-3">
+                  Soutenir la performance collective par une meilleure gestion de l'énergie et du mental.
+                </p>
+                <div className="space-y-2 text-xs mb-3">
+                  <div className="flex items-center gap-2 text-text-secondary">
+                    <svg className="w-4 h-4 text-morocco-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span><strong>Durée :</strong> 1 journée ou 2 demi-journées</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-text-secondary">
+                    <svg className="w-4 h-4 text-morocco-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    </svg>
+                    <span><strong>Contenu :</strong> Hatha Yoga • Pranayama • Méditation</span>
+                  </div>
+                </div>
+                <div className="bg-morocco-blue/5 rounded-lg p-3">
+                  <p className="text-xs font-medium text-deep-blue mb-1">Bénéfices</p>
+                  <ul className="text-xs text-text-secondary space-y-0.5">
+                    <li>• Meilleure clarté mentale et capacité de décision</li>
+                    <li>• Renforcement de la stabilité émotionnelle</li>
+                    <li>• Prévention de l'épuisement professionnel</li>
+                  </ul>
+                </div>
+                <p className="text-xs text-text-secondary mt-3">
                   <strong>Idéal pour :</strong> Managers, leadership teams, périodes de transformation
                 </p>
               </div>
@@ -396,26 +495,122 @@ export default function CorporateBrochure() {
           </div>
 
           {/* Programmes Récurrents */}
-          <div>
+          <div className="page-break">
             <h3 className="font-semibold text-deep-blue mb-4 flex items-center gap-2">
               <span className="w-6 h-6 bg-mystic-mauve/20 rounded-full flex items-center justify-center text-xs text-mystic-mauve font-bold">B</span>
               Programmes Récurrents
             </h3>
-            <div className="grid md:grid-cols-3 gap-4">
-              <div className="bg-white rounded-xl p-4 shadow-sm border border-mystic-mauve/20">
-                <h4 className="font-semibold text-deep-blue text-sm">Stress Management</h4>
-                <p className="text-mystic-mauve text-xs font-medium">Prévenir le stress, renforcer la résilience</p>
-                <p className="text-text-secondary text-xs mt-2">24/36 sessions • 1h</p>
+            <p className="text-text-secondary text-sm mb-4">
+              Accompagnement durable pour tous les collaborateurs
+            </p>
+
+            <div className="space-y-4">
+              {/* Stress Management */}
+              <div className="bg-white rounded-xl p-5 shadow-sm border border-mystic-mauve/20">
+                <div className="flex flex-col md:flex-row md:items-start gap-4">
+                  <div className="w-12 h-12 bg-mystic-mauve/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-mystic-mauve" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                      <div>
+                        <h4 className="font-semibold text-deep-blue">Stress Management</h4>
+                        <p className="text-mystic-mauve text-xs font-medium">Prévenir le stress, renforcer la résilience</p>
+                      </div>
+                      <span className="mt-1 md:mt-0 bg-mystic-mauve/10 px-3 py-1 rounded-full text-xs font-medium text-mystic-mauve">
+                        24 ou 36 sessions • 1h/session
+                      </span>
+                    </div>
+                    <div className="grid md:grid-cols-3 gap-3 text-xs">
+                      <div>
+                        <p className="font-medium text-deep-blue">Pour qui</p>
+                        <p className="text-text-secondary">Tous collaborateurs • Démarche QVT • Contextes de transformation</p>
+                      </div>
+                      <div>
+                        <p className="font-medium text-deep-blue">Contenu</p>
+                        <p className="text-text-secondary">Hatha Yoga • Pranayama • Nada Yoga • Méditations guidées</p>
+                      </div>
+                      <div>
+                        <p className="font-medium text-deep-blue">Bénéfices</p>
+                        <p className="text-text-secondary">Diminution stress • Régulation émotionnelle • Engagement durable</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="bg-white rounded-xl p-4 shadow-sm border border-golden-orange/20">
-                <h4 className="font-semibold text-deep-blue text-sm">Health & Vitality</h4>
-                <p className="text-golden-orange text-xs font-medium">Énergie, posture & équilibre</p>
-                <p className="text-text-secondary text-xs mt-2">24/36 sessions • 1h</p>
+
+              {/* Health & Vitality */}
+              <div className="bg-white rounded-xl p-5 shadow-sm border border-golden-orange/20">
+                <div className="flex flex-col md:flex-row md:items-start gap-4">
+                  <div className="w-12 h-12 bg-golden-orange/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                      <div>
+                        <h4 className="font-semibold text-deep-blue">Health & Vitality</h4>
+                        <p className="text-golden-orange text-xs font-medium">Énergie, posture & équilibre</p>
+                      </div>
+                      <span className="mt-1 md:mt-0 bg-golden-orange/10 px-3 py-1 rounded-full text-xs font-medium text-golden-orange">
+                        24 ou 36 sessions • 1h/session
+                      </span>
+                    </div>
+                    <div className="grid md:grid-cols-3 gap-3 text-xs">
+                      <div>
+                        <p className="font-medium text-deep-blue">Pour qui</p>
+                        <p className="text-text-secondary">Travail de bureau • Prévention santé • Tous niveaux</p>
+                      </div>
+                      <div>
+                        <p className="font-medium text-deep-blue">Contenu</p>
+                        <p className="text-text-secondary">Hatha Yoga • Méditations guidées • Nada Yoga • Pranayama</p>
+                      </div>
+                      <div>
+                        <p className="font-medium text-deep-blue">Bénéfices</p>
+                        <p className="text-text-secondary">Réduction tensions • Amélioration énergie • Prévention TMS</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="bg-white rounded-xl p-4 shadow-sm border border-morocco-blue/20">
-                <h4 className="font-semibold text-deep-blue text-sm">Online Well-being</h4>
-                <p className="text-morocco-blue text-xs font-medium">Santé globale & immunité</p>
-                <p className="text-text-secondary text-xs mt-2">16 sessions • 45min (en ligne)</p>
+
+              {/* Online Well-being */}
+              <div className="bg-white rounded-xl p-5 shadow-sm border border-morocco-blue/20">
+                <div className="flex flex-col md:flex-row md:items-start gap-4">
+                  <div className="w-12 h-12 bg-morocco-blue/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-morocco-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                      <div>
+                        <h4 className="font-semibold text-deep-blue">Online Well-being</h4>
+                        <p className="text-morocco-blue text-xs font-medium">Santé globale & immunité</p>
+                      </div>
+                      <span className="mt-1 md:mt-0 bg-morocco-blue/10 px-3 py-1 rounded-full text-xs font-medium text-morocco-blue">
+                        16 sessions • 45min/session • En ligne
+                      </span>
+                    </div>
+                    <div className="grid md:grid-cols-3 gap-3 text-xs">
+                      <div>
+                        <p className="font-medium text-deep-blue">Pour qui</p>
+                        <p className="text-text-secondary">Équipes hybrides • Multi-sites • Format flexible à distance</p>
+                      </div>
+                      <div>
+                        <p className="font-medium text-deep-blue">Contenu</p>
+                        <p className="text-text-secondary">Yoga bien-être • Système immunitaire • Clarté mentale • Hygiène yogique</p>
+                      </div>
+                      <div>
+                        <p className="font-medium text-deep-blue">Bénéfices</p>
+                        <p className="text-text-secondary">Vitalité renforcée • Réduction fatigue • Habitudes saines</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
