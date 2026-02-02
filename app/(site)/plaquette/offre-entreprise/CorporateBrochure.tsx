@@ -40,15 +40,15 @@ export default function CorporateBrochure() {
       {/* Header / Cover */}
       <header className="bg-gradient-to-br from-morocco-blue via-morocco-blue/90 to-deep-blue text-white py-16 px-8">
         <div className="max-w-4xl mx-auto">
-          <div className="mb-8">
+          <div className="flex items-center gap-6 mb-8">
             <Image
-              src="/images/logos/logo-white.png"
+              src="/images/logos/logo-white-full.png"
               alt="Transcendence Work"
-              width={220}
-              height={60}
+              width={280}
+              height={80}
               className="h-auto"
             />
-            <p className="text-white/60 text-sm mt-2">Par Hajar Habi</p>
+            <p className="text-white/70 text-sm font-medium">Par Hajar Habi</p>
           </div>
 
           <div className="space-y-4">
