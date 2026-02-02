@@ -680,7 +680,7 @@ export default function OrganisationsContent() {
         accentColor="corporate"
       >
         <div className="max-w-3xl mx-auto">
-          <Card padding="lg">
+          <Card padding="lg" className="bg-white">
             {submitStatus === 'success' && (
               <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
                 <p className="text-green-800 font-medium">
