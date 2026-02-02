@@ -42,7 +42,7 @@ export default function CorporateBrochure() {
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center gap-4 mb-8">
             <Image
-              src="/images/logo.png"
+              src="/images/logos/logo-white.png"
               alt="Transcendence Work"
               width={60}
               height={60}
@@ -66,18 +66,22 @@ export default function CorporateBrochure() {
             </p>
           </div>
 
-          <div className="mt-12 grid grid-cols-3 gap-6 text-center">
+          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             <div className="bg-white/10 rounded-xl p-4">
-              <p className="text-3xl font-bold text-golden-orange">≃20</p>
-              <p className="text-sm text-white/80">Années d'expérience corporate</p>
+              <p className="text-2xl md:text-3xl font-bold text-golden-orange">≃20 ans</p>
+              <p className="text-xs md:text-sm text-white/80">Expérience corporate</p>
             </div>
             <div className="bg-white/10 rounded-xl p-4">
-              <p className="text-3xl font-bold text-golden-orange">1750h</p>
-              <p className="text-sm text-white/80">Formation yoga certifiée</p>
+              <p className="text-2xl md:text-3xl font-bold text-golden-orange">Coach</p>
+              <p className="text-xs md:text-sm text-white/80">Certifiée Transformance Pro</p>
             </div>
             <div className="bg-white/10 rounded-xl p-4">
-              <p className="text-3xl font-bold text-golden-orange">FR/EN</p>
-              <p className="text-sm text-white/80">Interventions bilingues</p>
+              <p className="text-2xl md:text-3xl font-bold text-golden-orange">1750h</p>
+              <p className="text-xs md:text-sm text-white/80">Yoga Sadhguru Gurukulam</p>
+            </div>
+            <div className="bg-white/10 rounded-xl p-4">
+              <p className="text-2xl md:text-3xl font-bold text-golden-orange">FR/EN</p>
+              <p className="text-xs md:text-sm text-white/80">Interventions bilingues</p>
             </div>
           </div>
         </div>
