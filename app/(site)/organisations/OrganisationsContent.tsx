@@ -603,42 +603,67 @@ export default function OrganisationsContent() {
         </div>
 
         {/* Ce qui fait la différence */}
-        <div className="bg-gradient-to-r from-golden-orange/5 to-morocco-blue/5 rounded-2xl p-8 max-w-3xl mx-auto">
-          <h4 className="font-heading text-lg font-bold text-deep-blue mb-4 text-center">
-            Ce qui fait la différence
-          </h4>
-          <div className="grid sm:grid-cols-2 gap-4 text-sm">
-            <div className="flex items-start gap-3">
-              <svg className="w-5 h-5 text-golden-orange flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-              <span className="text-text-secondary">
-                Programmes conçus par une <strong className="text-deep-blue">ex-DRH, coach certifiée et professeure de Hatha Yoga Classique</strong>
-              </span>
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-8">
+            <span className="inline-block px-4 py-1.5 bg-golden-orange/10 text-golden-orange text-sm font-medium rounded-full mb-3">
+              Notre approche
+            </span>
+            <h4 className="font-heading text-2xl font-bold text-deep-blue">
+              Ce qui fait la différence
+            </h4>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Expertise */}
+            <div className="bg-white rounded-xl p-6 shadow-md border border-soft-gray/30 text-center">
+              <div className="w-12 h-12 bg-golden-orange/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                </svg>
+              </div>
+              <h5 className="font-semibold text-deep-blue mb-2">Expertise unique</h5>
+              <p className="text-text-secondary text-sm">
+                Ex-DRH, coach certifiée et professeure de Hatha Yoga Classique
+              </p>
             </div>
-            <div className="flex items-start gap-3">
-              <svg className="w-5 h-5 text-golden-orange flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-              <span className="text-text-secondary">
-                Approche <strong className="text-deep-blue">accessible et adaptée</strong> au monde professionnel
-              </span>
+
+            {/* Approche */}
+            <div className="bg-white rounded-xl p-6 shadow-md border border-soft-gray/30 text-center">
+              <div className="w-12 h-12 bg-morocco-blue/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6 text-morocco-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <h5 className="font-semibold text-deep-blue mb-2">Accessible à tous</h5>
+              <p className="text-text-secondary text-sm">
+                Approche adaptée au monde professionnel, tous niveaux
+              </p>
             </div>
-            <div className="flex items-start gap-3">
-              <svg className="w-5 h-5 text-golden-orange flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-              <span className="text-text-secondary">
-                Interventions possibles en <strong className="text-deep-blue">français et anglais</strong>
-              </span>
+
+            {/* Langues */}
+            <div className="bg-white rounded-xl p-6 shadow-md border border-soft-gray/30 text-center">
+              <div className="w-12 h-12 bg-mystic-mauve/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6 text-mystic-mauve" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                </svg>
+              </div>
+              <h5 className="font-semibold text-deep-blue mb-2">Bilingue</h5>
+              <p className="text-text-secondary text-sm">
+                Interventions en français et en anglais
+              </p>
             </div>
-            <div className="flex items-start gap-3">
-              <svg className="w-5 h-5 text-golden-orange flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-              <span className="text-text-secondary">
-                Formats <strong className="text-deep-blue">personnalisables</strong> selon vos enjeux
-              </span>
+
+            {/* Personnalisation */}
+            <div className="bg-white rounded-xl p-6 shadow-md border border-soft-gray/30 text-center">
+              <div className="w-12 h-12 bg-golden-orange/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                </svg>
+              </div>
+              <h5 className="font-semibold text-deep-blue mb-2">Sur-mesure</h5>
+              <p className="text-text-secondary text-sm">
+                Formats personnalisables selon vos enjeux
+              </p>
             </div>
           </div>
         </div>
