@@ -263,7 +263,7 @@ export default function OrganisationsContent() {
       </Section>
 
       {/* Corporate Yoga Section */}
-      <div className="bg-gradient-to-b from-golden-orange/5 to-golden-orange/10">
+      <div className="bg-golden-orange/[0.03]">
         <Section
           id="corporate-yoga"
           subtitle="Bien-être au travail"
