@@ -1,11 +1,52 @@
 'use client';
 
+import { useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function CorporateBrochure() {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [isGenerating, setIsGenerating] = useState(false);
+
+  const generatePDF = async () => {
+    if (!contentRef.current) return;
+
+    setIsGenerating(true);
+
+    try {
+      // Dynamic import for html2pdf (client-side only)
+      const html2pdf = (await import('html2pdf.js')).default;
+
+      const element = contentRef.current;
+      const opt = {
+        margin: [10, 15, 10, 15], // top, left, bottom, right in mm
+        filename: 'Transcendence-Work-Offre-Entreprise.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: {
+          scale: 2,
+          useCORS: true,
+          letterRendering: true,
+        },
+        jsPDF: {
+          unit: 'mm',
+          format: 'a4',
+          orientation: 'portrait',
+        },
+        pagebreak: { mode: 'avoid-all' }, // Single continuous page
+      };
+
+      await html2pdf().set(opt).from(element).save();
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      // Fallback to print
+      window.print();
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-white print-container">
+    <div ref={contentRef} className="min-h-screen bg-white print-container">
       {/* Print-friendly styles */}
       <style jsx global>{`
         @media print {
@@ -66,13 +107,26 @@ export default function CorporateBrochure() {
       {/* Floating Action Bar - Not printed */}
       <div className="no-print fixed bottom-6 right-6 flex flex-col gap-3 z-50">
         <button
-          onClick={() => window.print()}
-          className="bg-morocco-blue text-white px-6 py-3 rounded-full shadow-lg hover:bg-morocco-blue/90 transition-colors flex items-center gap-2"
+          onClick={generatePDF}
+          disabled={isGenerating}
+          className="bg-morocco-blue text-white px-6 py-3 rounded-full shadow-lg hover:bg-morocco-blue/90 transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-          </svg>
-          Imprimer / PDF
+          {isGenerating ? (
+            <>
+              <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Génération...
+            </>
+          ) : (
+            <>
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Télécharger PDF
+            </>
+          )}
         </button>
         <Link
           href="/organisations#devis"
