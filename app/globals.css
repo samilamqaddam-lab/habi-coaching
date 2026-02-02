@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Disable oklab colors - use sRGB for html2canvas compatibility */
+@theme {
+  --color-mix-in: srgb;
+}
+
 :root {
   /* Palette Marocaine - Tons Terreux */
   --desert-ocre: #C89F6F;
