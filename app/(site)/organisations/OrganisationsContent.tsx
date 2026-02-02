@@ -207,6 +207,206 @@ export default function OrganisationsContent() {
         </div>
       </Section>
 
+      {/* Corporate Yoga Section */}
+      <Section
+        id="corporate-yoga"
+        subtitle="Bien-être au travail"
+        title="Corporate Yoga"
+        description="Des programmes de yoga adaptés au monde professionnel pour améliorer le bien-être, la performance et la cohésion de vos équipes."
+        centered
+        accentColor="yoga"
+      >
+        {/* Événements Ponctuels */}
+        <div className="mb-16">
+          <h3 className="font-heading text-xl font-bold text-deep-blue mb-2 text-center">
+            Événements Ponctuels
+          </h3>
+          <p className="text-text-secondary text-center mb-8 max-w-2xl mx-auto">
+            Journées ou demi-journées pour des temps forts : séminaires, retraites, team building
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Corporate Relaxation Day */}
+            <Card hover padding="lg">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-12 h-12 bg-golden-orange/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <span className="text-2xl">🌿</span>
+                </div>
+                <div>
+                  <h4 className="font-heading text-lg font-bold text-deep-blue">
+                    Corporate Relaxation Day
+                  </h4>
+                  <p className="text-sm text-golden-orange font-medium">
+                    Reconnexion, détente & cohésion
+                  </p>
+                </div>
+              </div>
+              <p className="text-text-secondary text-sm mb-4">
+                Une pause régénérante pour relâcher les tensions et renforcer la cohésion collective.
+              </p>
+              <div className="space-y-2 text-sm">
+                <div className="flex items-center gap-2 text-text-secondary">
+                  <span>⏱</span>
+                  <span>1 journée</span>
+                </div>
+                <div className="flex items-center gap-2 text-text-secondary">
+                  <span>✓</span>
+                  <span>Hatha Yoga • Nada Yoga • Méditation</span>
+                </div>
+              </div>
+              <div className="mt-4 pt-4 border-t border-soft-gray/30">
+                <p className="text-xs text-text-secondary">
+                  <strong>Idéal pour :</strong> Séminaires, retraites, clôture de projets
+                </p>
+              </div>
+            </Card>
+
+            {/* Corporate Achievement */}
+            <Card hover padding="lg">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-12 h-12 bg-morocco-blue/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <span className="text-2xl">🎯</span>
+                </div>
+                <div>
+                  <h4 className="font-heading text-lg font-bold text-deep-blue">
+                    Corporate Achievement
+                  </h4>
+                  <p className="text-sm text-morocco-blue font-medium">
+                    Clarté mentale, focus & énergie
+                  </p>
+                </div>
+              </div>
+              <p className="text-text-secondary text-sm mb-4">
+                Soutenir la performance collective par une meilleure gestion de l'énergie et du mental.
+              </p>
+              <div className="space-y-2 text-sm">
+                <div className="flex items-center gap-2 text-text-secondary">
+                  <span>⏱</span>
+                  <span>1 journée ou 2 demi-journées</span>
+                </div>
+                <div className="flex items-center gap-2 text-text-secondary">
+                  <span>✓</span>
+                  <span>Hatha Yoga • Pranayama • Méditation</span>
+                </div>
+              </div>
+              <div className="mt-4 pt-4 border-t border-soft-gray/30">
+                <p className="text-xs text-text-secondary">
+                  <strong>Idéal pour :</strong> Managers, leadership teams, périodes de transformation
+                </p>
+              </div>
+            </Card>
+          </div>
+        </div>
+
+        {/* Programmes Récurrents */}
+        <div className="mb-12">
+          <h3 className="font-heading text-xl font-bold text-deep-blue mb-2 text-center">
+            Programmes Récurrents
+          </h3>
+          <p className="text-text-secondary text-center mb-8 max-w-2xl mx-auto">
+            Accompagnement durable pour tous les collaborateurs
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Stress Management Program */}
+            <Card hover padding="md">
+              <div className="text-center mb-4">
+                <div className="w-14 h-14 bg-mystic-mauve/10 rounded-xl flex items-center justify-center mx-auto mb-3">
+                  <span className="text-2xl">🌬️</span>
+                </div>
+                <h4 className="font-heading text-lg font-bold text-deep-blue">
+                  Stress Management
+                </h4>
+                <p className="text-sm text-mystic-mauve font-medium">
+                  Prévenir le stress, renforcer la résilience
+                </p>
+              </div>
+              <p className="text-text-secondary text-sm text-center mb-4">
+                Accompagner durablement les collaborateurs dans la gestion du stress et de la charge mentale.
+              </p>
+              <div className="text-center text-sm text-text-secondary">
+                <p className="font-medium">24 ou 36 sessions • 1h/session</p>
+              </div>
+            </Card>
+
+            {/* Health & Vitality Program */}
+            <Card hover padding="md">
+              <div className="text-center mb-4">
+                <div className="w-14 h-14 bg-golden-orange/10 rounded-xl flex items-center justify-center mx-auto mb-3">
+                  <span className="text-2xl">💪</span>
+                </div>
+                <h4 className="font-heading text-lg font-bold text-deep-blue">
+                  Health & Vitality
+                </h4>
+                <p className="text-sm text-golden-orange font-medium">
+                  Énergie, posture & équilibre
+                </p>
+              </div>
+              <p className="text-text-secondary text-sm text-center mb-4">
+                Améliorer la santé globale et l'énergie physique, notamment en environnement sédentaire.
+              </p>
+              <div className="text-center text-sm text-text-secondary">
+                <p className="font-medium">24 ou 36 sessions • 1h/session</p>
+              </div>
+            </Card>
+
+            {/* Online Well-being Program */}
+            <Card hover padding="md">
+              <div className="text-center mb-4">
+                <div className="w-14 h-14 bg-morocco-blue/10 rounded-xl flex items-center justify-center mx-auto mb-3">
+                  <span className="text-2xl">✨</span>
+                </div>
+                <h4 className="font-heading text-lg font-bold text-deep-blue">
+                  Online Well-being
+                </h4>
+                <p className="text-sm text-morocco-blue font-medium">
+                  Santé globale & immunité
+                </p>
+              </div>
+              <p className="text-text-secondary text-sm text-center mb-4">
+                Format flexible en ligne pour équipes hybrides ou multi-sites.
+              </p>
+              <div className="text-center text-sm text-text-secondary">
+                <p className="font-medium">16 sessions • 45min/session</p>
+              </div>
+            </Card>
+          </div>
+        </div>
+
+        {/* Ce qui fait la différence */}
+        <div className="bg-gradient-to-r from-golden-orange/5 to-morocco-blue/5 rounded-2xl p-8 max-w-3xl mx-auto">
+          <h4 className="font-heading text-lg font-bold text-deep-blue mb-4 text-center">
+            Ce qui fait la différence
+          </h4>
+          <div className="grid sm:grid-cols-2 gap-4 text-sm">
+            <div className="flex items-start gap-3">
+              <span className="text-golden-orange">✓</span>
+              <span className="text-text-secondary">
+                Programmes conçus par une <strong className="text-deep-blue">ex-DRH, coach certifiée et professeure de Hatha Yoga Classique</strong>
+              </span>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="text-golden-orange">✓</span>
+              <span className="text-text-secondary">
+                Approche <strong className="text-deep-blue">accessible et adaptée</strong> au monde professionnel
+              </span>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="text-golden-orange">✓</span>
+              <span className="text-text-secondary">
+                Interventions possibles en <strong className="text-deep-blue">français et anglais</strong>
+              </span>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="text-golden-orange">✓</span>
+              <span className="text-text-secondary">
+                Formats <strong className="text-deep-blue">personnalisables</strong> selon vos enjeux
+              </span>
+            </div>
+          </div>
+        </div>
+      </Section>
+
       {/* Formulaire de Devis */}
       <Section
         id="devis"

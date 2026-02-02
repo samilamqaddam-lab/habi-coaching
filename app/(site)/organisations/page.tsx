@@ -17,6 +17,11 @@ export const metadata: Metadata = {
     'retraite corporate maroc',
     'consultant corporate casablanca',
     'formation management maroc',
+    'yoga entreprise casablanca',
+    'corporate yoga maroc',
+    'bien-être au travail casablanca',
+    'gestion stress entreprise',
+    'qvt maroc',
   ],
   authors: [{ name: 'Hajar Habi' }],
   alternates: {
