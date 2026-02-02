@@ -670,12 +670,13 @@ export default function OrganisationsContent() {
       </Section>
       </div>
 
-      {/* Formulaire de Devis */}
+      {/* Formulaire de contact */}
       <Section
         id="devis"
         subtitle={t('organisations.quote.subtitle')}
         title={t('organisations.quote.title')}
         description={t('organisations.quote.description')}
+        background="sky-blue-light"
         centered
         accentColor="corporate"
       >
