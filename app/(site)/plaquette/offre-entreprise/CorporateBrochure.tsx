@@ -88,21 +88,21 @@ export default function CorporateBrochure() {
         <div className="max-w-4xl mx-auto">
           <h2 className="font-heading text-xl font-bold text-deep-blue mb-6 text-center">Notre Offre</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <a href="#transformation" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow border-l-4 border-morocco-blue">
-              <p className="font-semibold text-deep-blue text-sm">Transformation & Cohésion</p>
-              <p className="text-xs text-text-secondary mt-1">Accompagnement du changement</p>
+            <a href="#transformation" className="bg-morocco-blue rounded-xl p-4 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
+              <p className="font-semibold text-white text-sm">Transformation & Cohésion</p>
+              <p className="text-xs text-white/70 mt-1">Accompagnement du changement</p>
             </a>
-            <a href="#leadership" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow border-l-4 border-golden-orange">
-              <p className="font-semibold text-deep-blue text-sm">Leadership Conscient</p>
-              <p className="text-xs text-text-secondary mt-1">Coaching dirigeants & managers</p>
+            <a href="#leadership" className="bg-golden-orange rounded-xl p-4 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
+              <p className="font-semibold text-white text-sm">Leadership Conscient</p>
+              <p className="text-xs text-white/70 mt-1">Coaching dirigeants & managers</p>
             </a>
-            <a href="#retraites" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow border-l-4 border-mystic-mauve">
-              <p className="font-semibold text-deep-blue text-sm">Retraites Corporate</p>
-              <p className="text-xs text-text-secondary mt-1">Séminaires & team building</p>
+            <a href="#retraites" className="bg-mystic-mauve rounded-xl p-4 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
+              <p className="font-semibold text-white text-sm">Retraites Corporate</p>
+              <p className="text-xs text-white/70 mt-1">Séminaires & team building</p>
             </a>
-            <a href="#yoga" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow border-l-4 border-golden-orange">
-              <p className="font-semibold text-deep-blue text-sm">Corporate Yoga</p>
-              <p className="text-xs text-text-secondary mt-1">Bien-être au travail</p>
+            <a href="#yoga" className="bg-gradient-to-r from-golden-orange to-morocco-blue rounded-xl p-4 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
+              <p className="font-semibold text-white text-sm">Corporate Yoga</p>
+              <p className="text-xs text-white/70 mt-1">Bien-être au travail</p>
             </a>
           </div>
         </div>
