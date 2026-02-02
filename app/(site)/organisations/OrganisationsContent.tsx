@@ -230,7 +230,9 @@ export default function OrganisationsContent() {
             <Card hover padding="lg">
               <div className="flex items-start gap-4 mb-4">
                 <div className="w-12 h-12 bg-golden-orange/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <span className="text-2xl">🌿</span>
+                  <svg className="w-6 h-6 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
                 </div>
                 <div>
                   <h4 className="font-heading text-lg font-bold text-deep-blue">
@@ -246,11 +248,15 @@ export default function OrganisationsContent() {
               </p>
               <div className="space-y-2 text-sm">
                 <div className="flex items-center gap-2 text-text-secondary">
-                  <span>⏱</span>
+                  <svg className="w-4 h-4 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
                   <span>1 journée</span>
                 </div>
                 <div className="flex items-center gap-2 text-text-secondary">
-                  <span>✓</span>
+                  <svg className="w-4 h-4 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
                   <span>Hatha Yoga • Nada Yoga • Méditation</span>
                 </div>
               </div>
@@ -265,7 +271,9 @@ export default function OrganisationsContent() {
             <Card hover padding="lg">
               <div className="flex items-start gap-4 mb-4">
                 <div className="w-12 h-12 bg-morocco-blue/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <span className="text-2xl">🎯</span>
+                  <svg className="w-6 h-6 text-morocco-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
                 </div>
                 <div>
                   <h4 className="font-heading text-lg font-bold text-deep-blue">
@@ -281,11 +289,15 @@ export default function OrganisationsContent() {
               </p>
               <div className="space-y-2 text-sm">
                 <div className="flex items-center gap-2 text-text-secondary">
-                  <span>⏱</span>
+                  <svg className="w-4 h-4 text-morocco-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
                   <span>1 journée ou 2 demi-journées</span>
                 </div>
                 <div className="flex items-center gap-2 text-text-secondary">
-                  <span>✓</span>
+                  <svg className="w-4 h-4 text-morocco-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
                   <span>Hatha Yoga • Pranayama • Méditation</span>
                 </div>
               </div>
@@ -312,7 +324,9 @@ export default function OrganisationsContent() {
             <Card hover padding="md">
               <div className="text-center mb-4">
                 <div className="w-14 h-14 bg-mystic-mauve/10 rounded-xl flex items-center justify-center mx-auto mb-3">
-                  <span className="text-2xl">🌬️</span>
+                  <svg className="w-7 h-7 text-mystic-mauve" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
                 </div>
                 <h4 className="font-heading text-lg font-bold text-deep-blue">
                   Stress Management
@@ -333,7 +347,9 @@ export default function OrganisationsContent() {
             <Card hover padding="md">
               <div className="text-center mb-4">
                 <div className="w-14 h-14 bg-golden-orange/10 rounded-xl flex items-center justify-center mx-auto mb-3">
-                  <span className="text-2xl">💪</span>
+                  <svg className="w-7 h-7 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
                 </div>
                 <h4 className="font-heading text-lg font-bold text-deep-blue">
                   Health & Vitality
@@ -354,7 +370,9 @@ export default function OrganisationsContent() {
             <Card hover padding="md">
               <div className="text-center mb-4">
                 <div className="w-14 h-14 bg-morocco-blue/10 rounded-xl flex items-center justify-center mx-auto mb-3">
-                  <span className="text-2xl">✨</span>
+                  <svg className="w-7 h-7 text-morocco-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
                 </div>
                 <h4 className="font-heading text-lg font-bold text-deep-blue">
                   Online Well-being
@@ -380,25 +398,33 @@ export default function OrganisationsContent() {
           </h4>
           <div className="grid sm:grid-cols-2 gap-4 text-sm">
             <div className="flex items-start gap-3">
-              <span className="text-golden-orange">✓</span>
+              <svg className="w-5 h-5 text-golden-orange flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
               <span className="text-text-secondary">
                 Programmes conçus par une <strong className="text-deep-blue">ex-DRH, coach certifiée et professeure de Hatha Yoga Classique</strong>
               </span>
             </div>
             <div className="flex items-start gap-3">
-              <span className="text-golden-orange">✓</span>
+              <svg className="w-5 h-5 text-golden-orange flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
               <span className="text-text-secondary">
                 Approche <strong className="text-deep-blue">accessible et adaptée</strong> au monde professionnel
               </span>
             </div>
             <div className="flex items-start gap-3">
-              <span className="text-golden-orange">✓</span>
+              <svg className="w-5 h-5 text-golden-orange flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
               <span className="text-text-secondary">
                 Interventions possibles en <strong className="text-deep-blue">français et anglais</strong>
               </span>
             </div>
             <div className="flex items-start gap-3">
-              <span className="text-golden-orange">✓</span>
+              <svg className="w-5 h-5 text-golden-orange flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
               <span className="text-text-secondary">
                 Formats <strong className="text-deep-blue">personnalisables</strong> selon vos enjeux
               </span>
