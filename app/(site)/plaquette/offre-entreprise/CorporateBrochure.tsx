@@ -73,8 +73,8 @@ export default function CorporateBrochure() {
               <p className="text-xs text-white/70">Certifiée Transformance Pro</p>
             </div>
             <div className="bg-white/10 rounded-lg p-3">
-              <p className="text-lg md:text-xl font-bold text-golden-orange">1750h</p>
-              <p className="text-xs text-white/70">Yoga Sadhguru Gurukulam</p>
+              <p className="text-lg md:text-xl font-bold text-golden-orange">1750+</p>
+              <p className="text-xs text-white/70">Heures yoga certifié</p>
             </div>
             <div className="bg-white/10 rounded-lg p-3">
               <p className="text-lg md:text-xl font-bold text-golden-orange">FR/EN</p>
