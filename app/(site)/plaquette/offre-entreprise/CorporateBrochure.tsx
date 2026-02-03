@@ -857,6 +857,73 @@ export default function CorporateBrochure() {
         </div>
       </section>
 
+      {/* Positionnement */}
+      <section className="py-16 px-8 bg-dune-beige/30 print-section">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-8">
+            <span className="inline-block px-4 py-1.5 bg-morocco-blue/10 text-morocco-blue text-sm font-medium rounded-full mb-3">
+              Positionnement
+            </span>
+            <h2 className="font-heading text-3xl font-bold text-deep-blue">
+              Qui accompagnons-nous ?
+            </h2>
+          </div>
+
+          <div className="bg-white rounded-2xl p-8 shadow-sm border border-morocco-blue/10">
+            <p className="text-deep-blue font-medium mb-6">Transcendence Work accompagne :</p>
+
+            <div className="space-y-6">
+              {/* Entreprises et organisations */}
+              <div className="flex gap-4">
+                <div className="w-10 h-10 bg-morocco-blue/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <svg className="w-5 h-5 text-morocco-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-text-secondary">
+                    Les <strong className="text-deep-blue">entreprises et organisations</strong> engagées dans une démarche de{' '}
+                    <strong className="text-deep-blue">QVT, de bien-être et de transformation humaine</strong>, souhaitant allier performance durable et équilibre des équipes.
+                  </p>
+                </div>
+              </div>
+
+              {/* Dirigeants, leaders et managers */}
+              <div className="flex gap-4">
+                <div className="w-10 h-10 bg-golden-orange/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <svg className="w-5 h-5 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-text-secondary mb-3">
+                    <strong className="text-deep-blue">Dirigeants, leaders et managers</strong> opérant dans des contextes complexes, incertains et à forte pression, désireux de :
+                  </p>
+                  <ul className="space-y-2 ml-2">
+                    <li className="flex items-start gap-2 text-text-secondary text-sm">
+                      <svg className="w-4 h-4 text-golden-orange mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                      <span>
+                        <strong className="text-deep-blue">Cultiver un leadership plus conscient et plus serein</strong>, favorisant la clarté, la stabilité émotionnelle et la qualité des décisions
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2 text-text-secondary text-sm">
+                      <svg className="w-4 h-4 text-golden-orange mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                      <span>
+                        <strong className="text-deep-blue">Renforcer la confiance, l'engagement et le sens au sein des équipes</strong>, notamment dans des périodes de transformation, de changement ou de croissance
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Ce qui fait la différence */}
       <section className="py-16 px-8 print-section">
         <div className="max-w-4xl mx-auto">
