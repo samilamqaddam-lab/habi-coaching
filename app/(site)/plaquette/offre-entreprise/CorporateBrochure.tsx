@@ -580,7 +580,7 @@ export default function CorporateBrochure() {
       </section>
 
       {/* Section: Corporate Yoga */}
-      <section id="yoga" className="py-16 px-8 bg-golden-orange/5 print-section">
+      <section id="yoga" className="py-16 px-8 print-section">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center gap-4 mb-6">
             <div className="w-14 h-14 bg-golden-orange/10 rounded-xl flex items-center justify-center">
