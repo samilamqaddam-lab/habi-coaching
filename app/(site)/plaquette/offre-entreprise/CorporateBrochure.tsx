@@ -197,13 +197,68 @@ export default function CorporateBrochure() {
     });
   };
 
+  // Inject CSS override to force RGB colors for html2canvas
+  const injectRgbColorOverride = (): HTMLStyleElement => {
+    const style = document.createElement('style');
+    style.id = 'pdf-color-override';
+    style.textContent = `
+      /* Force RGB colors for PDF generation - override Tailwind's modern color functions */
+      .print-container, .print-container * {
+        /* Override any color() or oklab() functions with fallback RGB */
+        --tw-text-opacity: 1 !important;
+        --tw-bg-opacity: 1 !important;
+        --tw-border-opacity: 1 !important;
+      }
+
+      /* Force specific colors to RGB values */
+      .print-container .text-white { color: rgb(255, 255, 255) !important; }
+      .print-container .text-deep-blue { color: rgb(26, 58, 74) !important; }
+      .print-container .text-text-secondary { color: rgb(107, 107, 107) !important; }
+      .print-container .text-text-primary { color: rgb(44, 44, 44) !important; }
+      .print-container .text-golden-orange { color: rgb(212, 146, 79) !important; }
+      .print-container .text-morocco-blue { color: rgb(44, 75, 94) !important; }
+      .print-container .text-mystic-mauve { color: rgb(159, 138, 170) !important; }
+
+      .print-container .bg-white { background-color: rgb(255, 255, 255) !important; }
+      .print-container .bg-dune-beige\\/30 { background-color: rgba(245, 239, 231, 0.3) !important; }
+      .print-container .bg-golden-orange\\/5 { background-color: rgba(212, 146, 79, 0.05) !important; }
+      .print-container .bg-golden-orange\\/10 { background-color: rgba(212, 146, 79, 0.1) !important; }
+      .print-container .bg-golden-orange\\/20 { background-color: rgba(212, 146, 79, 0.2) !important; }
+      .print-container .bg-morocco-blue\\/5 { background-color: rgba(44, 75, 94, 0.05) !important; }
+      .print-container .bg-morocco-blue\\/10 { background-color: rgba(44, 75, 94, 0.1) !important; }
+      .print-container .bg-mystic-mauve\\/5 { background-color: rgba(159, 138, 170, 0.05) !important; }
+      .print-container .bg-mystic-mauve\\/10 { background-color: rgba(159, 138, 170, 0.1) !important; }
+      .print-container .bg-mystic-mauve\\/20 { background-color: rgba(159, 138, 170, 0.2) !important; }
+      .print-container .bg-morocco-blue { background-color: rgb(44, 75, 94) !important; }
+      .print-container .bg-golden-orange { background-color: rgb(212, 146, 79) !important; }
+      .print-container .bg-mystic-mauve { background-color: rgb(159, 138, 170) !important; }
+      .print-container .bg-deep-blue { background-color: rgb(26, 58, 74) !important; }
+
+      .print-container .border-golden-orange\\/10 { border-color: rgba(212, 146, 79, 0.1) !important; }
+      .print-container .border-golden-orange\\/20 { border-color: rgba(212, 146, 79, 0.2) !important; }
+      .print-container .border-morocco-blue\\/10 { border-color: rgba(44, 75, 94, 0.1) !important; }
+      .print-container .border-morocco-blue\\/20 { border-color: rgba(44, 75, 94, 0.2) !important; }
+      .print-container .border-mystic-mauve\\/10 { border-color: rgba(159, 138, 170, 0.1) !important; }
+      .print-container .border-mystic-mauve\\/20 { border-color: rgba(159, 138, 170, 0.2) !important; }
+
+      /* Gradients - replace with solid colors */
+      .print-container .bg-gradient-to-br { background-image: none !important; }
+      .print-container .bg-gradient-to-r { background-image: none !important; }
+      .print-container .from-morocco-blue { background-color: rgb(44, 75, 94) !important; }
+      .print-container .from-golden-orange { background-color: rgb(212, 146, 79) !important; }
+      .print-container .from-dune-beige\\/50 { background-color: rgba(245, 239, 231, 0.5) !important; }
+    `;
+    document.head.appendChild(style);
+    return style;
+  };
+
   const generatePDF = async () => {
     if (!contentRef.current) return;
 
     setIsGenerating(true);
 
     let originalStyles: Map<HTMLElement, Record<string, string>> | null = null;
-    const noPrintElements: NodeListOf<Element> | null = null;
+    let colorOverrideStyle: HTMLStyleElement | null = null;
 
     try {
       console.log('Starting PDF generation...');
@@ -220,8 +275,12 @@ export default function CorporateBrochure() {
         (el as HTMLElement).style.display = 'none';
       });
 
+      // Inject CSS override for RGB colors
+      console.log('Injecting RGB color overrides...');
+      colorOverrideStyle = injectRgbColorOverride();
+
       // Convert all oklab/oklch colors to RGB for html2canvas compatibility
-      console.log('Converting colors to RGB...');
+      console.log('Converting computed colors to RGB...');
       originalStyles = convertColorsToRgb(element);
       console.log(`Converted colors for ${originalStyles.size} elements`);
 
@@ -252,6 +311,11 @@ export default function CorporateBrochure() {
         restoreOriginalStyles(originalStyles);
       }
 
+      // Remove injected color override
+      if (colorOverrideStyle) {
+        colorOverrideStyle.remove();
+      }
+
       // Restore no-print elements
       noPrintEls.forEach(el => {
         (el as HTMLElement).style.display = '';
@@ -262,6 +326,11 @@ export default function CorporateBrochure() {
       // Restore original styles on error
       if (originalStyles) {
         restoreOriginalStyles(originalStyles);
+      }
+
+      // Remove injected color override on error
+      if (colorOverrideStyle) {
+        colorOverrideStyle.remove();
       }
 
       // Restore no-print elements on error
