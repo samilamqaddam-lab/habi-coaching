@@ -1,347 +1,42 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-// Types for html2pdf library
-interface Html2PdfOptions {
-  margin?: number | number[];
-  filename?: string;
-  image?: { type?: string; quality?: number };
-  html2canvas?: {
-    scale?: number;
-    useCORS?: boolean;
-    logging?: boolean;
-    allowTaint?: boolean;
-  };
-  jsPDF?: {
-    unit?: string;
-    format?: string | number[];
-    orientation?: 'portrait' | 'landscape';
-  };
-  pagebreak?: { mode?: string | string[] };
-}
-
-interface Html2PdfInstance {
-  set(options: Html2PdfOptions): Html2PdfInstance;
-  from(element: HTMLElement | string): Html2PdfInstance;
-  save(): Promise<void>;
-}
-
-interface WindowWithHtml2Pdf extends Window {
-  html2pdf: () => Html2PdfInstance;
-}
-
-// Convert modern CSS colors to RGB using canvas
-const convertColorToRgb = (color: string): string => {
-  if (!color || color === 'transparent' || color === 'inherit' || color === 'initial' || color === 'currentcolor') {
-    return color;
-  }
-
-  // Check if it's a modern CSS color function that html2canvas doesn't support
-  // This includes: oklab, oklch, color-mix, color(), lab, lch, etc.
-  const needsConversion =
-    color.includes('oklab') ||
-    color.includes('oklch') ||
-    color.includes('color-mix') ||
-    color.includes('color(') ||
-    color.includes('lab(') ||
-    color.includes('lch(');
-
-  if (!needsConversion) {
-    return color;
-  }
-
-  try {
-    // Use canvas to convert color
-    const canvas = document.createElement('canvas');
-    canvas.width = 1;
-    canvas.height = 1;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return color;
-
-    ctx.fillStyle = color;
-    ctx.fillRect(0, 0, 1, 1);
-    const imageData = ctx.getImageData(0, 0, 1, 1).data;
-
-    if (imageData[3] === 0) {
-      return 'transparent';
-    }
-
-    if (imageData[3] < 255) {
-      return `rgba(${imageData[0]}, ${imageData[1]}, ${imageData[2]}, ${(imageData[3] / 255).toFixed(3)})`;
-    }
-
-    return `rgb(${imageData[0]}, ${imageData[1]}, ${imageData[2]})`;
-  } catch {
-    return color;
-  }
-};
-
-// Pre-process element to convert all oklab colors to RGB
-const convertColorsToRgb = (element: HTMLElement): Map<HTMLElement, Record<string, string>> => {
-  const originalStyles = new Map<HTMLElement, Record<string, string>>();
-  const colorProperties = [
-    'color',
-    'backgroundColor',
-    'borderColor',
-    'borderTopColor',
-    'borderRightColor',
-    'borderBottomColor',
-    'borderLeftColor',
-    'outlineColor',
-    'textDecorationColor',
-    'boxShadow',
-  ];
-
-  // Helper to check if a color value needs conversion
-  const needsConversion = (value: string): boolean => {
-    return value.includes('oklab') ||
-      value.includes('oklch') ||
-      value.includes('color-mix') ||
-      value.includes('color(') ||
-      value.includes('lab(') ||
-      value.includes('lch(');
-  };
-
-  const processElement = (el: HTMLElement) => {
-    const computed = window.getComputedStyle(el);
-    const savedStyles: Record<string, string> = {};
-    let hasChanges = false;
-
-    colorProperties.forEach(prop => {
-      const value = computed.getPropertyValue(prop.replace(/([A-Z])/g, '-$1').toLowerCase());
-      if (value && needsConversion(value)) {
-        const converted = convertColorToRgb(value);
-        if (converted !== value) {
-          savedStyles[prop] = el.style.getPropertyValue(prop.replace(/([A-Z])/g, '-$1').toLowerCase());
-          el.style.setProperty(prop.replace(/([A-Z])/g, '-$1').toLowerCase(), converted, 'important');
-          hasChanges = true;
-        }
-      }
-    });
-
-    // Handle background-image gradients
-    const bgImage = computed.backgroundImage;
-    if (bgImage && bgImage !== 'none' && needsConversion(bgImage)) {
-      savedStyles['backgroundImage'] = el.style.backgroundImage;
-      // For gradients, we need to convert each color stop
-      // This is complex, so we'll just try to set a solid background instead
-      const bgColor = computed.backgroundColor;
-      if (bgColor) {
-        el.style.setProperty('background-image', 'none', 'important');
-        hasChanges = true;
-      }
-    }
-
-    if (hasChanges) {
-      originalStyles.set(el, savedStyles);
-    }
-
-    // Process children
-    Array.from(el.children).forEach(child => {
-      if (child instanceof HTMLElement) {
-        processElement(child);
-      }
-    });
-  };
-
-  processElement(element);
-  return originalStyles;
-};
-
-// Restore original styles after PDF generation
-const restoreOriginalStyles = (originalStyles: Map<HTMLElement, Record<string, string>>) => {
-  originalStyles.forEach((styles, el) => {
-    Object.entries(styles).forEach(([prop, value]) => {
-      const cssProp = prop.replace(/([A-Z])/g, '-$1').toLowerCase();
-      if (value) {
-        el.style.setProperty(cssProp, value);
-      } else {
-        el.style.removeProperty(cssProp);
-      }
-    });
-  });
-};
-
 export default function CorporateBrochure() {
-  const contentRef = useRef<HTMLDivElement>(null);
   const [isGenerating, setIsGenerating] = useState(false);
 
-  // Load html2pdf library via script tag (more reliable for UMD modules)
-  const loadHtml2Pdf = (): Promise<() => Html2PdfInstance> => {
-    return new Promise((resolve, reject) => {
-      const win = window as unknown as WindowWithHtml2Pdf;
-
-      // Check if already loaded
-      if (typeof win.html2pdf === 'function') {
-        resolve(win.html2pdf);
-        return;
-      }
-
-      // Load the script
-      const script = document.createElement('script');
-      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js';
-      script.async = true;
-      script.onload = () => {
-        const winLoaded = window as unknown as WindowWithHtml2Pdf;
-        if (typeof winLoaded.html2pdf === 'function') {
-          resolve(winLoaded.html2pdf);
-        } else {
-          reject(new Error('html2pdf not loaded'));
-        }
-      };
-      script.onerror = () => reject(new Error('Failed to load html2pdf'));
-      document.head.appendChild(script);
-    });
-  };
-
-  // Inject CSS override to force RGB colors for html2canvas
-  const injectRgbColorOverride = (): HTMLStyleElement => {
-    const style = document.createElement('style');
-    style.id = 'pdf-color-override';
-    style.textContent = `
-      /* Force RGB colors for PDF generation - override Tailwind's modern color functions */
-      .print-container, .print-container * {
-        /* Override any color() or oklab() functions with fallback RGB */
-        --tw-text-opacity: 1 !important;
-        --tw-bg-opacity: 1 !important;
-        --tw-border-opacity: 1 !important;
-      }
-
-      /* Force specific colors to RGB values */
-      .print-container .text-white { color: rgb(255, 255, 255) !important; }
-      .print-container .text-deep-blue { color: rgb(26, 58, 74) !important; }
-      .print-container .text-text-secondary { color: rgb(107, 107, 107) !important; }
-      .print-container .text-text-primary { color: rgb(44, 44, 44) !important; }
-      .print-container .text-golden-orange { color: rgb(212, 146, 79) !important; }
-      .print-container .text-morocco-blue { color: rgb(44, 75, 94) !important; }
-      .print-container .text-mystic-mauve { color: rgb(159, 138, 170) !important; }
-
-      .print-container .bg-white { background-color: rgb(255, 255, 255) !important; }
-      .print-container .bg-dune-beige\\/30 { background-color: rgba(245, 239, 231, 0.3) !important; }
-      .print-container .bg-golden-orange\\/5 { background-color: rgba(212, 146, 79, 0.05) !important; }
-      .print-container .bg-golden-orange\\/10 { background-color: rgba(212, 146, 79, 0.1) !important; }
-      .print-container .bg-golden-orange\\/20 { background-color: rgba(212, 146, 79, 0.2) !important; }
-      .print-container .bg-morocco-blue\\/5 { background-color: rgba(44, 75, 94, 0.05) !important; }
-      .print-container .bg-morocco-blue\\/10 { background-color: rgba(44, 75, 94, 0.1) !important; }
-      .print-container .bg-mystic-mauve\\/5 { background-color: rgba(159, 138, 170, 0.05) !important; }
-      .print-container .bg-mystic-mauve\\/10 { background-color: rgba(159, 138, 170, 0.1) !important; }
-      .print-container .bg-mystic-mauve\\/20 { background-color: rgba(159, 138, 170, 0.2) !important; }
-      .print-container .bg-morocco-blue { background-color: rgb(44, 75, 94) !important; }
-      .print-container .bg-golden-orange { background-color: rgb(212, 146, 79) !important; }
-      .print-container .bg-mystic-mauve { background-color: rgb(159, 138, 170) !important; }
-      .print-container .bg-deep-blue { background-color: rgb(26, 58, 74) !important; }
-
-      .print-container .border-golden-orange\\/10 { border-color: rgba(212, 146, 79, 0.1) !important; }
-      .print-container .border-golden-orange\\/20 { border-color: rgba(212, 146, 79, 0.2) !important; }
-      .print-container .border-morocco-blue\\/10 { border-color: rgba(44, 75, 94, 0.1) !important; }
-      .print-container .border-morocco-blue\\/20 { border-color: rgba(44, 75, 94, 0.2) !important; }
-      .print-container .border-mystic-mauve\\/10 { border-color: rgba(159, 138, 170, 0.1) !important; }
-      .print-container .border-mystic-mauve\\/20 { border-color: rgba(159, 138, 170, 0.2) !important; }
-
-      /* Gradients - replace with solid colors */
-      .print-container .bg-gradient-to-br { background-image: none !important; }
-      .print-container .bg-gradient-to-r { background-image: none !important; }
-      .print-container .from-morocco-blue { background-color: rgb(44, 75, 94) !important; }
-      .print-container .from-golden-orange { background-color: rgb(212, 146, 79) !important; }
-      .print-container .from-dune-beige\\/50 { background-color: rgba(245, 239, 231, 0.5) !important; }
-    `;
-    document.head.appendChild(style);
-    return style;
-  };
-
+  // Generate PDF using server-side Puppeteer API
   const generatePDF = async () => {
-    if (!contentRef.current) return;
-
     setIsGenerating(true);
 
-    let originalStyles: Map<HTMLElement, Record<string, string>> | null = null;
-    let colorOverrideStyle: HTMLStyleElement | null = null;
-
     try {
-      console.log('Starting PDF generation...');
+      console.log('Requesting PDF from server...');
 
-      // Load html2pdf via script tag (reliable approach for UMD)
-      const html2pdf = await loadHtml2Pdf();
-      console.log('html2pdf loaded successfully');
+      const response = await fetch('/api/pdf/brochure');
 
-      const element = contentRef.current;
-
-      // Hide no-print elements temporarily via CSS
-      const noPrintEls = element.querySelectorAll('.no-print');
-      noPrintEls.forEach(el => {
-        (el as HTMLElement).style.display = 'none';
-      });
-
-      // Inject CSS override for RGB colors
-      console.log('Injecting RGB color overrides...');
-      colorOverrideStyle = injectRgbColorOverride();
-
-      // Convert all oklab/oklch colors to RGB for html2canvas compatibility
-      console.log('Converting computed colors to RGB...');
-      originalStyles = convertColorsToRgb(element);
-      console.log(`Converted colors for ${originalStyles.size} elements`);
-
-      const opt = {
-        margin: [10, 15, 10, 15],
-        filename: 'Transcendence-Work-Offre-Entreprise.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: {
-          scale: 2,
-          useCORS: true,
-          logging: false,
-          allowTaint: true,
-        },
-        jsPDF: {
-          unit: 'mm',
-          format: 'a4',
-          orientation: 'portrait' as const,
-        },
-        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
-      };
-
-      console.log('Generating PDF...');
-      await html2pdf().set(opt).from(element).save();
-      console.log('PDF generated successfully');
-
-      // Restore original styles
-      if (originalStyles) {
-        restoreOriginalStyles(originalStyles);
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.details || 'Failed to generate PDF');
       }
 
-      // Remove injected color override
-      if (colorOverrideStyle) {
-        colorOverrideStyle.remove();
-      }
+      // Get the PDF blob
+      const blob = await response.blob();
 
-      // Restore no-print elements
-      noPrintEls.forEach(el => {
-        (el as HTMLElement).style.display = '';
-      });
+      // Create download link
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Transcendence-Work-Offre-Entreprise.pdf';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+
+      console.log('PDF downloaded successfully');
     } catch (error) {
       console.error('Error generating PDF:', error);
-
-      // Restore original styles on error
-      if (originalStyles) {
-        restoreOriginalStyles(originalStyles);
-      }
-
-      // Remove injected color override on error
-      if (colorOverrideStyle) {
-        colorOverrideStyle.remove();
-      }
-
-      // Restore no-print elements on error
-      if (contentRef.current) {
-        const noPrintEls = contentRef.current.querySelectorAll('.no-print');
-        noPrintEls.forEach(el => {
-          (el as HTMLElement).style.display = '';
-        });
-      }
-
-      // Show more detailed error message
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
       alert(`Erreur lors de la génération du PDF: ${errorMessage}`);
     } finally {
@@ -350,7 +45,7 @@ export default function CorporateBrochure() {
   };
 
   return (
-    <div ref={contentRef} className="min-h-screen bg-white print-container">
+    <div className="min-h-screen bg-white print-container">
       {/* Print-friendly styles */}
       <style jsx global>{`
         @media print {
