@@ -696,6 +696,14 @@ export default function CorporateBrochure() {
                 <p className="text-xs text-text-secondary mt-3">
                   <strong>Idéal pour :</strong> Séminaires, retraites, clôture de projets
                 </p>
+                <div className="mt-4 pt-3 border-t border-golden-orange/10">
+                  <p className="text-xs text-text-secondary flex items-center gap-1.5">
+                    <svg className="w-3.5 h-3.5 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span><strong className="text-deep-blue">6 000 DH HT</strong> / journée (jusqu'à 20 participants)</span>
+                  </p>
+                </div>
               </div>
 
               {/* Corporate Achievement */}
@@ -730,6 +738,14 @@ export default function CorporateBrochure() {
                 <p className="text-xs text-text-secondary mt-3">
                   <strong>Idéal pour :</strong> Managers, leadership teams, périodes de transformation
                 </p>
+                <div className="mt-4 pt-3 border-t border-morocco-blue/10">
+                  <p className="text-xs text-text-secondary flex items-center gap-1.5">
+                    <svg className="w-3.5 h-3.5 text-morocco-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span><strong className="text-deep-blue">6 000 DH HT</strong> / journée (jusqu'à 20 participants)</span>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -777,6 +793,14 @@ export default function CorporateBrochure() {
                         <p className="text-text-secondary">Diminution stress • Régulation émotionnelle • Engagement durable</p>
                       </div>
                     </div>
+                    <div className="mt-3 pt-3 border-t border-mystic-mauve/10">
+                      <p className="text-xs text-text-secondary flex items-center gap-1.5">
+                        <svg className="w-3.5 h-3.5 text-mystic-mauve" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span><strong className="text-deep-blue">24 000 DH HT</strong> (24 sessions) • <strong className="text-deep-blue">36 000 DH HT</strong> (36 sessions)</span>
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -813,6 +837,14 @@ export default function CorporateBrochure() {
                         <p className="text-text-secondary">Réduction tensions • Amélioration énergie • Prévention TMS</p>
                       </div>
                     </div>
+                    <div className="mt-3 pt-3 border-t border-golden-orange/10">
+                      <p className="text-xs text-text-secondary flex items-center gap-1.5">
+                        <svg className="w-3.5 h-3.5 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span><strong className="text-deep-blue">24 000 DH HT</strong> (24 sessions) • <strong className="text-deep-blue">36 000 DH HT</strong> (36 sessions)</span>
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -848,6 +880,14 @@ export default function CorporateBrochure() {
                         <p className="font-medium text-deep-blue">Bénéfices</p>
                         <p className="text-text-secondary">Vitalité renforcée • Réduction fatigue • Habitudes saines</p>
                       </div>
+                    </div>
+                    <div className="mt-3 pt-3 border-t border-morocco-blue/10">
+                      <p className="text-xs text-text-secondary flex items-center gap-1.5">
+                        <svg className="w-3.5 h-3.5 text-morocco-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span><strong className="text-deep-blue">12 000 DH HT</strong> (16 sessions)</span>
+                      </p>
                     </div>
                   </div>
                 </div>
