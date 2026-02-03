@@ -377,7 +377,7 @@ export default function CorporateBrochure() {
               Offre Entreprise
             </h1>
             <p className="text-xl md:text-2xl text-white/90 max-w-2xl">
-              Transformation organisationnelle, leadership conscient, retraites corporate et bien-être au travail.
+              Transformation organisationnelle, leadership conscient et bien-être au travail.
             </p>
           </div>
 
@@ -406,7 +406,7 @@ export default function CorporateBrochure() {
       <section className="py-12 px-8 bg-dune-beige/30">
         <div className="max-w-4xl mx-auto">
           <h2 className="font-heading text-xl font-bold text-deep-blue mb-6 text-center">Notre Offre</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid sm:grid-cols-3 gap-4">
             <a href="#transformation" className="bg-morocco-blue rounded-xl p-4 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
               <p className="font-semibold text-white text-sm">Transformation & Cohésion</p>
               <p className="text-xs text-white/70 mt-1">Accompagnement du changement</p>
@@ -414,10 +414,6 @@ export default function CorporateBrochure() {
             <a href="#leadership" className="bg-golden-orange rounded-xl p-4 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
               <p className="font-semibold text-white text-sm">Leadership Conscient</p>
               <p className="text-xs text-white/70 mt-1">Coaching dirigeants & managers</p>
-            </a>
-            <a href="#retraites" className="bg-mystic-mauve rounded-xl p-4 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
-              <p className="font-semibold text-white text-sm">Retraites Corporate</p>
-              <p className="text-xs text-white/70 mt-1">Séminaires & team building</p>
             </a>
             <a href="#yoga" className="bg-gradient-to-r from-golden-orange to-morocco-blue rounded-xl p-4 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
               <p className="font-semibold text-white text-sm">Corporate Yoga</p>
@@ -578,81 +574,6 @@ export default function CorporateBrochure() {
                   <p className="text-xs text-text-secondary mt-1">Développement des compétences managériales</p>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 3: Retraites Corporate */}
-      <section id="retraites" className="py-16 px-8 print-section">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center gap-4 mb-8">
-            <div className="w-14 h-14 bg-mystic-mauve/10 rounded-xl flex items-center justify-center">
-              <svg className="w-7 h-7 text-mystic-mauve" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h2 className="font-heading text-2xl font-bold text-deep-blue">
-              Retraites Corporate
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <p className="text-text-secondary mb-6">
-                Expériences immersives pour renforcer la cohésion d'équipe, stimuler la créativité et offrir un espace de ressourcement collectif.
-              </p>
-
-              <div className="space-y-4">
-                <h3 className="font-semibold text-deep-blue">Ce que nous proposons</h3>
-                <ul className="space-y-2 text-sm text-text-secondary">
-                  <li className="flex items-start gap-2">
-                    <svg className="w-4 h-4 text-mystic-mauve mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Conception sur-mesure de l'expérience
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <svg className="w-4 h-4 text-mystic-mauve mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Animation d'ateliers team building
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <svg className="w-4 h-4 text-mystic-mauve mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Sessions de yoga et méditation
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <svg className="w-4 h-4 text-mystic-mauve mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Facilitation de réflexions stratégiques
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="bg-mystic-mauve/5 rounded-2xl p-6">
-              <h3 className="font-semibold text-deep-blue mb-4">Durées possibles</h3>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between bg-white rounded-xl p-4 shadow-sm">
-                  <span className="font-medium text-deep-blue text-sm">Demi-journée</span>
-                  <span className="text-xs text-text-secondary">Team building ponctuel</span>
-                </div>
-                <div className="flex items-center justify-between bg-white rounded-xl p-4 shadow-sm">
-                  <span className="font-medium text-deep-blue text-sm">Journée complète</span>
-                  <span className="text-xs text-text-secondary">Séminaire d'équipe</span>
-                </div>
-                <div className="flex items-center justify-between bg-white rounded-xl p-4 shadow-sm">
-                  <span className="font-medium text-deep-blue text-sm">2-3 jours</span>
-                  <span className="text-xs text-text-secondary">Retraite immersive</span>
-                </div>
-              </div>
-              <p className="text-xs text-text-secondary mt-4">
-                Lieux : Casablanca, Atlas, ou lieu de votre choix
-              </p>
             </div>
           </div>
         </div>
@@ -1006,7 +927,7 @@ export default function CorporateBrochure() {
           <div className="flex flex-col md:flex-row items-center gap-10">
             <div className="w-48 h-48 rounded-2xl overflow-hidden shadow-xl flex-shrink-0">
               <Image
-                src="/images/Reel/Hajar.jpg"
+                src="/images/Reel/hajar-professional.jpg"
                 alt="Hajar Habi"
                 width={192}
                 height={192}
