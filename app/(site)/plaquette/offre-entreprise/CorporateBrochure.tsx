@@ -33,14 +33,23 @@ interface WindowWithHtml2Pdf extends Window {
   html2pdf: () => Html2PdfInstance;
 }
 
-// Convert oklab/oklch color to RGB using canvas
+// Convert modern CSS colors to RGB using canvas
 const convertColorToRgb = (color: string): string => {
-  if (!color || color === 'transparent' || color === 'inherit' || color === 'initial') {
+  if (!color || color === 'transparent' || color === 'inherit' || color === 'initial' || color === 'currentcolor') {
     return color;
   }
 
-  // Check if it's an oklab or oklch color
-  if (!color.includes('oklab') && !color.includes('oklch') && !color.includes('color-mix')) {
+  // Check if it's a modern CSS color function that html2canvas doesn't support
+  // This includes: oklab, oklch, color-mix, color(), lab, lch, etc.
+  const needsConversion =
+    color.includes('oklab') ||
+    color.includes('oklch') ||
+    color.includes('color-mix') ||
+    color.includes('color(') ||
+    color.includes('lab(') ||
+    color.includes('lch(');
+
+  if (!needsConversion) {
     return color;
   }
 
@@ -86,6 +95,16 @@ const convertColorsToRgb = (element: HTMLElement): Map<HTMLElement, Record<strin
     'boxShadow',
   ];
 
+  // Helper to check if a color value needs conversion
+  const needsConversion = (value: string): boolean => {
+    return value.includes('oklab') ||
+      value.includes('oklch') ||
+      value.includes('color-mix') ||
+      value.includes('color(') ||
+      value.includes('lab(') ||
+      value.includes('lch(');
+  };
+
   const processElement = (el: HTMLElement) => {
     const computed = window.getComputedStyle(el);
     const savedStyles: Record<string, string> = {};
@@ -93,7 +112,7 @@ const convertColorsToRgb = (element: HTMLElement): Map<HTMLElement, Record<strin
 
     colorProperties.forEach(prop => {
       const value = computed.getPropertyValue(prop.replace(/([A-Z])/g, '-$1').toLowerCase());
-      if (value && (value.includes('oklab') || value.includes('oklch') || value.includes('color-mix'))) {
+      if (value && needsConversion(value)) {
         const converted = convertColorToRgb(value);
         if (converted !== value) {
           savedStyles[prop] = el.style.getPropertyValue(prop.replace(/([A-Z])/g, '-$1').toLowerCase());
@@ -105,7 +124,7 @@ const convertColorsToRgb = (element: HTMLElement): Map<HTMLElement, Record<strin
 
     // Handle background-image gradients
     const bgImage = computed.backgroundImage;
-    if (bgImage && bgImage !== 'none' && (bgImage.includes('oklab') || bgImage.includes('oklch'))) {
+    if (bgImage && bgImage !== 'none' && needsConversion(bgImage)) {
       savedStyles['backgroundImage'] = el.style.backgroundImage;
       // For gradients, we need to convert each color stop
       // This is complex, so we'll just try to set a solid background instead
