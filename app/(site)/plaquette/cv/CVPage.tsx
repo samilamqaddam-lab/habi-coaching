@@ -63,27 +63,23 @@ export default function CVPage() {
       {/* PAGE 1 */}
       {/* ============================================ */}
       <div className="max-w-[850px] mx-auto bg-warm-white shadow-2xl border border-desert-light/50">
-        <div className="flex min-h-[1200px]">
+        <div className="flex">
 
           {/* Left Sidebar - Page 1 */}
-          <div className="w-[280px] bg-gradient-to-b from-morocco-blue via-morocco-blue to-deep-blue text-white flex-shrink-0 relative overflow-hidden flex flex-col">
+          <div className="w-[280px] bg-gradient-to-b from-morocco-blue via-morocco-blue to-deep-blue text-white flex-shrink-0 relative overflow-hidden flex flex-col pb-16">
             {/* Decorative elements */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-golden-orange/10 rounded-full -translate-y-1/2 translate-x-1/2" />
             <div className="absolute bottom-40 left-0 w-24 h-24 bg-mystic-mauve/10 rounded-full -translate-x-1/2" />
 
-            {/* Photo with creative frame */}
+            {/* Photo */}
             <div className="p-5 pb-3 relative z-10">
-              <div className="relative">
-                <div className="absolute -top-2 -right-2 w-full h-full bg-gradient-to-br from-golden-orange/30 to-mystic-mauve/20 rounded-3xl transform rotate-3" />
-                <div className="relative w-full aspect-square overflow-hidden rounded-3xl shadow-2xl">
-                  <Image
-                    src="/images/Reel/hajar-cv.png"
-                    alt="Hajar Habi"
-                    fill
-                    className="object-cover object-top"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 h-1/4 bg-gradient-to-t from-morocco-blue/40 to-transparent" />
-                </div>
+              <div className="relative w-full aspect-square overflow-hidden rounded-2xl">
+                <Image
+                  src="/images/Reel/hajar-cv.png"
+                  alt="Hajar Habi"
+                  fill
+                  className="object-cover object-top"
+                />
               </div>
             </div>
 
@@ -185,50 +181,50 @@ export default function CVPage() {
             <div className="flex-grow" />
 
             {/* Logo at bottom */}
-            <div className="px-5 py-3 relative z-10 border-t border-white/10">
+            <div className="px-5 py-5 relative z-10">
               <Image
-                src="/images/logos/logo-white.png"
+                src="/images/logos/logo-white-cv.png"
                 alt="Transcendence Work"
-                width={160}
-                height={45}
-                className="mx-auto opacity-80"
+                width={180}
+                height={42}
+                className="opacity-90"
               />
             </div>
+
           </div>
 
           {/* Right Content - Page 1 */}
-          <div className="flex-1 p-6 bg-warm-white">
+          <div className="flex-1 p-7 pb-12 bg-warm-white">
             {/* Header */}
-            <div className="mb-4 relative">
-              <div className="absolute -left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-golden-orange via-mystic-mauve to-morocco-blue rounded-full" />
+            <div className="mb-5">
               <h1 className="font-heading text-5xl text-morocco-blue leading-none tracking-tight">
                 Hajar
               </h1>
               <h1 className="font-heading text-5xl text-morocco-blue font-bold tracking-wider leading-tight">
                 HABI
               </h1>
-              <div className="flex items-center gap-2 mt-2">
-                <div className="h-1 w-16 bg-golden-orange rounded-full" />
-                <div className="h-1 w-8 bg-mystic-mauve rounded-full" />
-                <div className="h-1 w-4 bg-morocco-blue rounded-full" />
+              <div className="flex items-center gap-2 mt-3">
+                <div className="h-1 w-20 bg-golden-orange rounded-full" />
+                <div className="h-1 w-10 bg-mystic-mauve rounded-full" />
+                <div className="h-1 w-5 bg-morocco-blue rounded-full" />
               </div>
             </div>
 
             {/* Subtitle */}
-            <p className="text-morocco-blue font-semibold tracking-[0.15em] text-sm mb-3 uppercase">
+            <p className="text-morocco-blue font-semibold tracking-[0.12em] text-base mb-4 uppercase">
               Conseil • Coaching • Leadership Conscient
             </p>
 
             {/* Intro */}
-            <p className="text-text-secondary leading-relaxed mb-5 text-sm border-l-2 border-golden-orange/30 pl-3 italic">
+            <p className="text-text-secondary leading-relaxed mb-6 text-sm border-l-2 border-golden-orange/30 pl-4 italic">
               Forte de près de 20 ans d&apos;expérience en gestion RH, en environnements
               multiculturels et en gestion de crise, j&apos;accompagne aujourd&apos;hui dirigeants
               et équipes sur leurs enjeux humains, entre performance durable, clarté et équilibre.
             </p>
 
             {/* Formations & Certifications */}
-            <div className="mb-5">
-              <div className="flex items-center gap-2 mb-3">
+            <div className="mb-6">
+              <div className="flex items-center gap-2.5 mb-4">
                 <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-golden-orange to-golden-orange-dark flex items-center justify-center shadow">
                   <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
@@ -239,10 +235,10 @@ export default function CVPage() {
                 </h2>
               </div>
 
-              <div className="space-y-3 ml-1">
+              <div className="space-y-4 ml-1">
                 <div className="flex justify-between items-start border-l-2 border-golden-orange/30 pl-3 py-0.5">
                   <div className="flex-1 pr-3">
-                    <h3 className="font-semibold text-text-primary text-sm">
+                    <h3 className="font-semibold text-text-primary text-[15px]">
                       Certification &quot;Classical Hatha Yoga Teacher&quot;
                       <span className="text-golden-orange ml-1 text-xs">(1750 hrs)</span>
                     </h3>
@@ -253,7 +249,7 @@ export default function CVPage() {
 
                 <div className="flex justify-between items-start border-l-2 border-mystic-mauve/30 pl-3 py-0.5">
                   <div className="flex-1 pr-3">
-                    <h3 className="font-semibold text-text-primary text-sm">
+                    <h3 className="font-semibold text-text-primary text-[15px]">
                       Certification &quot;Coach & Team&quot;
                     </h3>
                     <p className="text-text-secondary text-xs">Transformance Pro - UM6P-Africa Business School</p>
@@ -263,7 +259,7 @@ export default function CVPage() {
 
                 <div className="flex justify-between items-start border-l-2 border-morocco-blue/30 pl-3 py-0.5">
                   <div className="flex-1 pr-3">
-                    <h3 className="font-semibold text-text-primary text-sm">
+                    <h3 className="font-semibold text-text-primary text-[15px]">
                       Master en Management des Ressources Humaines
                     </h3>
                     <p className="text-text-secondary text-xs">IAE Corte</p>
@@ -273,7 +269,7 @@ export default function CVPage() {
 
                 <div className="flex justify-between items-start border-l-2 border-desert-ocre/30 pl-3 py-0.5">
                   <div className="flex-1 pr-3">
-                    <h3 className="font-semibold text-text-primary text-sm">
+                    <h3 className="font-semibold text-text-primary text-[15px]">
                       Bac+4 en marketing et offshoring
                     </h3>
                     <p className="text-text-secondary text-xs">ENCG Settat</p>
@@ -285,7 +281,7 @@ export default function CVPage() {
 
             {/* Expériences Professionnelles */}
             <div>
-              <div className="flex items-center gap-2 mb-3">
+              <div className="flex items-center gap-2.5 mb-4">
                 <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-morocco-blue to-deep-blue flex items-center justify-center shadow">
                   <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z" />
@@ -297,17 +293,17 @@ export default function CVPage() {
               </div>
 
               {/* Transcendence Work - Fondatrice */}
-              <div className="mb-4 ml-1">
-                <div className="flex justify-between items-start mb-1.5">
+              <div className="mb-5 ml-1">
+                <div className="flex justify-between items-start mb-2">
                   <div>
-                    <h3 className="font-semibold text-text-primary text-sm">Fondatrice</h3>
+                    <h3 className="font-semibold text-text-primary text-[15px]">Fondatrice</h3>
                     <p className="text-golden-orange text-xs font-medium">Transcendence Work - Casablanca</p>
                   </div>
                   <span className="text-golden-orange text-xs font-medium bg-golden-orange/10 px-2 py-0.5 rounded-full whitespace-nowrap">
                     Fev 2026
                   </span>
                 </div>
-                <ul className="text-text-secondary text-xs space-y-1 ml-0.5">
+                <ul className="text-text-secondary text-[13px] space-y-1 ml-0.5">
                   <li className="flex items-start gap-1.5">
                     <span className="text-golden-orange mt-1 text-[8px]">●</span>
                     <span>Accompagnement d&apos;organisations sur leurs enjeux humains : performance durable, QVT et transformation culturelle</span>
@@ -328,17 +324,17 @@ export default function CVPage() {
               </div>
 
               {/* GIZ - Cheffe du Service */}
-              <div className="mb-4 ml-1">
-                <div className="flex justify-between items-start mb-1.5">
+              <div className="mb-5 ml-1">
+                <div className="flex justify-between items-start mb-2">
                   <div>
-                    <h3 className="font-semibold text-text-primary text-sm">Cheffe du Service Relations Humaines</h3>
+                    <h3 className="font-semibold text-text-primary text-[15px]">Cheffe du Service Relations Humaines</h3>
                     <p className="text-morocco-blue text-xs font-medium">Agence allemande de coopération internationale (GIZ) - Rabat</p>
                   </div>
                   <span className="text-morocco-blue text-xs font-medium bg-morocco-blue/10 px-2 py-0.5 rounded-full whitespace-nowrap">
                     2022 - 2025
                   </span>
                 </div>
-                <ul className="text-text-secondary text-xs space-y-1 ml-0.5">
+                <ul className="text-text-secondary text-[13px] space-y-1 ml-0.5">
                   <li className="flex items-start gap-1.5">
                     <span className="text-morocco-blue mt-1 text-[8px]">●</span>
                     <span>Conseil stratégique auprès de la direction sur la politique RH et son déploiement à l&apos;échelle nationale</span>
@@ -389,27 +385,23 @@ export default function CVPage() {
       {/* PAGE 2 */}
       {/* ============================================ */}
       <div className="max-w-[850px] mx-auto bg-warm-white shadow-2xl border border-desert-light/50">
-        <div className="flex min-h-[1200px]">
+        <div className="flex">
 
           {/* Left Sidebar - Page 2 (Different content) */}
-          <div className="w-[280px] bg-gradient-to-b from-morocco-blue via-morocco-blue to-deep-blue text-white flex-shrink-0 relative overflow-hidden flex flex-col">
+          <div className="w-[280px] bg-gradient-to-b from-morocco-blue via-morocco-blue to-deep-blue text-white flex-shrink-0 relative overflow-hidden flex flex-col pb-16">
             {/* Decorative elements */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-golden-orange/10 rounded-full -translate-y-1/2 translate-x-1/2" />
             <div className="absolute bottom-40 left-0 w-24 h-24 bg-mystic-mauve/10 rounded-full -translate-x-1/2" />
 
             {/* Photo */}
             <div className="p-5 pb-3 relative z-10">
-              <div className="relative">
-                <div className="absolute -top-2 -right-2 w-full h-full bg-gradient-to-br from-golden-orange/30 to-mystic-mauve/20 rounded-3xl transform rotate-3" />
-                <div className="relative w-full aspect-square overflow-hidden rounded-3xl shadow-2xl">
-                  <Image
-                    src="/images/Reel/hajar-cv.png"
-                    alt="Hajar Habi"
-                    fill
-                    className="object-cover object-top"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 h-1/4 bg-gradient-to-t from-morocco-blue/40 to-transparent" />
-                </div>
+              <div className="relative w-full aspect-square overflow-hidden rounded-2xl">
+                <Image
+                  src="/images/Reel/hajar-cv.png"
+                  alt="Hajar Habi"
+                  fill
+                  className="object-cover object-top"
+                />
               </div>
             </div>
 
@@ -538,22 +530,23 @@ export default function CVPage() {
             <div className="flex-grow" />
 
             {/* Logo at bottom */}
-            <div className="px-5 py-3 relative z-10 border-t border-white/10">
+            <div className="px-5 py-5 relative z-10">
               <Image
-                src="/images/logos/logo-white.png"
+                src="/images/logos/logo-white-cv.png"
                 alt="Transcendence Work"
-                width={160}
-                height={45}
-                className="mx-auto opacity-80"
+                width={180}
+                height={42}
+                className="opacity-90"
               />
             </div>
+
           </div>
 
           {/* Right Content - Page 2 */}
-          <div className="flex-1 p-6 bg-warm-white">
+          <div className="flex-1 p-7 pb-12 bg-warm-white">
             {/* Continue Expériences */}
             <div>
-              <div className="flex items-center gap-2 mb-3">
+              <div className="flex items-center gap-2.5 mb-4">
                 <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-morocco-blue to-deep-blue flex items-center justify-center shadow">
                   <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z" />
@@ -565,17 +558,17 @@ export default function CVPage() {
               </div>
 
               {/* GIZ - Responsable développement RH */}
-              <div className="mb-4 ml-1">
-                <div className="flex justify-between items-start mb-1.5">
+              <div className="mb-5 ml-1">
+                <div className="flex justify-between items-start mb-2">
                   <div>
-                    <h3 className="font-semibold text-text-primary text-sm">Responsable du développement RH</h3>
+                    <h3 className="font-semibold text-text-primary text-[15px]">Responsable du développement RH</h3>
                     <p className="text-golden-orange text-xs font-medium">Agence allemande de coopération internationale (GIZ) - Rabat</p>
                   </div>
                   <span className="text-morocco-blue text-xs font-medium bg-morocco-blue/10 px-2 py-0.5 rounded-full whitespace-nowrap">
                     2020 - 2022
                   </span>
                 </div>
-                <ul className="text-text-secondary text-xs space-y-1 ml-0.5">
+                <ul className="text-text-secondary text-[13px] space-y-1 ml-0.5">
                   <li className="flex items-start gap-1.5">
                     <span className="text-golden-orange mt-1 text-[8px]">●</span>
                     <span>Déploiement d&apos;une stratégie RH pluriannuelle et feuille de route de transformation</span>
@@ -608,17 +601,17 @@ export default function CVPage() {
               </div>
 
               {/* CDG Capital */}
-              <div className="mb-4 ml-1">
-                <div className="flex justify-between items-start mb-1.5">
+              <div className="mb-5 ml-1">
+                <div className="flex justify-between items-start mb-2">
                   <div>
-                    <h3 className="font-semibold text-text-primary text-sm">Responsable de développement RH</h3>
+                    <h3 className="font-semibold text-text-primary text-[15px]">Responsable de développement RH</h3>
                     <p className="text-mystic-mauve text-xs font-medium">CDG Capital - Rabat</p>
                   </div>
                   <span className="text-mystic-mauve text-xs font-medium bg-mystic-mauve/10 px-2 py-0.5 rounded-full whitespace-nowrap">
                     2014 - 2018
                   </span>
                 </div>
-                <ul className="text-text-secondary text-xs space-y-1 ml-0.5">
+                <ul className="text-text-secondary text-[13px] space-y-1 ml-0.5">
                   <li className="flex items-start gap-1.5">
                     <span className="text-mystic-mauve mt-1 text-[8px]">●</span>
                     <span>Contribution à la stratégie RH 2018–2022</span>
@@ -647,17 +640,17 @@ export default function CVPage() {
               </div>
 
               {/* DIORH */}
-              <div className="mb-4 ml-1">
-                <div className="flex justify-between items-start mb-1.5">
+              <div className="mb-5 ml-1">
+                <div className="flex justify-between items-start mb-2">
                   <div>
-                    <h3 className="font-semibold text-text-primary text-sm">Consultante Formations</h3>
+                    <h3 className="font-semibold text-text-primary text-[15px]">Consultante Formations</h3>
                     <p className="text-desert-ocre text-xs font-medium">DIORH - Casablanca</p>
                   </div>
                   <span className="text-desert-ocre text-xs font-medium bg-desert-ocre/10 px-2 py-0.5 rounded-full whitespace-nowrap">
                     2008 - 2014
                   </span>
                 </div>
-                <ul className="text-text-secondary text-xs space-y-1 ml-0.5">
+                <ul className="text-text-secondary text-[13px] space-y-1 ml-0.5">
                   <li className="flex items-start gap-1.5">
                     <span className="text-desert-ocre mt-1 text-[8px]">●</span>
                     <span>Conception de programmes de formation sur mesure pour grands groupes et multinationales</span>
