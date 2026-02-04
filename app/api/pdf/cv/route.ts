@@ -13,9 +13,9 @@ export async function GET(request: NextRequest) {
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ||
       (isDev ? 'http://localhost:3000' : `https://${request.headers.get('host')}`);
 
-    const pageUrl = `${baseUrl}/plaquette/offre-entreprise`;
+    const pageUrl = `${baseUrl}/plaquette/cv`;
 
-    console.log('Launching Puppeteer browser...');
+    console.log('Launching Puppeteer browser for CV...');
     console.log('Environment:', isDev ? 'development' : 'production');
 
     if (isDev) {
@@ -38,9 +38,9 @@ export async function GET(request: NextRequest) {
     console.log('Opening new page...');
     const page = await browser.newPage();
 
-    // Set wide viewport to match desktop view (1440px is common desktop width)
+    // Set wide viewport to match CV design
     await page.setViewport({
-      width: 1440,
+      width: 1000,
       height: 900,
       deviceScaleFactor: 2,
     });
@@ -54,9 +54,9 @@ export async function GET(request: NextRequest) {
     // Wait a bit more for fonts and images to load
     await new Promise(resolve => setTimeout(resolve, 2000));
 
-    // Hide elements that shouldn't appear in PDF (floating buttons, cookie banner, etc.)
+    // Hide elements that shouldn't appear in PDF
     await page.evaluate(() => {
-      // Hide no-print elements
+      // Hide no-print elements (floating buttons, page break indicator)
       const noPrintElements = document.querySelectorAll('.no-print');
       noPrintElements.forEach(el => {
         (el as HTMLElement).style.display = 'none';
@@ -78,37 +78,37 @@ export async function GET(request: NextRequest) {
     });
 
     console.log(`Page height: ${bodyHeight}px`);
-    console.log('Generating PDF as single long page...');
+    console.log('Generating CV PDF as single long page...');
 
     // Convert pixels to mm (assuming 96 DPI: 1 inch = 96px = 25.4mm)
     const pageHeightMm = Math.ceil((bodyHeight / 96) * 25.4) + 20; // +20mm margin
-    const pageWidthMm = Math.ceil((1440 / 96) * 25.4);
+    const pageWidthMm = Math.ceil((1000 / 96) * 25.4);
 
     const pdfBuffer = await page.pdf({
       width: `${pageWidthMm}mm`,
       height: `${pageHeightMm}mm`,
       printBackground: true,
       margin: {
-        top: '10mm',
-        right: '10mm',
-        bottom: '10mm',
-        left: '10mm',
+        top: '5mm',
+        right: '5mm',
+        bottom: '5mm',
+        left: '5mm',
       },
       preferCSSPageSize: false,
     });
 
-    console.log('PDF generated successfully');
+    console.log('CV PDF generated successfully');
 
     // Return the PDF as a downloadable file
     return new NextResponse(Buffer.from(pdfBuffer), {
       headers: {
         'Content-Type': 'application/pdf',
-        'Content-Disposition': 'attachment; filename="Transcendence-Work-Offre-Entreprise.pdf"',
+        'Content-Disposition': 'attachment; filename="CV-Hajar-Habi.pdf"',
         'Content-Length': pdfBuffer.length.toString(),
       },
     });
   } catch (error) {
-    console.error('Error generating PDF:', error);
+    console.error('Error generating CV PDF:', error);
     return NextResponse.json(
       { error: 'Failed to generate PDF', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
