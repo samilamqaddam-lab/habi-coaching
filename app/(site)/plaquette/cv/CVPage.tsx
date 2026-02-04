@@ -75,7 +75,7 @@ export default function CVPage() {
             <div className="p-5 pb-3 relative z-10">
               <div className="relative w-full aspect-square overflow-hidden rounded-2xl border-4 border-white/20 shadow-xl">
                 <Image
-                  src="/images/Reel/hajar-professional.jpg"
+                  src="/images/Reel/hajar-cv.png"
                   alt="Hajar Habi"
                   fill
                   className="object-cover object-top"
@@ -357,7 +357,7 @@ export default function CVPage() {
             <div className="p-5 pb-3 relative z-10">
               <div className="relative w-full aspect-square overflow-hidden rounded-2xl border-4 border-white/20 shadow-xl">
                 <Image
-                  src="/images/Reel/hajar-professional.jpg"
+                  src="/images/Reel/hajar-cv.png"
                   alt="Hajar Habi"
                   fill
                   className="object-cover object-top"
