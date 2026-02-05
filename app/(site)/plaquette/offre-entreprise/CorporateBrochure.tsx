@@ -160,7 +160,7 @@ export default function CorporateBrochure() {
               Offre Entreprise
             </h1>
             <p className="text-xl md:text-2xl text-white/90 max-w-2xl">
-              Transformation organisationnelle, leadership conscient et bien-être au travail.
+              Transformation organisationnelle, leadership conscient<br />et bien-être au travail.
             </p>
           </div>
 
@@ -175,7 +175,7 @@ export default function CorporateBrochure() {
             </div>
             <div className="bg-white/10 rounded-lg p-3">
               <p className="text-lg md:text-xl font-bold text-golden-orange">1750<span className="text-sm">hrs</span></p>
-              <p className="text-xs text-white/70">Prof yoga certifiée</p>
+              <p className="text-xs text-white/70">Professeure de yoga certifiée</p>
             </div>
             <div className="bg-white/10 rounded-lg p-3">
               <p className="text-lg md:text-xl font-bold text-golden-orange">FR/EN</p>
@@ -196,7 +196,7 @@ export default function CorporateBrochure() {
             </a>
             <a href="#leadership" className="bg-golden-orange rounded-xl p-4 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
               <p className="font-semibold text-white text-sm">Leadership Conscient</p>
-              <p className="text-xs text-white/70 mt-1">Coaching dirigeants & managers</p>
+              <p className="text-xs text-white/70 mt-1">Coaching dirigeant-e-s & managers</p>
             </a>
             <a href="#yoga" className="bg-gradient-to-r from-golden-orange to-morocco-blue rounded-xl p-4 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
               <p className="font-semibold text-white text-sm">Corporate Yoga</p>
@@ -282,7 +282,7 @@ export default function CorporateBrochure() {
                   <div className="w-6 h-6 bg-morocco-blue/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                     <span className="text-morocco-blue font-bold text-xs">4</span>
                   </div>
-                  <span className="text-text-secondary">Engagement renforcé des collaborateurs</span>
+                  <span className="text-text-secondary">Engagement renforcé des collaborateur·ice·s</span>
                 </li>
               </ul>
             </div>
@@ -307,7 +307,7 @@ export default function CorporateBrochure() {
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               <p className="text-text-secondary mb-6">
-                Coaching individuel et collectif pour dirigeants et managers, alliant développement des compétences managériales et travail sur la posture intérieure.
+                Coaching individuel et collectif pour dirigeant-e-s et managers, alliant développement des compétences managériales et travail sur la posture intérieure.
               </p>
 
               <div className="space-y-4">
@@ -349,7 +349,7 @@ export default function CorporateBrochure() {
                   <p className="text-xs text-text-secondary mt-1">Parcours personnalisé sur 6 à 12 mois</p>
                 </div>
                 <div className="bg-white rounded-xl p-4 shadow-sm">
-                  <p className="font-medium text-deep-blue text-sm">Coaching de dirigeants</p>
+                  <p className="font-medium text-deep-blue text-sm">Coaching de dirigeant-e-s</p>
                   <p className="text-xs text-text-secondary mt-1">Accompagnement des comités de direction</p>
                 </div>
                 <div className="bg-white rounded-xl p-4 shadow-sm">
@@ -709,13 +709,13 @@ export default function CorporateBrochure() {
                 </div>
                 <div>
                   <p className="text-text-secondary">
-                    Les <strong className="text-deep-blue">entreprises et organisations</strong> engagées dans une démarche de{' '}
+                    Les <strong className="text-deep-blue">entreprises et organisations</strong> engagées ou qui souhaitent mettre en place une démarche de{' '}
                     <strong className="text-deep-blue">QVT, de bien-être et de transformation humaine</strong>, souhaitant allier performance durable et équilibre des équipes.
                   </p>
                 </div>
               </div>
 
-              {/* Dirigeants, leaders et managers */}
+              {/* Dirigeant-e-s, leaders et managers */}
               <div className="flex gap-4">
                 <div className="w-10 h-10 bg-golden-orange/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                   <svg className="w-5 h-5 text-golden-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -724,7 +724,7 @@ export default function CorporateBrochure() {
                 </div>
                 <div>
                   <p className="text-text-secondary mb-3">
-                    <strong className="text-deep-blue">Dirigeants, leaders et managers</strong> opérant dans des contextes complexes, incertains et à forte pression, désireux de :
+                    <strong className="text-deep-blue">Dirigeant-e-s, leaders et managers</strong> opérant dans des contextes complexes, incertains et à forte pression, désireux·ses de :
                   </p>
                   <ul className="space-y-2 ml-2">
                     <li className="flex items-start gap-2 text-text-secondary text-sm">
@@ -821,7 +821,7 @@ export default function CorporateBrochure() {
           <div className="flex flex-col md:flex-row items-center gap-10">
             <div className="w-48 h-48 rounded-2xl overflow-hidden shadow-xl flex-shrink-0">
               <Image
-                src="/images/Reel/hajar-professional.jpg"
+                src="/images/Reel/hajar-cv.png"
                 alt="Hajar Habi"
                 width={192}
                 height={192}
