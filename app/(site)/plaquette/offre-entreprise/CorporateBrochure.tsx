@@ -245,7 +245,7 @@ export default function CorporateBrochure() {
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               <p className="text-text-secondary mb-6">
-                Coaching individuel et collectif pour dirigeant-e-s et managers, alliant développement des compétences managériales<br />et travail sur la posture intérieure.
+                Coaching individuel et collectif pour dirigeant-e-s<br />et managers, alliant développement des compétences managériales<br />et travail sur la posture intérieure.
               </p>
 
               <div className="space-y-4">
