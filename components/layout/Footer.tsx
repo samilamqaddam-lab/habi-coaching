@@ -16,7 +16,6 @@ export default function Footer() {
     ],
     about: [
       { name: t('common.footer.myJourney'), href: '/expertise' },
-      { name: t('common.footer.blog'), href: '/blog' },
       { name: t('common.nav.contact'), href: '/contact' },
     ],
     legal: [
@@ -29,7 +28,7 @@ export default function Footer() {
   return (
     <footer className="bg-deep-blue text-warm-white">
       <Container className="py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
             <Image
@@ -78,24 +77,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Certifications */}
-          <div>
-            <h4 className="font-semibold text-lg mb-4">{t('common.footer.certifications')}</h4>
-            <ul className="space-y-2 text-sm text-sage-light">
-              <li>
-                <strong className="text-warm-white">{t('common.footer.coachTeamEMCC')}</strong>
-              </li>
-              <li className="pt-3">
-                <strong className="text-warm-white">{t('common.footer.ishaFoundation')}</strong>
-                <br />
-                <span className="text-xs">{t('common.footer.hathaYoga')}</span>
-              </li>
-              <li className="pt-3">
-                <strong className="text-warm-white">{t('common.footer.corporateExperience')}</strong>
-              </li>
-            </ul>
-          </div>
-
           {/* Contact & Social */}
           <div>
             <h4 className="font-semibold text-lg mb-4">{t('common.nav.contact')}</h4>
@@ -103,7 +84,7 @@ export default function Footer() {
               <li>
                 <a
                   href="mailto:hajar@transcendencework.com"
-                  className="hover:text-warm-white transition-colors duration-200"
+                  className="hover:text-warm-white transition-colors duration-200 whitespace-nowrap"
                 >
                   hajar@transcendencework.com
                 </a>
