@@ -161,7 +161,7 @@ export default function CorporateBrochure() {
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               <p className="text-text-secondary mb-6">
-                Accompagnement des équipes et des organisations dans leurs contextes de transformation, avec une approche qui allie rigueur professionnelle et dimension humaine.
+                Accompagnement des équipes et des organisations dans leurs contextes de transformation, avec une approche qui allie rigueur professionnelle<br />et dimension humaine.
               </p>
 
               <div className="space-y-4">
@@ -245,7 +245,7 @@ export default function CorporateBrochure() {
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               <p className="text-text-secondary mb-6">
-                Coaching individuel et collectif pour dirigeant-e-s et managers, alliant développement des compétences managériales et travail sur la posture intérieure.
+                Coaching individuel et collectif pour dirigeant-e-s et managers, alliant développement des compétences managériales<br />et travail sur la posture intérieure.
               </p>
 
               <div className="space-y-4">
@@ -315,7 +315,7 @@ export default function CorporateBrochure() {
           </div>
 
           <p className="text-text-secondary mb-6">
-            Des programmes de yoga adaptés au monde professionnel pour améliorer le bien-être, la performance et la cohésion de vos équipes.
+            Des programmes de yoga adaptés au monde professionnel pour améliorer le bien-être, la performance<br />et la cohésion de vos équipes.
           </p>
 
           {/* Pourquoi le yoga en entreprise */}
@@ -390,7 +390,7 @@ export default function CorporateBrochure() {
                 <h4 className="font-semibold text-deep-blue">Corporate Relaxation Day</h4>
                 <p className="text-golden-orange text-xs font-medium mb-3">Reconnexion, détente & cohésion</p>
                 <p className="text-text-secondary text-sm mb-3">
-                  Une pause régénérante pour relâcher les tensions et renforcer la cohésion collective.
+                  Une pause régénérante pour relâcher les tensions<br />et renforcer la cohésion collective.
                 </p>
                 <div className="space-y-2 text-xs mb-3">
                   <div className="flex items-center gap-2 text-text-secondary">
@@ -432,7 +432,7 @@ export default function CorporateBrochure() {
                 <h4 className="font-semibold text-deep-blue">Corporate Achievement</h4>
                 <p className="text-morocco-blue text-xs font-medium mb-3">Clarté mentale, focus & énergie</p>
                 <p className="text-text-secondary text-sm mb-3">
-                  Soutenir la performance collective par une meilleure gestion de l'énergie et du mental.
+                  Soutenir la performance collective par une meilleure gestion de l'énergie<br />et du mental.
                 </p>
                 <div className="space-y-2 text-xs mb-3">
                   <div className="flex items-center gap-2 text-text-secondary">
@@ -648,7 +648,7 @@ export default function CorporateBrochure() {
                 <div>
                   <p className="text-text-secondary">
                     Les <strong className="text-deep-blue">entreprises et organisations</strong> engagées ou qui souhaitent mettre en place une démarche de{' '}
-                    <strong className="text-deep-blue">QVT, de bien-être et de transformation humaine</strong>, souhaitant allier performance durable et équilibre des équipes.
+                    <strong className="text-deep-blue">QVT, de bien-être et de transformation humaine</strong>, souhaitant allier performance durable<br />et équilibre des équipes.
                   </p>
                 </div>
               </div>
@@ -662,7 +662,7 @@ export default function CorporateBrochure() {
                 </div>
                 <div>
                   <p className="text-text-secondary mb-3">
-                    <strong className="text-deep-blue">Dirigeant-e-s, leaders et managers</strong> opérant dans des contextes complexes, incertains et à forte pression, désireux·ses de :
+                    <strong className="text-deep-blue">Dirigeant-e-s, leaders et managers</strong> opérant dans des contextes complexes, incertains<br />et à forte pression, désireux·ses de :
                   </p>
                   <ul className="space-y-2 ml-2">
                     <li className="flex items-start gap-2 text-text-secondary text-sm">
@@ -670,7 +670,7 @@ export default function CorporateBrochure() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                       <span>
-                        <strong className="text-deep-blue">Cultiver un leadership plus conscient et plus serein</strong>, favorisant la clarté, la stabilité émotionnelle et la qualité des décisions
+                        <strong className="text-deep-blue">Cultiver un leadership plus conscient et plus serein</strong>, favorisant la clarté, la stabilité émotionnelle<br />et la qualité des décisions
                       </span>
                     </li>
                     <li className="flex items-start gap-2 text-text-secondary text-sm">
@@ -678,7 +678,7 @@ export default function CorporateBrochure() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                       <span>
-                        <strong className="text-deep-blue">Renforcer la confiance, l'engagement et le sens au sein des équipes</strong>, notamment dans des périodes de transformation, de changement ou de croissance
+                        <strong className="text-deep-blue">Renforcer la confiance, l'engagement et le sens au sein des équipes</strong>, notamment dans des périodes de transformation,<br />de changement ou de croissance
                       </span>
                     </li>
                   </ul>
@@ -710,7 +710,7 @@ export default function CorporateBrochure() {
               </div>
               <h3 className="font-semibold text-deep-blue mb-2">Expertise unique</h3>
               <p className="text-text-secondary text-sm">
-                Ex-DRH avec ≃20 ans d'expérience corporate, coach certifiée Transformance Pro, et professeure de Hatha Yoga Classique certifiée Sadhguru Gurukulam (1750h).
+                Ex-DRH avec ≃20 ans d'expérience corporate, coach certifiée Transformance Pro,<br />et professeure de Hatha Yoga Classique certifiée Sadhguru Gurukulam (1750h).
               </p>
             </div>
 
@@ -746,7 +746,7 @@ export default function CorporateBrochure() {
               </div>
               <h3 className="font-semibold text-deep-blue mb-2">Sur-mesure</h3>
               <p className="text-text-secondary text-sm">
-                Formats personnalisables selon vos enjeux, contraintes et objectifs. Présentiel, en ligne ou hybride.
+                Formats personnalisables selon vos enjeux, contraintes<br />et objectifs. Présentiel, en ligne ou hybride.
               </p>
             </div>
           </div>
