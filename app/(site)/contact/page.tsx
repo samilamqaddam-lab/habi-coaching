@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     description: 'Contactez Hajar Habi pour vos besoins en coaching, yoga ou transformation organisationnelle.',
     images: [
       {
-        url: '/images/heroes/contact-coffee-cups-hero.jpg',
+        url: '/images/heroes/contact-conversation-hero.jpg',
         width: 1200,
         height: 630,
         alt: 'Contact Hajar Habi Casablanca',

@@ -101,7 +101,7 @@ export default function ContactContent() {
         }}
         compact
         splitLayout
-        splitImage="/images/heroes/contact-coffee-cups-hero.jpg"
+        splitImage="/images/heroes/contact-conversation-hero.jpg"
       />
 
       {/* Contact Methods */}
